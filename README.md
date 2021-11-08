@@ -1,4 +1,4 @@
-# Daily-Progress
+## Daily-Progress
 Uma prova visual para ganhar um pouco de motivação.
 
 ![Captura de tela 2021-11-08 071129](https://user-images.githubusercontent.com/88716893/140724047-70a843a3-a9d9-47aa-912a-b12ebd398a53.jpg)
