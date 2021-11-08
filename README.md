@@ -9,7 +9,7 @@ E como nem tudo que a gente estuda ou trabalha da pra colocar no GitHub, achei q
 
 P.S:  Talvez eu precise trabalhar no nome
 
-P.S²:  LocalStorage incluido.
+P.S²: Estou usando LocalStorage por enquanto.
 
 ## To do:
 - Adicionar anos.
