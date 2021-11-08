@@ -14,3 +14,4 @@ P.S²:  LocalStorage incluido.
 ## To do:
 - Adicionar anos.
 - Poder adicionar anotações nos seus dias. (ex: Oque estudou hoje, quantas horas estudou, onde parou, próximo passo.)
+- Poder personalizar as cores (só eu pra querer tudo azul mesmo.)
