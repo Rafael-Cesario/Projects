@@ -7,4 +7,10 @@ Antes de usar o Github eu não tinha percebido como é bom ter um lugar para mar
 
 E como nem tudo que a gente estuda ou trabalha da pra colocar no GitHub, achei que seria interessante praticar um pouco do JS e criar uma espécie de barrinha de progresso onde depois de trabalhar ou estudar eu dou um commit manual nela (da uma sensasão de dever cumprido).
 
-P.S: Talvez eu precise trabalhar no nome
+P.S:  Talvez eu precise trabalhar no nome
+
+P.S²:  LocalStorage incluido.
+
+## To do:
+- Adicionar anos.
+- Poder adicionar anotações nos seus dias. (ex: Oque estudou hoje, quantas horas estudou, onde parou, próximo passo.)
