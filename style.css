@@ -1,0 +1,86 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  background-color: rgb(15, 19, 22);
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+  font-family: monospace;
+}
+
+h1 {
+  color: white;
+  padding: 5px 0;
+  cursor: pointer;
+  margin: 20px;
+}
+
+input{
+  background-color: black;
+  color: white;
+  padding: 10px  40px;
+  border-radius: 6px;
+  margin: 20px;
+  border: none;
+  outline: none;
+  text-align: center;
+}
+
+
+.divYear {
+  max-width: 1080px ;
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+  justify-content: center;
+  margin: 20px;
+}
+
+.divMouths {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.divMouth {
+  background-color: rgb(24, 90, 145);
+  border-radius: 10px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.267);
+  margin: 10px;
+}
+
+.divDays {
+  width: 230px;
+  height: 170px;
+  padding: 10px;
+  background-color: rgb(0, 0, 0);
+  border-radius: 0 0 10px 10px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.267);
+}
+
+h2 {
+  color: white;
+  text-align: center;
+  padding: 5px 0;
+}
+
+button {
+  width: 30px;
+  height: 30px;
+  background-color: rgb(19, 19, 19);
+  border: 1px solid black;
+  user-select: none;
+  color: rgba(255, 255, 255, 0.301);
+  font-size: 0.7em;
+}
+.buttonverde {
+  background-color: rgb(30, 85, 148);
+}
