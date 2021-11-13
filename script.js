@@ -174,3 +174,6 @@ button01.addEventListener("click", desfazer);
 containerPalavras.classList.add("containerPalavras");
 
 mostrarPalavras();
+
+
+//teste01
