@@ -7,10 +7,10 @@
 :root {
   --blue01: rgb(17, 55, 99);
   --shadow: 2px 2px 5px rgba(0, 0, 0, 0.267);
+  --black01: #121314;
 }
 body {
-  background-color: #000000;
-  background-image: linear-gradient(147deg, #181717 0%, #041c2c 74%);
+  background-color:var(--black01);
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
