@@ -3,12 +3,18 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+:root {
+  --blue01: rgb(17, 55, 99);
+  --shadow: 2px 2px 5px rgba(0, 0, 0, 0.267);
+}
 body {
-  background-color: rgb(15, 19, 22);
+  background-color: #000000;
+  background-image: linear-gradient(147deg, #181717 0%, #041c2c 74%);
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   height: 100vh;
   width: 100vw;
@@ -20,12 +26,13 @@ h1 {
   padding: 5px 0;
   cursor: pointer;
   margin: 20px;
+  text-shadow: var(--shadow);
 }
 
-input{
+input {
   background-color: black;
   color: white;
-  padding: 10px  40px;
+  padding: 10px 40px;
   border-radius: 6px;
   margin: 20px;
   border: none;
@@ -33,9 +40,8 @@ input{
   text-align: center;
 }
 
-
 .divYear {
-  max-width: 1080px ;
+  max-width: 1080px;
   display: flex;
   flex-direction: column-reverse;
   align-items: center;
@@ -51,7 +57,7 @@ input{
 }
 
 .divMouth {
-  background-color: rgb(24, 90, 145);
+  background-color:var(--blue01);
   border-radius: 10px;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.267);
   margin: 10px;
