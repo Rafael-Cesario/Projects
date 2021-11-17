@@ -1,4 +1,8 @@
 const body = document.body;
+const header = document.createElement("header");
+const contador = document.createElement("span");
+const titulo = document.createElement('h1')
+const formDivBotoes = document.createElement('div')
 const form = document.createElement("form");
 const spanForm = document.createElement("span");
 const button = document.createElement("button");
@@ -6,10 +10,20 @@ const button01 = document.createElement("button");
 const containerPalavras = document.createElement("div");
 const termos = JSON.parse(localStorage.getItem("termos")) || [];
 const definições = JSON.parse(localStorage.getItem("definições")) || [];
+const estudados = JSON.parse(localStorage.getItem("estudados")) || [
+  { buttons: [] },
+  { contador: 0},
+  { maxPorDiv : 0}
+];
+
+const maxPorDiv = 30;
+
+containerPalavras.classList.add("containerPalavras");
 
 function salvar() {
   localStorage.setItem("termos", JSON.stringify(termos));
   localStorage.setItem("definições", JSON.stringify(definições));
+  localStorage.setItem("estudados", JSON.stringify(estudados));
 }
 
 const spanInput = (pai, titulo, classe) => {
@@ -34,11 +48,8 @@ const verificarInput = (e) => {
   const spanForm01 = document.querySelector("form").children[0].children[0];
   const spanForm02 = document.querySelector("form").children[1].children[0];
 
-  console.log(termos);
   let regex = new RegExp(String(input01.value), "ig");
   let existe = termos.indexOf(input01.value);
-  console.log(regex);
-  console.log(existe);
 
   if (existe > -1) {
     spanForm01.textContent = "Termo | Este termo já Existe";
@@ -76,14 +87,13 @@ const addPalavra = (ter, defi) => {
 };
 
 const mostrarPalavras = () => {
-  const maxPorDiv = 50;
   let max = maxPorDiv;
   let c = 0;
+  let vDiv = 0;
 
   limpar();
   const lPalavras = termos.length;
   const nDivs = Math.ceil(lPalavras / max);
-  console.log("nDivs = " + nDivs);
 
   for (let d = 0; d < nDivs; d++) {
     let quant = 0;
@@ -99,23 +109,15 @@ const mostrarPalavras = () => {
     quantidadePalavras.classList.add("quantidadePalavras");
     divBotoes.appendChild(quantidadePalavras);
 
-    /* 
-    const divCheckbox = document.createElement("div");
-    const checkbox = document.createElement("input");
-    const spanCheckbox = document.createElement("span");
-    divCheckbox.classList.add('divCheckbox')
-    spanCheckbox.classList.add("spanCheckbox");
-    checkbox.type = "checkbox";
-    divBotoes.appendChild(divCheckbox);
-    divCheckbox.appendChild(checkbox);
-    divCheckbox.appendChild(spanCheckbox); */
-
-    const bCopiar = document.createElement("button");
-    const icone = document.createElement("i");
-    icone.className += "far fa-clipboard"
-    bCopiar.title = "Copiar"
-    divBotoes.appendChild(bCopiar);
-    bCopiar.appendChild(icone);
+    const palavrasEstudadas = document.createElement("button");
+    divBotoes.appendChild(palavrasEstudadas);
+    palavrasEstudadas.name = "button " + vDiv;
+    palavrasEstudadas.textContent = "OK";
+    palavrasEstudadas.addEventListener("click", estudadas);
+    vDiv++;
+    if (estudados[0].buttons.indexOf(palavrasEstudadas.name) > -1) {
+      palavrasEstudadas.parentNode.parentNode.style.opacity = "0.60";
+    }
 
     const divPalavras = document.createElement("div");
     divPalavras.classList.add("divPalavras");
@@ -155,25 +157,48 @@ const desfazer = (e) => {
   mostrarPalavras();
 };
 
-const quantidadePalavras = (quantidade) => {};
+const estudadas = (e) => {
+  e.preventDefault();
+  const div = e.target.parentNode.parentNode;
+  const posição = estudados[0].buttons.indexOf(e.target.name);
+  const totalP = e.target.parentNode.children[0].textContent.slice(
+    e.target.parentNode.children[0].textContent.search(/[0-9]/g)
+  );
 
-body.appendChild(form);
-body.appendChild(containerPalavras);
+  if (div.style.opacity == 0.6) {
+    div.style.opacity = "1";
+  } else {
+    div.style.opacity = "0.60";
+  }
+
+  if (posição > -1) {
+    estudados[1].contador -= Number(totalP);
+    estudados[0].buttons.splice(posição, 1);
+  } else {
+    estudados[1].contador += Number(totalP);
+    estudados[0].buttons.push(e.target.name);
+  }
+
+  contador.textContent = `Palavras Estudadas: ${estudados[1].contador}`;
+  salvar();
+};
 
 spanInput(form, "Termo", "inputTermo");
 spanInput(form, "Definição", "inputDefinição");
 
-form.appendChild(button);
+body.appendChild(header);
+body.appendChild(form);
+body.appendChild(containerPalavras);
+form.appendChild(formDivBotoes)
+formDivBotoes.appendChild(button);
+formDivBotoes.appendChild(button01);
+header.appendChild(titulo)
+header.appendChild(contador);
+titulo.textContent = "WordList"
+contador.textContent = `Palavras Estudadas: ${estudados[1].contador}`;
 button.textContent = "Adicionar";
-button.addEventListener("click", verificarInput);
-
-form.appendChild(button01);
 button01.textContent = "Desfazer";
+button.addEventListener("click", verificarInput);
 button01.addEventListener("click", desfazer);
 
-containerPalavras.classList.add("containerPalavras");
-
 mostrarPalavras();
-
-
-//teste01
