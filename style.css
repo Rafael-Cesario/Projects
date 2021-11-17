@@ -9,7 +9,7 @@
 
 :root {
   --shadow01: 2px 2px 2px rgba(0, 0, 0, 0.199);
-  --blue01: rgb(19, 78, 146);
+  --blue01: rgb(12, 40, 73);
 }
 
 body {
@@ -19,14 +19,37 @@ body {
   font-size: 1.1em;
 }
 
+header{
+  background-color: black;
+  display: flex;
+  padding: 10px;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 50px;
+  margin: 0 0 20px 0;
+}
+
+h1{
+  font-family: bebas Neue, monospace;
+  letter-spacing: .1em;
+  margin: 10px 20px;
+  cursor: pointer;
+  user-select: none;
+  font-size: 1.5em;
+
+}
+
+
 form {
   margin: 20px auto;
-  border-radius: 10px;
+  border-radius: 7px;
   max-width: 80vw;
+  width: fit-content;
   background-color: rgb(0, 0, 0);
   padding: 20px;
   display: flex;
   flex-wrap: wrap;
+  flex-direction: column;
   align-items: center;
   box-shadow: var(--shadow01);
 }
@@ -37,16 +60,17 @@ form {
 }
 
 input {
-/*   border-radius: 4px; */
+  border-radius: 4px;
   margin: 2px 10px 5px 10px;
   padding: 7px 20px;
   outline: none;
   color: white;
   background-color: transparent;
-/*   background-color: var(--blue01); */
+  background-color: var(--blue01);
   border: none;
   border-bottom: 2px solid var(--blue01);
   box-shadow: var(--shadow01);
+  width: 300px;
 }
 
 .divForm {
@@ -55,8 +79,8 @@ input {
 }
 
 button {
-  margin: 0 10px;
-  width: auto;
+  margin: 10px 10px;
+  max-width: 100px;
   padding: 0 10px;
   height: 30px;
   border-radius: 5px;
@@ -83,7 +107,7 @@ form button:active {
   width: 80vw;
   margin: auto;
   display: flex;
-  flex-direction: row;
+  flex-direction: row-reverse;
   flex-wrap: wrap-reverse;
   justify-content: start;
 }
@@ -91,7 +115,7 @@ form button:active {
 .divLista {
   background-color: black;
   margin: 0 5px 20px 5px;
-  border-radius: 10px;
+  border-radius: 7px;
   padding: 20px;
   width: 300px;
   flex-grow: 1;
@@ -122,6 +146,7 @@ p {
   align-items: center;
   flex-wrap: wrap;
   margin-bottom: 10px;
+  justify-content: space-between;
 }
 
 .divCheckbox {
