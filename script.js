@@ -1,8 +1,8 @@
 const body = document.body;
 const header = document.createElement("header");
 const contador = document.createElement("span");
-const titulo = document.createElement('h1')
-const formDivBotoes = document.createElement('div')
+const titulo = document.createElement("h1");
+const formDivBotoes = document.createElement("div");
 const form = document.createElement("form");
 const spanForm = document.createElement("span");
 const button = document.createElement("button");
@@ -12,8 +12,8 @@ const termos = JSON.parse(localStorage.getItem("termos")) || [];
 const definições = JSON.parse(localStorage.getItem("definições")) || [];
 const estudados = JSON.parse(localStorage.getItem("estudados")) || [
   { buttons: [] },
-  { contador: 0},
-  { maxPorDiv : 0}
+  { contador: 0 },
+  { maxPorDiv: 0 },
 ];
 
 const maxPorDiv = 30;
@@ -116,7 +116,7 @@ const mostrarPalavras = () => {
     palavrasEstudadas.addEventListener("click", estudadas);
     vDiv++;
     if (estudados[0].buttons.indexOf(palavrasEstudadas.name) > -1) {
-      palavrasEstudadas.parentNode.parentNode.style.opacity = "0.60";
+      palavrasEstudadas.parentNode.parentNode.classList.add("estudados");
     }
 
     const divPalavras = document.createElement("div");
@@ -165,11 +165,7 @@ const estudadas = (e) => {
     e.target.parentNode.children[0].textContent.search(/[0-9]/g)
   );
 
-  if (div.style.opacity == 0.6) {
-    div.style.opacity = "1";
-  } else {
-    div.style.opacity = "0.60";
-  }
+  div.classList.toggle("estudados");
 
   if (posição > -1) {
     estudados[1].contador -= Number(totalP);
@@ -179,7 +175,7 @@ const estudadas = (e) => {
     estudados[0].buttons.push(e.target.name);
   }
 
-  contador.textContent = `Palavras Estudadas: ${estudados[1].contador}`;
+  contador.textContent = `Palavras Estudadas ${estudados[1].contador}`;
   salvar();
 };
 
@@ -189,13 +185,14 @@ spanInput(form, "Definição", "inputDefinição");
 body.appendChild(header);
 body.appendChild(form);
 body.appendChild(containerPalavras);
-form.appendChild(formDivBotoes)
+form.appendChild(formDivBotoes);
 formDivBotoes.appendChild(button);
 formDivBotoes.appendChild(button01);
-header.appendChild(titulo)
+header.appendChild(titulo);
 header.appendChild(contador);
-titulo.textContent = "WordList"
-contador.textContent = `Palavras Estudadas: ${estudados[1].contador}`;
+titulo.textContent = "WordList";
+contador.textContent = `Palavras Estudadas ${estudados[1].contador}`;
+contador.classList.add('contador')
 button.textContent = "Adicionar";
 button01.textContent = "Desfazer";
 button.addEventListener("click", verificarInput);
