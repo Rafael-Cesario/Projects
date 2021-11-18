@@ -1,25 +1,3 @@
-const body = document.body;
-const header = document.createElement("header");
-const contador = document.createElement("span");
-const titulo = document.createElement('h1')
-const formDivBotoes = document.createElement('div')
-const form = document.createElement("form");
-const spanForm = document.createElement("span");
-const button = document.createElement("button");
-const button01 = document.createElement("button");
-const containerPalavras = document.createElement("div");
-const termos = JSON.parse(localStorage.getItem("termos")) || [];
-const definições = JSON.parse(localStorage.getItem("definições")) || [];
-const estudados = JSON.parse(localStorage.getItem("estudados")) || [
-  { buttons: [] },
-  { contador: 0},
-  { maxPorDiv : 0}
-];
-
-const maxPorDiv = 30;
-
-containerPalavras.classList.add("containerPalavras");
-
 function salvar() {
   localStorage.setItem("termos", JSON.stringify(termos));
   localStorage.setItem("definições", JSON.stringify(definições));
@@ -116,7 +94,7 @@ const mostrarPalavras = () => {
     palavrasEstudadas.addEventListener("click", estudadas);
     vDiv++;
     if (estudados[0].buttons.indexOf(palavrasEstudadas.name) > -1) {
-      palavrasEstudadas.parentNode.parentNode.style.opacity = "0.60";
+      palavrasEstudadas.parentNode.parentNode.classList.add("estudados");
     }
 
     const divPalavras = document.createElement("div");
@@ -165,11 +143,7 @@ const estudadas = (e) => {
     e.target.parentNode.children[0].textContent.search(/[0-9]/g)
   );
 
-  if (div.style.opacity == 0.6) {
-    div.style.opacity = "1";
-  } else {
-    div.style.opacity = "0.60";
-  }
+  div.classList.toggle("estudados");
 
   if (posição > -1) {
     estudados[1].contador -= Number(totalP);
@@ -179,26 +153,129 @@ const estudadas = (e) => {
     estudados[0].buttons.push(e.target.name);
   }
 
-  contador.textContent = `Palavras Estudadas: ${estudados[1].contador}`;
+  contador.textContent = `Palavras Estudadas ${estudados[1].contador}`;
   salvar();
 };
+
+const displayMenu = (e) => {
+  e.preventDefault();
+  form.classList.toggle("show");
+};
+
+const criarForm = (parentNode, classForm, type, placeHolder, buttonText) => {
+  const parent = document.querySelector(parentNode);
+  const form02 = document.createElement("form");
+  const divForm = document.createElement("div");
+  const input = document.createElement("input");
+  const span = document.createElement("span");
+  const button = document.createElement("button");
+  parent.appendChild(form02);
+  form02.appendChild(divForm);
+  form02.appendChild(button);
+  form02.className += classForm;
+  divForm.classList.add("divForm");
+  divForm.appendChild(span);
+  divForm.appendChild(input);
+  span.textContent = placeHolder;
+  span.classList.add("spanForm");
+  button.textContent = buttonText;
+  input.type = type;
+};
+
+const criarButton = (parentNode, classbutton, textContent, func) => {
+  const button = document.createElement("button");
+  const icone = document.createElement("i");
+  parentNode.appendChild(button);
+  button.appendChild(icone);
+  icone.className += textContent;
+  button.className += classbutton;
+  button.addEventListener("click", func);
+};
+
+const criarDiv = (classDiv, parentNode = body) => {
+  const div = document.createElement("div");
+  if (parentNode == body) {
+    body.appendChild(div);
+  } else {
+    const parent = document.querySelector(parentNode);
+    parent.appendChild(div);
+  }
+  div.className += classDiv;
+};
+
+const body = document.body;
+const header = document.createElement("header");
+const contador = document.createElement("span");
+const titulo = document.createElement("h1");
+const containerPalavras = document.createElement("div");
+const termos = JSON.parse(localStorage.getItem("termos")) || [];
+const definições = JSON.parse(localStorage.getItem("definições")) || [];
+const estudados = JSON.parse(localStorage.getItem("estudados")) || [
+  { buttons: [] },
+  { contador: 0 },
+  { maxPorDiv: 0 },
+];
+
+const maxPorDiv = 30;
+const menu = document.createElement("button");
+const containerMenu = document.createElement("div");
+const iconeMenu = document.createElement("i");
+const form = document.createElement("form");
+const formDivBotoes = document.createElement("div");
+const button = document.createElement("button");
+const button01 = document.createElement("button");
+const spanForm = document.createElement("span");
 
 spanInput(form, "Termo", "inputTermo");
 spanInput(form, "Definição", "inputDefinição");
 
 body.appendChild(header);
-body.appendChild(form);
+criarDiv("divConfigs");
+body.appendChild(containerMenu);
 body.appendChild(containerPalavras);
-form.appendChild(formDivBotoes)
+
+containerMenu.appendChild(form);
+
+form.appendChild(formDivBotoes);
+form.classList.add("hide");
 formDivBotoes.appendChild(button);
 formDivBotoes.appendChild(button01);
-header.appendChild(titulo)
+
+header.appendChild(titulo);
+header.appendChild(menu);
+header.classList.add('header')
+
+criarDiv('botoesMenu', '.header')
+
+criarButton(header, "buttonConfigs", "fa-solid fa-gear", (e) => {
+  e.preventDefault;
+  const elemento = document.querySelector(".formConfigs");
+  elemento.classList.toggle("show");
+});
+
+criarForm(
+  ".divConfigs",
+  "formConfigs hide",
+  "number",
+  "Numero de palavras por grupo",
+  "Confirmar"
+);
 header.appendChild(contador);
-titulo.textContent = "WordList"
-contador.textContent = `Palavras Estudadas: ${estudados[1].contador}`;
+
+titulo.textContent = "WordList";
+
+contador.textContent = `Palavras Estudadas ${estudados[1].contador}`;
+contador.classList.add("contador");
+
 button.textContent = "Adicionar";
 button01.textContent = "Desfazer";
 button.addEventListener("click", verificarInput);
 button01.addEventListener("click", desfazer);
+
+menu.appendChild(iconeMenu);
+menu.addEventListener("click", displayMenu);
+iconeMenu.className += "fa-solid fa-plus";
+
+containerPalavras.classList.add("containerPalavras");
 
 mostrarPalavras();
