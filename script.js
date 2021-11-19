@@ -4,7 +4,7 @@ function salvar() {
   localStorage.setItem("estudados", JSON.stringify(estudados));
 }
 
-const spanInput = (pai, titulo, classe) => {
+const spanInput = (pai, titulo, classeInput, classSpan) => {
   const divForm = document.createElement("div");
   const spanForm = document.createElement("span");
   const input = document.createElement("input");
@@ -12,7 +12,8 @@ const spanInput = (pai, titulo, classe) => {
   spanForm.textContent = titulo;
   divForm.classList.add("divForm");
   spanForm.classList.add("spanForm");
-  input.classList.add(classe);
+  input.classList.add(classeInput);
+  spanForm.className += " " + classSpan;
 
   pai.appendChild(divForm);
   divForm.appendChild(spanForm);
@@ -23,10 +24,9 @@ const verificarInput = (e) => {
   e.preventDefault();
   const input01 = document.querySelector(".inputTermo");
   const input02 = document.querySelector(".inputDefinição");
-  const spanForm01 = document.querySelector("form").children[0].children[0];
-  const spanForm02 = document.querySelector("form").children[1].children[0];
+  const spanForm01 = document.querySelector(".span01");
+  const spanForm02 = document.querySelector(".span02");
 
-  let regex = new RegExp(String(input01.value), "ig");
   let existe = termos.indexOf(input01.value);
 
   if (existe > -1) {
@@ -185,7 +185,7 @@ const criarForm = (parentNode, classForm, type, placeHolder, buttonText) => {
 const criarButton = (parentNode, classbutton, textContent, func) => {
   const button = document.createElement("button");
   const icone = document.createElement("i");
-  parentNode.appendChild(button);
+  document.querySelector(parentNode).appendChild(button);
   button.appendChild(icone);
   icone.className += textContent;
   button.className += classbutton;
@@ -202,6 +202,12 @@ const criarDiv = (classDiv, parentNode = body) => {
   }
   div.className += classDiv;
 };
+
+
+
+
+
+
 
 const body = document.body;
 const header = document.createElement("header");
@@ -226,13 +232,12 @@ const button = document.createElement("button");
 const button01 = document.createElement("button");
 const spanForm = document.createElement("span");
 
-spanInput(form, "Termo", "inputTermo");
-spanInput(form, "Definição", "inputDefinição");
+
+spanInput(form, "Termo", "inputTermo", "span01");
+spanInput(form, "Definição", "inputDefinição", "span02");
 
 body.appendChild(header);
-criarDiv("divConfigs");
 body.appendChild(containerMenu);
-body.appendChild(containerPalavras);
 
 containerMenu.appendChild(form);
 
@@ -242,12 +247,12 @@ formDivBotoes.appendChild(button);
 formDivBotoes.appendChild(button01);
 
 header.appendChild(titulo);
-header.appendChild(menu);
-header.classList.add('header')
+header.classList.add("header");
+criarDiv("botoesMenu", ".header");
+document.querySelector('.botoesMenu').appendChild(menu)
+criarDiv("divConfigs");
 
-criarDiv('botoesMenu', '.header')
-
-criarButton(header, "buttonConfigs", "fa-solid fa-gear", (e) => {
+criarButton(".botoesMenu", "buttonConfigs", "fa-solid fa-gear", (e) => {
   e.preventDefault;
   const elemento = document.querySelector(".formConfigs");
   elemento.classList.toggle("show");
@@ -259,23 +264,26 @@ criarForm(
   "number",
   "Numero de palavras por grupo",
   "Confirmar"
-);
-header.appendChild(contador);
-
-titulo.textContent = "WordList";
-
-contador.textContent = `Palavras Estudadas ${estudados[1].contador}`;
-contador.classList.add("contador");
-
-button.textContent = "Adicionar";
-button01.textContent = "Desfazer";
-button.addEventListener("click", verificarInput);
-button01.addEventListener("click", desfazer);
-
-menu.appendChild(iconeMenu);
-menu.addEventListener("click", displayMenu);
-iconeMenu.className += "fa-solid fa-plus";
-
-containerPalavras.classList.add("containerPalavras");
-
-mostrarPalavras();
+  );
+  
+  header.appendChild(contador);
+  
+  titulo.textContent = "WordList";
+  
+  contador.textContent = `Palavras Estudadas ${estudados[1].contador}`;
+  contador.classList.add("contador");
+  
+  button.textContent = "Adicionar";
+  button01.textContent = "Desfazer";
+  button.addEventListener("click", verificarInput);
+  button01.addEventListener("click", desfazer);
+  
+  menu.appendChild(iconeMenu);
+  menu.addEventListener("click", displayMenu);
+  iconeMenu.className += "fa-solid fa-plus";
+  
+  body.appendChild(containerPalavras);
+  containerPalavras.classList.add("containerPalavras");
+  
+  mostrarPalavras();
+  
