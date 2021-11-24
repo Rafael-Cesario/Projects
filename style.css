@@ -46,6 +46,7 @@ form {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  width: 100vw;
 }
 
 @keyframes show {
@@ -75,7 +76,8 @@ form {
   display: flex;
   z-index: 0;
   position: relative;
-  justify-self: center;
+  justify-content: center;
+  position: absolute;
 }
 
 .spanForm {
