@@ -20,21 +20,38 @@ body {
 
 .header {
   padding: 10px 30px;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  display: flex;
-  justify-content: space-evenly;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
   align-items: baseline;
-  background-color: white;
+  justify-items: center;
+  background-color: rgb(27, 27, 27);
   columns: black;
   color: black;
 }
 
 a {
-  margin-right: 10px;
   color: white;
+  margin-right: 10px;
   text-decoration: none;
-  font-size: 1.5em;
-  font-family: "Roboto Slab";
+  font-size: 1.2em;
+  font-family: "ED Garamond";
+}
+
+.links {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.links a {
+  font-weight: normal;
+  padding: 5px 10px;
+  margin: 0 20px;
+}
+
+.links a:hover {
+  color: #b84337;
 }
 
 .home {
@@ -93,7 +110,6 @@ form {
   flex-direction: column;
   align-content: center;
   justify-content: center;
-  height: 80vh;
   margin: 20px;
 }
 
@@ -129,11 +145,18 @@ button {
   padding: 10px 20px;
   color: white;
   border-radius: 6px;
-  margin: 20px 0;
+  margin: 20px;
 }
 
 button:active {
   transform: scale(0.95);
+}
+
+.new-blog{
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 /* Blog Details */
@@ -170,4 +193,13 @@ button:active {
   font-size: 1em;
   padding: 5px 10px;
   margin: 0 5px;
+}
+
+.botoes {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.botoes button{
+  margin-right: 20px;
 }

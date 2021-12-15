@@ -12,7 +12,11 @@ const BlogDetails = (props) => {
     blogs.splice(array, 1);
     console.log(blogs);
     localStorage.setItem("Blogs", JSON.stringify(blogs));
-    navigate('/')
+    navigate("/");
+  };
+
+  const handleCLickEditar = () => {
+    navigate("/EditBlog/" + key.id);
   };
 
   return (
@@ -21,7 +25,10 @@ const BlogDetails = (props) => {
         <h1>{blogs[array].titulo}</h1>
         <p>{blogs[array].blog}</p>
         <label>Data: {blogs[array].data} </label>
-        <button onClick={handleCLick}>Deletar</button>
+        <div className="botoes">
+          <button onClick={handleCLickEditar}>Editar</button>
+          <button onClick={handleCLick}>Deletar</button>
+        </div>
       </div>
     </div>
   );
