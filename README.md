@@ -1,5 +1,5 @@
 ## Progress
-Uma prova visual para ganhar um pouco de motivação.
+É bom ter um lugar para marcar seus dias onde você fez algum progresso, isso me motiva a continuar mantendo o ritmo.
 
 ![Captura de tela 2021-11-08 071129](https://user-images.githubusercontent.com/88716893/140724047-70a843a3-a9d9-47aa-912a-b12ebd398a53.jpg)
 
