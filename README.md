@@ -1,70 +1,17 @@
-# Getting Started with Create React App
+## Daily-Progress
+Uma prova visual para ganhar um pouco de motivação.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![Captura de tela 2021-11-08 071129](https://user-images.githubusercontent.com/88716893/140724047-70a843a3-a9d9-47aa-912a-b12ebd398a53.jpg)
 
-## Available Scripts
+Antes de usar o Github eu não tinha percebido como é bom ter um lugar para marcar seus dias onde você fez algum progresso, chegar no final do mês e ver que você conseguiu completar seu mês de estudo serve como uma pequena motivação para deixar o próximo mês igual, poder dar um commit manual no calendário deixa claro para mim que neste dia eu fiz algum progresso.
 
-In the project directory, you can run:
+E como nem tudo que a gente estuda ou trabalha da pra colocar no GitHub, achei que seria interessante praticar um pouco do JS e criar uma espécie de barrinha de progresso onde depois de trabalhar ou estudar eu dou um commit manual nela (da uma sensasão de dever cumprido).
 
-### `npm start`
+P.S:  Talvez eu precise trabalhar no nome
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+P.S²: Estou usando LocalStorage por enquanto.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## To do:
+- Adicionar anos.
+- Poder adicionar anotações nos seus dias. (ex: Oque estudou hoje, quantas horas estudou, onde parou, próximo passo.)
+- Poder personalizar as cores (só eu pra querer tudo azul mesmo.)
