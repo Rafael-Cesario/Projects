@@ -1,6 +1,6 @@
 import { useState } from "react";
 const complete = JSON.parse(localStorage.getItem("OK")) || [];
-const color = "rgb(38, 113, 189)";
+const color = 'rgb(19 88 150)';
 const dayColor = "rgb(29, 29, 29)";
 
 function App() {

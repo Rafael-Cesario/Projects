@@ -5,7 +5,7 @@
 }
 
 :root {
-  --azul: rgb(33, 75, 122);
+  --azul: rgb(13, 40, 71);
 }
 
 body {
@@ -72,7 +72,6 @@ body {
   justify-content: center;
   align-items: center;
   margin: 1px;
-  background-color: rgb(29, 29, 29);
   width: 30px;
   height: 30px;
   user-select: none;
