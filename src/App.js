@@ -1,6 +1,7 @@
 import { useState } from "react";
 const complete = JSON.parse(localStorage.getItem("OK")) || [];
-const color = "rgb(33, 75, 122)";
+const color = "rgb(38, 113, 189)";
+const dayColor = "rgb(29, 29, 29)";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ const Calendar = () => {
 
   return (
     <div className="calendar">
+      <h1>{year}</h1>
       {monthNumber.map((m) => (
         <Months key={m} year={year} month={m} />
       ))}
@@ -80,13 +82,12 @@ const Months = (props) => {
     const okDay = span.getAttribute("id");
     const exist = complete.indexOf(okDay);
 
-    console.log(complete);
-    if (span.style.backgroundColor !== "rgb(33, 75, 122)") {
+    if (span.style.backgroundColor !== color) {
       span.style.backgroundColor = color;
       complete.push(okDay);
       save(complete);
     } else {
-      span.style.backgroundColor = "rgb(14, 14, 14)";
+      span.style.backgroundColor = dayColor;
       exist > -1 ? complete.splice(exist, 1) : complete.push(okDay);
       save(complete);
     }
@@ -104,8 +105,8 @@ const Months = (props) => {
         {prevDays.map((d) => (
           <span
             className="days prev"
-            id={d + month + "Prev" + year}
-            key={d + month + "Prev"}
+            id={month + d + "Prev" + year}
+            key={month + d + "Prev"}
             onClick={(e) => handleClick(e)}
           >
             {d}
@@ -126,8 +127,8 @@ const Months = (props) => {
         {nextDays.map((d) => (
           <span
             className="days prev"
-            id={d + month + "Next" + year}
-            key={d + month + "Next"}
+            id={month + d + "Next" + year}
+            key={month + d + "Next"}
             onClick={(e) => handleClick(e)}
           >
             {d}
@@ -141,7 +142,6 @@ const Months = (props) => {
 window.onload = () => {
   for (let x = 0; x < complete.length; x++) {
     const elem = document.querySelector("#" + complete[x]);
-    console.log(elem);
     elem.style.backgroundColor = color;
   }
 };
