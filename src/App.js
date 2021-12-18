@@ -18,7 +18,7 @@ const Calendar = () => {
     monthNumber.push(x);
   }
 
-  const [year, setYear] = useState(2021);
+  const year = 2021;
 
   return (
     <div className="calendar">
