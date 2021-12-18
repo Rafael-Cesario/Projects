@@ -7,3 +7,4 @@ Antes de usar o Github eu não tinha percebido como é bom ter um lugar para mar
 
 E como nem tudo que a gente estuda ou trabalha da pra colocar no GitHub, achei que seria interessante praticar um pouco do JS e criar uma espécie de barrinha de progresso onde depois de trabalhar ou estudar eu dou um commit manual nela (da uma sensasão de dever cumprido).
 
+Feito Com React;
