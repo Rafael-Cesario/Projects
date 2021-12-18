@@ -1,7 +1,6 @@
-import { useState } from "react";
 const complete = JSON.parse(localStorage.getItem("OK")) || [];
-const color = 'rgb(19 88 150)';
-const dayColor = "rgb(29, 29, 29)";
+const color = "rgb(19 88 150)";
+const dayColor = "black";
 
 function App() {
   return (
@@ -82,15 +81,16 @@ const Months = (props) => {
     const okDay = span.getAttribute("id");
     const exist = complete.indexOf(okDay);
 
-    if (span.style.backgroundColor !== color) {
+    if (exist === -1) {
       span.style.backgroundColor = color;
       complete.push(okDay);
-      save(complete);
+      console.log("add azul");
     } else {
+      complete.splice(exist, 1) 
       span.style.backgroundColor = dayColor;
-      exist > -1 ? complete.splice(exist, 1) : complete.push(okDay);
-      save(complete);
+      console.log("r azul");
     }
+    save(complete);
   };
 
   return (
