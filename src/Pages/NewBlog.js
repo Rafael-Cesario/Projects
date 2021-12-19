@@ -18,7 +18,7 @@ const NewBlog = (props) => {
     e.preventDefault();
     let array = blogs.map((el, i) => el.id === key.id);
     array = array.indexOf(true);
-    if (array > -1){
+    if (array > -1) {
       blogs.splice(array, 1);
     }
     const id = uniqid();
@@ -45,7 +45,11 @@ const NewBlog = (props) => {
           onChange={(e) => setTitulo(e.target.value)}
         />
         <h2>Blog</h2>
-        <textarea required value={blog} onChange={(e) => setBlog(e.target.value)} />
+        <textarea
+          required
+          value={blog}
+          onChange={(e) => setBlog(e.target.value)}
+        />
         <h2>Data</h2>
         <input
           type="date"

@@ -62,6 +62,18 @@ a {
   width: 100%;
 }
 
+@media (max-width: 1400px) {
+  .home {
+    grid-template-columns: auto auto;
+  }
+}
+
+@media (max-width: 1000px) {
+  .home {
+    grid-template-columns: auto;
+  }
+}
+
 .blogs {
   max-width: 500px;
   margin: 50px;
@@ -94,6 +106,7 @@ a {
   text-align: justify;
   border: 2px solid transparent;
   user-select: none;
+  white-space: pre-wrap;
 }
 .data {
   margin-top: 20px;
@@ -152,7 +165,7 @@ button:active {
   transform: scale(0.95);
 }
 
-.new-blog{
+.new-blog {
   margin-top: 50px;
   display: flex;
   flex-direction: column;
@@ -172,6 +185,7 @@ button:active {
   flex-direction: column;
   flex-wrap: wrap;
   text-align: justify;
+  white-space: pre-wrap;
   margin: 50px;
   padding: 30px;
 }
@@ -200,6 +214,6 @@ button:active {
   flex-direction: row;
   flex-wrap: wrap;
 }
-.botoes button{
+.botoes button {
   margin-right: 20px;
 }
