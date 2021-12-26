@@ -1,0 +1,41 @@
+:root {
+  --azul: rgb(31, 72, 99);
+}
+
+.configs a {
+  color: white;
+  text-decoration: none;
+  background-color: var(--azul);
+  padding: 10px 20px;
+  border-radius: 5px;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.255);
+  margin: 20px;
+}
+.configs a:active {
+  transform: scale(0.95);
+}
+
+.configs {
+  height: 90vh;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.header-configs {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.delete-list {
+  display: none;
+}
+.show-delete{
+  display: flex;
+  position: absolute;
+  flex-direction: column;
+  background-color: black;
+}

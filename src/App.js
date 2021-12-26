@@ -1,25 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
+import InitialScream from "./Pages/InitialScreeam";
+import { Routes, Route } from "react-router-dom";
+import WordList from "./Pages/WordList";
+import NotFound from "./Pages/NotFound";
+import Configs from "./Pages/Configs";
 
-function App() {
+const App = () => {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Routes>
+        <Route exact path="/" element={<InitialScream />} />
+        <Route exact path="/:id" element={<WordList />} />
+        <Route exact path="/:id/Configs" element={<Configs />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
     </div>
   );
-}
+};
 
 export default App;

@@ -1,0 +1,108 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --azul01: #1e3558;
+  --azul02: #1c1f27;
+}
+
+body {
+  background-color: var(--azul02);
+  color: white;
+  display: grid;
+  grid-template-rows: auto auto;
+}
+
+input {
+  display: inline;
+}
+
+.div-new-list {
+  margin-left: 50px;
+}
+
+.new-list {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  color: white;
+  font-size: 1.5em;
+  font-family: monospace;
+  margin: 20px;
+  cursor: pointer;
+  user-select: none;
+}
+
+button:active {
+  transform: scale(0.95);
+  user-select: none;
+  cursor: pointer;
+}
+
+.form-new-list {
+  visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+  margin: 20px;
+}
+
+.show {
+  visibility: visible;
+}
+
+.form-new-list input {
+  background-color: var(--azul01);
+  border: none;
+  border-radius: 5px;
+  outline: none;
+  color: white;
+  padding: 10px 10px 10px 11px;
+  margin: 2px 0 10px 0;
+}
+
+.form-new-list span {
+  margin: 0px 10px;
+  user-select: none;
+}
+
+button {
+  border: none;
+  background-color: var(--azul01);
+  padding: 5px 10px;
+  margin: 5px 0;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.list {
+  background-color: var(--azul01);
+  width: 200px;
+  height: 200px;
+  border-radius: 10px;
+  margin: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  overflow: hidden;
+  box-shadow: 11px 14px 5px rgb(0 0 0 / 17%);
+}
+
+.list h2 {
+  text-align: center;
+  user-select: none;
+  pointer-events: none;
+  text-transform: capitalize;
+}
+
+.myList {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
