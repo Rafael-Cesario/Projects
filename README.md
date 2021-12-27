@@ -1,3 +1,5 @@
 # WordList 2.0
 
-Conforme estou aprendendo decidi fazer um upgrade adicionando React ao meu site.
+Estava precisando de um lugar para adicionar algumas palavras e suas traduções, sem repetir palavras e separando elas em grupos.
+
+Conforme estou aprendendo decidi refazer meu site adicionando React.
