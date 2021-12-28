@@ -3,6 +3,8 @@ import List from "../Components/List";
 import "../Style/InitialScreen.css";
 
 export const myList = JSON.parse(localStorage.getItem("myList")) || [];
+export const allWordsAndDefinitions =
+  JSON.parse(localStorage.getItem("allWordsAndDefinitions")) || [];
 
 const InitialScream = () => {
   const show = (e) => {
@@ -13,19 +15,24 @@ const InitialScream = () => {
   };
 
   const [listName, setListName] = useState("");
-
   const onSubmit = (e) => {
     e.preventDefault();
     if (!listName) {
       return;
     }
     myList.push(listName);
+    allWordsAndDefinitions.push({ [listName]: { termos: [], definições: [] } });
+
     setListName("");
     show(e);
   };
 
   useEffect(() => {
     localStorage.setItem("myList", JSON.stringify(myList));
+    localStorage.setItem(
+      "allWordsAndDefinitions",
+      JSON.stringify(allWordsAndDefinitions)
+    );
   });
 
   return (

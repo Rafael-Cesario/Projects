@@ -19,24 +19,41 @@
 .word-list-header h1 {
   justify-self: center;
 }
-
+.menus {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: auto;
+  justify-content: flex-start;
+  align-items: center;
+}
 .word-list-header .menus a {
-  margin: 0 10px;
+  text-align: left;
+  margin: 10px 20px;
   color: white;
   font-size: 1.2em;
   text-decoration: none;
 }
-
+.word-list-header .menus button {
+  background-color: transparent;
+  text-align: left;
+  margin: 10px 20px;
+  color: white;
+  font-size: 1.2em;
+  text-decoration: none;
+  padding: 0;
+  font-family: "Times New Roman", Times, serif;
+}
 .word-list-header .home {
   justify-self: left;
 }
 
-.word-list-header .menus a:hover {
+.word-list-header .menus a:hover,
+.word-list-header .menus button:hover {
   color: rgb(182, 41, 41);
 }
 
 .forms-add-word {
-  display: grid;
+  display: none;
   grid-template-columns: auto 1fr;
   column-gap: 50px;
   margin: 50px;

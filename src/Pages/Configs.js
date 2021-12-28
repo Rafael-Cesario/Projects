@@ -2,7 +2,7 @@ import "../Style/Configs.css";
 import React from "react";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
-import { myList } from "./InitialScreeam";
+import { allWordsAndDefinitions, myList } from "./InitialScreeam";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
@@ -25,6 +25,7 @@ function Configs() {
     } else if (value.toUpperCase() === "DELETAR LISTA") {
       const index = myList.indexOf(listName.id);
       myList.splice(index, 1);
+      allWordsAndDefinitions.splice(index, 1);
       console.log(index);
       navigate("/");
     } else {
@@ -77,5 +78,4 @@ function Configs() {
     </div>
   );
 }
-
 export default Configs;

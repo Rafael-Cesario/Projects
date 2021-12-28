@@ -1,9 +1,9 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useRef } from "react";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { allWordsAndDefinitions } from "./InitialScreeam";
+import { myList } from "./InitialScreeam";
 import "../Style/WordList.css";
-const allWordsAndDefinitions =
-  JSON.parse(localStorage.getItem("allWordsAndDefinitions")) || [];
 
 const save = () => {
   localStorage.setItem(
@@ -14,30 +14,97 @@ const save = () => {
 
 function WordList() {
   const listName = useParams();
+  const listIndex = myList.indexOf(listName.id);
   const [words, setWords] = useState("");
   const [word01, setWord01] = useState("");
   const [word02, setWord02] = useState("");
+  const [termo, setTermo] = useState(false);
+  const [definição, setDefinição] = useState(false);
+  const [sameWordTextArea, setSameWordTextArea] = useState(false);
+  const inputWord01 = useRef();
+  const inputWord02 = useRef();
 
   const addSeveralWords = () => {
-    words
-      .split("\n")
-      .map((word) => word !== "" && allWordsAndDefinitions.push(word));
+    setSameWordTextArea(false);
+    const textareaWords = [];
+    words.split(/\n/g).map((word) => word !== "" && textareaWords.push(word));
+    textareaWords.forEach((el) => {
+      const termosUpper = allWordsAndDefinitions[listIndex][listName.id][
+        "termos"
+      ].map((word) => word.toUpperCase());
+
+      const indexS = el.indexOf(";");
+      const ter = el.slice(0, indexS);
+      const def = el.slice(indexS + 1);
+      const findTerm = termosUpper.indexOf(ter.toUpperCase());
+      console.log(findTerm);
+
+      if (findTerm === -1) {
+        allWordsAndDefinitions[listIndex][listName.id]["termos"].push(ter);
+        allWordsAndDefinitions[listIndex][listName.id]["definições"].push(def);
+      } else {
+        setSameWordTextArea(true);
+      }
+    });
     save();
     setWords("");
   };
 
-  const input02 = useRef(null);
   const addSingleWord = (e) => {
     e.preventDefault();
-    if (!word02) {
-      input02.current.focus();
+    const termosUpper = allWordsAndDefinitions[listIndex][listName.id][
+      "termos"
+    ].map((word) => word.toUpperCase());
+    const definicoesUpper = allWordsAndDefinitions[listIndex][listName.id][
+      "definições"
+    ].map((word) => word.toUpperCase());
+
+    const findWord01 = termosUpper.indexOf(word01.toUpperCase());
+    const findWord02 = definicoesUpper.indexOf(word02.toUpperCase());
+
+    const red = "rgb(165, 49, 49)";
+    const blue = "rgb(31, 72, 99)";
+
+    if (word01 === "") {
+      inputWord01.current.focus();
+      inputWord01.current.style.borderColor = red;
+    } else if (word02 === "") {
+      inputWord02.current.focus();
+      inputWord02.current.style.borderColor = red;
     } else {
-      let newWord = `${word01};${word02}`;
-      allWordsAndDefinitions.push(newWord);
-      save();
-      setWord01("");
-      setWord02("");
+      if (findWord01 > -1) {
+        setTermo(true);
+      } else if (findWord02 > -1) {
+        setDefinição(true);
+      } else {
+        inputWord01.current.style.borderColor = blue;
+        inputWord02.current.style.borderColor = blue;
+        inputWord01.current.focus();
+
+        allWordsAndDefinitions[listIndex][listName.id]["termos"].push(word01);
+        allWordsAndDefinitions[listIndex][listName.id]["definições"].push(
+          word02
+        );
+
+        save();
+        setWord01("");
+        setWord02("");
+      }
     }
+  };
+
+  const removeLastWord = () => {
+    allWordsAndDefinitions[listIndex][listName.id]["termos"].pop();
+    allWordsAndDefinitions[listIndex][listName.id]["definições"].pop();
+    save();
+  };
+
+  const formsAddWord = useRef();
+  const showForms = (e) => {
+    e.preventDefault();
+    formsAddWord.current.style.display !== "grid"
+      ? (formsAddWord.current.style.display = "grid")
+      : (formsAddWord.current.style.display = "none");
   };
 
   return (
@@ -48,13 +115,13 @@ function WordList() {
             Home
           </Link>
           <Link to={`/${listName.id}/configs`}>Configs</Link>
+          <button onClick={(e) => showForms(e)}>Adicionar Palavras</button>
         </div>
 
         <h1>{listName.id}</h1>
-        <button>Adicionar Palavras</button>
       </header>
 
-      <div className="forms-add-word">
+      <div className="forms-add-word" ref={formsAddWord}>
         <form action="" className="several">
           <h2>
             Adicione uma lista de palavras separando o termo da definição com "
@@ -71,35 +138,41 @@ function WordList() {
               Adicionar
             </button>
             <button type="button">Fechar</button>
+            {sameWordTextArea && (
+              <span>
+                Algumas palavras não foram adicionadas pois já existem!{" "}
+              </span>
+            )}
           </div>
         </form>
 
         <form className="single" onSubmit={(e) => addSingleWord(e)}>
+          {termo && <span>Termo repetido</span>}
           <input
             type="text"
             placeholder="Termo"
             value={word01}
             onChange={(e) => setWord01(e.target.value)}
+            ref={inputWord01}
           />
+
+          {definição && <span>Definição repetida</span>}
           <input
             type="text"
             placeholder="Definição"
-            ref={input02}
             value={word02}
             onChange={(e) => setWord02(e.target.value)}
+            ref={inputWord02}
           />
           <div className="buttons">
             <button type="submit">Adicionar</button>
+            <button type="button" onClick={removeLastWord}>
+              Remover Ultima palavra adicionada
+            </button>
             <button type="button">Fechar</button>
           </div>
         </form>
       </div>
-
-      {allWordsAndDefinitions.map((word) => (
-        <p className="teste">{word}</p>
-      ))}
-
-      <p className="teste">{word01 + "  " + word02}</p>
     </div>
   );
 }
