@@ -171,7 +171,7 @@
 .words-body {
   display: flex;
   flex-direction: row-reverse;
-  flex-wrap: wrap;
+  flex-wrap: wrap-reverse;
   justify-content: center;
 }
 
