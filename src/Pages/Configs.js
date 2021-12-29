@@ -4,13 +4,20 @@ import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { allWordsAndDefinitions, myList } from "./InitialScreeam";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 function Configs() {
   const listName = useParams();
   const navigate = useNavigate();
   const [value, setValue] = useState("");
   const [di, setDi] = useState(false);
+  const [maxPerDiv, setMaxPerDiv] = useState(
+    localStorage.getItem("maxPerDiv") || 20
+  );
+
+  useEffect(() => {
+    localStorage.setItem("maxPerDiv", maxPerDiv);
+  }, [maxPerDiv]);
 
   const showDeleteList = (e) => {
     e.preventDefault();
@@ -49,7 +56,11 @@ function Configs() {
         </Link>
 
         <h2>Palavras por grupo</h2>
-        <input type="text" />
+        <input
+          type="text"
+          value={maxPerDiv}
+          onChange={(e) => setMaxPerDiv(e.target.value)}
+        />
 
         <button onClick={(e) => showDeleteList(e)}>Deletar Lista</button>
         <form onSubmit={deleteList} className="delete-list">
@@ -78,4 +89,5 @@ function Configs() {
     </div>
   );
 }
+
 export default Configs;

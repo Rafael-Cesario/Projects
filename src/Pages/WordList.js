@@ -3,14 +3,14 @@ import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { allWordsAndDefinitions } from "./InitialScreeam";
 import { myList } from "./InitialScreeam";
+import WordsContainer from "../Components/WordsContainer";
 import "../Style/WordList.css";
 
-const save = () => {
+const store = () =>
   localStorage.setItem(
     "allWordsAndDefinitions",
     JSON.stringify(allWordsAndDefinitions)
   );
-};
 
 function WordList() {
   const listName = useParams();
@@ -18,6 +18,7 @@ function WordList() {
   const [words, setWords] = useState("");
   const [word01, setWord01] = useState("");
   const [word02, setWord02] = useState("");
+  const [deleted, setDeleted] = useState(false);
   const [termo, setTermo] = useState(false);
   const [definição, setDefinição] = useState(false);
   const [sameWordTextArea, setSameWordTextArea] = useState(false);
@@ -46,7 +47,7 @@ function WordList() {
         setSameWordTextArea(true);
       }
     });
-    save();
+    store();
     setWords("");
   };
 
@@ -55,12 +56,8 @@ function WordList() {
     const termosUpper = allWordsAndDefinitions[listIndex][listName.id][
       "termos"
     ].map((word) => word.toUpperCase());
-    const definicoesUpper = allWordsAndDefinitions[listIndex][listName.id][
-      "definições"
-    ].map((word) => word.toUpperCase());
 
     const findWord01 = termosUpper.indexOf(word01.toUpperCase());
-    const findWord02 = definicoesUpper.indexOf(word02.toUpperCase());
 
     const red = "rgb(165, 49, 49)";
     const blue = "rgb(31, 72, 99)";
@@ -74,8 +71,6 @@ function WordList() {
     } else {
       if (findWord01 > -1) {
         setTermo(true);
-      } else if (findWord02 > -1) {
-        setDefinição(true);
       } else {
         inputWord01.current.style.borderColor = blue;
         inputWord02.current.style.borderColor = blue;
@@ -86,7 +81,7 @@ function WordList() {
           word02
         );
 
-        save();
+        store();
         setWord01("");
         setWord02("");
       }
@@ -96,7 +91,12 @@ function WordList() {
   const removeLastWord = () => {
     allWordsAndDefinitions[listIndex][listName.id]["termos"].pop();
     allWordsAndDefinitions[listIndex][listName.id]["definições"].pop();
-    save();
+    inputWord01.current.focus();
+    setDeleted(true);
+    setTimeout(() => {
+      setDeleted(false);
+    }, 500);
+    store();
   };
 
   const formsAddWord = useRef();
@@ -171,8 +171,11 @@ function WordList() {
             </button>
             <button type="button">Fechar</button>
           </div>
+          {deleted && <h1 className="teste">Ultima palavra deletada</h1>}
         </form>
       </div>
+
+      <WordsContainer />
     </div>
   );
 }

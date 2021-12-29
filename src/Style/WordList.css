@@ -4,6 +4,11 @@
   --azul01: rgb(31, 72, 99);
 }
 
+.word-list {
+  display: flex;
+  flex-direction: column;
+}
+
 .word-list-header {
   background-color: var(--backgrounColor01);
   box-shadow: var(--shadow);
@@ -76,7 +81,7 @@
   margin: 20px 0;
 }
 .teste {
-  white-space: pre-line;
+  transition: ease-in;
 }
 .forms-add-word .several textarea {
   width: 500px;
@@ -114,4 +119,62 @@
   text-align: start;
   margin-bottom: 20px;
   color: white;
+}
+
+/* individualWord */
+
+.individual-words-body {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.menu-container-individual-words {
+  margin: 0 0 20px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 15px;
+  border-radius: 10px;
+
+  background-color: var(--azul01);
+}
+
+.menu-container-individual-words button {
+  background-color: rgb(26, 54, 105);
+  box-shadow: 2px 2px 2px rgba(20, 130, 220, 0.24);
+}
+
+.individual-words {
+  background-color: black;
+  box-shadow: 5px 5px 2px rgb(0 0 0 / 20%);
+  margin: 20px;
+  border-radius: 8px;
+  padding: 20px;
+  width: 450px;
+}
+.container-words {
+  margin-bottom: 10px;
+}
+
+.words-map-div {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 10px;
+  margin: 0 10px 10px 10px;
+}
+
+.words-map-para:nth-child(odd) {
+  border-right: 2px solid var(--azul01);
+}
+
+.words-body {
+  display: flex;
+  flex-direction: row-reverse;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.words-container-buttons button {
+  margin-right: 10px;
 }
