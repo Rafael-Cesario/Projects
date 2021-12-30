@@ -57,7 +57,7 @@ function WordsContainer() {
     const word = props.word;
     return word.map((word, i) => (
       <p key={word + "p"} className="words-map-para">
-        ;{word}
+        {word}
       </p>
     ));
   };
