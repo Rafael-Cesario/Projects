@@ -5,7 +5,12 @@
 
 Estava precisando de um lugar para adicionar algumas palavras e suas traduções, sem repetir palavras e separando elas em grupos.
 
-Conforme estou aprendendo decidi refazer meu site adicionando React, GSAP.
+Conforme estou aprendendo decidi refazer meu site adicionando React, e aprendendo um pouco sobre animação, estou utilizando GSPAP para animar.
+
+
+# WordList 1.0
+
+![Slide 16_9 - 1](https://user-images.githubusercontent.com/88716893/141514890-d67c6452-8ac4-4ebf-a783-af9a58c2a14d.jpg)
 
 
 
