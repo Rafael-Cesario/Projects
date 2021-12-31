@@ -1,6 +1,5 @@
 import { useParams } from "react-router-dom";
 import { allWordsAndDefinitions, myList } from "../Pages/InitialScreeam";
-import { useRef } from "react";
 
 function WordsContainer() {
   const listName = useParams();
@@ -11,7 +10,6 @@ function WordsContainer() {
   const termsAndDefinitions = [];
   const maxperdiv = localStorage.getItem("maxPerDiv") || 20;
   let x = 0;
-  const wordcopy = useRef();
 
   while (x < terms.length) {
     let tempArray = [];

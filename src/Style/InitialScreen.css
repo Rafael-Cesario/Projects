@@ -5,104 +5,177 @@
 }
 
 :root {
-  --azul01: rgb(31, 72, 99);
+  --black01: #000000;
+  --white01: #e6e6e6;
+  --blue01: #002940;
+  --red01: #660011;
+  --yellow01: #ffc82d;
   --azul02: #1c1f27;
+  --shadow01: 5px 5px 5px rgba(0 0 0 / 20%);
 }
 
 body {
-  background-color: var(--azul02);
-  color: white;
-  display: grid;
-  grid-template-rows: auto auto;
-}
-
-input {
-  display: inline;
+  background-color: var(--black01);
+  background: linear-gradient(90deg, #1d1d1d 40.1%, #1b1b1b 100%);
 }
 
 .div-new-list {
-  margin-left: 50px;
+  margin: 70px 120px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
 }
 
-.new-list {
+.div-new-list button {
   background-color: transparent;
   border: none;
   outline: none;
-  color: white;
-  font-size: 1.5em;
-  font-family: monospace;
-  margin: 20px;
-  cursor: pointer;
-  user-select: none;
-}
-
-button:active {
-  transform: scale(0.95);
-  user-select: none;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 1.5rem;
+  color: var(--white01);
+  margin-right: 30px;
   cursor: pointer;
 }
 
-.form-new-list {
-  visibility: hidden;
-  display: flex;
-  flex-direction: column;
-  width: fit-content;
-  margin: 20px;
-}
-
-.show {
-  visibility: visible;
-}
-
-.form-new-list input {
-  background-color: var(--azul01);
-  border: none;
-  border-radius: 5px;
-  outline: none;
-  color: white;
-  padding: 10px 10px 10px 11px;
-  margin: 2px 0 10px 0;
-}
-
-.form-new-list span {
-  margin: 0px 10px;
-  user-select: none;
-}
-
-button {
-  border: none;
-  background-color: var(--azul01);
-  padding: 5px 10px;
-  margin: 5px 0;
-  color: white;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.list {
-  background-color: var(--azul01);
-  width: 200px;
-  height: 200px;
-  border-radius: 10px;
-  margin: 20px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  overflow: hidden;
-  box-shadow: 11px 14px 5px rgb(0 0 0 / 17%);
-}
-
-.list h2 {
-  text-align: center;
-  user-select: none;
-  pointer-events: none;
-  text-transform: capitalize;
-}
-
-.myList {
+.lists-initialscreen {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  margin: 150px 50px 50px 50px;
   justify-content: center;
+}
+
+.lists-components {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.fake-components {
+  display: flex;
+  opacity: 0.2;
+  flex-direction: column;
+  width: 313px;
+  height: 542px;
+  background-color: var(--black01);
+  box-shadow: var(--shadow01);
+  padding: 0px 30px 40px 30px;
+  border-radius: 10px;
+  margin: 15px 15px;
+}
+
+.my-list-component {
+  display: flex;
+  flex-direction: column;
+  width: 313px;
+  height: 542px;
+  background-color: var(--blue01);
+  box-shadow: var(--shadow01);
+  border-radius: 10px;
+  color: var(--white01);
+  font-family: "Times New Roman", Times, serif;
+  margin: 15px 15px;
+  padding: 40px 30px;
+  cursor: pointer;
+}
+
+.my-list-component h2 {
+  pointer-events: none;
+  text-align: center;
+  font-size: 2.5rem;
+}
+
+.my-list-component p {
+  pointer-events: none;
+  margin: 50px 10px;
+  text-align: center;
+}
+
+.form-new-list {
+  display: none;
+  flex-direction: column;
+  width: fit-content;
+  width: 313px;
+  height: 542px;
+  background-color: var(--blue01);
+  box-shadow: var(--shadow01);
+  padding: 0px 30px 40px 30px;
+  border-radius: 10px;
+  margin: 15px 15px;
+}
+
+.form-new-list div {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-new-list .buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 10px;
+  transform: translateY(-50px);
+  margin: 0 -30px 0 -30px;
+}
+
+.form-new-list .buttons button {
+  background-color: var(--blue01);
+  box-shadow: var(--shadow01);
+  color: var(--white01);
+
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  padding: 10px 5px;
+}
+
+.form-new-list input {
+  z-index: 1;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  padding: 1px 5px;
+  color: var(--white01);
+  margin-bottom: 50px;
+  height: 50px;
+  transform: translate(0, -40px);
+  font-size: 2.5rem;
+  font-family: "Times New Roman", Times, serif;
+  font-weight: bold;
+  text-align: center;
+}
+
+.form-new-list textarea {
+  background-color: transparent;
+  border-radius: 10px;
+  min-height: 200px;
+  border: 1px solid var(--white01);
+  color: white;
+  padding: 10px;
+  outline: none;
+  resize: none;
+  transform: translate(0, -60px);
+}
+
+.form-new-list .span-input {
+  pointer-events: none;
+  color: var(--white01);
+  user-select: none;
+  z-index: 0;
+  transform: translate(0, 10px);
+  font-family: "Times New Roman", Times, serif;
+  font-weight: bold;
+  font-size: 2.5rem;
+  text-align: center;
+  pointer-events: none;
+}
+
+.form-new-list .span-textarea {
+  pointer-events: none;
+
+  color: var(--white01);
+  user-select: none;
+  z-index: 0;
+  transform: translate(15px, -30px);
+  font-family: "Times New Roman", Times, serif;
 }

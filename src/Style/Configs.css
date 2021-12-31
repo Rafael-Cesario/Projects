@@ -84,17 +84,3 @@
   font-size: 1.1em;
   text-align: center;
 }
-
-.buttons {
-  margin: 10px 50px 30px 50px;
-  display: flex;
-  justify-content: center;
-}
-.buttons button {
-  margin: 5px;
-  padding: 5px 15px;
-}
-
-.buttons button:first-child {
-  background-color: var(--vermelho);
-}
