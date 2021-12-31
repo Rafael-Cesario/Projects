@@ -19,6 +19,8 @@ body {
   background: linear-gradient(90deg, #1d1d1d 40.1%, #1b1b1b 100%);
 }
 
+/* INITIALSCREEN */
+
 .div-new-list {
   margin: 70px 120px;
   display: flex;

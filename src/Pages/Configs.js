@@ -1,4 +1,4 @@
-import "../Style/Configs.css";
+import "../Style/allstyles.css";
 import React from "react";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";

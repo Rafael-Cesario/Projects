@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import logo from "../imgs/Planet.png";
 import List from "../Components/List";
 import gsap from "gsap";
-import "../Style/InitialScreen.css";
+import "../Style/allstyles.css";
 
 export const myList = JSON.parse(localStorage.getItem("myList")) || [];
 export const allWordsAndDefinitions =

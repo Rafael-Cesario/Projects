@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { allWordsAndDefinitions } from "./InitialScreeam";
 import { myList } from "./InitialScreeam";
 import WordsContainer from "../Components/WordsContainer";
-import "../Style/WordList.css";
+import "../Style/allstyles.css";
 
 const store = () =>
   localStorage.setItem(
