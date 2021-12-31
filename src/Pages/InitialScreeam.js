@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import backgroundimg from "../imgs/backgroundimg.jpg";
 import logo from "../imgs/Planet.png";
 import List from "../Components/List";
 import gsap from "gsap";
@@ -94,11 +95,17 @@ const InitialScream = () => {
 
   return (
     <div>
+      <img
+        src={backgroundimg}
+        alt="imagem de fundo"
+        className="backgroundimg-initialpage"
+      />
       <div className="div-new-list">
         <div>
           <button className="new-list" onClick={(e) => show(e)}>
             Nova Lista
           </button>
+          <div className="divborder50"></div>
           <button className="new-list">Sobre</button>
         </div>
         <img src={logo} alt="PNG planeta" width={100} height={"auto"} />

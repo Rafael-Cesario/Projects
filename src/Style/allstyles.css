@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
+
 * {
   margin: 0;
   padding: 0;
@@ -7,7 +9,7 @@
 :root {
   --black01: #000000;
   --white01: #e6e6e6;
-  --blue01: #002940;
+  --blue01: #0f2b4b;
   --red01: #660011;
   --yellow01: #ffc82d;
   --azul02: #1c1f27;
@@ -21,23 +23,42 @@ body {
 
 /* INITIALSCREEN */
 
+.backgroundimg-initialpage {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
+}
+
 .div-new-list {
   margin: 70px 120px;
   display: flex;
   flex-direction: row;
-  align-items: center;
   justify-content: space-between;
+}
+.div-new-list div {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.div-new-list .divborder50 {
+  background-color: var(--white01);
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
 }
 
 .div-new-list button {
   background-color: transparent;
   border: none;
   outline: none;
-  font-family: "Times New Roman", Times, serif;
+  font-family: "Bebas Neue", cursive;
   font-size: 1.5rem;
   color: var(--white01);
-  margin-right: 30px;
   cursor: pointer;
+  margin: 0 20px;
 }
 
 .lists-initialscreen {
@@ -56,11 +77,11 @@ body {
 
 .fake-components {
   display: flex;
-  opacity: 0.2;
+  /*   opacity: 0.2; */
   flex-direction: column;
   width: 313px;
   height: 542px;
-  background-color: var(--black01);
+  background-color: var(--blue01);
   box-shadow: var(--shadow01);
   padding: 0px 30px 40px 30px;
   border-radius: 10px;
@@ -76,7 +97,6 @@ body {
   box-shadow: var(--shadow01);
   border-radius: 10px;
   color: var(--white01);
-  font-family: "Times New Roman", Times, serif;
   margin: 15px 15px;
   padding: 40px 30px;
   cursor: pointer;
@@ -85,13 +105,16 @@ body {
 .my-list-component h2 {
   pointer-events: none;
   text-align: center;
-  font-size: 2.5rem;
+  font-size: 2rem;
+  font-family: "Bebas Neue", monospace;
+  letter-spacing: 3px;
 }
 
 .my-list-component p {
   pointer-events: none;
   margin: 50px 10px;
   text-align: center;
+  font-family: Georgia, "Times New Roman", Times, serif;
 }
 
 .form-new-list {
@@ -124,7 +147,6 @@ body {
   background-color: var(--blue01);
   box-shadow: var(--shadow01);
   color: var(--white01);
-
   border: none;
   outline: none;
   border-radius: 5px;
@@ -142,9 +164,10 @@ body {
   height: 50px;
   transform: translate(0, -40px);
   font-size: 2.5rem;
-  font-family: "Times New Roman", Times, serif;
+  font-family: "Bebas Neue", cursive;
   font-weight: bold;
   text-align: center;
+  letter-spacing: 3px;
 }
 
 .form-new-list textarea {
@@ -165,11 +188,12 @@ body {
   user-select: none;
   z-index: 0;
   transform: translate(0, 10px);
-  font-family: "Times New Roman", Times, serif;
+  font-family: "Bebas Neue", cursive;
   font-weight: bold;
-  font-size: 2.5rem;
+  font-size: 2rem;
   text-align: center;
   pointer-events: none;
+  letter-spacing: 3px;
 }
 
 .form-new-list .span-textarea {
@@ -179,5 +203,5 @@ body {
   user-select: none;
   z-index: 0;
   transform: translate(15px, -30px);
-  font-family: "Times New Roman", Times, serif;
+  font-family: Georgia, "Times New Roman", Times, serif;
 }
