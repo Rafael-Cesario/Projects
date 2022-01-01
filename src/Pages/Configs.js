@@ -33,7 +33,6 @@ function Configs() {
       const index = myList.indexOf(listName.id);
       myList.splice(index, 1);
       allWordsAndDefinitions.splice(index, 1);
-      console.log(index);
       navigate("/");
     } else {
       p.style.color = "#d14b4b";

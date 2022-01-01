@@ -3,7 +3,9 @@ import { allWordsAndDefinitions, myList } from "../Pages/InitialScreeam";
 
 function WordsContainer() {
   const listName = useParams();
+
   const listIndex = myList.indexOf(listName.id);
+
   const terms = allWordsAndDefinitions[listIndex][listName.id]["termos"];
   const definitions =
     allWordsAndDefinitions[listIndex][listName.id]["definições"];
@@ -28,13 +30,6 @@ function WordsContainer() {
     termsAndDefinitions.map((td, i) => {
       return (
         <div key={td + i} className="individual-words">
-          <div className="menu-container-individual-words">
-            <span>Total : {td.length}</span>
-            <div className="words-container-buttons">
-              <button>Editar</button>
-            </div>
-          </div>
-
           <div className="container-words">
             <ContainerWords td={td} index={i} />
           </div>

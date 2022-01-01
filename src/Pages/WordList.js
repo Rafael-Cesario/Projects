@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import { allWordsAndDefinitions } from "./InitialScreeam";
 import { myList } from "./InitialScreeam";
 import WordsContainer from "../Components/WordsContainer";
+import logo from "../imgs/Planet.png";
+import backgroundimg from "../imgs/backgroundimg.jpg";
 import "../Style/allstyles.css";
 
 const store = () =>
@@ -20,10 +22,11 @@ function WordList() {
   const [word02, setWord02] = useState("");
   const [deleted, setDeleted] = useState(false);
   const [termo, setTermo] = useState(false);
-  const [definição, setDefinição] = useState(false);
   const [sameWordTextArea, setSameWordTextArea] = useState(false);
   const inputWord01 = useRef();
   const inputWord02 = useRef();
+  const removeid = listName.id.indexOf("_");
+  const nameNew = listName.id.slice(0, removeid);
 
   const addSeveralWords = () => {
     setSameWordTextArea(false);
@@ -38,7 +41,6 @@ function WordList() {
       const ter = el.slice(0, indexS);
       const def = el.slice(indexS + 1);
       const findTerm = termosUpper.indexOf(ter.toUpperCase());
-      console.log(findTerm);
 
       if (findTerm === -1) {
         allWordsAndDefinitions[listIndex][listName.id]["termos"].push(ter);
@@ -109,16 +111,37 @@ function WordList() {
 
   return (
     <div className="word-list">
+      <img
+        className="img-background-wordlist"
+        src={backgroundimg}
+        alt="Backgroundimage"
+        width={1920}
+        height={1080}
+      />
       <header className="word-list-header">
         <div className="menus">
           <Link className="home" to="/">
-            Home
+            VOLTAR
           </Link>
-          <Link to={`/${listName.id}/configs`}>Configs</Link>
-          <button onClick={(e) => showForms(e)}>Adicionar Palavras</button>
+          <div className="divborder50"></div>
+          <Link to={`/${listName.id}/configs`} className="configs">
+            CONFIGS
+          </Link>
+          <div className="divborder50"></div>
+          <button onClick={(e) => showForms(e)} className="button">
+            ADICIONAR PALAVRAS
+          </button>
         </div>
 
-        <h1>{listName.id}</h1>
+        <div className="wordlist-title-words">
+          <h1>{nameNew}</h1>
+          <h2>
+            {allWordsAndDefinitions[listIndex][listName.id]["termos"].length}{" "}
+            Palavras
+          </h2>
+        </div>
+
+        <img src={logo} alt="PNG PLANETA" width={100} height={70} />
       </header>
 
       <div className="forms-add-word" ref={formsAddWord}>
@@ -156,7 +179,6 @@ function WordList() {
             ref={inputWord01}
           />
 
-          {definição && <span>Definição repetida</span>}
           <input
             type="text"
             placeholder="Definição"

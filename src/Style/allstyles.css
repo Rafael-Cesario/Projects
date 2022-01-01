@@ -1,4 +1,7 @@
-@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
+@font-face {
+  font-family: "Bebas Neue";
+  src: url(../fonts/bebas_neue/BebasNeue-Regular.woff);
+}
 
 * {
   margin: 0;
@@ -14,6 +17,7 @@
   --yellow01: #ffc82d;
   --azul02: #1c1f27;
   --shadow01: 5px 5px 5px rgba(0 0 0 / 20%);
+  --font: "Bebas Neue", cursive;
 }
 
 body {
@@ -23,7 +27,21 @@ body {
 
 /* INITIALSCREEN */
 
+.body-initial-screem {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.img {
+  user-select: none;
+}
+
 .backgroundimg-initialpage {
+  max-height: 400px;
   position: fixed;
   bottom: 0;
   left: 0;
@@ -31,21 +49,23 @@ body {
 }
 
 .div-new-list {
-  margin: 70px 120px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  margin: 70px 20px;
+  width: 88vw;
 }
+
 .div-new-list div {
   display: flex;
   flex-direction: row;
   align-items: center;
 }
 
-.div-new-list .divborder50 {
+.divborder50 {
   background-color: var(--white01);
-  width: 10px;
-  height: 10px;
+  width: 5px;
+  height: 5px;
   border-radius: 50%;
   display: inline-block;
 }
@@ -54,8 +74,11 @@ body {
   background-color: transparent;
   border: none;
   outline: none;
-  font-family: "Bebas Neue", cursive;
-  font-size: 1.5rem;
+  font-family: var(--font);
+  letter-spacing: 3px;
+  text-shadow: 1px 1px 1px rgba(0 0 0 / 50%);
+  font-size: 1.2rem;
+  font-weight: bold;
   color: var(--white01);
   cursor: pointer;
   margin: 0 20px;
@@ -65,20 +88,14 @@ body {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  margin: 150px 50px 50px 50px;
+  margin: 50px 0;
+  width: 100%;
   justify-content: center;
-}
-
-.lists-components {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
 }
 
 .fake-components {
   display: flex;
-  /*   opacity: 0.2; */
-  flex-direction: column;
+  flex-direction: row;
   width: 313px;
   height: 542px;
   background-color: var(--blue01);
@@ -86,6 +103,7 @@ body {
   padding: 0px 30px 40px 30px;
   border-radius: 10px;
   margin: 15px 15px;
+  cursor: pointer;
 }
 
 .my-list-component {
@@ -100,21 +118,29 @@ body {
   margin: 15px 15px;
   padding: 40px 30px;
   cursor: pointer;
+  overflow: hidden;
 }
 
 .my-list-component h2 {
   pointer-events: none;
   text-align: center;
   font-size: 2rem;
-  font-family: "Bebas Neue", monospace;
+  font-family: var(--font);
+  letter-spacing: 3px;
+  text-shadow: 1px 1px 1px rgba(0 0 0 / 50%);
+  text-transform: uppercase;
   letter-spacing: 3px;
 }
 
 .my-list-component p {
   pointer-events: none;
   margin: 50px 10px;
-  text-align: center;
   font-family: Georgia, "Times New Roman", Times, serif;
+  white-space: pre-line;
+  text-align: justify;
+  opacity: 0.9;
+  line-height: 20px;
+  word-wrap: break-word;
 }
 
 .form-new-list {
@@ -151,6 +177,7 @@ body {
   outline: none;
   border-radius: 5px;
   padding: 10px 5px;
+  cursor: pointer;
 }
 
 .form-new-list input {
@@ -163,8 +190,10 @@ body {
   margin-bottom: 50px;
   height: 50px;
   transform: translate(0, -40px);
-  font-size: 2.5rem;
-  font-family: "Bebas Neue", cursive;
+  font-size: 2rem;
+  font-family: var(--font);
+  letter-spacing: 3px;
+  text-shadow: 1px 1px 1px rgba(0 0 0 / 50%);
   font-weight: bold;
   text-align: center;
   letter-spacing: 3px;
@@ -179,7 +208,7 @@ body {
   padding: 10px;
   outline: none;
   resize: none;
-  transform: translate(0, -60px);
+  transform: translate(0, -67px);
 }
 
 .form-new-list .span-input {
@@ -187,8 +216,10 @@ body {
   color: var(--white01);
   user-select: none;
   z-index: 0;
-  transform: translate(0, 10px);
-  font-family: "Bebas Neue", cursive;
+  transform: translate(0, 0px);
+  font-family: var(--font);
+  letter-spacing: 3px;
+  text-shadow: 1px 1px 1px rgba(0 0 0 / 50%);
   font-weight: bold;
   font-size: 2rem;
   text-align: center;
@@ -204,4 +235,110 @@ body {
   z-index: 0;
   transform: translate(15px, -30px);
   font-family: Georgia, "Times New Roman", Times, serif;
+}
+
+/* WORDLIST */
+
+.word-list {
+  font-family: var(--font);
+  letter-spacing: 3px;
+  text-shadow: 1px 1px 1px rgba(0 0 0 / 50%);
+  font-weight: bold;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  margin: 50px;
+  color: white;
+}
+
+.img-background-wordlist {
+  max-height: 400px;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
+}
+
+.word-list-header {
+  width: 80vw;
+  display: grid;
+  grid-template-columns: 2fr 1fr 2fr;
+  align-items: center;
+}
+
+.word-list-header {
+  align-items: center;
+}
+
+.wordlist-title-words {
+  justify-self: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.wordlist-title-words h1 {
+  font-family: var(--font);
+  letter-spacing: 3px;
+  text-shadow: 1px 1px 1px rgba(0 0 0 / 50%);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 2em;
+}
+
+.wordlist-title-words h2 {
+  font-size: 1.2rem;
+  font-family: var(--font);
+  letter-spacing: 3px;
+  text-shadow: 1px 1px 1px rgba(0 0 0 / 50%);
+  font-weight: lighter;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  opacity: 0.8;
+}
+
+.word-list-header img {
+  transform: translateY(5px);
+  justify-self: end;
+}
+
+.word-list-header .menus {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.menus .home {
+  color: white;
+  text-decoration: none;
+  font-size: 1rem;
+  margin: 5px 10px;
+}
+
+.menus .configs {
+  color: white;
+  text-decoration: none;
+  font-size: 1rem;
+  margin: 5px 10px;
+}
+
+.menus .button {
+  color: white;
+  background-color: transparent;
+  outline: none;
+  border: none;
+  font-family: var(--font);
+  letter-spacing: 3px;
+  font-weight: bold;
+  font-size: 1rem;
+  margin: 5px 10px;
+}
+
+.forms-add-word {
+  display: none;
 }
