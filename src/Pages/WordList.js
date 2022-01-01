@@ -123,11 +123,9 @@ function WordList() {
           <Link className="home" to="/">
             VOLTAR
           </Link>
-          <div className="divborder50"></div>
           <Link to={`/${listName.id}/configs`} className="configs">
             CONFIGS
           </Link>
-          <div className="divborder50"></div>
           <button onClick={(e) => showForms(e)} className="button">
             ADICIONAR PALAVRAS
           </button>

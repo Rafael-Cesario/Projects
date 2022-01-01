@@ -1,7 +1,4 @@
-@font-face {
-  font-family: "Bebas Neue";
-  src: url(../fonts/bebas_neue/BebasNeue-Regular.woff);
-}
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;700&display=swap");
 
 * {
   margin: 0;
@@ -17,12 +14,12 @@
   --yellow01: #ffc82d;
   --azul02: #1c1f27;
   --shadow01: 5px 5px 5px rgba(0 0 0 / 20%);
-  --font: "Bebas Neue", cursive;
+  --font: "Oswald", cursive;
 }
 
 body {
   background-color: var(--black01);
-  background: linear-gradient(90deg, #1d1d1d 40.1%, #1b1b1b 100%);
+  background: linear-gradient(90deg, #181818 40.1%, #0e0e0e 100%);
 }
 
 /* INITIALSCREEN */
@@ -75,8 +72,7 @@ body {
   border: none;
   outline: none;
   font-family: var(--font);
-  letter-spacing: 3px;
-  text-shadow: 1px 1px 1px rgba(0 0 0 / 50%);
+
   font-size: 1.2rem;
   font-weight: bold;
   color: var(--white01);
@@ -126,10 +122,7 @@ body {
   text-align: center;
   font-size: 2rem;
   font-family: var(--font);
-  letter-spacing: 3px;
-  text-shadow: 1px 1px 1px rgba(0 0 0 / 50%);
   text-transform: uppercase;
-  letter-spacing: 3px;
 }
 
 .my-list-component p {
@@ -156,7 +149,7 @@ body {
   margin: 15px 15px;
 }
 
-.form-new-list div {
+.form-new-list .div-span-input {
   display: flex;
   flex-direction: column;
 }
@@ -173,6 +166,7 @@ body {
   background-color: var(--blue01);
   box-shadow: var(--shadow01);
   color: var(--white01);
+  width: 100%;
   border: none;
   outline: none;
   border-radius: 5px;
@@ -192,11 +186,7 @@ body {
   transform: translate(0, -40px);
   font-size: 2rem;
   font-family: var(--font);
-  letter-spacing: 3px;
-  text-shadow: 1px 1px 1px rgba(0 0 0 / 50%);
-  font-weight: bold;
   text-align: center;
-  letter-spacing: 3px;
 }
 
 .form-new-list textarea {
@@ -218,13 +208,9 @@ body {
   z-index: 0;
   transform: translate(0, 0px);
   font-family: var(--font);
-  letter-spacing: 3px;
-  text-shadow: 1px 1px 1px rgba(0 0 0 / 50%);
-  font-weight: bold;
   font-size: 2rem;
   text-align: center;
   pointer-events: none;
-  letter-spacing: 3px;
 }
 
 .form-new-list .span-textarea {
@@ -241,9 +227,6 @@ body {
 
 .word-list {
   font-family: var(--font);
-  letter-spacing: 3px;
-  text-shadow: 1px 1px 1px rgba(0 0 0 / 50%);
-  font-weight: bold;
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
@@ -282,19 +265,12 @@ body {
 
 .wordlist-title-words h1 {
   font-family: var(--font);
-  letter-spacing: 3px;
-  text-shadow: 1px 1px 1px rgba(0 0 0 / 50%);
-  font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 2px;
   font-size: 2em;
 }
 
 .wordlist-title-words h2 {
-  font-size: 1.2rem;
-  font-family: var(--font);
-  letter-spacing: 3px;
-  text-shadow: 1px 1px 1px rgba(0 0 0 / 50%);
   font-weight: lighter;
   text-transform: uppercase;
   letter-spacing: 2px;
@@ -333,12 +309,89 @@ body {
   outline: none;
   border: none;
   font-family: var(--font);
-  letter-spacing: 3px;
-  font-weight: bold;
   font-size: 1rem;
   margin: 5px 10px;
 }
 
 .forms-add-word {
   display: none;
+}
+
+/* WORDSCONTAINER */
+
+.words-body {
+  display: flex;
+  flex-direction: row-reverse;
+  flex-wrap: wrap-reverse;
+  justify-content: left;
+  justify-content: center;
+  align-items: center;
+  margin: 50px;
+}
+
+.individual-words {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.container-words {
+  background-color: var(--blue01);
+  overflow: hidden;
+  height: 380px;
+  width: 310px;
+  border-radius: 10px;
+  margin: 10px;
+  padding: 10px 0px;
+}
+
+.header-container-words {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  align-items: center;
+  margin: 0 10px;
+  padding: 5px 10px;
+  border-radius: 5px;
+  justify-content: center;
+  font-family: var(--font);
+  font-weight: lighter;
+  margin-bottom: -10px;
+  opacity: 0.9;
+  pointer-events: none;
+}
+.header-container-words > :nth-child(1) {
+  justify-self: start;
+}
+.header-container-words > :nth-child(2) {
+  justify-self: center;
+}
+
+.header-container-words > :nth-child(3) {
+  justify-self: end;
+}
+
+.header-container-words > :nth-child(3) > :nth-child(1) {
+  justify-self: end;
+  color: var(--white01);
+
+  border: none;
+  background: transparent;
+}
+
+.words-map-div {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 10px;
+  margin: 20px 10px;
+  pointer-events: none;
+}
+
+.words-map-para {
+  background-color: rgba(0, 0, 0, 0.205);
+  box-shadow: 2px 2px 2px rgba(0 0 0 / 10%);
+  padding: 5px 10px;
+  border-radius: 5px;
+  justify-content: center;
+  font-family: var(--font);
+  font-weight: lighter;
 }

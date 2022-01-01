@@ -18,7 +18,7 @@ const InitialScream = () => {
   const planetLogo = useRef(null);
 
   const animatedHover = (e) => {
-    gsap.to(e.target, { scale: 1.08 });
+    gsap.to(e.target, { scale: 1.08, duration: 0.5 });
   };
 
   const animetedHoverOut = (e) => {
