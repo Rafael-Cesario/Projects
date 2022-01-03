@@ -22,32 +22,35 @@ function WordsContainer() {
       x++;
       c++;
     }
-    termsAndDefinitions.push(tempArray);
+    termsAndDefinitions.push(tempArray.reverse());
   }
   const fakeWordDivsQuanti = 10 - termsAndDefinitions.length;
   let fakeDivs = fakeWordDivsQuanti >= 1 ? true : false;
 
   const Container = () =>
-    termsAndDefinitions.map((td, i) => {
-      return (
-        <div key={td + i} className="individual-words">
-          <div
-            className="container-words"
-            onMouseEnter={(e) => animatedHover(e)}
-            onMouseOut={(e) => animetedHoverOut(e)}
-          >
-            <div className="header-container-words">
-              <span>Total: {td.length}</span>
-              <span>Diariamente</span>
-              <span>
-                <button>OK</button>
-              </span>
+    termsAndDefinitions
+      .slice(0)
+      .reverse()
+      .map((td, i) => {
+        return (
+          <div key={td + i} className="individual-words">
+            <div
+              className="container-words"
+              onMouseEnter={(e) => animatedHover(e)}
+              onMouseOut={(e) => animetedHoverOut(e)}
+            >
+              <div className="header-container-words">
+                <span>Total: {td.length}</span>
+                <span>Diariamente</span>
+                <span>
+                  <button>OK</button>
+                </span>
+              </div>
+              <ContainerWords td={td} index={i} />
             </div>
-            <ContainerWords td={td} index={i} />
           </div>
-        </div>
-      );
-    });
+        );
+      });
 
   const ContainerWords = (props) => {
     const container = props.td;
@@ -69,8 +72,8 @@ function WordsContainer() {
 
   return termsAndDefinitions.length > 0 ? (
     <div className="words-body">
-      {fakeDivs && <FakeWordDiv quanti={fakeWordDivsQuanti} />}
       <Container />
+      {fakeDivs && <FakeWordDiv quanti={fakeWordDivsQuanti} />}
     </div>
   ) : (
     ""
