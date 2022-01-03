@@ -17,7 +17,7 @@ const Calendar = () => {
     monthNumber.push(x);
   }
 
-  const year = 2021;
+  const year = 2022;
 
   return (
     <div className="calendar">
