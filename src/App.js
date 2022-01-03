@@ -142,6 +142,8 @@ const Months = (props) => {
 window.onload = () => {
   for (let x = 0; x < complete.length; x++) {
     const elem = document.querySelector("#" + complete[x]);
-    elem.style.backgroundColor = color;
+    if (elem) {
+      elem.style.backgroundColor = color;
+    }
   }
 };
