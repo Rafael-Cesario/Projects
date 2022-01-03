@@ -86,7 +86,7 @@ const Months = (props) => {
       complete.push(okDay);
       console.log("add azul");
     } else {
-      complete.splice(exist, 1) 
+      complete.splice(exist, 1);
       span.style.backgroundColor = dayColor;
       console.log("r azul");
     }
