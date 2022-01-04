@@ -14,12 +14,3 @@ Criar Listas, adicionar uma descrição.
 ### Dentro de uma lista.
 Clicar em uma lista para estudar as palavras dentro dela, escolher quantidade de palavras por grupo.
 ![Slide 16_9 - 2](https://user-images.githubusercontent.com/88716893/147845948-b3cd8f8a-a346-494f-a64b-a905812521b8.jpg)
-
-
-# WordList 1.0
-
-![Slide 16_9 - 1](https://user-images.githubusercontent.com/88716893/141514890-d67c6452-8ac4-4ebf-a783-af9a58c2a14d.jpg)
-
-
-
-

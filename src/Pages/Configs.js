@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { allWordsAndDefinitions, myList } from "./InitialScreeam";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
+import logo from "../imgs/Planet.png";
 
 function Configs() {
   const listName = useParams();
@@ -48,43 +49,59 @@ function Configs() {
 
   return (
     <div className="configs-container">
-      <div className="configs">
-        <h1>{listName.id}</h1>
+      <header className="header-menus">
         <Link className="home" to={`/${listName.id}`}>
           Voltar
         </Link>
+        <img src={logo} alt="PlanetLogo" width={100} height={70} />
+      </header>
 
-        <h2>Palavras por grupo</h2>
-        <input
-          type="text"
-          value={maxPerDiv}
-          onChange={(e) => setMaxPerDiv(e.target.value)}
-        />
+      <div className="configs">
+        <div className="config-single">
+          <h2>Nome</h2>
+          <input type="text" />
+        </div>
 
-        <button onClick={(e) => showDeleteList(e)}>Deletar Lista</button>
-        <form onSubmit={deleteList} className="delete-list">
-          <div className="para">
-            <p>
-              Para ter certeza que você quer mesmo deletar esta lista digite:
-            </p>
-            <hr />
-            <p>" DELETAR LISTA "</p>
-            <hr />
-            {di && <p>Digito Incorreto</p>}
-          </div>
+        <div className="config-single">
+          <h2>Palavras por grupo</h2>
           <input
             type="text"
-            value={value}
-            onChange={(e) => setValue(e.target.value)}
+            value={maxPerDiv}
+            onChange={(e) => setMaxPerDiv(e.target.value)}
           />
-          <div className="buttons">
-            <button type="submit">Deletar</button>
-            <button type="button" onClick={(e) => hideForm(e)}>
-              Cancelar
-            </button>
-          </div>
-        </form>
+        </div>
+
+        <div className="config-single">
+          <h2>Descrição</h2>
+          <textarea type="text" />
+        </div>
       </div>
+
+      <div className="buttons">
+        <button>Salvar</button>
+        <button onClick={(e) => showDeleteList(e)}>Deletar Lista</button>
+      </div>
+
+      <form onSubmit={deleteList} className="delete-list">
+        <div className="para">
+          <p>Para ter certeza que você quer mesmo deletar esta lista digite:</p>
+          <hr />
+          <p>" DELETAR LISTA "</p>
+          <hr />
+          {di && <p>Digito Incorreto</p>}
+        </div>
+        <input
+          type="text"
+          value={value}
+          onChange={(e) => setValue(e.target.value)}
+        />
+        <div className="buttons">
+          <button type="submit">Deletar</button>
+          <button type="button" onClick={(e) => hideForm(e)}>
+            Cancelar
+          </button>
+        </div>
+      </form>
     </div>
   );
 }

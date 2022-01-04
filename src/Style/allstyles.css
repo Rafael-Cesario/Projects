@@ -63,7 +63,7 @@ body {
   background-color: var(--white01);
   width: 5px;
   height: 5px;
-  border-radius: 50%;
+  border-radius: 5px;
   display: inline-block;
 }
 
@@ -74,7 +74,7 @@ body {
   font-family: var(--font);
 
   font-size: 1.2rem;
-  font-weight: bold;
+  font-weight: normal;
   color: var(--white01);
   cursor: pointer;
   margin: 0 20px;
@@ -97,7 +97,7 @@ body {
   background-color: var(--blue01);
   box-shadow: var(--shadow01);
   padding: 0px 30px 40px 30px;
-  border-radius: 10px;
+  border-radius: 5px;
   margin: 15px 15px;
   cursor: pointer;
 }
@@ -109,7 +109,7 @@ body {
   height: 542px;
   background-color: var(--blue01);
   box-shadow: var(--shadow01);
-  border-radius: 10px;
+  border-radius: 5px;
   color: var(--white01);
   margin: 15px 15px;
   padding: 40px 30px;
@@ -145,7 +145,7 @@ body {
   background-color: var(--blue01);
   box-shadow: var(--shadow01);
   padding: 0px 30px 40px 30px;
-  border-radius: 10px;
+  border-radius: 5px;
   margin: 15px 15px;
 }
 
@@ -191,7 +191,7 @@ body {
 
 .form-new-list textarea {
   background-color: transparent;
-  border-radius: 10px;
+  border-radius: 5px;
   min-height: 200px;
   border: 1px solid var(--white01);
   color: white;
@@ -229,8 +229,6 @@ body {
   font-family: var(--font);
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
   margin: 50px;
   color: white;
 }
@@ -244,10 +242,12 @@ body {
 }
 
 .word-list-header {
-  width: 80vw;
+  width: 85vw;
   display: grid;
   grid-template-columns: 2fr 1fr 2fr;
   align-items: center;
+  justify-content: center;
+  align-self: center;
 }
 
 .word-list-header {
@@ -288,10 +288,11 @@ body {
   align-items: center;
 }
 
-.menus{
+.menus {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  justify-self: start;
 }
 
 .menus .home {
@@ -344,7 +345,7 @@ body {
   overflow: hidden;
   height: 380px;
   width: 310px;
-  border-radius: 10px;
+  border-radius: 5px;
   margin: 10px;
   padding: 10px 0px;
   cursor: pointer;
@@ -391,7 +392,6 @@ body {
   height: 35px;
   overflow: hidden;
   border-radius: 5px;
-
 }
 
 .words-map-para {
@@ -401,6 +401,136 @@ body {
   border-radius: 5px;
   justify-content: center;
   font-family: var(--font);
-  font-weight: lighter;  align-items: center;
+  font-weight: lighter;
+  align-items: center;
   line-height: 25px;
+  text-transform: capitalize;
+}
+
+.forms-add-word {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 90%;
+  margin: 50px auto;
+}
+
+.several h2 {
+  font-family: var(--font);
+  font-weight: lighter;
+  font-size: 1.2rem;
+}
+
+.several textarea {
+  resize: none;
+  outline: none;
+  margin: 10px 0;
+  width: 500px;
+  height: 300px;
+  padding: 10px;
+  background-color: transparent;
+  border-radius: 5px;
+  border: 2px solid var(--blue01);
+  color: white;
+}
+
+
+/* CONFIGS */
+
+.configs-container {
+  display: grid;
+  height: 90vh;
+  margin: 30px auto;
+  width: fit-content;
+  position: relative;
+  grid-template-rows: auto 2fr auto;
+}
+
+.header-menus {
+  display: flex;
+
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header-menus a {
+  font-family: var(--font);
+  color: white;
+  text-decoration: none;
+  font-size: 1.5rem;
+  font-weight: normal;
+}
+
+.configs {
+  margin: 20px 10px;
+  color: white;
+  font: var(--font);
+  font-weight: lighter;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 30px;
+}
+
+.config-single h2 {
+  font-family: var(--font);
+  font-weight: lighter;
+  font-size: 1.2rem;
+}
+
+.config-single input {
+  background-color: var(--white01);
+  outline: none;
+  border: none;
+  padding: 10px;
+  width: 300px;
+  text-align: center;
+  color: var(--black01);
+  border-radius: 5px;
+  font-family: var(--font);
+  font-size: 1.2rem;
+}
+
+.config-single textarea {
+  font-family: var(--font);
+  font-size: 1.2rem;
+  border-radius: 5px;
+  font-weight: lighter;
+  border: none;
+  width: 300px;
+  height: 300px;
+  padding: 10px;
+  background-color: var(--white01);
+  color: var(--black01);
+  outline: none;
+  resize: none;
+}
+
+.delete-list {
+  display: none;
+}
+
+.configs-container .buttons {
+  display: flex;
+  flex-direction: row;
+  align-self: flex-end;
+  justify-content: space-between;
+}
+
+.configs-container .buttons button {
+  font-family: var(--font);
+  font-weight: normal;
+  font-size: 1.2rem;
+  background-color: var(--white01);
+  outline: none;
+  padding: 5px 40px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.configs-container .buttons > :nth-child(2) {
+  background-color: var(--red01);
+  color: var(--white01);
 }

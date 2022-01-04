@@ -143,11 +143,8 @@ function WordList() {
       </header>
 
       <div className="forms-add-word" ref={formsAddWord}>
-        <form action="" className="several">
-          <h2>
-            Adicione uma lista de palavras separando o termo da definição com "
-            ; "
-          </h2>
+        <form className="several">
+          <h2>Adicione uma lista de palavras</h2>
           <textarea
             name="addWords"
             value={words}
