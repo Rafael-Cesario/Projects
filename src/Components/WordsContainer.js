@@ -1,8 +1,9 @@
 import { useParams } from "react-router-dom";
 import { allWordsAndDefinitions, myList } from "../Pages/InitialScreeam";
 import { animatedHover, animetedHoverOut } from "../gsap/animations";
+import { useNavigate } from "react-router-dom";
 
-function WordsContainer() {
+function WordsContainer(props) {
   const listName = useParams();
   const listIndex = myList.indexOf(listName.id);
   const terms = allWordsAndDefinitions[listIndex][listName.id]["termos"];
@@ -10,6 +11,12 @@ function WordsContainer() {
     allWordsAndDefinitions[listIndex][listName.id]["definições"];
   const termsAndDefinitions = [];
   const maxperdiv = localStorage.getItem("maxPerDiv") || 20;
+  const navigate = useNavigate();
+
+  const enterIndividualWords = (e, id) => {
+    e.preventDefault();
+    navigate(`/${listName.id}/${listName.id}list${id}`);
+  };
 
   let x = 0;
   while (x < terms.length) {
@@ -33,7 +40,12 @@ function WordsContainer() {
       .reverse()
       .map((td, i) => {
         return (
-          <div key={td + i} className="individual-words">
+          <div
+            key={td + i}
+            id={i}
+            className="individual-words"
+            onClick={(e) => enterIndividualWords(e, i)}
+          >
             <div
               className="container-words"
               onMouseEnter={(e) => animatedHover(e)}
@@ -42,9 +54,6 @@ function WordsContainer() {
               <div className="header-container-words">
                 <span>Total: {td.length}</span>
                 <span>Diariamente</span>
-                <span>
-                  <button>OK</button>
-                </span>
               </div>
               <ContainerWords td={td} index={i} />
             </div>
@@ -71,7 +80,7 @@ function WordsContainer() {
   };
 
   return termsAndDefinitions.length > 0 ? (
-    <div className="words-body">
+    <div className="words-body" ref={props.varRef}>
       <Container />
       {fakeDivs && <FakeWordDiv quanti={fakeWordDivsQuanti} />}
     </div>

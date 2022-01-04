@@ -7,6 +7,7 @@ import WordsContainer from "../Components/WordsContainer";
 import logo from "../imgs/Planet.png";
 import backgroundimg from "../imgs/backgroundimg.jpg";
 import "../Style/allstyles.css";
+import gsap from "gsap/all";
 
 const store = () =>
   localStorage.setItem(
@@ -97,16 +98,26 @@ function WordList() {
     setDeleted(true);
     setTimeout(() => {
       setDeleted(false);
-    }, 500);
+    }, 1000);
     store();
   };
 
   const formsAddWord = useRef();
+  const wordsBody = useRef();
+
+  let c = 0;
   const showForms = (e) => {
     e.preventDefault();
-    formsAddWord.current.style.display !== "grid"
-      ? (formsAddWord.current.style.display = "grid")
-      : (formsAddWord.current.style.display = "none");
+    const tl = gsap.timeline();
+    if (c === 0) {
+      tl.to(wordsBody.current, { y: 600 });
+      tl.to(formsAddWord.current, { x: 0 }, "<");
+      c = 1;
+    } else {
+      tl.to(formsAddWord.current, { x: "-100vw" });
+      tl.to(wordsBody.current, { y: 0 }, "<");
+      c = 0;
+    }
   };
 
   return (
@@ -145,6 +156,7 @@ function WordList() {
       <div className="forms-add-word" ref={formsAddWord}>
         <form className="several">
           <h2>Adicione uma lista de palavras</h2>
+          <p>Use " ; " (ponto e virgula) para separar termo e definição.</p>
           <textarea
             name="addWords"
             value={words}
@@ -155,44 +167,55 @@ function WordList() {
             <button type="button" onClick={() => addSeveralWords()}>
               Adicionar
             </button>
-            <button type="button">Fechar</button>
+            <button type="button" onClick={(e) => showForms(e)}>
+              Fechar
+            </button>
             {sameWordTextArea && (
               <span>
-                Algumas palavras não foram adicionadas pois já existem!{" "}
+                Algumas palavras não foram adicionadas pois já existem!
               </span>
             )}
           </div>
         </form>
 
         <form className="single" onSubmit={(e) => addSingleWord(e)}>
-          {termo && <span>Termo repetido</span>}
-          <input
-            type="text"
-            placeholder="Termo"
-            value={word01}
-            onChange={(e) => setWord01(e.target.value)}
-            ref={inputWord01}
-          />
+          <div className="input-group">
+            <h2>Termo</h2>
+            {termo && <span>Termo repetido</span>}
+            <input
+              type="text"
+              placeholder="Termo"
+              value={word01}
+              onChange={(e) => setWord01(e.target.value)}
+              ref={inputWord01}
+            />
+          </div>
 
-          <input
-            type="text"
-            placeholder="Definição"
-            value={word02}
-            onChange={(e) => setWord02(e.target.value)}
-            ref={inputWord02}
-          />
+          <div className="input-group">
+            <h2>Definição</h2>
+            <input
+              type="text"
+              placeholder="Definição"
+              value={word02}
+              onChange={(e) => setWord02(e.target.value)}
+              ref={inputWord02}
+            />
+          </div>
+
           <div className="buttons">
             <button type="submit">Adicionar</button>
+            <button type="button" onClick={(e) => showForms(e)}>
+              Fechar
+            </button>
             <button type="button" onClick={removeLastWord}>
               Remover Ultima palavra adicionada
             </button>
-            <button type="button">Fechar</button>
           </div>
-          {deleted && <h1 className="teste">Ultima palavra deletada</h1>}
+          {deleted && <h2 className="teste">Ultima palavra deletada</h2>}
         </form>
       </div>
 
-      <WordsContainer />
+      <WordsContainer varRef={wordsBody} />
     </div>
   );
 }

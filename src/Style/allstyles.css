@@ -18,8 +18,7 @@
 }
 
 body {
-  background-color: var(--black01);
-  background: linear-gradient(90deg, #181818 40.1%, #0e0e0e 100%);
+  background-color: rgb(19, 19, 19);
 }
 
 /* INITIALSCREEN */
@@ -317,10 +316,7 @@ body {
   font-family: var(--font);
   font-size: 1rem;
   margin: 5px 10px;
-}
-
-.forms-add-word {
-  display: none;
+  cursor: pointer;
 }
 
 /* WORDSCONTAINER */
@@ -352,28 +348,17 @@ body {
 }
 
 .header-container-words {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  display: flex;
   align-items: center;
+  justify-content: space-between;
   margin: 0 10px;
   padding: 5px 10px;
   border-radius: 5px;
-  justify-content: center;
   font-family: var(--font);
   font-weight: lighter;
   margin-bottom: -10px;
   opacity: 0.9;
   pointer-events: none;
-}
-.header-container-words > :nth-child(1) {
-  justify-self: start;
-}
-.header-container-words > :nth-child(2) {
-  justify-self: center;
-}
-
-.header-container-words > :nth-child(3) {
-  justify-self: end;
 }
 
 .header-container-words > :nth-child(3) > :nth-child(1) {
@@ -408,42 +393,118 @@ body {
 }
 
 .forms-add-word {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  width: 90%;
-  margin: 50px auto;
+  display: grid;
+  position: absolute;
+  max-width: 1250px;
+  margin: 50px 20px 50px -50px;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 50px;
+  background-color: var(--white01);
+  padding: 50px 50px;
+  border: 5px solid var(--blue01);
+  border-radius: 0 10px 10px 0;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.466);
+  transform: translate(-100vw, 100px);
+  z-index: 1;
 }
 
 .several h2 {
+  color: black;
   font-family: var(--font);
-  font-weight: lighter;
+  font-weight: normal;
   font-size: 1.2rem;
+}
+
+.several p {
+  color: black;
+  font-family: monospace;
+  opacity: 0.7;
 }
 
 .several textarea {
   resize: none;
   outline: none;
   margin: 10px 0;
-  width: 500px;
+  width: 100%;
   height: 300px;
   padding: 10px;
   background-color: transparent;
-  border-radius: 5px;
-  border: 2px solid var(--blue01);
-  color: white;
+  border: 3px solid var(--blue01);
+  color: black;
 }
 
+.single {
+  width: fit-content;
+}
+
+.several .buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.several .buttons button {
+  border: none;
+  outline: none;
+  padding: 10px 5px;
+  background-color: var(--blue01);
+  color: var(--white01);
+  border-radius: 3px;
+  width: 48%;
+  cursor: pointer;
+}
+
+.single {
+  margin: 20px 0;
+  width: 100%;
+}
+
+.single .input-group {
+  margin-bottom: 40px;
+}
+
+.single h2 {
+  color: black;
+  font-size: 1.2rem;
+  font-weight: normal;
+  margin-bottom: 5px;
+}
+
+.single input {
+  border: 3px solid var(--blue01);
+  outline: none;
+  padding: 10px 10px;
+  background-color: transparent;
+  color: black;
+  width: 100%;
+}
+
+.single .buttons {
+  display: grid;
+
+  grid-template-columns: 1fr 1fr;
+  column-gap: 10px;
+  row-gap: 20px;
+}
+.single .buttons button {
+  border: none;
+  outline: none;
+  padding: 10px 5px;
+  background-color: var(--blue01);
+  color: var(--white01);
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.single .buttons > :nth-child(3) {
+  width: 100%;
+  grid-area: 2 / 1 / span 2 / span 2;
+}
 
 /* CONFIGS */
 
 .configs-container {
-  display: grid;
-  height: 90vh;
-  margin: 30px auto;
-  width: fit-content;
-  position: relative;
-  grid-template-rows: auto 2fr auto;
+  margin: 20px;
 }
 
 .header-menus {
@@ -468,9 +529,12 @@ body {
   font: var(--font);
   font-weight: lighter;
   display: flex;
+  flex-wrap: wrap;
   flex-direction: column;
-  justify-content: space-between;
-  padding: 30px;
+}
+
+.config-single {
+  margin: 20px;
 }
 
 .config-single h2 {
@@ -480,13 +544,13 @@ body {
 }
 
 .config-single input {
-  background-color: var(--white01);
+  background-color: transparent;
+  border: 2px solid var(--white01);
+  color: var(--white01);
   outline: none;
-  border: none;
   padding: 10px;
   width: 300px;
   text-align: center;
-  color: var(--black01);
   border-radius: 5px;
   font-family: var(--font);
   font-size: 1.2rem;
@@ -497,12 +561,12 @@ body {
   font-size: 1.2rem;
   border-radius: 5px;
   font-weight: lighter;
-  border: none;
+  border: 2px solid var(--white01);
   width: 300px;
   height: 300px;
   padding: 10px;
-  background-color: var(--white01);
-  color: var(--black01);
+  background-color: transparent;
+  color: var(--white01);
   outline: none;
   resize: none;
 }
@@ -530,7 +594,83 @@ body {
   cursor: pointer;
 }
 
-.configs-container .buttons > :nth-child(2) {
+.configs-container > .buttons > :nth-child(2) {
   background-color: var(--red01);
+  color: var(--white01);
+}
+
+.show-delete {
+  display: flex;
+  flex-direction: column;
+  color: white;
+}
+
+.delete-list {
+  margin: 20px;
+  max-width: 500px;
+  background-color: var(--red01);
+  padding: 10px 30px;
+  border-radius: 5px;
+  box-shadow: 2px 2px 2px rgba(0 0 0 20%);
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, 0);
+}
+
+.show-delete p {
+  text-align: center;
+  margin: 10px;
+  font-size: 1rem;
+  font-family: var(--font);
+  font-weight: bold;
+  color: var(--white01);
+}
+
+.show-delete h2 {
+  text-align: center;
+  font-size: 1.2rem;
+  font-family: var(--font);
+  font-weight: bold;
+  margin: 10px;
+  color: var(--white01);
+}
+
+.show-delete input {
+  margin: 10px auto;
+  width: 100%;
+  padding: 20px;
+  border: 2px solid var(--white01);
+  background-color: transparent;
+  outline: none;
+  font-family: var(--font);
+  font-weight: bold;
+  color: var(--white01);
+  font-size: 1.2rem;
+  text-align: center;
+  box-shadow: 2px 2px 2px rgba(0 0 0 20%);
+}
+.delete-list .buttons {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin: 10px;
+}
+
+.delete-list .buttons button {
+  margin: 10px;
+  background-color: var(--white01);
+  color: var(--black01);
+}
+
+.show-delete hr {
+  border: 1px solid var(--white01);
+}
+
+/* INDIVIDAULWORDLIST */
+
+.individaul-word-list {
   color: var(--white01);
 }

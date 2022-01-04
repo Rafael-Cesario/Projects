@@ -49,6 +49,25 @@ function Configs() {
 
   return (
     <div className="configs-container">
+      <form onSubmit={deleteList} className="delete-list">
+        <div className="para">
+          <p>Para ter certeza que você quer mesmo deletar esta lista digite:</p>
+          <h2>" DELETAR LISTA "</h2>
+          {di && <p>Digito Incorreto</p>}
+        </div>
+        <input
+          type="text"
+          value={value}
+          onChange={(e) => setValue(e.target.value)}
+        />
+        <div className="buttons">
+          <button type="submit">Deletar</button>
+          <button type="button" onClick={(e) => hideForm(e)}>
+            Cancelar
+          </button>
+        </div>
+      </form>
+
       <header className="header-menus">
         <Link className="home" to={`/${listName.id}`}>
           Voltar
@@ -81,27 +100,6 @@ function Configs() {
         <button>Salvar</button>
         <button onClick={(e) => showDeleteList(e)}>Deletar Lista</button>
       </div>
-
-      <form onSubmit={deleteList} className="delete-list">
-        <div className="para">
-          <p>Para ter certeza que você quer mesmo deletar esta lista digite:</p>
-          <hr />
-          <p>" DELETAR LISTA "</p>
-          <hr />
-          {di && <p>Digito Incorreto</p>}
-        </div>
-        <input
-          type="text"
-          value={value}
-          onChange={(e) => setValue(e.target.value)}
-        />
-        <div className="buttons">
-          <button type="submit">Deletar</button>
-          <button type="button" onClick={(e) => hideForm(e)}>
-            Cancelar
-          </button>
-        </div>
-      </form>
     </div>
   );
 }

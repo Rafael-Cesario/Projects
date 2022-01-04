@@ -7,3 +7,7 @@ export const animatedHover = (e) => {
 export const animetedHoverOut = (e) => {
   gsap.to(e.target, { scale: 1 });
 };
+
+export const showFormAddWords = (div) => {
+  gsap.to()
+}
