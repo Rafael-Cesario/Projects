@@ -13,9 +13,17 @@ function WordsContainer(props) {
   const maxperdiv = localStorage.getItem("maxPerDiv") || 20;
   const navigate = useNavigate();
 
-  const enterIndividualWords = (e, id) => {
+  const enterIndividualWords = (e, id, td) => {
     e.preventDefault();
-    navigate(`/${listName.id}/${listName.id}list${id}`);
+    localStorage.setItem(
+      "tempData",
+      JSON.stringify({
+        listName: listName.id,
+        words: td,
+        indexList: id,
+      })
+    );
+    navigate(`/${listName.id}/${id}`);
   };
 
   let x = 0;
@@ -31,6 +39,7 @@ function WordsContainer(props) {
     }
     termsAndDefinitions.push(tempArray.reverse());
   }
+
   const fakeWordDivsQuanti = 10 - termsAndDefinitions.length;
   let fakeDivs = fakeWordDivsQuanti >= 1 ? true : false;
 
@@ -44,7 +53,7 @@ function WordsContainer(props) {
             key={td + i}
             id={i}
             className="individual-words"
-            onClick={(e) => enterIndividualWords(e, i)}
+            onClick={(e) => enterIndividualWords(e, i, td)}
           >
             <div
               className="container-words"
@@ -53,7 +62,7 @@ function WordsContainer(props) {
             >
               <div className="header-container-words">
                 <span>Total: {td.length}</span>
-                <span>Diariamente</span>
+                <span>...</span>
               </div>
               <ContainerWords td={td} index={i} />
             </div>
@@ -79,7 +88,7 @@ function WordsContainer(props) {
     ));
   };
 
-  return termsAndDefinitions.length > 0 ? (
+  return termsAndDefinitions.length >= 0 ? (
     <div className="words-body" ref={props.varRef}>
       <Container />
       {fakeDivs && <FakeWordDiv quanti={fakeWordDivsQuanti} />}

@@ -673,4 +673,79 @@ body {
 
 .individaul-word-list {
   color: var(--white01);
+  font-family: var(--font);
+  font-size: 1.2rem;
+}
+
+.individaul-word-list header {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  justify-items: center;
+  align-items: center;
+  padding: 20px 50px;
+}
+.individaul-word-list header a {
+  text-decoration: none;
+  color: white;
+}
+
+.individaul-word-list .container {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  column-gap: 50px;
+  margin: 50px 50px;
+}
+
+.container .info {
+  display: flex;
+  flex-direction: column;
+  justify-self: end;
+  text-align: end;
+}
+
+.container .info h2 {
+  font-size: 1.2rem;
+  margin: 20px 0;
+  font-weight: normal;
+}
+
+.container .info button {
+  border: none;
+  background-color: var(--blue01);
+  padding: 10px 20px;
+  margin: 20px 0;
+  color: white;
+  font-family: var(--font);
+  font-size: 1.2rem;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.container .info button:active {
+  transform: scale(0.95);
+}
+
+.container .words {
+  width: 100%;
+  background-color: var(--blue01);
+  border-radius: 5px;
+}
+
+.container .words div {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 10px;
+  margin: 20px;
+}
+
+.container .words p {
+  background-color: rgba(0, 0, 0, 0.205);
+  box-shadow: 2px 2px 2px rgba(0 0 0 / 10%);
+  padding: 10px 15px;
+  border-radius: 5px;
+  justify-content: center;
+  font-family: var(--font);
+  font-weight: lighter;
+  align-items: center;
+  line-height: 25px;
+  text-transform: capitalize;
 }
