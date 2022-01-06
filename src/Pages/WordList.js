@@ -110,7 +110,7 @@ function WordList() {
     e.preventDefault();
     const tl = gsap.timeline();
     if (c === 0) {
-      tl.to(wordsBody.current, { y: 600 });
+      tl.to(wordsBody.current, { y: 450 });
       tl.to(formsAddWord.current, { x: 0 }, "<");
       c = 1;
     } else {
@@ -152,6 +152,12 @@ function WordList() {
 
         <img src={logo} alt="PNG PLANETA" width={100} height={70} />
       </header>
+
+      <div className="buttonsFixed">
+        <a href="#learning">Estudando</a>
+        <a href="#onHold">Próximas</a>
+        <a href="#learned">Finalizadas</a>
+      </div>
 
       <div className="forms-add-word" ref={formsAddWord}>
         <form className="several">

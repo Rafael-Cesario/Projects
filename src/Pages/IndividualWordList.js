@@ -5,77 +5,87 @@ import logo from "../imgs/Planet.png";
 
 const IndividualWordList = (props) => {
   const tempData = JSON.parse(localStorage.getItem("tempData"));
-  const ListName = tempData.listName.slice(0, tempData.listName.indexOf("_"));
-  const [statusSingleList, setStatusSingleList] = useState(
-    JSON.parse(localStorage.getItem("statusSingleList")) || []
-    );
+  const listName = tempData.listName.slice(0, tempData.listName.indexOf("_"));
+  const individualWordList = JSON.parse(
+    localStorage.getItem("individualWordList")
+  );
+  const list = individualWordList[tempData.listName][tempData.index];
+
   const words = useRef();
   const info = useRef();
   const header = useRef();
 
-  useEffect(() => {
-    const tl = gsap.timeline();
-    tl.fromTo(header.current, { y: -300 }, { y: 0, ease: "power4.out" });
-    tl.fromTo(
-      words.current,
-      { y: "120vh" },
-      { y: 0, ease: "back.out(1.2)", duration: 1 }
-    );
+  const [status, setStatus] = useState(list.status);
+  list.status = status;
 
-    tl.fromTo(
-      info.current,
-      { x: "-100vw" },
-      { x: 0, ease: "power4.out", duration: 1 },
-      "<"
-    );
+  // Animação carregar pagina
+  useEffect(() => {
+    const tl = gsap.timeline({ ease: "power4.out" });
+    tl.from(header.current, { y: -100, opacity: 0 });
+    tl.from(info.current, { x: "-100vw", opacity: 0 });
+    tl.from(words.current, { y: "120vh", opacity: 0 }, "<");
+    tl.duration(0.5).resume();
   }, []);
 
+  /* Atualizar localStorage */
   useEffect(() => {
-  }, [statusSingleList]);
+    localStorage.setItem(
+      "individualWordList",
+      JSON.stringify(individualWordList)
+    );
+  }, [status, individualWordList]);
 
-/*   const scheduleButton = (e) => {
+  /* Mudar status lista */
+  const scheduleButton = (e) => {
     e.preventDefault();
     const h2 = info.current.children[0];
     const tl = gsap.timeline();
     tl.to(h2, { scale: 0.95, color: "#ffc82d", duration: 0.2 });
     tl.to(h2, { scale: 1, color: "#e6e6e6", duration: 0.2 });
-    switch (cronograma) {
+
+    switch (status) {
       case "...":
-        setCronograma("Diariamente");
+        setStatus("Diariamente");
+        console.log(list.status);
         break;
 
       case "Diariamente":
-        setCronograma("Semanalmente");
+        setStatus("Semanalmente");
         break;
 
       case "Semanalmente":
-        setCronograma("Estudada");
+        setStatus("Estudada");
         break;
 
       default:
-        setCronograma("...");
+        setStatus("...");
     }
-  }; */
+  };
 
   return (
     <div className="individaul-word-list">
       <header ref={header}>
         <Link to={`/${tempData.listName}`}>Voltar</Link>
-        <h1>{ListName}</h1>
+        <h1>{listName}</h1>
         <img src={logo} alt="Planeta" width={100} height={65} />
       </header>
 
       <div className="container">
         <div className="info" ref={info}>
-          <h2>Estudar Lista: {}</h2>
-          <h2>Total de palavras na lista: {tempData.words.length}</h2>
+          <h2>
+            Estudar Lista: {list.status}
+            <button onClick={(e) => scheduleButton(e)}>
+              Mudar tempo de estudo
+            </button>
+          </h2>
+          <h2>Total de palavras na lista: {list.words.length}</h2>
+
           <button>ESTUDAR LISTA</button>
-{/*           <button onClick={(e) => scheduleButton(e)}>CRONOGRAMA</button> */}
           <button>OPÇÕES</button>
         </div>
 
         <div className="words" ref={words}>
-          <Words words={tempData.words} />
+          <Words words={list.words} />
         </div>
       </div>
     </div>
@@ -84,6 +94,7 @@ const IndividualWordList = (props) => {
 
 export default IndividualWordList;
 
+/* Criar uma div para cada array e um p para cada palavra */
 const Words = (props) => {
   return props.words.map((tdArray) => (
     <div key={tdArray}>
