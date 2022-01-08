@@ -93,8 +93,6 @@ const Screen01 = ({ study, setScreen01, c, setC }) => {
 
   const next02 = (e, find) => {
     e.preventDefault();
-    setAnswer("");
-    inputAnswer.current.focus();
     if (c === study.studying.length - 1) {
       setC(0);
     } else {
@@ -107,10 +105,14 @@ const Screen01 = ({ study, setScreen01, c, setC }) => {
           });
           study.toStudy.shift();
         }
+        setAnswer("");
+        inputAnswer.current.focus();
         if (study.toStudy.length + study.studying.length === 0) {
           setScreen01(false);
         }
       } else {
+        setAnswer("");
+        inputAnswer.current.focus();
         setC(c + 1);
       }
     }
@@ -156,6 +158,7 @@ const Sreean02 = ({ list, setC, setScreen01 }) => {
           onClick={() => {
             setScreen01(true);
             setC(0);
+            document.location.reload();
           }}
         >
           Estudar Novamente
