@@ -126,13 +126,6 @@ const InitialScream = () => {
 
   return (
     <div className="body-initial-screem">
-      <img
-        className="img-background-wordlist"
-        src={backgroundimg}
-        alt="Backgroundimage"
-        width={1920}
-        height={1080}
-      />
       <div className="div-new-list">
         <div>
           <button className="new-list" onClick={(e) => show(e)}>
