@@ -1,9 +1,9 @@
 import gsap from "gsap";
 import { useEffect, useRef, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "../imgs/Planet.png";
 
-const IndividualWordList = (props) => {
+const IndividualWordList = () => {
   const tempData = JSON.parse(localStorage.getItem("tempData"));
   const listName = tempData.listName.slice(0, tempData.listName.indexOf("_"));
   const individualWordList = JSON.parse(
@@ -18,12 +18,24 @@ const IndividualWordList = (props) => {
   const [status, setStatus] = useState(list.status);
   list.status = status;
 
+  const navigate = useNavigate();
+
   // Animação carregar pagina
   useEffect(() => {
     const tl = gsap.timeline({ ease: "power4.out" });
     tl.from(header.current, { y: -100, opacity: 0 });
     tl.from(info.current, { x: "-100vw", opacity: 0 });
-    tl.from(words.current, { y: "120vh", opacity: 0 }, "<");
+    tl.from(
+      words.current,
+      {
+        x: "120vw",
+        opacity: 0,
+        position: "fixed",
+        width: "fitContent",
+        right: 50,
+      },
+      "<"
+    );
     tl.duration(0.5).resume();
   }, []);
 
@@ -62,6 +74,11 @@ const IndividualWordList = (props) => {
     }
   };
 
+  /* Iniciar Estudar Lista */
+  const studyList = () => {
+    navigate(`/${tempData.listName}/study${list.index}`);
+  };
+
   return (
     <div className="individaul-word-list">
       <header ref={header}>
@@ -80,7 +97,7 @@ const IndividualWordList = (props) => {
           </h2>
           <h2>Total de palavras na lista: {list.words.length}</h2>
 
-          <button>ESTUDAR LISTA</button>
+          <button onClick={() => studyList()}>Estudar Lista</button>
           <button>OPÇÕES</button>
         </div>
 

@@ -234,7 +234,6 @@ body {
   top: 0;
   background-color: var(--backgroundContainer);
   padding: 10px 20px;
-  border-radius: 5px;
   box-shadow: var(--shadow01);
   justify-content: center;
   width: 100%;
@@ -249,7 +248,6 @@ body {
   width: 100%;
   border: none;
   outline: none;
-  border-radius: 5px;
   padding: 5px 10px;
   cursor: pointer;
   margin: 0 20px;
@@ -260,19 +258,11 @@ body {
   font-family: var(--font);
   display: flex;
   flex-direction: column;
-  margin: 20px;
   color: white;
 }
 
-.img-background-wordlist {
-  max-height: 400px;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  z-index: -1;
-}
-
 .word-list-header {
+  margin: 20px;
   width: 85vw;
   display: grid;
   grid-template-columns: 2fr 1fr 2fr;
@@ -382,7 +372,6 @@ body {
   flex-wrap: wrap;
   background-color: var(--backgroundContainer);
   box-shadow: var(--shadow01);
-  border-radius: 10px;
   margin-bottom: 100px;
   padding: 50px 0;
   justify-content: center;
@@ -394,7 +383,6 @@ body {
   flex-wrap: wrap;
   background-color: var(--backgroundContainer);
   box-shadow: var(--shadow01);
-  border-radius: 10px;
   margin-bottom: 100px;
   padding: 50px 0;
   justify-content: center;
@@ -405,7 +393,6 @@ body {
   flex-wrap: wrap;
   background-color: var(--backgroundContainer);
   box-shadow: var(--shadow01);
-  border-radius: 10px;
   margin-bottom: 100px;
   padding: 50px 0;
   justify-content: center;
@@ -417,7 +404,7 @@ body {
   flex-wrap: wrap;
 }
 
-.container-words {
+.words-body .container-words {
   background-color: var(--blue01);
   overflow: hidden;
   height: 380px;
@@ -829,4 +816,134 @@ body {
   align-items: center;
   line-height: 25px;
   text-transform: capitalize;
+}
+
+/* STUDYLIST */
+
+.study-list {
+  color: white;
+  font-family: var(--font);
+  font-size: 1.2rem;
+  font-weight: normal;
+  letter-spacing: 3px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.study-list header {
+  margin: 50px;
+}
+
+.study-list header a {
+  color: white;
+  text-decoration: none;
+}
+
+.study-list .container,
+.study-list .container-screen02 {
+  display: flex;
+  flex-direction: column;
+  margin: 50px;
+  width: 80%;
+  max-width: 1000px;
+
+  border-radius: 5px;
+  background-color: var(--backgroundContainer);
+  box-shadow: var(--shadow01);
+}
+
+.study-list .container .word01 {
+  margin: 50px;
+}
+
+.study-list .container .word02 {
+  margin: 50px;
+  opacity: 0;
+}
+
+.study-list .form-answer {
+  display: flex;
+  flex-direction: column;
+}
+
+.study-list .form-answer input {
+  background-color: transparent;
+  outline: none;
+  border: none;
+  padding: 5px 0;
+  border-bottom: 2px solid var(--white01);
+  color: white;
+  font-family: var(--font);
+  font-size: 1.2rem;
+  font-weight: normal;
+  text-transform: capitalize;
+  padding: 2px 10px;
+  margin: 50px;
+}
+
+.study-list .form-answer .buttons {
+  margin: 50px;
+}
+
+.study-list .form-answer .buttons button {
+  font-family: var(--font);
+  background-color: var(--blue01);
+  color: var(--white01);
+  margin: 0 10px 10px 0;
+  font-weight: normal;
+  font-size: 1.2rem;
+  outline: none;
+  padding: 5px 40px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.study-list .container p {
+  margin: 50px;
+  opacity: 0.2;
+}
+
+.study-list .container-screen02 h2 {
+  margin: 20px 50px;
+}
+
+.study-list .container-screen02 .container-words {
+  margin: 20px 50px;
+  background-color: var(--blue01);
+  border-radius: 5px;
+  padding: 20px;
+}
+
+.study-list .container-screen02 .arr-words {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 10px;
+  margin-bottom: 10px;
+}
+
+.study-list .container-screen02 p {
+  font-size: 1rem;
+  background-color: rgba(0 0 0 / 30%);
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+.study-list .container-screen02 .buttons {
+  margin: 20px 50px;
+}
+
+.study-list .container-screen02 .buttons button {
+  font-family: var(--font);
+  background-color: var(--blue01);
+  color: var(--white01);
+  margin: 0 10px 10px 0;
+  font-weight: normal;
+  font-size: 1.2rem;
+  outline: none;
+  padding: 5px 40px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
 }

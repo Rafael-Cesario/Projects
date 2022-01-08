@@ -52,6 +52,7 @@ function WordsContainer(props) {
       : "...";
 
     individualWordList[listName.id][i] = {
+      name: listName.id,
       status: status,
       index: index,
       words: td,
