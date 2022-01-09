@@ -80,26 +80,32 @@ function WordsContainer(props) {
 
   return (
     <div className="words-body" ref={props.varRef}>
-      <Container
-        array={learning}
-        listName={listName.id}
-        nameDiv="learning"
-        title="Estudando"
-      />
+      {learning.length > 0 && (
+        <Container
+          array={learning}
+          listName={listName.id}
+          nameDiv="learning"
+          title="Estudando"
+        />
+      )}
 
-      <Container
-        array={onHold}
-        listName={listName.id}
-        nameDiv="onHold"
-        title="Próximas"
-      />
+      {onHold.length > 0 && (
+        <Container
+          array={onHold}
+          listName={listName.id}
+          nameDiv="onHold"
+          title="Próximas"
+        />
+      )}
 
-      <Container
-        array={learned}
-        listName={listName.id}
-        nameDiv="learned"
-        title="Finalizadas"
-      />
+      {learned.length > 0 && (
+        <Container
+          array={learned}
+          listName={listName.id}
+          nameDiv="learned"
+          title="Finalizadas"
+        />
+      )}
     </div>
   );
 }

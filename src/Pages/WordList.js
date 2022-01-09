@@ -5,9 +5,9 @@ import { allWordsAndDefinitions } from "./InitialScreeam";
 import { myList } from "./InitialScreeam";
 import WordsContainer from "../Components/WordsContainer";
 import logo from "../imgs/Planet.png";
-import backgroundimg from "../imgs/backgroundimg.jpg";
 import "../Style/allstyles.css";
-import gsap from "gsap/all";
+import { showFormsAnimation, showConfigsAnimation } from "../gsap/animations";
+import Configs from "../Components/Configs";
 
 const store = () =>
   localStorage.setItem(
@@ -105,19 +105,10 @@ function WordList() {
   const formsAddWord = useRef();
   const wordsBody = useRef();
 
-  let c = 0;
-  const showForms = (e) => {
+  let c = false;
+  const showForms = (e, animation) => {
     e.preventDefault();
-    const tl = gsap.timeline();
-    if (c === 0) {
-      tl.to(wordsBody.current, { y: 450 });
-      tl.to(formsAddWord.current, { x: 0 }, "<");
-      c = 1;
-    } else {
-      tl.to(formsAddWord.current, { x: "-100vw" });
-      tl.to(wordsBody.current, { y: 0 }, "<");
-      c = 0;
-    }
+    c = !c;
   };
 
   return (
@@ -125,13 +116,27 @@ function WordList() {
       <header className="word-list-header">
         <div className="menus">
           <Link className="home" to="/">
-            VOLTAR
+            Voltar
           </Link>
-          <Link to={`/${listName.id}/configs`} className="configs">
-            CONFIGS
-          </Link>
-          <button onClick={(e) => showForms(e)} className="button">
-            ADICIONAR PALAVRAS
+          <button
+            onClick={(e) =>
+              showForms(e, showConfigsAnimation(wordsBody.current, c))
+            }
+            className="button"
+          >
+            Configs
+          </button>
+
+          <button
+            onClick={(e) =>
+              showForms(
+                e,
+                showFormsAnimation(wordsBody.current, formsAddWord.current, c)
+              )
+            }
+            className="button"
+          >
+            Adicionar Palavras
           </button>
         </div>
 
@@ -213,6 +218,8 @@ function WordList() {
           {deleted && <h2 className="teste">Ultima palavra deletada</h2>}
         </form>
       </div>
+
+      <Configs />
 
       <WordsContainer varRef={wordsBody} />
     </div>

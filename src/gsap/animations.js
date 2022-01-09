@@ -33,3 +33,25 @@ export const animationNext01 = (find, h2, inputAnswer) => {
 export const next02FindAnimation = (remainWords) => {
   gsap.from(remainWords, { color: "green", opacity: 1 });
 };
+
+export const showFormsAnimation = (wordsBody, formsAddWord, c) => {
+  const tl = gsap.timeline();
+  if (!c) {
+    tl.to(wordsBody, { y: 550 });
+    tl.to(formsAddWord, { x: 0 }, "<");
+  } else {
+    tl.to(formsAddWord, { x: "-120vw" });
+    tl.to(wordsBody, { y: 0 }, "<");
+  }
+};
+
+export const showConfigsAnimation = (wordsBody, c) => {
+  const config = document.querySelector(".configs-container");
+  const tl = gsap.timeline();
+
+  if (!c) {
+    tl.to(config, { x: 0 });
+  } else {
+    tl.to(config, { x: "-120vw" });
+  }
+};

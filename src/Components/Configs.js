@@ -1,11 +1,8 @@
-import "../Style/allstyles.css";
 import React from "react";
 import { useParams } from "react-router-dom";
-import { Link } from "react-router-dom";
-import { allWordsAndDefinitions, myList } from "./InitialScreeam";
+import { allWordsAndDefinitions, myList } from "../Pages/InitialScreeam";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
-import logo from "../imgs/Planet.png";
 
 function Configs() {
   const listName = useParams();
@@ -49,6 +46,7 @@ function Configs() {
 
   return (
     <div className="configs-container">
+      <h2 className="title">Configs</h2>
       <form onSubmit={deleteList} className="delete-list">
         <div className="para">
           <p>Para ter certeza que você quer mesmo deletar esta lista digite:</p>
@@ -67,13 +65,6 @@ function Configs() {
           </button>
         </div>
       </form>
-
-      <header className="header-menus">
-        <Link className="home" to={`/${listName.id}`}>
-          Voltar
-        </Link>
-        <img src={logo} alt="PlanetLogo" width={100} height={70} />
-      </header>
 
       <div className="configs">
         <div className="config-single">

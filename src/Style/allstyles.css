@@ -10,7 +10,7 @@
   --black01: #000000;
   --white01: #e6e6e6;
   --blue01: #112f52;
-  --red01: #660011;
+  --red01: #7c1212;
   --yellow01: #ffc82d;
   --azul02: #1c1f27;
   --shadow01: 5px 5px 5px rgba(0 0 0 / 20%);
@@ -226,31 +226,35 @@ body {
 /* WORDLIST */
 
 .buttonsFixed {
-  position: sticky;
+  position: fixed;
   display: flex;
-  flex-direction: row;
-  margin: 50px auto;
+  flex-direction: column;
   z-index: 1;
-  top: 0;
-  background-color: var(--backgroundContainer);
-  padding: 10px 20px;
+  top: 220px;
+  left: -90px;
+  background-color: var(--white01);
   box-shadow: var(--shadow01);
   justify-content: center;
-  width: 100%;
+  width: fit-content;
+  border-radius: 0 5px 5px 0;
+  transition: 0.3s;
+}
+
+.buttonsFixed:hover {
+  left: 0;
 }
 
 .buttonsFixed a {
   text-decoration: none;
   background-color: transparent;
-  color: var(--white01);
   font-family: var(--font);
+  color: var(--black01);
   font-size: 1.2rem;
   width: 100%;
   border: none;
   outline: none;
-  padding: 5px 10px;
+  padding: 5px 30px 5px 10px;
   cursor: pointer;
-  margin: 0 20px;
   width: fit-content;
 }
 
@@ -346,7 +350,7 @@ body {
 .words-body {
   display: flex;
   flex-direction: column;
-  margin: 50px 0;
+  margin: 100px 0;
 }
 
 .words-body div h2 {
@@ -366,31 +370,12 @@ body {
   transform: translateY(-120px);
 }
 
-.learning {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  background-color: var(--backgroundContainer);
-  box-shadow: var(--shadow01);
-  margin-bottom: 100px;
-  padding: 50px 0;
-  justify-content: center;
-}
-
-.learned {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  background-color: var(--backgroundContainer);
-  box-shadow: var(--shadow01);
-  margin-bottom: 100px;
-  padding: 50px 0;
-  justify-content: center;
-}
+.learning,
+.learned,
 .onHold {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(330px, auto));
+  justify-items: center;
   background-color: var(--backgroundContainer);
   box-shadow: var(--shadow01);
   margin-bottom: 100px;
@@ -472,7 +457,7 @@ body {
   border: 5px solid var(--blue01);
   border-radius: 0 10px 10px 0;
   box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.466);
-  transform: translate(-100vw, 100px);
+  transform: translate(-120vw, 100px);
   z-index: 1;
 }
 
@@ -572,33 +557,38 @@ body {
 /* CONFIGS */
 
 .configs-container {
-  margin: 20px;
+  background-color: var(--backgroundContainer);
+  z-index: 2;
+  padding: 10px;
+  position: absolute;
+  width: 100%;
+  top: 200px;
+  transform: translateX(-120vw);
+  box-shadow: var(--shadow01);
+  border-top: 5px solid var(--blue01);
+  border-bottom: 5px solid var(--blue01);
 }
 
-.header-menus {
-  display: flex;
-
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.header-menus a {
-  font-family: var(--font);
-  color: white;
-  text-decoration: none;
-  font-size: 1.5rem;
-  font-weight: normal;
+.configs-container .title {
+  background-color: var(--blue01);
+  box-shadow: var(--shadow01);
+  padding: 5px 50px;
+  border-radius: 5px;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, -90%);
 }
 
 .configs {
   margin: 20px 10px;
-  color: white;
+  color: var(--white01);
   font: var(--font);
   font-weight: lighter;
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .config-single {
@@ -607,7 +597,7 @@ body {
 
 .config-single h2 {
   font-family: var(--font);
-  font-weight: lighter;
+  font-weight: normal;
   font-size: 1.2rem;
 }
 
@@ -654,7 +644,8 @@ body {
   font-family: var(--font);
   font-weight: normal;
   font-size: 1.2rem;
-  background-color: var(--white01);
+  background-color: var(--blue01);
+  color: var(--white01);
   outline: none;
   padding: 5px 40px;
   border: none;
@@ -674,17 +665,15 @@ body {
 }
 
 .delete-list {
-  margin: 20px;
-  max-width: 500px;
   background-color: var(--red01);
+  box-shadow: 2px 2px 2px rgba(0 0 0 20%);
+  margin: 20px;
+  top: 160px;
+  right: 0;
+  position: absolute;
   padding: 10px 30px;
   border-radius: 5px;
-  box-shadow: 2px 2px 2px rgba(0 0 0 20%);
-  position: absolute;
   z-index: 1;
-  top: 0;
-  left: 50%;
-  transform: translate(-50%, 0);
 }
 
 .show-delete p {
@@ -692,7 +681,7 @@ body {
   margin: 10px;
   font-size: 1rem;
   font-family: var(--font);
-  font-weight: bold;
+  font-weight: normal;
   color: var(--white01);
 }
 
@@ -708,16 +697,17 @@ body {
 .show-delete input {
   margin: 10px auto;
   width: 100%;
-  padding: 20px;
-  border: 2px solid var(--white01);
-  background-color: transparent;
+  padding: 2px;
+  border: none;
   outline: none;
   font-family: var(--font);
-  font-weight: bold;
   color: var(--white01);
-  font-size: 1.2rem;
-  text-align: center;
+  border-bottom: 2px solid var(--white01);
   box-shadow: 2px 2px 2px rgba(0 0 0 20%);
+  background-color: transparent;
+  font-weight: bold;
+  font-size: 1rem;
+  text-align: center;
 }
 .delete-list .buttons {
   width: 100%;
@@ -731,10 +721,6 @@ body {
   margin: 10px;
   background-color: var(--white01);
   color: var(--black01);
-}
-
-.show-delete hr {
-  border: 1px solid var(--white01);
 }
 
 /* INDIVIDAULWORDLIST */
