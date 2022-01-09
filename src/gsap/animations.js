@@ -29,3 +29,7 @@ export const animationNext01 = (find, h2, inputAnswer) => {
       "<"
     );
 };
+
+export const next02FindAnimation = (remainWords) => {
+  gsap.from(remainWords, { color: "green", opacity: 1 });
+};

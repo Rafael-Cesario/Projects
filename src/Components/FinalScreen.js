@@ -9,8 +9,6 @@ const Screen02 = ({ list, setC, setScreen01 }) => {
       <div className="buttons">
         <button
           onClick={() => {
-            setScreen01(true);
-            setC(0);
             document.location.reload();
           }}
         >

@@ -1,10 +1,10 @@
 /imgs
+/wordlist.bat
 
 # dependencies
 /node_modules
 /.pnp
 .pnp.js
-/imgs
 
 # testing
 /coverage

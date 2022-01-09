@@ -860,6 +860,7 @@ body {
 .study-list .container .word02 {
   margin: 50px;
   opacity: 0;
+  text-transform: capitalize;
 }
 
 .study-list .form-answer {
@@ -888,8 +889,8 @@ body {
 
 .study-list .form-answer .buttons button {
   font-family: var(--font);
-  background-color: var(--blue01);
-  color: var(--white01);
+  background-color: var(--white01);
+  color: var(--black01);
   margin: 0 10px 10px 0;
   font-weight: normal;
   font-size: 1.2rem;
@@ -909,6 +910,23 @@ body {
   margin: 20px 50px;
 }
 
+.study-list .container h2 button {
+  display: block;
+  font-family: var(--font);
+  background-color: var(--white01);
+  color: var(--black01);
+  margin: 10px 10px 10px 0;
+  font-weight: normal;
+  font-size: 1rem;
+  outline: none;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* SCREEN02 */
+
 .study-list .container-screen02 .container-words {
   margin: 20px 50px;
   background-color: var(--blue01);
@@ -923,11 +941,24 @@ body {
   margin-bottom: 10px;
 }
 
+@media (max-width: 400px) {
+  .study-list .container-screen02 .arr-words {
+    display: grid;
+    grid-template-columns: 1fr;
+    column-gap: 10px;
+    margin-bottom: 10px;
+  }
+  .study-list .container-screen02 p {
+    margin-bottom: 5px;
+  }
+}
+
 .study-list .container-screen02 p {
   font-size: 1rem;
-  background-color: rgba(0 0 0 / 30%);
+  background-color: rgba(0 0 0 / 20%);
   padding: 5px 10px;
   border-radius: 5px;
+  text-transform: capitalize;
 }
 
 .study-list .container-screen02 .buttons {
@@ -940,10 +971,11 @@ body {
   color: var(--white01);
   margin: 0 10px 10px 0;
   font-weight: normal;
-  font-size: 1.2rem;
+  font-size: 1rem;
   outline: none;
   padding: 5px 40px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  width: 100%;
 }

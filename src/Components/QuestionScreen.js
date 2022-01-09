@@ -1,17 +1,20 @@
 import { useState, useRef } from "react";
-import { animationNext, animationNext01 } from "../gsap/animations";
+import {
+  animationNext,
+  animationNext01,
+  next02FindAnimation,
+} from "../gsap/animations";
 
 const QuestionScreen = ({ study, setScreen01, c, setC }) => {
   const h2 = useRef();
   const [n, setN] = useState(1);
   const inputAnswer = useRef();
   const [answer, setAnswer] = useState("");
+  const remainwWords = useRef();
 
   const next = (e) => {
     e.preventDefault();
 
-    /* Transformar em uma função para separar
-        respostas com mais de uma definição */
     const find = finding();
 
     if (n === 1) {
@@ -42,6 +45,8 @@ const QuestionScreen = ({ study, setScreen01, c, setC }) => {
 
         study.toStudy.shift();
       }
+
+      next02FindAnimation(remainwWords.current);
     }
 
     if (c === study.studying.length - 1 || c === study.studying.length) {
@@ -62,9 +67,9 @@ const QuestionScreen = ({ study, setScreen01, c, setC }) => {
     let word01 = study.studying[c].definição.trim().toUpperCase();
     let word02 = answer.trim().toUpperCase();
 
-    word01 = word01.split(", ");
-
-    console.log(word01.find((word) => (word === word02 ? true : false)));
+    if (word01 === word02 || word01.split(", ").indexOf(word02) > -1) {
+      return true;
+    }
   };
 
   return (
@@ -73,6 +78,17 @@ const QuestionScreen = ({ study, setScreen01, c, setC }) => {
 
       <h2 className="word02" ref={h2}>
         {study.studying[c].definição}
+
+        <button
+          type="button"
+          onClick={(e) => {
+            const find = true;
+            animationNext(h2.current, inputAnswer.current, next02, e, find);
+            setN(1);
+          }}
+        >
+          Marcar resposta como correta
+        </button>
       </h2>
 
       <form onSubmit={(e) => next(e)} className="form-answer">
@@ -85,11 +101,11 @@ const QuestionScreen = ({ study, setScreen01, c, setC }) => {
         />
         <div className="buttons">
           <button>Confirmar</button>
-          <button type="button">Não sei</button>
+          <button>Não sei</button>
         </div>
       </form>
 
-      <p>
+      <p ref={remainwWords}>
         <span>{study.toStudy.length + study.studying.length}</span> Palavras até
         terminar a lista
       </p>
