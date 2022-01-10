@@ -19,29 +19,21 @@
 }
 
 body {
-  background-color: rgb(19, 19, 19);
+  height: 100vh;
+  background: radial-gradient(100% 316.05% at 0% 0%, #1e1e1e 0%, #0a0a0a 100%);
 }
 
 /* INITIALSCREEN */
 
-.body-initial-screem {
+.body-initial-screen {
   display: flex;
   flex-direction: column;
   width: 100%;
   align-items: center;
   height: 100vh;
-
-  background: url("../imgs/FundoOnda.svg");
-  background-repeat: no-repeat;
-  background-position: bottom;
 }
 
-.body-initial-screem .img {
-  user-select: none;
-  transform: scale(1.2);
-}
-
-.div-new-list {
+.header {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -49,13 +41,13 @@ body {
   width: 88vw;
 }
 
-.div-new-list div {
+.header div {
   display: flex;
   flex-direction: row;
   align-items: center;
 }
 
-.div-new-list button {
+.header button {
   background-color: transparent;
   border: none;
   outline: none;
@@ -68,6 +60,14 @@ body {
   margin: 0 20px;
 }
 
+.listas {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  transform: translateX(-120vw);
+}
+
 .lists-initialscreen {
   display: flex;
   flex-direction: row;
@@ -75,6 +75,32 @@ body {
   margin: 50px 0;
   width: 100%;
   justify-content: center;
+}
+
+.lists-initialscreen .opening {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  position: absolute;
+  top: 30vh;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 90%;
+}
+
+.opening .title {
+  color: var(--white01);
+  font-family: var(--font);
+  font-weight: normal;
+  width: fit-content;
+  font-size: 2.5rem;
+  margin-bottom: 50px;
+}
+
+.opening .img {
+  user-select: none;
+  width: 500px;
+  height: auto;
 }
 
 .fake-components {
@@ -125,16 +151,16 @@ body {
 }
 
 .form-new-list {
-  display: none;
-  flex-direction: column;
-  width: fit-content;
-  width: 313px;
-  height: 542px;
   background-color: var(--blue01);
-  box-shadow: var(--shadow01);
-  padding: 0px 30px 40px 30px;
+  display: flex;
+  position: absolute;
+  padding: 30px;
+  flex-direction: column;
   border-radius: 5px;
-  margin: 15px 15px;
+  box-shadow: var(--shadow01);
+  transform: translateY(-110vh);
+  opacity: 0;
+  width: 315px;
 }
 
 .form-new-list .div-span-input {
@@ -146,15 +172,13 @@ body {
   display: grid;
   grid-template-columns: 1fr 1fr;
   column-gap: 10px;
-  transform: translateY(-50px);
-  margin: 0 -30px 0 -30px;
+  width: 100%;
 }
 
 .form-new-list .buttons button {
-  background-color: var(--blue01);
+  background-color: var(--white01);
   box-shadow: var(--shadow01);
-  color: var(--white01);
-  width: 100%;
+  color: var(--black01);
   border: none;
   outline: none;
   border-radius: 5px;
@@ -166,12 +190,13 @@ body {
   z-index: 1;
   background-color: transparent;
   border: none;
+  border-bottom: 2px solid white;
   outline: none;
   padding: 1px 5px;
   color: var(--white01);
   margin-bottom: 50px;
   height: 50px;
-  transform: translate(0, -40px);
+  transform: translate(0, -50px);
   font-size: 2rem;
   font-family: var(--font);
   text-align: center;
@@ -181,7 +206,8 @@ body {
   background-color: transparent;
   border-radius: 5px;
   min-height: 200px;
-  border: 1px solid var(--white01);
+  width: 100%;
+  border: 2px solid var(--white01);
   color: white;
   padding: 10px;
   outline: none;
@@ -194,7 +220,6 @@ body {
   color: var(--white01);
   user-select: none;
   z-index: 0;
-  transform: translate(0, 0px);
   font-family: var(--font);
   font-size: 2rem;
   text-align: center;
@@ -207,7 +232,7 @@ body {
   color: var(--white01);
   user-select: none;
   z-index: 0;
-  transform: translate(15px, -30px);
+  transform: translate(0, 0);
   font-family: Georgia, "Times New Roman", Times, serif;
 }
 

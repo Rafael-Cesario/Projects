@@ -71,8 +71,76 @@ export const fakeComponents = () => {
       "<"
     )
     .from(
-      ".div-new-list",
+      ".header",
       { duration: 1, y: "-30", ease: "power2.out", opacity: 0 },
       "<"
     );
 };
+
+export const opening = () => {
+  const tl = gsap.timeline();
+
+  tl.from(".opening .img", {
+    opacity: 0,
+    x: "-120vw",
+    ease: "power2.out",
+    duration: 1.5,
+    rotate: -10,
+  })
+    .from(
+      ".opening .title",
+      {
+        scale: 0.99,
+        x: 10,
+        opacity: 0,
+        duration: 1,
+        ease: "power2.out",
+      },
+      "-=1"
+    )
+    .from(
+      ".body-initial-screen .header",
+      { opacity: 0, y: -10, ease: "power2.out", duration: 1 },
+      "-=0.5"
+    );
+};
+
+export const closures = () => {
+  const tl = gsap.timeline();
+
+  tl.to(".listas", { x: 0, duration: 1, ease: "power2.out" }).to(
+    ".opening .title, .img",
+    {
+      opacity: 0,
+      pointerEvents: "none",
+      ease: "power2.out",
+      zIndex: -1,
+      display: "none",
+    },
+    "-=0.8"
+  );
+};
+
+export const newList = (open) => {
+  const tl = gsap.timeline();
+
+  if (!open) {
+    tl.to(".form-new-list", {
+      duration: 1,
+      ease: "power2.out",
+      y: "50px",
+      opacity: 1,
+    }).to(".listas", { y: "400px", ease: "power2.out", duration: 1 }, "<");
+
+  } else {
+    tl.to(".form-new-list", {
+      duration: 1,
+      ease: "power2.out",
+      y: "-110vh",
+      opacity: 1,
+    }).to(".listas", { y: "0", ease: "power2.out", duration: 1 }, "<");
+    
+  }
+};
+
+export const onFocusInput = () => {};

@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import List from "../Components/List";
 import gsap from "gsap";
 import Planet from "../imgs/Planet.svg";
-import { fakeComponents } from "../gsap/animations";
+import { closures, fakeComponents, newList, opening } from "../gsap/animations";
 import "../Style/allstyles.css";
 
 export const myList = JSON.parse(localStorage.getItem("myList")) || [];
@@ -10,9 +10,10 @@ export const allWordsAndDefinitions =
   JSON.parse(localStorage.getItem("allWordsAndDefinitions")) || [];
 
 const InitialScream = () => {
+  const [myListScreen, setMyListScreen] = useState(false);
+  const [open, setOpen] = useState(false);
   const [listName, setListName] = useState("");
   const [description, setDescription] = useState("");
-  const formNewList = useRef(null);
   const listComponent = useRef(null);
   const moreThenFive = myList.length < 5 ? true : false;
   const planetLogo = useRef(null);
@@ -28,17 +29,20 @@ const InitialScream = () => {
   const show = (e) => {
     e.preventDefault();
 
-    const tl = gsap.timeline();
-    tl.to(listComponent.current, {
-      scale: 0.95,
-      opacity: 0,
-      ease: "power4.out",
-    });
-    formNewList.current.style.display !== "flex"
-      ? tl.to(formNewList.current, { display: "flex" })
-      : tl.to(formNewList.current, { display: "none" });
-    tl.to(listComponent.current, { scale: 1, opacity: 1, ease: "power4.out" });
-    tl.duration(0.3).resume();
+    if (!myListScreen) {
+      closures();
+      setTimeout((open) => newList(open), 1000);
+      setMyListScreen(true);
+      setOpen(true);
+    } else {
+      if (!open) {
+        newList(open);
+        setOpen(true);
+      } else {
+        setOpen(false);
+        newList(open);
+      }
+    }
   };
 
   const onSubmit = (e) => {
@@ -59,28 +63,26 @@ const InitialScream = () => {
         description: description,
       },
     });
+    save();
 
     setListName("");
     setDescription("");
-    inputBlur(e);
     show(e);
   };
 
   useEffect(() => {
-    fakeComponents();
+    opening();
+  }, []);
 
+  const save = () => {
     localStorage.setItem("myList", JSON.stringify(myList));
     localStorage.setItem(
       "allWordsAndDefinitions",
       JSON.stringify(allWordsAndDefinitions)
     );
+  };
 
-    const tl = gsap.timeline({ repeat: Infinity, yoyo: true });
-    tl.to(planetLogo.current, { rotate: 10, ease: "back.out(2)" });
-    tl.duration(2).resume();
-  });
-
-  const inputFocus = (e) => {
+  /*   const inputFocus = (e) => {
     const span = e.target.parentNode.querySelector("span");
     if (e.target.type === "textarea") {
       gsap.to(span, { y: -70, x: 15 });
@@ -104,7 +106,7 @@ const InitialScream = () => {
         gsap.to(span, { scale: 0.5, y: -35, x: 0 });
       }
     }
-  };
+  }; */
 
   const StyleList = (props) => {
     let c = 0;
@@ -126,37 +128,25 @@ const InitialScream = () => {
     ));
   };
 
-  return (
-    <div className="body-initial-screem">
-      <div className="div-new-list">
-        <div>
-          <button className="new-list" onClick={(e) => show(e)}>
-            NOVA LISTA
-          </button>
-          <button className="new-list">SOBRE</button>
-        </div>
-        <img
-          className="img"
-          src={Planet}
-          alt="PNG planeta"
-          width={100}
-          height={"65"}
-          ref={planetLogo}
-        />
-      </div>
+  const myListButton = (e) => {
+    closures();
+    setMyListScreen(true);
+  };
 
-      <div className="lists-initialscreen" ref={listComponent}>
-        <form
-          className="form-new-list"
-          ref={formNewList}
-          onSubmit={(e) => onSubmit(e)}
-        >
-          <div className="buttons">
-            <button type="submit">Salvar</button>
-            <button type="button" onClick={(e) => show(e)}>
-              Cancelar
-            </button>
-          </div>
+  return (
+    <div className="body-initial-screen">
+      <header className="header">
+        <div>
+          <button className="new-list" onClick={(e) => myListButton(e)}>
+            Minhas Listas
+          </button>
+          <button className="new-list" onClick={(e) => show(e)}>
+            Nova Lista
+          </button>
+          <button className="new-list">Sobre</button>
+        </div>
+
+        <form className="form-new-list" onSubmit={(e) => onSubmit(e)}>
           <div className="div-span-input">
             <span className="span-input">Nome</span>
             <input
@@ -164,8 +154,6 @@ const InitialScream = () => {
               type="text"
               value={listName}
               onChange={(e) => setListName(e.target.value)}
-              onFocus={(e) => inputFocus(e)}
-              onBlur={(e) => inputBlur(e)}
             />
           </div>
 
@@ -173,20 +161,45 @@ const InitialScream = () => {
             <span className="span-textarea">Descrição</span>
             <textarea
               type="text"
-              onFocus={(e) => inputFocus(e)}
-              onBlur={(e) => inputBlur(e)}
               value={description}
               onChange={(e) => setDescription(e.target.value)}
             />
           </div>
-        </form>
 
-        <List
-          allWordsAndDefinitions={allWordsAndDefinitions}
-          animationHover={(e) => animatedHover(e)}
-          animetedHoverOut={(e) => animetedHoverOut(e)}
-        />
-        {moreThenFive && <StyleList howMany={5 - myList.length} />}
+          <div className="buttons">
+            <button type="submit">Salvar</button>
+            <button type="button" onClick={(e) => show(e)}>
+              Cancelar
+            </button>
+          </div>
+        </form>
+      </header>
+
+      <div className="lists-initialscreen" ref={listComponent}>
+        <div className="listas">
+          <List
+            allWordsAndDefinitions={allWordsAndDefinitions}
+            animationHover={(e) => animatedHover(e)}
+            animetedHoverOut={(e) => animetedHoverOut(e)}
+          />
+
+          {moreThenFive && <StyleList howMany={5 - myList.length} />}
+        </div>
+
+        <div className="opening">
+          <h1 className="title">
+            Um site para te ajudar a memorizar <br /> algumas palavras.
+          </h1>
+
+          <img
+            className="img"
+            src={Planet}
+            alt="PNG planeta"
+            width={100}
+            height={"65"}
+            ref={planetLogo}
+          />
+        </div>
       </div>
     </div>
   );

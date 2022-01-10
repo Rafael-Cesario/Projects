@@ -9,7 +9,7 @@ const List = (props) => {
   };
 
   return myList.map((list, i) => {
-    const sli = list.indexOf("_");
+    const sli = myList.indexOf("_");
     return (
       <div
         className="my-list-component"
