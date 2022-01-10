@@ -1,8 +1,8 @@
 import { useState, useEffect, useRef } from "react";
-import backgroundimg from "../imgs/backgroundimg.jpg";
-import logo from "../imgs/Planet.png";
 import List from "../Components/List";
 import gsap from "gsap";
+import Planet from "../imgs/Planet.svg";
+import { fakeComponents } from "../gsap/animations";
 import "../Style/allstyles.css";
 
 export const myList = JSON.parse(localStorage.getItem("myList")) || [];
@@ -67,6 +67,8 @@ const InitialScream = () => {
   };
 
   useEffect(() => {
+    fakeComponents();
+
     localStorage.setItem("myList", JSON.stringify(myList));
     localStorage.setItem(
       "allWordsAndDefinitions",
@@ -131,12 +133,11 @@ const InitialScream = () => {
           <button className="new-list" onClick={(e) => show(e)}>
             NOVA LISTA
           </button>
-          <div className="divborder50"></div>
           <button className="new-list">SOBRE</button>
         </div>
         <img
           className="img"
-          src={logo}
+          src={Planet}
           alt="PNG planeta"
           width={100}
           height={"65"}

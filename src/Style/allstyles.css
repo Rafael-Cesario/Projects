@@ -28,21 +28,17 @@ body {
   display: flex;
   flex-direction: column;
   width: 100%;
-  justify-content: center;
   align-items: center;
-  flex-wrap: wrap;
+  height: 100vh;
+
+  background: url("../imgs/FundoOnda.svg");
+  background-repeat: no-repeat;
+  background-position: bottom;
 }
 
-.img {
+.body-initial-screem .img {
   user-select: none;
-}
-
-.backgroundimg-initialpage {
-  max-height: 400px;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  z-index: -1;
+  transform: scale(1.2);
 }
 
 .div-new-list {
@@ -57,14 +53,6 @@ body {
   display: flex;
   flex-direction: row;
   align-items: center;
-}
-
-.divborder50 {
-  background-color: var(--white01);
-  width: 5px;
-  height: 5px;
-  border-radius: 5px;
-  display: inline-block;
 }
 
 .div-new-list button {
@@ -323,7 +311,7 @@ body {
 .menus .home {
   color: white;
   text-decoration: none;
-  font-size: 1rem;
+  font-size: 1.2rem;
   margin: 5px 10px;
 }
 
@@ -340,7 +328,7 @@ body {
   outline: none;
   border: none;
   font-family: var(--font);
-  font-size: 1rem;
+  font-size: 1.2rem;
   margin: 5px 10px;
   cursor: pointer;
 }

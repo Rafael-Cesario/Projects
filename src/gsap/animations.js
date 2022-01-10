@@ -55,3 +55,24 @@ export const showConfigsAnimation = (wordsBody, c) => {
     tl.to(config, { x: "-120vw" });
   }
 };
+
+export const fakeComponents = () => {
+  const tl = gsap.timeline();
+
+  tl.from(".fake-components", {
+    duration: 1,
+    x: "-100vw",
+    ease: "power2.out",
+    opacity: 0,
+  })
+    .from(
+      ".my-list-component",
+      { duration: 1, x: "-100vw", ease: "power2.out", opacity: 0 },
+      "<"
+    )
+    .from(
+      ".div-new-list",
+      { duration: 1, y: "-30", ease: "power2.out", opacity: 0 },
+      "<"
+    );
+};

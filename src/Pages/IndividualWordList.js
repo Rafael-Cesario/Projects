@@ -1,7 +1,7 @@
 import gsap from "gsap";
 import { useEffect, useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import logo from "../imgs/Planet.png";
+import logo from "../imgs/Planet.svg";
 
 const IndividualWordList = () => {
   const tempData = JSON.parse(localStorage.getItem("tempData"));

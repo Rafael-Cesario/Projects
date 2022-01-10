@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { allWordsAndDefinitions } from "./InitialScreeam";
 import { myList } from "./InitialScreeam";
 import WordsContainer from "../Components/WordsContainer";
-import logo from "../imgs/Planet.png";
+import logo from "../imgs/Planet.svg";
 import "../Style/allstyles.css";
 import { showFormsAnimation, showConfigsAnimation } from "../gsap/animations";
 import Configs from "../Components/Configs";
