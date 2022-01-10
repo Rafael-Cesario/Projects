@@ -86,61 +86,103 @@ export const opening = () => {
     ease: "power2.out",
     duration: 1.5,
     rotate: -10,
-  })
-    .from(
-      ".opening .title",
-      {
-        scale: 0.99,
-        x: 10,
-        opacity: 0,
-        duration: 1,
-        ease: "power2.out",
-      },
-      "-=1"
-    )
-    .from(
-      ".body-initial-screen .header",
-      { opacity: 0, y: -10, ease: "power2.out", duration: 1 },
-      "-=0.5"
-    );
+  }).from(
+    ".opening .title",
+    {
+      scale: 0.99,
+      x: 10,
+      opacity: 0,
+      duration: 1,
+      ease: "power2.out",
+    },
+    "-=1"
+  );
 };
 
 export const closures = () => {
   const tl = gsap.timeline();
 
-  tl.to(".listas", { x: 0, duration: 1, ease: "power2.out" }).to(
-    ".opening .title, .img",
-    {
-      opacity: 0,
-      pointerEvents: "none",
-      ease: "power2.out",
-      zIndex: -1,
-      display: "none",
-    },
-    "-=0.8"
-  );
+  tl.to(".listas", { x: 0, duration: 1, ease: "power2.out" })
+    .to(
+      ".opening .title, .img",
+      {
+        opacity: 0,
+        pointerEvents: "none",
+        ease: "power2.out",
+        zIndex: -1,
+        display: "none",
+      },
+      "-=0.8"
+    )
+    .to(
+      ".body-initial-screen .header",
+      { opacity: 1, y: 0, ease: "power2.out", duration: 1 },
+      "-=0.5"
+    );
 };
 
 export const newList = (open) => {
   const tl = gsap.timeline();
 
   if (!open) {
-    tl.to(".form-new-list", {
-      duration: 1,
-      ease: "power2.out",
-      y: "50px",
-      opacity: 1,
-    }).to(".listas", { y: "400px", ease: "power2.out", duration: 1 }, "<");
-
+    /* Abrir */
+    tl.to("body", { overflow: "hidden" }).to(".listas", { y: 500 }, "<").fromTo(
+      ".form-new-list",
+      { opacity: 0, y: -50 },
+      {
+        display: "flex",
+        position: "absolute",
+        y: 100,
+        opacity: 1,
+      },
+      "<"
+    );
   } else {
-    tl.to(".form-new-list", {
-      duration: 1,
-      ease: "power2.out",
-      y: "-110vh",
-      opacity: 1,
-    }).to(".listas", { y: "0", ease: "power2.out", duration: 1 }, "<");
-    
+    /* Fechar */
+    tl.to("body", { overflow: "show" })
+      .to(".listas", { y: 0 }, "<")
+      .to(".form-new-list", { opacity: 0, y: -50, display: "none" }, "<");
   }
 };
 
-export const onFocusInput = () => {};
+export const onFocusInput = (e) => {
+  const tl = gsap.timeline();
+
+  if (e.target.type === "text") {
+    tl.to(".form-new-list .span-input", { y: 0, fontSize: "1rem" }).to(
+      ".form-new-list input",
+      { borderBottom: "1px solid rgba(255, 255, 255, 0.637)" },
+      "<"
+    );
+  } else {
+    tl.to(".form-new-list .span-textarea", { y: 0 }).to(
+      ".form-new-list textarea",
+      { borderBottom: "1px solid rgba(255,255,255,0.637" }
+    );
+  }
+};
+
+export const onBlurInput = (e) => {
+  const tl = gsap.timeline();
+
+  if (e.target.type === "text") {
+    if (e.target.value) {
+      return;
+    } else {
+      tl.to(".form-new-list .span-input", { y: 50, fontSize: "2rem" }).to(
+        ".form-new-list input",
+        { borderBottom: "1px solid rgba(255, 255, 255, 0.137)" },
+        "<"
+      );
+    }
+  } else {
+    if (e.target.value) {
+      return;
+    } else {
+      tl.to(".form-new-list .span-textarea", { y: 50 }).to(
+        ".form-new-list textarea",
+        { border: "1px solid rgba(255,255,255,0.137" }
+      );
+    }
+  }
+};

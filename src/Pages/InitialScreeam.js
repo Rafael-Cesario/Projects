@@ -2,7 +2,13 @@ import { useState, useEffect, useRef } from "react";
 import List from "../Components/List";
 import gsap from "gsap";
 import Planet from "../imgs/Planet.svg";
-import { closures, fakeComponents, newList, opening } from "../gsap/animations";
+import {
+  onFocusInput,
+  closures,
+  newList,
+  opening,
+  onBlurInput,
+} from "../gsap/animations";
 import "../Style/allstyles.css";
 
 export const myList = JSON.parse(localStorage.getItem("myList")) || [];
@@ -10,7 +16,6 @@ export const allWordsAndDefinitions =
   JSON.parse(localStorage.getItem("allWordsAndDefinitions")) || [];
 
 const InitialScream = () => {
-  const [myListScreen, setMyListScreen] = useState(false);
   const [open, setOpen] = useState(false);
   const [listName, setListName] = useState("");
   const [description, setDescription] = useState("");
@@ -29,19 +34,12 @@ const InitialScream = () => {
   const show = (e) => {
     e.preventDefault();
 
-    if (!myListScreen) {
-      closures();
-      setTimeout((open) => newList(open), 1000);
-      setMyListScreen(true);
+    if (!open) {
+      newList(open);
       setOpen(true);
     } else {
-      if (!open) {
-        newList(open);
-        setOpen(true);
-      } else {
-        setOpen(false);
-        newList(open);
-      }
+      setOpen(false);
+      newList(open);
     }
   };
 
@@ -82,32 +80,6 @@ const InitialScream = () => {
     );
   };
 
-  /*   const inputFocus = (e) => {
-    const span = e.target.parentNode.querySelector("span");
-    if (e.target.type === "textarea") {
-      gsap.to(span, { y: -70, x: 15 });
-    } else {
-      gsap.to(span, { scale: 0.5, y: -35, x: 0 });
-    }
-  };
-
-  const inputBlur = (e) => {
-    const span = e.target.parentNode.querySelector("span");
-    if (!e.target.value) {
-      if (e.target.type === "textarea") {
-        gsap.to(span, { y: -30, x: 15 });
-      } else {
-        gsap.to(span, { scale: 1, x: 0, y: 0 });
-      }
-    } else {
-      if (e.target.type === "textarea") {
-        gsap.to(span, { y: -70, x: 15 });
-      } else {
-        gsap.to(span, { scale: 0.5, y: -35, x: 0 });
-      }
-    }
-  }; */
-
   const StyleList = (props) => {
     let c = 0;
     const howMany = [];
@@ -130,50 +102,50 @@ const InitialScream = () => {
 
   const myListButton = (e) => {
     closures();
-    setMyListScreen(true);
   };
 
   return (
     <div className="body-initial-screen">
       <header className="header">
         <div>
-          <button className="new-list" onClick={(e) => myListButton(e)}>
-            Minhas Listas
-          </button>
           <button className="new-list" onClick={(e) => show(e)}>
             Nova Lista
           </button>
           <button className="new-list">Sobre</button>
         </div>
-
-        <form className="form-new-list" onSubmit={(e) => onSubmit(e)}>
-          <div className="div-span-input">
-            <span className="span-input">Nome</span>
-            <input
-              required
-              type="text"
-              value={listName}
-              onChange={(e) => setListName(e.target.value)}
-            />
-          </div>
-
-          <div className="div-span-input">
-            <span className="span-textarea">Descrição</span>
-            <textarea
-              type="text"
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
-            />
-          </div>
-
-          <div className="buttons">
-            <button type="submit">Salvar</button>
-            <button type="button" onClick={(e) => show(e)}>
-              Cancelar
-            </button>
-          </div>
-        </form>
       </header>
+
+      <form className="form-new-list" onSubmit={(e) => onSubmit(e)}>
+        <div className="div-span-input">
+          <span className="span-input">Nome</span>
+          <input
+            required
+            type="text"
+            value={listName}
+            onChange={(e) => setListName(e.target.value)}
+            onFocus={(e) => onFocusInput(e)}
+            onBlur={(e) => onBlurInput(e)}
+          />
+        </div>
+
+        <div className="div-span-input">
+          <span className="span-textarea">Descrição</span>
+          <textarea
+            type="text"
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+            onFocus={(e) => onFocusInput(e)}
+            onBlur={(e) => onBlurInput(e)}
+          />
+        </div>
+
+        <div className="buttons">
+          <button type="submit">Salvar</button>
+          <button type="button" onClick={(e) => show(e)}>
+            Cancelar
+          </button>
+        </div>
+      </form>
 
       <div className="lists-initialscreen" ref={listComponent}>
         <div className="listas">
@@ -189,6 +161,10 @@ const InitialScream = () => {
         <div className="opening">
           <h1 className="title">
             Um site para te ajudar a memorizar <br /> algumas palavras.
+            <br />
+            <button className="new-list" onClick={(e) => myListButton(e)}>
+              Minhas Listas
+            </button>
           </h1>
 
           <img

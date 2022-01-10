@@ -19,7 +19,7 @@ const List = (props) => {
         onMouseEnter={(e) => props.animationHover(e)}
         onMouseOut={(e) => props.animetedHoverOut(e)}
       >
-        <h2>{list.slice(0, sli)}</h2>
+        <h2>{list.slice(0, sli - 1)}</h2>
         <p>{allWordsAndDefinitions[i][list]["description"]}</p>
       </div>
     );

@@ -39,6 +39,7 @@ body {
   justify-content: space-between;
   margin: 70px 20px;
   width: 88vw;
+  transform: translateY(-100px);
 }
 
 .header div {
@@ -97,6 +98,15 @@ body {
   margin-bottom: 50px;
 }
 
+.opening button {
+  background-color: var(--blue01);
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  padding: 10px 15px;
+  color: var(--white01);
+}
+
 .opening .img {
   user-select: none;
   width: 500px;
@@ -152,15 +162,13 @@ body {
 
 .form-new-list {
   background-color: var(--blue01);
-  display: flex;
-  position: absolute;
+  display: none;
   padding: 30px;
   flex-direction: column;
   border-radius: 5px;
   box-shadow: var(--shadow01);
-  transform: translateY(-110vh);
-  opacity: 0;
-  width: 315px;
+  width: 313px;
+  height: 542px;
 }
 
 .form-new-list .div-span-input {
@@ -190,13 +198,11 @@ body {
   z-index: 1;
   background-color: transparent;
   border: none;
-  border-bottom: 2px solid white;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.137);
   outline: none;
   padding: 1px 5px;
   color: var(--white01);
   margin-bottom: 50px;
-  height: 50px;
-  transform: translate(0, -50px);
   font-size: 2rem;
   font-family: var(--font);
   text-align: center;
@@ -207,12 +213,12 @@ body {
   border-radius: 5px;
   min-height: 200px;
   width: 100%;
-  border: 2px solid var(--white01);
+  border: 1px solid rgba(255, 255, 255, 0.137);
   color: white;
   padding: 10px;
   outline: none;
   resize: none;
-  transform: translate(0, -67px);
+  margin-bottom: 50px;
 }
 
 .form-new-list .span-input {
@@ -224,16 +230,18 @@ body {
   font-size: 2rem;
   text-align: center;
   pointer-events: none;
+  transform: translateY(50px);
 }
 
 .form-new-list .span-textarea {
   pointer-events: none;
-
   color: var(--white01);
   user-select: none;
   z-index: 0;
-  transform: translate(0, 0);
   font-family: Georgia, "Times New Roman", Times, serif;
+  text-align: center;
+  margin: 10px;
+  transform: translateY(50px);
 }
 
 /* WORDLIST */
