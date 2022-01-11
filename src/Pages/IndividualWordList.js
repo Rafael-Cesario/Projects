@@ -1,19 +1,19 @@
 import gsap from "gsap";
 import { useEffect, useRef, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import logo from "../imgs/Planet.svg";
+import { individualWordListAnimation } from "../gsap/animations";
+import { save, wordListStore } from "./InitialScreeam";
 
 const IndividualWordList = () => {
-  const tempData = JSON.parse(localStorage.getItem("tempData"));
-  const listName = tempData.listName.slice(0, tempData.listName.indexOf("_"));
-  const individualWordList = JSON.parse(
-    localStorage.getItem("individualWordList")
-  );
-  const list = individualWordList[tempData.listName][tempData.index];
+  const params = useParams();
+  const listName = params.id.slice(0, params.id.indexOf("_"));
+  const listIndex = [params.id.slice(params.id.indexOf("_") + 1), params.index];
+  const list =
+    wordListStore[listIndex[0]][params.id].individualWordList[listIndex[1]];
 
   const words = useRef();
   const info = useRef();
-  const header = useRef();
 
   const [status, setStatus] = useState(list.status);
   list.status = status;
@@ -22,43 +22,24 @@ const IndividualWordList = () => {
 
   // Animação carregar pagina
   useEffect(() => {
-    const tl = gsap.timeline({ ease: "power4.out" });
-    tl.from(header.current, { y: -100, opacity: 0 });
-    tl.from(info.current, { x: "-100vw", opacity: 0 });
-    tl.from(
-      words.current,
-      {
-        x: "120vw",
-        opacity: 0,
-        position: "fixed",
-        width: "fitContent",
-        right: 50,
-      },
-      "<"
-    );
-    tl.duration(0.5).resume();
+    individualWordListAnimation();
   }, []);
 
   /* Atualizar localStorage */
   useEffect(() => {
-    localStorage.setItem(
-      "individualWordList",
-      JSON.stringify(individualWordList)
-    );
-  }, [status, individualWordList]);
+    save();
+  }, [status]);
 
   /* Mudar status lista */
   const scheduleButton = (e) => {
     e.preventDefault();
-    const h2 = info.current.children[0];
     const tl = gsap.timeline();
-    tl.to(h2, { scale: 0.95, color: "#ffc82d", duration: 0.2 });
-    tl.to(h2, { scale: 1, color: "#e6e6e6", duration: 0.2 });
+    tl.to(".study-time", { scale: 0.95, color: "#ffc82d", duration: 0.2 });
+    tl.to(".study-time", { scale: 1, color: "#e6e6e6", duration: 0.2 });
 
     switch (status) {
       case "...":
         setStatus("Diariamente");
-        console.log(list.status);
         break;
 
       case "Diariamente":
@@ -76,28 +57,28 @@ const IndividualWordList = () => {
 
   /* Iniciar Estudar Lista */
   const studyList = () => {
-    navigate(`/${tempData.listName}/study${list.index}`);
+    navigate(`/${params.id}/study${listIndex[1]}`);
   };
 
   return (
     <div className="individaul-word-list">
-      <header ref={header}>
-        <Link to={`/${tempData.listName}`}>Voltar</Link>
+      <header>
+        <Link to={`/${params.id}`}>Voltar</Link>
         <h1>{listName}</h1>
         <img src={logo} alt="Planeta" width={100} height={65} />
       </header>
 
       <div className="container">
         <div className="info" ref={info}>
-          <h2>
-            Estudar Lista: {list.status}
-            <button onClick={(e) => scheduleButton(e)}>
-              Mudar tempo de estudo
-            </button>
-          </h2>
+          <button className="start-study-button" onClick={() => studyList()}>
+            Estudar Lista
+          </button>
+          <h2 className="study-time">Estudar Lista: {list.status}</h2>
+          <button onClick={(e) => scheduleButton(e)}>
+            Mudar tempo de estudo
+          </button>
           <h2>Total de palavras na lista: {list.words.length}</h2>
 
-          <button onClick={() => studyList()}>Estudar Lista</button>
           <button>OPÇÕES</button>
         </div>
 
@@ -113,10 +94,10 @@ export default IndividualWordList;
 
 /* Criar uma div para cada array e um p para cada palavra */
 const Words = (props) => {
-  return props.words.map((tdArray) => (
-    <div key={tdArray}>
-      {tdArray.map((td) => (
-        <p key={td}>{td}</p>
+  return props.words.map((tdArray, i) => (
+    <div key={tdArray + i}>
+      {tdArray.map((td, i) => (
+        <p key={td + i}>{td}</p>
       ))}
     </div>
   ));

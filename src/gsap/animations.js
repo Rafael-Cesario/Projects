@@ -80,13 +80,14 @@ export const fakeComponents = () => {
 export const opening = () => {
   const tl = gsap.timeline();
 
-  tl.from(".opening .img", {
-    opacity: 0,
-    x: "-120vw",
-    ease: "power2.out",
-    duration: 1.5,
-    rotate: -10,
-  }).from(
+  tl.fromTo(
+    ".opening .img",
+    {
+      opacity: 0,
+      x: "-120vw",
+    },
+    { opacity: 1, ease: "power2.out", duration: 1.5, rotate: -10, x: 0 }
+  ).fromTo(
     ".opening .title",
     {
       scale: 0.99,
@@ -95,6 +96,7 @@ export const opening = () => {
       duration: 1,
       ease: "power2.out",
     },
+    { scale: 1, x: 0, opacity: 1 },
     "-=1"
   );
 };
@@ -185,4 +187,33 @@ export const onBlurInput = (e) => {
       );
     }
   }
+};
+
+export const individualWordListAnimation = () => {
+  const tl = gsap.timeline();
+  tl.to("body", { overflow: "hidden" });
+  tl.fromTo(
+    ".individaul-word-list header",
+    { y: -100, opacity: 0 },
+    { y: 0, opacity: 1 },
+    "<"
+  );
+  tl.fromTo(
+    ".container .info",
+    { x: "-100vw", opacity: 0 },
+    { x: 0, opacity: 1 },
+    "<"
+  );
+  tl.fromTo(
+    ".container .words",
+    {
+      x: "120vw",
+      opacity: 0,
+      width: "fitContent",
+      right: 50,
+    },
+    { x: 0, opacity: 1 },
+    "<"
+  );
+  tl.to("body", { overflow: "unset" });
 };

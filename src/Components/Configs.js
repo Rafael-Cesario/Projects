@@ -1,8 +1,8 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import { allWordsAndDefinitions, myList } from "../Pages/InitialScreeam";
+import { wordListStore } from "../Pages/InitialScreeam";
 import { useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 function Configs() {
   const listName = useParams();
@@ -12,10 +12,6 @@ function Configs() {
   const [maxPerDiv, setMaxPerDiv] = useState(
     localStorage.getItem("maxPerDiv") || 20
   );
-
-  useEffect(() => {
-    localStorage.setItem("maxPerDiv", maxPerDiv);
-  }, [maxPerDiv]);
 
   const showDeleteList = (e) => {
     e.preventDefault();
@@ -28,9 +24,9 @@ function Configs() {
     if (!value) {
       p.style.color = "rgb(165, 49, 49)";
     } else if (value.toUpperCase() === "DELETAR LISTA") {
-      const index = myList.indexOf(listName.id);
-      myList.splice(index, 1);
-      allWordsAndDefinitions.splice(index, 1);
+      const index = wordListStore.indexOf(listName.id);
+      wordListStore.splice(index, 1);
+      wordListStore.splice(index, 1);
       navigate("/");
     } else {
       p.style.color = "#d14b4b";

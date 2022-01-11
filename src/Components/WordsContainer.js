@@ -1,32 +1,24 @@
 import { useParams } from "react-router-dom";
-import { allWordsAndDefinitions, myList } from "../Pages/InitialScreeam";
+import { wordListStore, save } from "../Pages/InitialScreeam";
 import { animatedHover, animetedHoverOut } from "../gsap/animations";
 import { useNavigate } from "react-router-dom";
 
 function WordsContainer(props) {
   const listName = useParams();
-  const listIndex = myList.indexOf(listName.id);
+  const listIndex = listName.id.slice(listName.id.indexOf("_") + 1);
 
-  const terms = allWordsAndDefinitions[listIndex][listName.id]["termos"];
-  const definitions =
-    allWordsAndDefinitions[listIndex][listName.id]["definições"];
+  const terms = wordListStore[listIndex][listName.id]["termos"];
+  const definitions = wordListStore[listIndex][listName.id]["definições"];
   const termsAndDefinitions = [];
-  const maxperdiv = localStorage.getItem("maxPerDiv") || 20;
-
-  const individualWordList = JSON.parse(
-    localStorage.getItem("individualWordList")
-  ) || { [listName.id]: {} };
+  /* const maxperdiv = wordListStore[listIndex][listName.id].perdiv; */
+  const maxperdiv = 2;
+  const individualWordList = (wordListStore[listIndex][
+    listName.id
+  ].individualWordList = []);
 
   const learning = [];
   const onHold = [];
   const learned = [];
-
-  const save = () => {
-    localStorage.setItem(
-      "individualWordList",
-      JSON.stringify(individualWordList)
-    );
-  };
 
   let x = 0;
   while (x < terms.length) {
@@ -42,39 +34,32 @@ function WordsContainer(props) {
     termsAndDefinitions.push(tempArray.reverse());
   }
 
-  /*   const fakeWordDivsQuanti = 10 - termsAndDefinitions.length;
-  let fakeDivs = fakeWordDivsQuanti >= 1 ? true : false; */
-
   termsAndDefinitions.forEach((td, i) => {
-    const index = i;
-    const status = individualWordList[listName.id][i]
-      ? individualWordList[listName.id][i].status
-      : "...";
+    console.log(individualWordList[i]);
+    const status = individualWordList[i] ? individualWordList[i].status : "...";
 
-    individualWordList[listName.id][i] = {
-      name: listName.id,
+    individualWordList.push({
       status: status,
-      index: index,
       words: td,
-    };
+    });
 
     save();
 
     switch (status) {
       case "Diariamente":
-        learning.push([td, status, index]);
+        learning.push([td, status, i]);
         break;
 
       case "Semanalmente":
-        learning.push([td, status, index]);
+        learning.push([td, status, i]);
         break;
 
       case "Estudada":
-        learned.push([td, status, index]);
+        learned.push([td, status, i]);
         break;
 
       default:
-        onHold.push([td, status, index]);
+        onHold.push([td, status, i]);
     }
   });
 
@@ -115,13 +100,6 @@ const Container = ({ array, listName, nameDiv, title }) => {
 
   const enterIndividualWords = (e, index) => {
     e.preventDefault();
-    localStorage.setItem(
-      "tempData",
-      JSON.stringify({
-        index: index,
-        listName: listName,
-      })
-    );
     navigate(`/${listName}/${index}`);
   };
 
@@ -159,8 +137,8 @@ const ContainerWords = ({ td }) => {
 };
 
 const WordsMapPara = ({ word }) => {
-  return word.map((word) => (
-    <p key={word + "p"} className="words-map-para">
+  return word.map((word, i) => (
+    <p key={word + i} className="words-map-para">
       {word}
     </p>
   ));

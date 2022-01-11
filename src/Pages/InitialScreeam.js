@@ -11,16 +11,19 @@ import {
 } from "../gsap/animations";
 import "../Style/allstyles.css";
 
-export const myList = JSON.parse(localStorage.getItem("myList")) || [];
-export const allWordsAndDefinitions =
-  JSON.parse(localStorage.getItem("allWordsAndDefinitions")) || [];
+export const wordListStore =
+  JSON.parse(localStorage.getItem("wordListStore")) || [];
+
+export const save = () => {
+  localStorage.setItem("wordListStore", JSON.stringify(wordListStore));
+};
 
 const InitialScream = () => {
   const [open, setOpen] = useState(false);
   const [listName, setListName] = useState("");
   const [description, setDescription] = useState("");
   const listComponent = useRef(null);
-  const moreThenFive = myList.length < 5 ? true : false;
+  const moreThenFive = wordListStore.length < 5 ? true : false;
   const planetLogo = useRef(null);
 
   const animatedHover = (e) => {
@@ -50,15 +53,18 @@ const InitialScream = () => {
       return;
     }
 
-    const position = myList.length;
-
-    myList.push(listName + "_" + position);
-    allWordsAndDefinitions.push({
-      [listName + "_" + position]: {
+    const index = wordListStore.length;
+    const name = `${listName}_${index}`;
+    wordListStore.push({
+      [name]: {
+        index: index,
         termos: [],
         definições: [],
-        perdiv: 20,
+        perdiv: 50,
         description: description,
+        lang01: "",
+        lang02: "",
+        individualWordList: [],
       },
     });
     save();
@@ -71,14 +77,6 @@ const InitialScream = () => {
   useEffect(() => {
     opening();
   }, []);
-
-  const save = () => {
-    localStorage.setItem("myList", JSON.stringify(myList));
-    localStorage.setItem(
-      "allWordsAndDefinitions",
-      JSON.stringify(allWordsAndDefinitions)
-    );
-  };
 
   const StyleList = (props) => {
     let c = 0;
@@ -150,12 +148,11 @@ const InitialScream = () => {
       <div className="lists-initialscreen" ref={listComponent}>
         <div className="listas">
           <List
-            allWordsAndDefinitions={allWordsAndDefinitions}
             animationHover={(e) => animatedHover(e)}
             animetedHoverOut={(e) => animetedHoverOut(e)}
           />
 
-          {moreThenFive && <StyleList howMany={5 - myList.length} />}
+          {moreThenFive && <StyleList howMany={5 - wordListStore.length} />}
         </div>
 
         <div className="opening">

@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { myList, allWordsAndDefinitions } from "../Pages/InitialScreeam";
+import { wordListStore } from "../Pages/InitialScreeam";
 
 const List = (props) => {
   const navigate = useNavigate();
@@ -8,22 +8,24 @@ const List = (props) => {
     navigate("/" + e.target.id);
   };
 
-  return myList.map((list, i) => {
-    const sli = myList.indexOf("_");
-    return (
-      <div
-        className="my-list-component"
-        key={list + i}
-        id={list}
-        onClick={(e) => handleClick(e)}
-        onMouseEnter={(e) => props.animationHover(e)}
-        onMouseOut={(e) => props.animetedHoverOut(e)}
-      >
-        <h2>{list.slice(0, sli - 1)}</h2>
-        <p>{allWordsAndDefinitions[i][list]["description"]}</p>
-      </div>
-    );
-  });
+  return wordListStore.map((obj) =>
+    Object.keys(obj).map((list, i) => {
+      const listName = list.slice(0, list.indexOf("_"));
+      return (
+        <div
+          className="my-list-component"
+          key={list + i}
+          id={list}
+          onClick={(e) => handleClick(e)}
+          onMouseEnter={(e) => props.animationHover(e)}
+          onMouseOut={(e) => props.animetedHoverOut(e)}
+        >
+          <h2>{listName}</h2>
+          <p>{list["description"]}</p>
+        </div>
+      );
+    })
+  );
 };
 
 export default List;

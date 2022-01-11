@@ -19,8 +19,7 @@
 }
 
 body {
-  height: 100vh;
-  background: radial-gradient(100% 316.05% at 0% 0%, #1e1e1e 0%, #0a0a0a 100%);
+  background: rgb(15, 15, 15);
 }
 
 /* INITIALSCREEN */
@@ -31,6 +30,14 @@ body {
   width: 100%;
   align-items: center;
   height: 100vh;
+  background: rgb(15, 15, 15);
+  background: linear-gradient(
+    90deg,
+    rgba(15, 15, 15, 1) 0%,
+    rgb(17, 17, 17) 100%
+  );
+  background-size: contain;
+  background-repeat: repeat;
 }
 
 .header {
@@ -96,6 +103,7 @@ body {
   width: fit-content;
   font-size: 2.5rem;
   margin-bottom: 50px;
+  opacity: 0;
 }
 
 .opening button {
@@ -105,12 +113,18 @@ body {
   border-radius: 5px;
   padding: 10px 15px;
   color: var(--white01);
+  cursor: pointer;
+}
+
+.opening button:active {
+  transform: scale(0.95);
 }
 
 .opening .img {
   user-select: none;
   width: 500px;
   height: auto;
+  opacity: 0;
 }
 
 .fake-components {
@@ -306,6 +320,7 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  text-align: center;
 }
 
 .wordlist-title-words h1 {
@@ -480,6 +495,13 @@ body {
   box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.466);
   transform: translate(-120vw, 100px);
   z-index: 1;
+}
+
+@media (max-width: 600px) {
+  .forms-add-word {
+    display: flex;
+    flex-direction: column;
+  }
 }
 
 .several h2 {
@@ -768,6 +790,7 @@ body {
   justify-items: center;
   align-items: center;
   padding: 20px 50px;
+  opacity: 0;
 }
 .individaul-word-list header a {
   text-decoration: none;
@@ -776,16 +799,37 @@ body {
 
 .individaul-word-list .container {
   display: grid;
-  grid-template-columns: 1fr 1.1fr;
+  grid-template-columns: repeat(2, 1fr);
+  justify-content: center;
   column-gap: 50px;
-  margin: 50px 50px;
+  margin: 20px;
+}
+
+@media (max-width: 768px) {
+  .individaul-word-list .container {
+    grid-template-columns: repeat(1, 1fr);
+  }
 }
 
 .container .info {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  opacity: 0;
+  width: 50%;
   justify-self: end;
-  text-align: end;
+  align-items: center;
+}
+
+@media (max-width: 1000px) {
+  .container .info {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+}
+
+.container .info .start-study-button {
+  grid-area: 1/1 / span 1 / span 2;
 }
 
 .container .info h2 {
@@ -813,6 +857,7 @@ body {
   width: 100%;
   background-color: var(--blue01);
   border-radius: 5px;
+  opacity: 0;
 }
 
 .container .words div {
@@ -850,6 +895,7 @@ body {
 
 .study-list header {
   margin: 50px;
+  margin-bottom: 0;
 }
 
 .study-list header a {
@@ -946,9 +992,7 @@ body {
 
 .study-list .container-screen02 .container-words {
   margin: 20px 50px;
-  background-color: var(--blue01);
   border-radius: 5px;
-  padding: 20px;
 }
 
 .study-list .container-screen02 .arr-words {
@@ -984,8 +1028,8 @@ body {
 
 .study-list .container-screen02 .buttons button {
   font-family: var(--font);
-  background-color: var(--blue01);
-  color: var(--white01);
+  background-color: var(--white01);
+  color: var(--black01);
   margin: 0 10px 10px 0;
   font-weight: normal;
   font-size: 1rem;

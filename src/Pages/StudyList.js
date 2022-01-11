@@ -1,16 +1,15 @@
 import { useParams } from "react-router-dom";
 import AnswerComponent from "../Components/AnswerComponent";
-
-const individualWordList = JSON.parse(
-  localStorage.getItem("individualWordList")
-);
+import { wordListStore } from "./InitialScreeam";
 
 const StudyList = () => {
-  const list = individualWordList[useParams().id][useParams().index];
+  const params = useParams();
+  const listIndex = [params.id.slice(params.id.indexOf("_") + 1), params.index];
+  const list =
+    wordListStore[listIndex[0]][params.id].individualWordList[listIndex[1]];
   const study = {
     toStudy: list.words.slice(0),
     studying: [],
-    complete: [],
   };
 
   while (study.studying.length < 10 && study.toStudy.length > 0) {

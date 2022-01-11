@@ -1,6 +1,6 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
-const Screen02 = ({ list, setC, setScreen01 }) => {
+const Screen02 = ({ list, params }) => {
   const navigate = useNavigate();
   return (
     <div className="container-screen02">
@@ -15,7 +15,7 @@ const Screen02 = ({ list, setC, setScreen01 }) => {
           Estudar Novamente
         </button>
 
-        <button onClick={() => navigate(`/${list.name}/${list.index}`)}>
+        <button onClick={() => navigate(`/${params.id}/${params.index}`)}>
           Voltar para a lista
         </button>
       </div>

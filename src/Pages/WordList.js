@@ -1,23 +1,17 @@
 import React, { useState, useRef } from "react";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
-import { allWordsAndDefinitions } from "./InitialScreeam";
-import { myList } from "./InitialScreeam";
+import { save, wordListStore } from "./InitialScreeam";
 import WordsContainer from "../Components/WordsContainer";
 import logo from "../imgs/Planet.svg";
 import "../Style/allstyles.css";
 import { showFormsAnimation, showConfigsAnimation } from "../gsap/animations";
 import Configs from "../Components/Configs";
 
-const store = () =>
-  localStorage.setItem(
-    "allWordsAndDefinitions",
-    JSON.stringify(allWordsAndDefinitions)
-  );
-
 function WordList() {
   const listName = useParams();
-  const listIndex = myList.indexOf(listName.id);
+  const listIndex = listName.id.slice(listName.id.indexOf("_") + 1);
+
   const [words, setWords] = useState("");
   const [word01, setWord01] = useState("");
   const [word02, setWord02] = useState("");
@@ -34,9 +28,9 @@ function WordList() {
     const textareaWords = [];
     words.split(/\n/g).map((word) => word !== "" && textareaWords.push(word));
     textareaWords.forEach((el) => {
-      const termosUpper = allWordsAndDefinitions[listIndex][listName.id][
-        "termos"
-      ].map((word) => word.toUpperCase());
+      const termosUpper = wordListStore[listIndex][listName.id]["termos"].map(
+        (word) => word.toUpperCase()
+      );
 
       const indexS = el.indexOf(";");
       const ter = el.slice(0, indexS);
@@ -44,21 +38,21 @@ function WordList() {
       const findTerm = termosUpper.indexOf(ter.toUpperCase());
 
       if (findTerm === -1) {
-        allWordsAndDefinitions[listIndex][listName.id]["termos"].push(ter);
-        allWordsAndDefinitions[listIndex][listName.id]["definições"].push(def);
+        wordListStore[listIndex][listName.id]["termos"].push(ter);
+        wordListStore[listIndex][listName.id]["definições"].push(def);
       } else {
         setSameWordTextArea(true);
       }
     });
-    store();
+    save();
     setWords("");
   };
 
   const addSingleWord = (e) => {
     e.preventDefault();
-    const termosUpper = allWordsAndDefinitions[listIndex][listName.id][
-      "termos"
-    ].map((word) => word.toUpperCase());
+    const termosUpper = wordListStore[listIndex][listName.id]["termos"].map(
+      (word) => word.toUpperCase()
+    );
 
     const findWord01 = termosUpper.indexOf(word01.toUpperCase());
 
@@ -79,12 +73,10 @@ function WordList() {
         inputWord02.current.style.borderColor = blue;
         inputWord01.current.focus();
 
-        allWordsAndDefinitions[listIndex][listName.id]["termos"].push(word01);
-        allWordsAndDefinitions[listIndex][listName.id]["definições"].push(
-          word02
-        );
+        wordListStore[listIndex][listName.id]["termos"].push(word01);
+        wordListStore[listIndex][listName.id]["definições"].push(word02);
 
-        store();
+        save();
         setWord01("");
         setWord02("");
       }
@@ -92,14 +84,14 @@ function WordList() {
   };
 
   const removeLastWord = () => {
-    allWordsAndDefinitions[listIndex][listName.id]["termos"].pop();
-    allWordsAndDefinitions[listIndex][listName.id]["definições"].pop();
+    wordListStore[listIndex][listName.id]["termos"].pop();
+    wordListStore[listIndex][listName.id]["definições"].pop();
     inputWord01.current.focus();
     setDeleted(true);
     setTimeout(() => {
       setDeleted(false);
     }, 1000);
-    store();
+    save();
   };
 
   const formsAddWord = useRef();
@@ -143,8 +135,7 @@ function WordList() {
         <div className="wordlist-title-words">
           <h1>{nameNew}</h1>
           <h2>
-            {allWordsAndDefinitions[listIndex][listName.id]["termos"].length}{" "}
-            Palavras
+            {wordListStore[listIndex][listName.id].termos.length} Palavras
           </h2>
         </div>
 
