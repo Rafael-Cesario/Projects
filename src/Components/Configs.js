@@ -1,17 +1,25 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import { wordListStore } from "../Pages/InitialScreeam";
+import { save, wordListStore } from "../Pages/InitialScreeam";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { useEffect } from "react";
 
 function Configs() {
   const listName = useParams();
+  const listIndex = listName.id.slice(listName.id.indexOf("_") + 1);
   const navigate = useNavigate();
   const [value, setValue] = useState("");
   const [di, setDi] = useState(false);
   const [maxPerDiv, setMaxPerDiv] = useState(
-    localStorage.getItem("maxPerDiv") || 20
+    wordListStore[listIndex][listName.id].perdiv
   );
+
+  const saveConfigs = (e) => {
+    wordListStore[listIndex][listName.id].perdiv = maxPerDiv;
+    save();
+    document.location.reload();
+  };
 
   const showDeleteList = (e) => {
     e.preventDefault();
@@ -84,7 +92,7 @@ function Configs() {
       </div>
 
       <div className="buttons">
-        <button>Salvar</button>
+        <button onClick={(e) => saveConfigs(e)}>Salvar</button>
         <button onClick={(e) => showDeleteList(e)}>Deletar Lista</button>
       </div>
     </div>

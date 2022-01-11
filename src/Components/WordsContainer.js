@@ -10,8 +10,7 @@ function WordsContainer(props) {
   const terms = wordListStore[listIndex][listName.id]["termos"];
   const definitions = wordListStore[listIndex][listName.id]["definições"];
   const termsAndDefinitions = [];
-  /* const maxperdiv = wordListStore[listIndex][listName.id].perdiv; */
-  const maxperdiv = 2;
+  const maxperdiv = wordListStore[listIndex][listName.id].perdiv;
   const individualWordList = (wordListStore[listIndex][
     listName.id
   ].individualWordList = []);
@@ -35,7 +34,6 @@ function WordsContainer(props) {
   }
 
   termsAndDefinitions.forEach((td, i) => {
-    console.log(individualWordList[i]);
     const status = individualWordList[i] ? individualWordList[i].status : "...";
 
     individualWordList.push({
