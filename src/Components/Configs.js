@@ -3,7 +3,6 @@ import { useParams } from "react-router-dom";
 import { save, wordListStore } from "../Pages/InitialScreeam";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { useEffect } from "react";
 
 function Configs() {
   const listName = useParams();

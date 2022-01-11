@@ -370,7 +370,7 @@ body {
   margin: 5px 10px;
 }
 
-.menus .button {
+.menus button {
   color: white;
   background-color: transparent;
   outline: none;
@@ -557,6 +557,10 @@ body {
 
 .single .input-group {
   margin-bottom: 40px;
+}
+
+.input-group span {
+  color: crimson;
 }
 
 .single h2 {

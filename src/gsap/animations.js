@@ -34,25 +34,39 @@ export const next02FindAnimation = (remainWords) => {
   gsap.from(remainWords, { color: "green", opacity: 1 });
 };
 
-export const showFormsAnimation = (wordsBody, formsAddWord, c) => {
+export const showFormsAnimation = (e, obj) => {
   const tl = gsap.timeline();
-  if (!c) {
-    tl.to(wordsBody, { y: 550 });
-    tl.to(formsAddWord, { x: 0 }, "<");
+
+  if (!obj.menuOpen) {
+    tl.to(".words-body", { y: 550 });
+    tl.to(".forms-add-word", { x: 0 }, "<");
+    obj.menuOpen = "addWords";
   } else {
-    tl.to(formsAddWord, { x: "-120vw" });
-    tl.to(wordsBody, { y: 0 }, "<");
+    if (obj.menuOpen === "addWords") {
+      tl.to(".forms-add-word", { x: "-120vw" });
+      tl.to(".words-body", { y: 0 }, "<");
+      obj.menuOpen = false;
+    } else {
+      obj.show(e, obj.menuOpen);
+      obj.show(e, "addWords");
+    }
   }
 };
 
-export const showConfigsAnimation = (wordsBody, c) => {
-  const config = document.querySelector(".configs-container");
+export const showConfigsAnimation = (e, obj) => {
   const tl = gsap.timeline();
 
-  if (!c) {
-    tl.to(config, { x: 0 });
+  if (!obj.menuOpen) {
+    tl.to(".configs-container", { x: 0 });
+    obj.menuOpen = "configs";
   } else {
-    tl.to(config, { x: "-120vw" });
+    if (obj.menuOpen === "configs") {
+      tl.to(".configs-container", { x: "-120vw" });
+      obj.menuOpen = false;
+    } else {
+      obj.show(e, obj.menuOpen);
+      obj.show(e, "configs");
+    }
   }
 };
 
@@ -217,3 +231,10 @@ export const individualWordListAnimation = () => {
   );
   tl.to("body", { overflow: "unset" });
 };
+
+
+const newWords = () => {
+  const tl = gsap.timeline();
+
+  
+}

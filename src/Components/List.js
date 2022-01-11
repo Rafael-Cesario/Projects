@@ -21,7 +21,7 @@ const List = (props) => {
           onMouseOut={(e) => props.animetedHoverOut(e)}
         >
           <h2>{listName}</h2>
-          <p>{list["description"]}</p>
+          <p>{wordListStore[i][list].description}</p>
         </div>
       );
     })
