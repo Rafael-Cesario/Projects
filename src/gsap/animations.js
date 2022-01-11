@@ -139,9 +139,9 @@ export const newList = (open) => {
     );
   } else {
     /* Fechar */
-    tl.to("body", { overflow: "show" })
-      .to(".listas", { y: 0 }, "<")
-      .to(".form-new-list", { opacity: 0, y: -50, display: "none" }, "<");
+    tl.to(".listas", { y: 0 }, "<")
+      .to(".form-new-list", { opacity: 0, y: -50, display: "none" }, "<")
+      .to("body", { overflow: "auto" });
   }
 };
 
