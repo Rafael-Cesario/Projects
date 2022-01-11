@@ -11,6 +11,7 @@ function WordsContainer(props) {
   const definitions = wordListStore[listIndex][listName.id]["definições"];
   const termsAndDefinitions = [];
   const maxperdiv = wordListStore[listIndex][listName.id].perdiv;
+  const obj = [];
 
   const learning = [];
   const onHold = [];
@@ -35,14 +36,10 @@ function WordsContainer(props) {
       ? wordListStore[listIndex][listName.id].individualWordList[i].status
       : "...";
 
-    wordListStore[listIndex][listName.id].individualWordList = {
-      [i]: {
-        status: status,
-        words: td,
-      },
-    };
-
-    save();
+    obj.push({
+      status: status,
+      words: td,
+    });
 
     switch (status) {
       case "Diariamente":
@@ -61,6 +58,9 @@ function WordsContainer(props) {
         onHold.push([td, status, i]);
     }
   });
+
+  wordListStore[listIndex][listName.id].individualWordList = obj;
+  save();
 
   return (
     <div className="words-body" ref={props.varRef}>

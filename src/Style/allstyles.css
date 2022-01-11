@@ -820,6 +820,7 @@ body {
   grid-template-columns: repeat(2, 1fr);
   opacity: 0;
   width: 50%;
+  height: fit-content;
   justify-self: end;
   align-items: center;
 }

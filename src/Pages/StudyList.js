@@ -5,8 +5,10 @@ import { wordListStore } from "./InitialScreeam";
 const StudyList = () => {
   const params = useParams();
   const listIndex = [params.id.slice(params.id.indexOf("_") + 1), params.index];
+
   const list =
     wordListStore[listIndex[0]][params.id].individualWordList[listIndex[1]];
+    
   const study = {
     toStudy: list.words.slice(0),
     studying: [],
