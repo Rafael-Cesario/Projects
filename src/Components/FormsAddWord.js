@@ -95,6 +95,7 @@ const FormsAddWord = ({
 
   return (
     <div className="forms-add-word">
+      <h2>Adicionar Palavras</h2>
       <form className="several">
         <h2>Adicione uma lista de palavras</h2>
         <p>Use " ; " (ponto e virgula) para separar termo e definição.</p>
@@ -123,7 +124,6 @@ const FormsAddWord = ({
           {termo && <span>Termo repetido</span>}
           <input
             type="text"
-            placeholder="Termo"
             value={word01}
             onChange={(e) => setWord01(e.target.value)}
             ref={inputWord01}
@@ -134,7 +134,6 @@ const FormsAddWord = ({
           <h2>Definição</h2>
           <input
             type="text"
-            placeholder="Definição"
             value={word02}
             onChange={(e) => setWord02(e.target.value)}
             ref={inputWord02}

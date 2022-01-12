@@ -82,6 +82,7 @@ function Configs() {
             value={maxPerDiv}
             onChange={(e) => setMaxPerDiv(e.target.value)}
           />
+          <p>! Alterar este valor fará com que todas as suas listas que não estiverem marcadas como estudadas, voltem ao valor inicial.</p>
         </div>
 
         <div className="config-single">

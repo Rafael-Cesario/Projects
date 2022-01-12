@@ -267,7 +267,7 @@ body {
   z-index: 1;
   top: 220px;
   left: -90px;
-  background-color: var(--white01);
+  background-color: var(--blue01);
   box-shadow: var(--shadow01);
   justify-content: center;
   width: fit-content;
@@ -283,7 +283,7 @@ body {
   text-decoration: none;
   background-color: transparent;
   font-family: var(--font);
-  color: var(--black01);
+  color: var(--white01);
   font-size: 1.2rem;
   width: 100%;
   border: none;
@@ -484,17 +484,18 @@ body {
 .forms-add-word {
   display: grid;
   position: absolute;
-  max-width: 1250px;
-  margin: 50px 20px 50px -50px;
+  width: 100%;
   grid-template-columns: 1fr 1fr;
   column-gap: 50px;
   background-color: var(--white01);
   padding: 50px 50px;
-  border: 5px solid var(--blue01);
-  border-radius: 0 10px 10px 0;
+  border-top: 5px solid var(--blue01);
+  border-bottom: 5px solid var(--blue01);
   box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.466);
-  transform: translate(-120vw, 100px);
+  transform: translate(-120vw, 180px);
   z-index: 1;
+  justify-items: center;
+  align-items: center;
 }
 
 @media (max-width: 600px) {
@@ -504,17 +505,27 @@ body {
   }
 }
 
+.forms-add-word > h2 {
+  position: absolute;
+  top: -40px;
+  background-color: var(--blue01);
+  padding: 10px 15px;
+  border-radius: 5px;
+  box-shadow: var(--shadow01);
+}
+
 .several h2 {
   color: black;
   font-family: var(--font);
   font-weight: normal;
   font-size: 1.2rem;
+  margin-bottom: 5px;
 }
 
 .several p {
   color: black;
   font-family: monospace;
-  opacity: 0.7;
+  opacity: 0.8;
 }
 
 .several textarea {
@@ -522,37 +533,37 @@ body {
   outline: none;
   margin: 10px 0;
   width: 100%;
+  max-width: 500px;
   height: 300px;
   padding: 10px;
-  background-color: transparent;
-  border: 3px solid var(--blue01);
-  color: black;
+  background-color: var(--blue01);
+  border: none;
+  color: white;
+  border-radius: 5px;
 }
 
 .single {
-  width: fit-content;
+  width: 100%;
+  max-width: 400px;
+  margin: 20px 0;
 }
 
 .several .buttons {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  max-width: 500px;
 }
 
 .several .buttons button {
   border: none;
   outline: none;
-  padding: 10px 5px;
+  padding: 15px 5px;
   background-color: var(--blue01);
   color: var(--white01);
   border-radius: 3px;
   width: 48%;
   cursor: pointer;
-}
-
-.single {
-  margin: 20px 0;
-  width: 100%;
 }
 
 .single .input-group {
@@ -571,11 +582,12 @@ body {
 }
 
 .single input {
-  border: 3px solid var(--blue01);
+  border: none;
   outline: none;
-  padding: 10px 10px;
-  background-color: transparent;
-  color: black;
+  padding: 15px 10px;
+  background-color: var(--blue01);
+  border-radius: 5px;
+  color: white;
   width: 100%;
 }
 
@@ -589,7 +601,7 @@ body {
 .single .buttons button {
   border: none;
   outline: none;
-  padding: 10px 5px;
+  padding: 15px 5px;
   background-color: var(--blue01);
   color: var(--white01);
   border-radius: 3px;
@@ -604,7 +616,7 @@ body {
 /* CONFIGS */
 
 .configs-container {
-  background-color: var(--backgroundContainer);
+  background-color: var(--white01);
   z-index: 2;
   padding: 10px;
   position: absolute;
@@ -631,7 +643,7 @@ body {
 
 .configs {
   margin: 20px 10px;
-  color: var(--white01);
+  color: var(--black01);
   font: var(--font);
   font-weight: lighter;
   display: flex;
@@ -656,9 +668,18 @@ body {
   font-size: 1.2rem;
 }
 
+.config-single p {
+  margin: 10px;
+  font-family: monospace;
+  color: var(--red01);
+  max-width: 300px;
+  text-align: justify;
+  font-weight: bold;
+}
+
 .config-single input {
-  background-color: transparent;
-  border: 2px solid var(--white01);
+  background-color: var(--blue01);
+  border: none;
   color: var(--white01);
   outline: none;
   padding: 10px;
@@ -675,11 +696,11 @@ body {
   font-size: 1.2rem;
   border-radius: 5px;
   font-weight: lighter;
-  border: 2px solid var(--white01);
+  border: none;
   width: 300px;
   height: 300px;
   padding: 10px;
-  background-color: transparent;
+  background-color: var(--blue01);
   color: var(--white01);
   outline: none;
   resize: none;
