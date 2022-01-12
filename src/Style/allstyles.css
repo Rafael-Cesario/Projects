@@ -807,6 +807,7 @@ body {
   color: var(--white01);
   font-family: var(--font);
   font-size: 1.2rem;
+  margin: 10px;
 }
 
 .individaul-word-list header {
@@ -814,8 +815,9 @@ body {
   grid-template-columns: 1fr 1fr 1fr;
   justify-items: center;
   align-items: center;
-  padding: 20px 50px;
+  padding: 20px 0;
   opacity: 0;
+  margin-bottom: 10px;
 }
 .individaul-word-list header a {
   text-decoration: none;
@@ -830,20 +832,23 @@ body {
   margin: 20px;
 }
 
+.container .info {
+  display: flex;
+  flex-direction: column;
+  opacity: 0;
+  height: 80vh;
+  align-items: center;
+  justify-content: space-between;
+}
+
 @media (max-width: 768px) {
   .individaul-word-list .container {
     grid-template-columns: repeat(1, 1fr);
   }
-}
 
-.container .info {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  opacity: 0;
-  width: 50%;
-  height: fit-content;
-  justify-self: end;
-  align-items: center;
+  .container .info {
+    height: auto;
+  }
 }
 
 @media (max-width: 1000px) {
@@ -855,26 +860,43 @@ body {
 }
 
 .container .info .start-study-button {
-  grid-area: 1/1 / span 1 / span 2;
+  width: 100%;
+  max-width: 300px;
 }
 
-.container .info h2 {
+.container .info .container-center {
+  align-self: flex-end;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  align-items: center;
+}
+.container .info .container-center h2 {
   font-size: 1.2rem;
   margin: 20px 0;
   font-weight: normal;
+  text-align: end;
+}
+
+.container .info p {
+  font-size: 1rem;
+  margin: 20px;
+  font-weight: normal;
+  font-family: monospace;
+  opacity: 0.5;
 }
 
 .container .info button {
   border: none;
   background-color: var(--blue01);
   padding: 10px 20px;
-  margin: 20px 0;
+  margin: 10px;
   color: white;
   font-family: var(--font);
   font-size: 1.2rem;
   border-radius: 5px;
   cursor: pointer;
 }
+
 .container .info button:active {
   transform: scale(0.95);
 }

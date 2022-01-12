@@ -73,13 +73,17 @@ const IndividualWordList = () => {
           <button className="start-study-button" onClick={() => studyList()}>
             Estudar Lista
           </button>
-          <h2 className="study-time">Estudar Lista: {list.status}</h2>
-          <button onClick={(e) => scheduleButton(e)}>
-            Mudar tempo de estudo
-          </button>
-          <h2>Total de palavras na lista: {list.words.length}</h2>
 
-          <button>OPÇÕES</button>
+          <div className="container-center">
+            <h2 className="study-time">Estudar Lista: {list.status}</h2>
+            <button onClick={(e) => scheduleButton(e)}>
+              Mudar tempo de estudo
+            </button>
+            <h2>Total de palavras na lista: {list.words.length}</h2>
+            <button>OPÇÕES</button>
+          </div>
+
+          <p>Dica: Aperte [ CTRL + F ] para procurar por uma palavra</p>
         </div>
 
         <div className="words" ref={words}>
