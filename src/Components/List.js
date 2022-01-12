@@ -8,8 +8,9 @@ const List = (props) => {
     navigate("/" + e.target.id);
   };
 
-  return wordListStore.map((obj) =>
-    Object.keys(obj).map((list, i) => {
+  return wordListStore.map((obj, i) => {
+    const index = i;
+    return Object.keys(obj).map((list, i) => {
       const listName = list.slice(0, list.indexOf("_"));
       return (
         <div
@@ -21,11 +22,11 @@ const List = (props) => {
           onMouseOut={(e) => props.animetedHoverOut(e)}
         >
           <h2>{listName}</h2>
-          <p>{wordListStore[i][list].description}</p>
+          <p>{wordListStore[index][list].description}</p>
         </div>
       );
-    })
-  );
+    });
+  });
 };
 
 export default List;

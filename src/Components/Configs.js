@@ -6,7 +6,9 @@ import { useState } from "react";
 
 function Configs() {
   const listName = useParams();
-  const listIndex = listName.id.slice(listName.id.indexOf("_") + 1);
+  const listIndex = wordListStore.map((list) =>
+    Object.keys(list).indexOf(listName.id)
+  )[0];
   const navigate = useNavigate();
   const [value, setValue] = useState("");
   const [di, setDi] = useState(false);
@@ -31,9 +33,8 @@ function Configs() {
     if (!value) {
       p.style.color = "rgb(165, 49, 49)";
     } else if (value.toUpperCase() === "DELETAR LISTA") {
-      const index = wordListStore.indexOf(listName.id);
-      wordListStore.splice(index, 1);
-      wordListStore.splice(index, 1);
+      wordListStore.splice(listIndex, 1);
+      save();
       navigate("/");
     } else {
       p.style.color = "#d14b4b";
@@ -52,7 +53,10 @@ function Configs() {
       <h2 className="title">Configs</h2>
       <form onSubmit={deleteList} className="delete-list">
         <div className="para">
-          <p>Para ter certeza que você quer mesmo deletar esta lista digite:</p>
+          <p>
+            Muita hora nessa calma, tem certeza que quer deletar a lista? <br />{" "}
+            Digite Deletar lista:
+          </p>
           <h2>" DELETAR LISTA "</h2>
           {di && <p>Digito Incorreto</p>}
         </div>
@@ -82,7 +86,10 @@ function Configs() {
             value={maxPerDiv}
             onChange={(e) => setMaxPerDiv(e.target.value)}
           />
-          <p>! Alterar este valor fará com que todas as suas listas que não estiverem marcadas como estudadas, voltem ao valor inicial.</p>
+          <p>
+            ! Alterar este valor fará com que todas as suas listas que não
+            estiverem marcadas como estudadas, voltem ao valor inicial.
+          </p>
         </div>
 
         <div className="config-single">
