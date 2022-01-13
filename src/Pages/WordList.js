@@ -11,7 +11,9 @@ import { useState } from "react";
 
 function WordList() {
   const listName = useParams();
-  const listIndex = wordListStore.map((list) => Object.keys(list).indexOf(listName.id))[0];
+  const listIndex = wordListStore
+    .map((list) => Object.keys(list)[0].indexOf(listName.id))
+    .indexOf(0);
 
   const removeid = listName.id.indexOf("_");
   const nameNew = listName.id.slice(0, removeid);

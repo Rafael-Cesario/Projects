@@ -48,16 +48,23 @@ const InitialScream = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
+    const id = `${Math.floor(Math.random() * 999)}-${wordListStore.length}`;
+    const name = `${listName}_${id}`;
 
     if (!listName) {
       return;
     }
 
-    const index = wordListStore.length;
-    const name = `${listName}_${index}`;
+    /* Existe uma chance de se ter duas listas com nomes e IDs iguais então caso isso aconteça a pessoa só vai precisar dar um submit novamente  */
+    for (let list of wordListStore) {
+      if (Object.keys(list)[0] === name) {
+        return;
+      }
+    }
+
     wordListStore.push({
       [name]: {
-        index: index,
+        id: id,
         termos: [],
         definições: [],
         perdiv: 50,
@@ -67,6 +74,7 @@ const InitialScream = () => {
         individualWordList: [],
       },
     });
+
     save();
 
     setListName("");

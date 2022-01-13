@@ -5,9 +5,9 @@ import { useNavigate } from "react-router-dom";
 
 function WordsContainer(props) {
   const listName = useParams();
-  const listIndex = wordListStore.map((list) =>
-    Object.keys(list).indexOf(listName.id)
-  )[0];
+  const listIndex = wordListStore
+  .map((list) => Object.keys(list)[0].indexOf(listName.id))
+  .indexOf(0);
 
   const terms = wordListStore[listIndex][listName.id]["termos"];
   const definitions = wordListStore[listIndex][listName.id]["definições"];

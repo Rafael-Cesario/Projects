@@ -6,9 +6,9 @@ import { useState } from "react";
 
 function Configs() {
   const listName = useParams();
-  const listIndex = wordListStore.map((list) =>
-    Object.keys(list).indexOf(listName.id)
-  )[0];
+  const listIndex = wordListStore
+  .map((list) => Object.keys(list)[0].indexOf(listName.id))
+  .indexOf(0);
   const navigate = useNavigate();
   const [value, setValue] = useState("");
   const [di, setDi] = useState(false);

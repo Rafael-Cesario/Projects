@@ -1,4 +1,4 @@
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Screen02 = ({ list, params }) => {
   const navigate = useNavigate();

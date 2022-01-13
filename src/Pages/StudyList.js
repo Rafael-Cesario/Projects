@@ -4,7 +4,10 @@ import { wordListStore } from "./InitialScreeam";
 
 const StudyList = () => {
   const params = useParams();
-  const listIndex = [wordListStore.map((list) => Object.keys(list).indexOf(params.id))[0] , params.index];
+  const listIndex = [wordListStore
+    .map((list) => Object.keys(list)[0].indexOf(params.id))
+    .indexOf(0) , params.index];
+  
 
   const list =
     wordListStore[listIndex[0]][params.id].individualWordList[listIndex[1]];

@@ -9,7 +9,9 @@ const IndividualWordList = () => {
   const params = useParams();
   const listName = params.id.slice(0, params.id.indexOf("_"));
   const listIndex = [
-    wordListStore.map((list) => Object.keys(list).indexOf(params.id))[0],
+    wordListStore
+  .map((list) => Object.keys(list)[0].indexOf(params.id))
+  .indexOf(0),
     params.index,
   ];
   const list =
