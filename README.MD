@@ -1,4 +1,4 @@
-
+###### Projeto arquivado , [você pode conferir a nova versão aqui](https://github.com/Rafael-Cesario/WordList2.0)
 # Lista Palavras	
 
 Estava precisando de um lugar para adicionar algumas palavras e suas traduções, sem repetir palavras e separando elas em grupos.
