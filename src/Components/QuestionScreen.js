@@ -29,9 +29,6 @@ const QuestionScreen = ({ study, setScreen01, c, setC }) => {
   const next01 = (e, find) => {
     e.preventDefault();
     animationNext01(find, h2.current, inputAnswer.current);
-    if (find) {
-      next02FindAnimation(remainwWords.current);
-    }
   };
 
   const next02 = (e, find) => {
@@ -47,6 +44,7 @@ const QuestionScreen = ({ study, setScreen01, c, setC }) => {
         });
 
         study.toStudy.shift();
+        next02FindAnimation(remainwWords.current);
       }
     }
 

@@ -4,7 +4,7 @@ export const animatedHover = (e) => {
   gsap.to(e.target, { scale: 1.08, duration: 0.5 });
 };
 
-export const animetedHoverOut = (e) => {
+export const animatedHoverOut = (e) => {
   gsap.to(e.target, { scale: 1 });
 };
 
@@ -232,9 +232,3 @@ export const individualWordListAnimation = () => {
   tl.to("body", { overflow: "unset" });
 };
 
-
-const newWords = () => {
-  const tl = gsap.timeline();
-
-  
-}

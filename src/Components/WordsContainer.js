@@ -1,13 +1,13 @@
 import { useParams } from "react-router-dom";
 import { wordListStore, save } from "../Pages/InitialScreeam";
-import { animatedHover, animetedHoverOut } from "../gsap/animations";
+import { animatedHover, animatedHoverOut } from "../gsap/animations";
 import { useNavigate } from "react-router-dom";
 
 function WordsContainer(props) {
   const listName = useParams();
   const listIndex = wordListStore
-  .map((list) => Object.keys(list)[0].indexOf(listName.id))
-  .indexOf(0);
+    .map((list) => Object.keys(list)[0].indexOf(listName.id))
+    .indexOf(0);
 
   const terms = wordListStore[listIndex][listName.id]["termos"];
   const definitions = wordListStore[listIndex][listName.id]["definições"];
@@ -38,8 +38,18 @@ function WordsContainer(props) {
       ? wordListStore[listIndex][listName.id].individualWordList[i].status
       : "...";
 
+    let answerWith = "Definição";
+
+    try {
+      answerWith =
+        wordListStore[listIndex][listName.id].individualWordList[i].answerWith;
+    } catch (err) {
+      console.log(err);
+    }
+
     obj.push({
       status: status,
+      answerWith: answerWith,
       words: td,
     });
 
@@ -115,7 +125,7 @@ const Container = ({ array, listName, nameDiv, title }) => {
             className="container-words"
             onClick={(e) => enterIndividualWords(e, td[2])}
             onMouseEnter={(e) => animatedHover(e)}
-            onMouseOut={(e) => animetedHoverOut(e)}
+            onMouseOut={(e) => animatedHoverOut(e)}
           >
             <div className="header-container-words">
               <span>Total: {td[0].length}</span>

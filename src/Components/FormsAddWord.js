@@ -90,7 +90,6 @@ const FormsAddWord = ({
       setDeleted(false);
     }, 1000);
     save();
-    WordList.forceUpdate();
   };
 
   return (

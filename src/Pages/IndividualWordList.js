@@ -1,29 +1,31 @@
 import gsap from "gsap";
 import { useEffect, useRef, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import logo from "../imgs/Planet.svg";
 import { individualWordListAnimation } from "../gsap/animations";
 import { save, wordListStore } from "./InitialScreeam";
+import logo from "../imgs/Planet.svg";
+import Words from "../Components/Words";
 
 const IndividualWordList = () => {
+  const words = useRef();
+  const info = useRef();
+  const navigate = useNavigate();
   const params = useParams();
   const listName = params.id.slice(0, params.id.indexOf("_"));
   const listIndex = [
     wordListStore
-  .map((list) => Object.keys(list)[0].indexOf(params.id))
-  .indexOf(0),
+      .map((list) => Object.keys(list)[0].indexOf(params.id))
+      .indexOf(0),
     params.index,
   ];
   const list =
     wordListStore[listIndex[0]][params.id].individualWordList[listIndex[1]];
-
-  const words = useRef();
-  const info = useRef();
-
   const [status, setStatus] = useState(list.status);
-  list.status = status;
+  const [answerWith, setAnswerWith] = useState(list.answerWith);
+  const [newWord, setNewWord] = useState("");
 
-  const navigate = useNavigate();
+  list.answerWith = answerWith;
+  list.status = status;
 
   // Animação carregar pagina
   useEffect(() => {
@@ -33,7 +35,7 @@ const IndividualWordList = () => {
   /* Atualizar localStorage */
   useEffect(() => {
     save();
-  }, [status]);
+  }, [status, answerWith, newWord]);
 
   /* Mudar status lista */
   const scheduleButton = (e) => {
@@ -65,6 +67,14 @@ const IndividualWordList = () => {
     navigate(`/${params.id}/study${listIndex[1]}`);
   };
 
+  const changeAnswerWith = (e) => {
+    e.preventDefault();
+
+    answerWith === "Termo"
+      ? setAnswerWith("Definição")
+      : setAnswerWith("Termo");
+  };
+
   return (
     <div className="individaul-word-list">
       <header>
@@ -75,24 +85,35 @@ const IndividualWordList = () => {
 
       <div className="container">
         <div className="info" ref={info}>
-          <button className="start-study-button" onClick={() => studyList()}>
-            Estudar Lista
-          </button>
+          <div className="options">
+            <button onClick={() => studyList()}>Estudar Lista</button>
 
-          <div className="container-center">
-            <h2 className="study-time">Estudar Lista: {list.status}</h2>
             <button onClick={(e) => scheduleButton(e)}>
               Mudar tempo de estudo
             </button>
-            <h2>Total de palavras na lista: {list.words.length}</h2>
-            <button>OPÇÕES</button>
+
+            <button onClick={(e) => changeAnswerWith(e)}>
+              Responder com: {list.answerWith}
+            </button>
           </div>
 
           <p>Dica: Aperte [ CTRL + F ] para procurar por uma palavra</p>
         </div>
 
         <div className="words" ref={words}>
-          <Words words={list.words} />
+          <div className="words-info">
+            <p>Total de palavras: {list.words.length}</p>
+            <p className="study-time">Estudar lista: {list.status}</p>
+          </div>
+          
+          <Words
+            words={list.words}
+            newWord={newWord}
+            setNewWord={setNewWord}
+            wordListStore={wordListStore}
+            listIndex={listIndex}
+            params={params}
+          />
         </div>
       </div>
     </div>
@@ -100,14 +121,3 @@ const IndividualWordList = () => {
 };
 
 export default IndividualWordList;
-
-/* Criar uma div para cada array e um p para cada palavra */
-const Words = (props) => {
-  return props.words.map((tdArray, i) => (
-    <div key={tdArray + i}>
-      {tdArray.map((td, i) => (
-        <p key={td + i}>{td}</p>
-      ))}
-    </div>
-  ));
-};

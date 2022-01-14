@@ -859,24 +859,6 @@ body {
   }
 }
 
-.container .info .start-study-button {
-  width: 100%;
-  max-width: 300px;
-}
-
-.container .info .container-center {
-  align-self: flex-end;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  align-items: center;
-}
-.container .info .container-center h2 {
-  font-size: 1.2rem;
-  margin: 20px 0;
-  font-weight: normal;
-  text-align: end;
-}
-
 .container .info p {
   font-size: 1rem;
   margin: 20px;
@@ -895,6 +877,23 @@ body {
   font-size: 1.2rem;
   border-radius: 5px;
   cursor: pointer;
+  width: 100%;
+  max-width: 400px;
+}
+
+.container .info .options {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+.container .words .words-info p {
+  font-family: monospace;
+  background-color: transparent;
+  box-shadow: none;
+  font-size: 1rem;
 }
 
 .container .info button:active {
@@ -915,17 +914,26 @@ body {
   margin: 20px;
 }
 
-.container .words p {
-  background-color: rgba(0, 0, 0, 0.205);
-  box-shadow: 2px 2px 2px rgba(0 0 0 / 10%);
+
+
+.container .words textarea {
+  outline: none;
+  border: none;
   padding: 10px 15px;
   border-radius: 5px;
-  justify-content: center;
+  line-height: 25px;
+  background-color: rgba(0, 0, 0, 0.205);
+  box-shadow: 2px 2px 2px rgba(0 0 0 / 10%);
+  text-transform: capitalize;
+  color: white;
   font-family: var(--font);
   font-weight: lighter;
-  align-items: center;
-  line-height: 25px;
-  text-transform: capitalize;
+  font-size: 1.2rem;
+  resize: none;
+}
+
+textarea::placeholder {
+  color: white;
 }
 
 /* STUDYLIST */

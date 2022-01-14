@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
-import { wordListStore, save } from "./InitialScreeam";
+import { wordListStore } from "./InitialScreeam";
 import WordsContainer from "../Components/WordsContainer";
 import logo from "../imgs/Planet.svg";
 import "../Style/allstyles.css";
