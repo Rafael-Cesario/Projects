@@ -1,4 +1,4 @@
-import { save } from "../Pages/InitialScreeam";
+import { deleteTermAndDefinitionAnimation } from "../gsap/animations";
 
 const Words = ({
   words,
@@ -8,47 +8,77 @@ const Words = ({
   listIndex,
   params,
 }) => {
-  const changingWord = (e, word) => {
-    e.preventDefault();
+  const globalTerm = wordListStore[params.id].terms;
+  const globalDefinition = wordListStore[params.id].definições;
 
-    let termo = wordListStore[listIndex[0]][params.id].termos;
-    let definição = wordListStore[listIndex[0]][params.id].termos;
-    let termoIndividual = findIndex(word, 0);
-    let definiçãoIndividual = findIndex(word, 1);
 
-    if (!e.target.value || e.target.value === word) {
-      return;
-    }
-
-    if (termo.indexOf(word) > -1) {
-      termo[termo.indexOf(word)] = newWord;
-      words[termoIndividual][0] = newWord;
-    } else {
-      definição[definição.indexOf(word)] = newWord;
-      words[definiçãoIndividual][1] = newWord;
-    }
-
-    save();
+  const focusTextArea = (e, td) => {
+    e.target.value = td;
+    e.target.classList.add("delete-button");
+    e.target.parentNode.querySelector("button").style.transform = "scale(1) translateY(-40px)";
   };
+
+
+  const blurTextArea = (e, placeholder) => {
+    changingWord(e, placeholder);
+    e.target.classList.remove("delete-button");
+    e.target.parentNode.querySelector("button").style.transform = "scale(0) translateY(-40px)";
+  };
+
+
+  const changingWord = (e, word) => {
+    const individualTerm = findIndex(word, 0);
+    const individualDefinition = findIndex(word, 1);
+
+    if (!e.target.value || e.target.value === word) return;
+
+    globalTerm.indexOf(word) > -1
+      ? change(globalTerm, individualTerm, word, 0)
+      : change(globalDefinition, individualDefinition, word, 1);
+
+  };
+
+
+  const change = (arrGlobal, arrIndividual, word, index) => {
+    arrGlobal[arrGlobal.indexOf(word)] = newWord;
+    words[arrIndividual][index] = newWord;
+  };
+
 
   const findIndex = (word, index) => {
     for (let x = 0; x < words.length; x++) {
-      if (words[x][index] === word) {
-        return x;
-      }
+      if (words[x][index] === word) return x;
     }
   };
 
-  return words.map((tdArray, i) => (
-    <div key={i + tdArray}>
+
+  const deleteTermAndDefinition = (e, arrWords, index) => {
+    const termIndex = globalTerm.indexOf(arrWords[0]);
+    const definitionIndex = globalDefinition.indexOf(arrWords[1]);
+
+    globalTerm.splice(termIndex, 1);
+    globalDefinition.splice(definitionIndex, 1);
+    words.splice(index, 1);
+    deleteTermAndDefinitionAnimation(e, index)
+  };
+
+
+  return words.map((tdArray, index) => (
+    <div key={tdArray} className="words-textArea">
+      <button 
+        className="button-delete" 
+        onClick={(e) => deleteTermAndDefinition(e, tdArray, index)} >
+        Excluir
+      </button>
+
       {tdArray.map((td, i) => (
         <textarea
           key={td + i}
           type="text"
           placeholder={td}
-          onFocus={(e) => (e.target.value = td)}
+          onFocus={(e) => focusTextArea(e, td)}
           onChange={(e) => setNewWord(e.target.value)}
-          onBlur={(e) => changingWord(e, e.target.placeholder)}
+          onBlur={(e) => blurTextArea(e, e.target.placeholder)}
         />
       ))}
     </div>

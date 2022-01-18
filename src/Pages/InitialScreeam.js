@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import List from "../Components/List";
 import gsap from "gsap";
 import Planet from "../imgs/Planet.svg";
+import { useContext } from "react";
 import {
   onFocusInput,
   closures,
@@ -10,20 +11,15 @@ import {
   onBlurInput,
 } from "../gsap/animations";
 import "../Style/allstyles.css";
-
-export const wordListStore =
-  JSON.parse(localStorage.getItem("wordListStore")) || [];
-
-export const save = () => {
-  localStorage.setItem("wordListStore", JSON.stringify(wordListStore));
-};
+import { WordListStore } from "../context/WordListStore";
 
 const InitialScream = () => {
+  const { wordListStore, dispatch } = useContext(WordListStore);
   const [open, setOpen] = useState(false);
   const [listName, setListName] = useState("");
   const [description, setDescription] = useState("");
   const listComponent = useRef(null);
-  const moreThenFive = wordListStore.length < 5 ? true : false;
+  const moreThenFive = Object.keys(wordListStore).length < 5 ? true : false;
   const planetLogo = useRef(null);
 
   const animatedHover = (e) => {
@@ -48,34 +44,23 @@ const InitialScream = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    const id = `${Math.floor(Math.random() * 999)}-${wordListStore.length}`;
+    const id = `${Math.floor(Math.random() * 999)}`;
     const name = `${listName}_${id}`;
 
     if (!listName) {
       return;
     }
 
-    /* Existe uma chance de se ter duas listas com nomes e IDs iguais então caso isso aconteça a pessoa só vai precisar dar um submit novamente  */
-    for (let list of wordListStore) {
-      if (Object.keys(list)[0] === name) {
-        return;
-      }
+    for (let list of Object.keys(wordListStore)) {
+      if (list === name) return;
     }
 
-    wordListStore.push({
-      [name]: {
-        id: id,
-        termos: [],
-        definições: [],
-        perdiv: 50,
-        description: description,
-        lang01: "",
-        lang02: "",
-        individualWordList: [],
-      },
+    dispatch({
+      type: "CREATE-LIST",
+      name: name,
+      id: id,
+      description: description,
     });
-
-    save();
 
     setListName("");
     setDescription("");
@@ -160,7 +145,7 @@ const InitialScream = () => {
             animetedHoverOut={(e) => animetedHoverOut(e)}
           />
 
-          {moreThenFive && <StyleList howMany={5 - wordListStore.length} />}
+          {moreThenFive && <StyleList howMany={5 - Object.keys(wordListStore).length} />}
         </div>
 
         <div className="opening">

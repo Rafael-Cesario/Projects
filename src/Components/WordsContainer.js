@@ -1,20 +1,17 @@
 import { useParams } from "react-router-dom";
-import { wordListStore, save } from "../Pages/InitialScreeam";
 import { animatedHover, animatedHoverOut } from "../gsap/animations";
 import { useNavigate } from "react-router-dom";
+import { WordListStore } from "../context/WordListStore";
+import { useContext } from "react";
 
 function WordsContainer(props) {
+  const { wordListStore } = useContext(WordListStore);
   const listName = useParams();
-  const listIndex = wordListStore
-    .map((list) => Object.keys(list)[0].indexOf(listName.id))
-    .indexOf(0);
-
-  const terms = wordListStore[listIndex][listName.id]["termos"];
-  const definitions = wordListStore[listIndex][listName.id]["definições"];
+  const terms = wordListStore[listName.id]["terms"];
+  const definitions = wordListStore[listName.id]["definitions"];
   const termsAndDefinitions = [];
-  const maxperdiv = wordListStore[listIndex][listName.id].perdiv;
+  const maxperdiv = wordListStore[listName.id].perdiv;
   const obj = [];
-
   const learning = [];
   const onHold = [];
   const learned = [];
@@ -34,18 +31,13 @@ function WordsContainer(props) {
   }
 
   termsAndDefinitions.forEach((td, i) => {
-    const status = wordListStore[listIndex][listName.id].individualWordList[i]
-      ? wordListStore[listIndex][listName.id].individualWordList[i].status
+    const status = wordListStore[listName.id].individualWordList[i]
+      ? wordListStore[listName.id].individualWordList[i].status
       : "...";
 
-    let answerWith = "Definição";
-
-    try {
-      answerWith =
-        wordListStore[listIndex][listName.id].individualWordList[i].answerWith;
-    } catch (err) {
-      console.log(err);
-    }
+    const answerWith =
+      wordListStore[listName.id]?.individualWordList[i]?.answerWith ||
+      "Definição";
 
     obj.push({
       status: status,
@@ -71,8 +63,7 @@ function WordsContainer(props) {
     }
   });
 
-  wordListStore[listIndex][listName.id].individualWordList = obj;
-  save();
+  wordListStore[listName.id].individualWordList = obj;
 
   return (
     <div className="words-body" ref={props.varRef}>
@@ -123,7 +114,7 @@ const Container = ({ array, listName, nameDiv, title }) => {
           <div
             key={index}
             className="container-words"
-            onClick={(e) => enterIndividualWords(e, td[2])}
+            onClick={(e) => enterIndividualWords(e, index)}
             onMouseEnter={(e) => animatedHover(e)}
             onMouseOut={(e) => animatedHoverOut(e)}
           >

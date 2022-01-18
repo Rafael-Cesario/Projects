@@ -1,24 +1,21 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import { save, wordListStore } from "../Pages/InitialScreeam";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { WordListStore } from "../context/WordListStore";
 
 function Configs() {
+  const {wordListStore} = useContext(WordListStore)
   const listName = useParams();
-  const listIndex = wordListStore
-  .map((list) => Object.keys(list)[0].indexOf(listName.id))
-  .indexOf(0);
   const navigate = useNavigate();
   const [value, setValue] = useState("");
-  const [di, setDi] = useState(false);
+  const [incorretInput, setDi] = useState(false);
   const [maxPerDiv, setMaxPerDiv] = useState(
-    wordListStore[listIndex][listName.id].perdiv
+    wordListStore[listName.id].perdiv
   );
 
   const saveConfigs = (e) => {
-    wordListStore[listIndex][listName.id].perdiv = maxPerDiv;
-    save();
+    wordListStore[listName.id].perdiv = maxPerDiv;
     document.location.reload();
   };
 
@@ -28,13 +25,12 @@ function Configs() {
   };
 
   const deleteList = (e) => {
-    const p = document.querySelector(".delete-list");
     e.preventDefault();
+    const p = document.querySelector(".delete-list");
+    
     if (!value) {
       p.style.color = "rgb(165, 49, 49)";
     } else if (value.toUpperCase() === "DELETAR LISTA") {
-      wordListStore.splice(listIndex, 1);
-      save();
       navigate("/");
     } else {
       p.style.color = "#d14b4b";
@@ -54,11 +50,11 @@ function Configs() {
       <form onSubmit={deleteList} className="delete-list">
         <div className="para">
           <p>
-            Muita hora nessa calma, tem certeza que quer deletar a lista? <br />{" "}
+            Muita hora nessa calma, tem certeza que quer deletar a lista? <br />
             Digite Deletar lista:
           </p>
           <h2>" DELETAR LISTA "</h2>
-          {di && <p>Digito Incorreto</p>}
+          {incorretInput && <p>Digito Incorreto</p>}
         </div>
         <input
           type="text"

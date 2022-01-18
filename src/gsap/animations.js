@@ -96,20 +96,11 @@ export const opening = () => {
 
   tl.fromTo(
     ".opening .img",
-    {
-      opacity: 0,
-      x: "-120vw",
-    },
+    { opacity: 0, x: "-120vw" },
     { opacity: 1, ease: "power2.out", duration: 1.5, rotate: -10, x: 0 }
   ).fromTo(
     ".opening .title",
-    {
-      scale: 0.99,
-      x: 10,
-      opacity: 0,
-      duration: 1,
-      ease: "power2.out",
-    },
+    { scale: 0.99, x: 10, opacity: 0, duration: 1, ease: "power2.out" },
     { scale: 1, x: 0, opacity: 1 },
     "-=1"
   );
@@ -118,7 +109,11 @@ export const opening = () => {
 export const closures = () => {
   const tl = gsap.timeline();
 
-  tl.to(".listas", { x: 0, duration: 1, ease: "power2.out" })
+  tl.to(".listas", {
+    x: 0,
+    duration: 1,
+    ease: "power2.out",
+  })
     .to(
       ".opening .title, .img",
       {
@@ -132,7 +127,12 @@ export const closures = () => {
     )
     .to(
       ".body-initial-screen .header",
-      { opacity: 1, y: 0, ease: "power2.out", duration: 1 },
+      {
+        opacity: 1,
+        y: 0,
+        ease: "power2.out",
+        duration: 1,
+      },
       "-=0.5"
     );
 };
@@ -141,23 +141,50 @@ export const newList = (open) => {
   const tl = gsap.timeline();
 
   if (!open) {
-    /* Abrir */
-    tl.to("body", { overflow: "hidden" }).to(".listas", { y: 500 }, "<").fromTo(
-      ".form-new-list",
-      { opacity: 0, y: -50 },
+    tl.to("body", {
+      overflow: "hidden",
+    })
+      .to(
+        ".listas",
+        {
+          y: 500,
+        },
+        "<"
+      )
+      .fromTo(
+        ".form-new-list",
+        {
+          opacity: 0,
+          y: -50,
+        },
+        {
+          display: "flex",
+          position: "absolute",
+          y: 100,
+          opacity: 1,
+        },
+        "<"
+      );
+  } else {
+    tl.to(
+      ".listas",
       {
-        display: "flex",
-        position: "absolute",
-        y: 100,
-        opacity: 1,
+        y: 0,
       },
       "<"
-    );
-  } else {
-    /* Fechar */
-    tl.to(".listas", { y: 0 }, "<")
-      .to(".form-new-list", { opacity: 0, y: -50, display: "none" }, "<")
-      .to("body", { overflow: "auto" });
+    )
+      .to(
+        ".form-new-list",
+        {
+          opacity: 0,
+          y: -50,
+          display: "none",
+        },
+        "<"
+      )
+      .to("body", {
+        overflow: "auto",
+      });
   }
 };
 
@@ -165,16 +192,22 @@ export const onFocusInput = (e) => {
   const tl = gsap.timeline();
 
   if (e.target.type === "text") {
-    tl.to(".form-new-list .span-input", { y: 0, fontSize: "1rem" }).to(
+    tl.to(".form-new-list .span-input", {
+      y: 0,
+      fontSize: "1rem",
+    }).to(
       ".form-new-list input",
-      { borderBottom: "1px solid rgba(255, 255, 255, 0.637)" },
+      {
+        borderBottom: "1px solid rgba(255, 255, 255, 0.637)",
+      },
       "<"
     );
   } else {
-    tl.to(".form-new-list .span-textarea", { y: 0 }).to(
-      ".form-new-list textarea",
-      { borderBottom: "1px solid rgba(255,255,255,0.637" }
-    );
+    tl.to(".form-new-list .span-textarea", {
+      y: 0,
+    }).to(".form-new-list textarea", {
+      borderBottom: "1px solid rgba(255,255,255,0.637",
+    });
   }
 };
 
@@ -185,9 +218,14 @@ export const onBlurInput = (e) => {
     if (e.target.value) {
       return;
     } else {
-      tl.to(".form-new-list .span-input", { y: 50, fontSize: "2rem" }).to(
+      tl.to(".form-new-list .span-input", {
+        y: 50,
+        fontSize: "2rem",
+      }).to(
         ".form-new-list input",
-        { borderBottom: "1px solid rgba(255, 255, 255, 0.137)" },
+        {
+          borderBottom: "1px solid rgba(255, 255, 255, 0.137)",
+        },
         "<"
       );
     }
@@ -195,40 +233,35 @@ export const onBlurInput = (e) => {
     if (e.target.value) {
       return;
     } else {
-      tl.to(".form-new-list .span-textarea", { y: 50 }).to(
-        ".form-new-list textarea",
-        { border: "1px solid rgba(255,255,255,0.137" }
-      );
+      tl.to(".form-new-list .span-textarea", {
+        y: 50,
+      }).to(".form-new-list textarea", {
+        border: "1px solid rgba(255,255,255,0.137",
+      });
     }
   }
 };
 
 export const individualWordListAnimation = () => {
   const tl = gsap.timeline();
-  tl.to("body", { overflow: "hidden" });
-  tl.fromTo(
-    ".individaul-word-list header",
-    { y: -100, opacity: 0 },
-    { y: 0, opacity: 1 },
-    "<"
-  );
-  tl.fromTo(
-    ".container .info",
-    { x: "-100vw", opacity: 0 },
-    { x: 0, opacity: 1 },
-    "<"
-  );
-  tl.fromTo(
-    ".container .words",
-    {
-      x: "120vw",
-      opacity: 0,
-      width: "fitContent",
-      right: 50,
-    },
-    { x: 0, opacity: 1 },
-    "<"
-  );
-  tl.to("body", { overflow: "unset" });
+  tl.to("body", {overflow: "hidden"});
+  tl.fromTo(".individaul-word-list header", {y: -100, opacity: 0}, {y: 0,opacity: 1,},"<");
+  tl.fromTo(".container .info",{x: "-100vw",opacity: 0,},{x: 0, opacity: 1, }, "<" ); 
+  tl.fromTo(".container .words", { x: "120vw", opacity: 0, width: "fitContent", right: 50, }, { x: 0, opacity: 1, }, "<" ); 
+  tl.to("body", { overflow: "unset"});
 };
+
+
+export const deleteTermAndDefinitionAnimation = (e, index) => {
+  const div = e.target.parentNode;
+  const tl = gsap.timeline();
+  console.log(index, e.target)
+
+  tl.to(div, {scale: 0, duration: 0.5})
+    .to(`.words-textArea:nth-child(n + ${index + 2})`, {y:-85, duration: 0.5})
+}
+
+
+
+
 

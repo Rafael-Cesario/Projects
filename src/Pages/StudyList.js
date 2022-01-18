@@ -1,17 +1,15 @@
 import { useParams } from "react-router-dom";
 import AnswerComponent from "../Components/AnswerComponent";
-import { wordListStore } from "./InitialScreeam";
+import { WordListStore } from "../context/WordListStore";
+import { useContext } from "react";
 
 const StudyList = () => {
+  const { wordListStore } = useContext(WordListStore);
   const params = useParams();
-  const listIndex = [wordListStore
-    .map((list) => Object.keys(list)[0].indexOf(params.id))
-    .indexOf(0) , params.index];
-  
+  const listIndex = params.index;
 
-  const list =
-    wordListStore[listIndex[0]][params.id].individualWordList[listIndex[1]];
-    
+  const list = wordListStore[params.id].individualWordList[listIndex];
+
   const study = {
     toStudy: list.words.slice(0),
     studying: [],

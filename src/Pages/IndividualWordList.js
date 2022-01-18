@@ -1,25 +1,20 @@
 import gsap from "gsap";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useContext } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { individualWordListAnimation } from "../gsap/animations";
-import { save, wordListStore } from "./InitialScreeam";
+import { WordListStore } from "../context/WordListStore";
 import logo from "../imgs/Planet.svg";
 import Words from "../Components/Words";
 
 const IndividualWordList = () => {
+  const { wordListStore } = useContext(WordListStore);
   const words = useRef();
   const info = useRef();
   const navigate = useNavigate();
   const params = useParams();
   const listName = params.id.slice(0, params.id.indexOf("_"));
-  const listIndex = [
-    wordListStore
-      .map((list) => Object.keys(list)[0].indexOf(params.id))
-      .indexOf(0),
-    params.index,
-  ];
-  const list =
-    wordListStore[listIndex[0]][params.id].individualWordList[listIndex[1]];
+  const listIndex = params.index;
+  const list = wordListStore[params.id].individualWordList[listIndex];
   const [status, setStatus] = useState(list.status);
   const [answerWith, setAnswerWith] = useState(list.answerWith);
   const [newWord, setNewWord] = useState("");
@@ -27,17 +22,10 @@ const IndividualWordList = () => {
   list.answerWith = answerWith;
   list.status = status;
 
-  // Animação carregar pagina
   useEffect(() => {
     individualWordListAnimation();
   }, []);
 
-  /* Atualizar localStorage */
-  useEffect(() => {
-    save();
-  }, [status, answerWith, newWord]);
-
-  /* Mudar status lista */
   const scheduleButton = (e) => {
     e.preventDefault();
     const tl = gsap.timeline();
@@ -64,7 +52,7 @@ const IndividualWordList = () => {
 
   /* Iniciar Estudar Lista */
   const studyList = () => {
-    navigate(`/${params.id}/study${listIndex[1]}`);
+    navigate(`/${params.id}/study${listIndex}`);
   };
 
   const changeAnswerWith = (e) => {
@@ -105,7 +93,7 @@ const IndividualWordList = () => {
             <p>Total de palavras: {list.words.length}</p>
             <p className="study-time">Estudar lista: {list.status}</p>
           </div>
-          
+
           <Words
             words={list.words}
             newWord={newWord}
