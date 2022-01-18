@@ -255,10 +255,9 @@ export const individualWordListAnimation = () => {
 export const deleteTermAndDefinitionAnimation = (e, index) => {
   const div = e.target.parentNode;
   const tl = gsap.timeline();
-  console.log(index, e.target)
 
   tl.to(div, {scale: 0, duration: 0.5})
-    .to(`.words-textArea:nth-child(n + ${index + 2})`, {y:-85, duration: 0.5})
+    .to(`.words-textArea:nth-child(n + ${index + 2})`, {y:0, duration: 0.5}, "<")
 }
 
 

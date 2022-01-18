@@ -7,7 +7,7 @@ import logo from "../imgs/Planet.svg";
 import Words from "../Components/Words";
 
 const IndividualWordList = () => {
-  const { wordListStore } = useContext(WordListStore);
+  const { wordListStore, dispatch } = useContext(WordListStore);
   const words = useRef();
   const info = useRef();
   const navigate = useNavigate();
@@ -50,7 +50,6 @@ const IndividualWordList = () => {
     }
   };
 
-  /* Iniciar Estudar Lista */
   const studyList = () => {
     navigate(`/${params.id}/study${listIndex}`);
   };
@@ -99,6 +98,7 @@ const IndividualWordList = () => {
             newWord={newWord}
             setNewWord={setNewWord}
             wordListStore={wordListStore}
+            dispatch={dispatch}
             listIndex={listIndex}
             params={params}
           />

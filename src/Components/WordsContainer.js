@@ -2,20 +2,20 @@ import { useParams } from "react-router-dom";
 import { animatedHover, animatedHoverOut } from "../gsap/animations";
 import { useNavigate } from "react-router-dom";
 import { WordListStore } from "../context/WordListStore";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 
 function WordsContainer(props) {
-  const { wordListStore } = useContext(WordListStore);
+  const { wordListStore, dispatch } = useContext(WordListStore);
   const listName = useParams();
   const terms = wordListStore[listName.id]["terms"];
   const definitions = wordListStore[listName.id]["definitions"];
   const termsAndDefinitions = [];
   const maxperdiv = wordListStore[listName.id].perdiv;
-  const obj = [];
   const learning = [];
   const onHold = [];
   const learned = [];
-
+  let obj = {}
+  
   let x = 0;
   while (x < terms.length) {
     let tempArray = [];
@@ -30,40 +30,40 @@ function WordsContainer(props) {
     termsAndDefinitions.push(tempArray.reverse());
   }
 
-  termsAndDefinitions.forEach((td, i) => {
-    const status = wordListStore[listName.id].individualWordList[i]
-      ? wordListStore[listName.id].individualWordList[i].status
+  termsAndDefinitions.forEach((td, index) => {
+    const status = wordListStore[listName.id].individualWordList[index]
+      ? wordListStore[listName.id].individualWordList[index].status
       : "...";
 
     const answerWith =
-      wordListStore[listName.id]?.individualWordList[i]?.answerWith ||
+      wordListStore[listName.id]?.individualWordList[index]?.answerWith ||
       "Definição";
 
-    obj.push({
-      status: status,
-      answerWith: answerWith,
-      words: td,
-    });
+      obj = {...obj, [index]: {
+        status: status,
+        answerWith: answerWith,
+        words: td,
+      }}
 
     switch (status) {
       case "Diariamente":
-        learning.push([td, status, i]);
+        learning.push([td, status, index]);
         break;
 
       case "Semanalmente":
-        learning.push([td, status, i]);
+        learning.push([td, status, index]);
         break;
 
       case "Estudada":
-        learned.push([td, status, i]);
+        learned.push([td, status, index]);
         break;
 
       default:
-        onHold.push([td, status, i]);
+        onHold.push([td, status, index]);
     }
   });
 
-  wordListStore[listName.id].individualWordList = obj;
+  wordListStore[listName.id].individualWordList = obj
 
   return (
     <div className="words-body" ref={props.varRef}>

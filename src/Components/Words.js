@@ -2,16 +2,11 @@ import { deleteTermAndDefinitionAnimation } from "../gsap/animations";
 
 const Words = ({
   words,
-  newWord,
   setNewWord,
   wordListStore,
-  listIndex,
+  dispatch,
   params,
 }) => {
-  const globalTerm = wordListStore[params.id].terms;
-  const globalDefinition = wordListStore[params.id].definições;
-
-
   const focusTextArea = (e, td) => {
     e.target.value = td;
     e.target.classList.add("delete-button");
@@ -29,19 +24,7 @@ const Words = ({
   const changingWord = (e, word) => {
     const individualTerm = findIndex(word, 0);
     const individualDefinition = findIndex(word, 1);
-
     if (!e.target.value || e.target.value === word) return;
-
-    globalTerm.indexOf(word) > -1
-      ? change(globalTerm, individualTerm, word, 0)
-      : change(globalDefinition, individualDefinition, word, 1);
-
-  };
-
-
-  const change = (arrGlobal, arrIndividual, word, index) => {
-    arrGlobal[arrGlobal.indexOf(word)] = newWord;
-    words[arrIndividual][index] = newWord;
   };
 
 
@@ -53,16 +36,18 @@ const Words = ({
 
 
   const deleteTermAndDefinition = (e, arrWords, index) => {
-    const termIndex = globalTerm.indexOf(arrWords[0]);
-    const definitionIndex = globalDefinition.indexOf(arrWords[1]);
+    deleteTermAndDefinitionAnimation(e, index)    
 
-    globalTerm.splice(termIndex, 1);
-    globalDefinition.splice(definitionIndex, 1);
-    words.splice(index, 1);
-    deleteTermAndDefinitionAnimation(e, index)
+    dispatch({
+      type: 'REMOVE_WORD',
+      listName: params.id,
+      indexGlobal: wordListStore[params.id].terms.indexOf(arrWords[0]),
+      listIndex: params.index,
+      indexIndividual: index,
+    })
+
   };
-
-
+    
   return words.map((tdArray, index) => (
     <div key={tdArray} className="words-textArea">
       <button 

@@ -68,7 +68,7 @@ const FormsAddWord = ({ listName, objMenus }) => {
 
   const removeLastWord = () => {
     dispatch({
-      type: "REMOVE_WORD",
+      type: "REMOVE_LAST_WORD",
       listName: listName.id,
     });
   };

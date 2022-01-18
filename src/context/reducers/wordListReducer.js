@@ -12,7 +12,7 @@ export const wordListReducer = (state, action) => {
           description: action.description,
           lang01: "",
           lang02: "",
-          individualWordList: [],
+          individualWordList: {},
         },
       };
 
@@ -26,7 +26,7 @@ export const wordListReducer = (state, action) => {
         },
       };
 
-    case "REMOVE_WORD":
+    case "REMOVE_LAST_WORD":
       return {
         ...state,
         [action.listName]: {
@@ -37,8 +37,24 @@ export const wordListReducer = (state, action) => {
             
           definitions: state[action.listName].definitions.filter(word =>
             word !== state[action.listName].definitions[state[action.listName].definitions.length - 1])
-        }
-      }      
+        },
+      };      
+
+    case "REMOVE_WORD":
+      return {
+        ...state,
+        [action.listName]: {
+          ...state[action.listName],          
+          terms: state[action.listName].terms.filter(word => word !== state[action.listName].terms[action.indexGlobal]),            
+          definitions: state[action.listName].definitions.filter(word => word !== state[action.listName].definitions[action.indexGlobal]),
+          individualWordList : {
+            ...state[action.listName].individualWordList,
+            [action.listIndex] : {...state[action.listName].individualWordList[action.listIndex],
+            words: state[action.listName].individualWordList[action.listIndex].words.filter((word,index) => index !== action.indexIndividual)
+            }
+          }
+        },
+      };      
 
     default:
       return state;
