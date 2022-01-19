@@ -11,14 +11,14 @@ const StudyList = () => {
   const list = wordListStore[params.id].individualWordList[listIndex];
 
   const study = {
-    toStudy: list.words.slice(0),
+    toStudy: [...list.words],
     studying: [],
   };
 
   while (study.studying.length < 10 && study.toStudy.length > 0) {
     study.studying.push({
-      termo: study.toStudy[0][0],
-      definição: study.toStudy[0][1],
+      Term: study.toStudy[0][0],
+      Definition: study.toStudy[0][1],
     });
     study.toStudy.shift();
   }

@@ -8,66 +8,72 @@ export const animatedHoverOut = (e) => {
   gsap.to(e.target, { scale: 1 });
 };
 
-export const animationNext = (h2, inputAnswer, next02, e, find) => {
+export const animationNextQuestion = (next02, e, find) => {
   const tl = gsap.timeline();
 
-  tl.to(h2, { opacity: 0, duration: 0.1 })
-    .to(inputAnswer, { borderBottom: "2px solid white", duration: 0.3 }, "<")
+  tl.to('.word02', { opacity: 0, duration: 0.1 })
+    .to('.input-answer', { borderBottom: "2px solid white", duration: 0.3 }, "<")
     .eventCallback("onComplete", next02, [e, find]);
 };
 
-export const animationNext01 = (find, h2, inputAnswer) => {
+export const animationCheckAnswer = (find) => {
   const tl = gsap.timeline();
-
   const color = find ? "forestgreen" : "crimson";
 
-  tl.to(h2, { color: color, duration: 0.1 })
-    .to(h2, { opacity: 1, duration: 0.1 })
-    .to(
-      inputAnswer,
-      { borderBottom: `2px solid ${color}`, duration: 0.1 },
-      "<"
-    );
+
+  tl.to('.word02', { color: color, duration: 0.1 })
+    .to('.word02', { opacity: 1, duration: 0.1 })
+    .to('.input-answer',{ borderBottom: `2px solid ${color}`, duration: 0.1 },"<");
 };
 
-export const next02FindAnimation = (remainWords) => {
-  gsap.from(remainWords, { color: "green", opacity: 1 });
+export const next02FindAnimation = () => {
+  gsap.from('.remain-words', { color: "green", opacity: 1, duration: 1 });
 };
 
 export const showFormsAnimation = (e, obj) => {
   const tl = gsap.timeline();
 
-  if (!obj.menuOpen) {
-    tl.to(".words-body", { y: 550 });
-    tl.to(".forms-add-word", { x: 0 }, "<");
-    obj.menuOpen = "addWords";
-  } else {
-    if (obj.menuOpen === "addWords") {
+  switch(obj.menuOpen) {
+    
+    case false:
+      tl.to(".words-body", { y: 550 });
+      tl.to(".forms-add-word", { x: 0 }, "<");
+      obj.menuOpen = "addWords";
+      break;
+
+    case "addWords":
       tl.to(".forms-add-word", { x: "-120vw" });
       tl.to(".words-body", { y: 0 }, "<");
       obj.menuOpen = false;
-    } else {
+      break;
+
+    default:
       obj.show(e, obj.menuOpen);
       obj.show(e, "addWords");
-    }
+      break;
   }
 };
 
 export const showConfigsAnimation = (e, obj) => {
   const tl = gsap.timeline();
 
-  if (!obj.menuOpen) {
-    tl.to(".configs-container", { x: 0 });
-    obj.menuOpen = "configs";
-  } else {
-    if (obj.menuOpen === "configs") {
+  switch (obj.menuOpen){
+
+    case false:
+      tl.to(".configs-container", { x: 0 });
+      obj.menuOpen = "configs";
+      break;
+    
+    case "configs":
       tl.to(".configs-container", { x: "-120vw" });
       obj.menuOpen = false;
-    } else {
+      break;
+
+    default:
       obj.show(e, obj.menuOpen);
       obj.show(e, "configs");
-    }
-  }
+      break;
+  }  
 };
 
 export const fakeComponents = () => {

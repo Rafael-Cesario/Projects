@@ -17,7 +17,7 @@ const IndividualWordList = () => {
   const list = wordListStore[params.id].individualWordList[listIndex];
   const [status, setStatus] = useState(list.status);
   const [answerWith, setAnswerWith] = useState(list.answerWith);
-  const [newWord, setNewWord] = useState("");
+
 
   list.answerWith = answerWith;
   list.status = status;
@@ -51,15 +51,23 @@ const IndividualWordList = () => {
   };
 
   const studyList = () => {
+    if (!list.words.length) return
     navigate(`/${params.id}/study${listIndex}`);
   };
 
   const changeAnswerWith = (e) => {
     e.preventDefault();
 
-    answerWith === "Termo"
-      ? setAnswerWith("Definição")
-      : setAnswerWith("Termo");
+    answerWith === "Term"
+      ? setAnswerWith("Definition")
+      : setAnswerWith("Term");
+
+    dispatch({
+      type: 'CHANGE_ANSWER_WITH',
+      listName: params.id,
+      listIndex: params.index,
+      answerWith: answerWith,
+    })
   };
 
   return (
@@ -75,12 +83,10 @@ const IndividualWordList = () => {
           <div className="options">
             <button onClick={() => studyList()}>Estudar Lista</button>
 
-            <button onClick={(e) => scheduleButton(e)}>
-              Mudar tempo de estudo
-            </button>
+            <button onClick={(e) => scheduleButton(e)}> Mudar tempo de estudo </button> 
 
             <button onClick={(e) => changeAnswerWith(e)}>
-              Responder com: {list.answerWith}
+              Responder com: {wordListStore[params.id].individualWordList[params.index].answerWith === "Definition" ? "Termo" : "Definição"}
             </button>
           </div>
 
@@ -95,8 +101,6 @@ const IndividualWordList = () => {
 
           <Words
             words={list.words}
-            newWord={newWord}
-            setNewWord={setNewWord}
             wordListStore={wordListStore}
             dispatch={dispatch}
             listIndex={listIndex}

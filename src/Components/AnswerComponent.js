@@ -5,7 +5,6 @@ import FinalScreen from "./FinalScreen";
 
 const AnswerComponent = ({ list, study }) => {
   const [screen01, setScreen01] = useState(true);
-  const [c, setC] = useState(0);
   const params = useParams();
 
   return (
@@ -18,8 +17,7 @@ const AnswerComponent = ({ list, study }) => {
         <QuestionScreen
           study={study}
           setScreen01={setScreen01}
-          setC={setC}
-          c={c}
+          params={params}
         />
       ) : (
         <FinalScreen list={list} params={params} />

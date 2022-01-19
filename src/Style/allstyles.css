@@ -627,7 +627,7 @@ body {
   z-index: 2;
   padding: 10px;
   position: absolute;
-  width: 100vw;
+  width: 100%;
   top: 200px;
   transform: translateX(-120vw);
   box-shadow: var(--shadow01);
@@ -1058,6 +1058,7 @@ textarea::placeholder {
 }
 
 .study-list .container h2 button {
+  position: absolute;
   display: block;
   font-family: var(--font);
   background-color: var(--white01);
@@ -1124,5 +1125,4 @@ textarea::placeholder {
   cursor: pointer;
   width: 100%;
 }
-
 

@@ -1,6 +1,5 @@
 import { useState, useEffect, useRef } from "react";
 import List from "../Components/List";
-import gsap from "gsap";
 import Planet from "../imgs/Planet.svg";
 import { useContext } from "react";
 import {
@@ -9,6 +8,8 @@ import {
   newList,
   opening,
   onBlurInput,
+  animatedHover,
+  animatedHoverOut,
 } from "../gsap/animations";
 import "../Style/allstyles.css";
 import { WordListStore } from "../context/WordListStore";
@@ -22,15 +23,7 @@ const InitialScream = () => {
   const moreThenFive = Object.keys(wordListStore).length < 5 ? true : false;
   const planetLogo = useRef(null);
 
-  const animatedHover = (e) => {
-    gsap.to(e.target, { scale: 1.08, duration: 0.5 });
-  };
-
-  const animetedHoverOut = (e) => {
-    gsap.to(e.target, { scale: 1 });
-  };
-
-  const show = (e) => {
+  const newListOpen = (e) => {
     e.preventDefault();
 
     if (!open) {
@@ -64,32 +57,14 @@ const InitialScream = () => {
 
     setListName("");
     setDescription("");
-    show(e);
+    newListOpen(e);
   };
 
   useEffect(() => {
     opening();
   }, []);
 
-  const StyleList = (props) => {
-    let c = 0;
-    const howMany = [];
 
-    while (c < props.howMany) {
-      howMany.push(c);
-      c++;
-    }
-
-    return howMany.map((v) => (
-      <div
-        key={v + 1}
-        className="fake-components"
-        onMouseEnter={(e) => animatedHover(e)}
-        onMouseOut={(e) => animetedHoverOut(e)}
-        onClick={(e) => show(e)}
-      ></div>
-    ));
-  };
 
   const myListButton = (e) => {
     closures();
@@ -99,7 +74,7 @@ const InitialScream = () => {
     <div className="body-initial-screen">
       <header className="header">
         <div>
-          <button className="new-list" onClick={(e) => show(e)}>
+          <button className="new-list" onClick={(e) => newListOpen(e)}>
             Nova Lista
           </button>
           <button className="new-list">Sobre</button>
@@ -132,7 +107,7 @@ const InitialScream = () => {
 
         <div className="buttons">
           <button type="submit">Salvar</button>
-          <button type="button" onClick={(e) => show(e)}>
+          <button type="button" onClick={(e) => newListOpen(e)}>
             Cancelar
           </button>
         </div>
@@ -142,10 +117,12 @@ const InitialScream = () => {
         <div className="listas">
           <List
             animationHover={(e) => animatedHover(e)}
-            animetedHoverOut={(e) => animetedHoverOut(e)}
+            animetedHoverOut={(e) => animatedHoverOut(e)}
           />
 
-          {moreThenFive && <StyleList howMany={5 - Object.keys(wordListStore).length} />}
+          {moreThenFive && (
+            <FakeLists newListOpen={newListOpen} howMany={5 - Object.keys(wordListStore).length}  />
+          )}
         </div>
 
         <div className="opening">
@@ -171,4 +148,26 @@ const InitialScream = () => {
   );
 };
 
+const FakeLists = ({howMany, newListOpen}) => {
+  const arrHowMany = [];
+  let c = 0;
+
+  while (c < howMany) {
+    arrHowMany.push(c);
+    c++;
+  }
+
+  return arrHowMany.map((v) => (
+    <div
+      key={v + 1}
+      className="fake-components"
+      onMouseEnter={(e) => animatedHover(e)}
+      onMouseOut={(e) => animatedHoverOut(e)}
+      onClick={(e) => newListOpen(e)}
+    ></div>
+  ));
+};
+
 export default InitialScream;
+
+

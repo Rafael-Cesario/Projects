@@ -1,12 +1,13 @@
 import { deleteTermAndDefinitionAnimation } from "../gsap/animations";
+import { useState } from "react";
 
 const Words = ({
   words,
-  setNewWord,
-  wordListStore,
   dispatch,
   params,
 }) => {
+  const [newWord, setNewWord] = useState("");
+
   const focusTextArea = (e, td) => {
     e.target.value = td;
     e.target.classList.add("delete-button");
@@ -14,38 +15,33 @@ const Words = ({
   };
 
 
-  const blurTextArea = (e, placeholder) => {
-    changingWord(e, placeholder);
+  const blurTextArea = (e, placeholder, index) => {
+    changingWord(e, placeholder, index);
     e.target.classList.remove("delete-button");
     e.target.parentNode.querySelector("button").style.transform = "scale(0) translateY(-40px)";
   };
 
 
-  const changingWord = (e, word) => {
-    const individualTerm = findIndex(word, 0);
-    const individualDefinition = findIndex(word, 1);
-    if (!e.target.value || e.target.value === word) return;
+  const changingWord = (e, word, index) => {    
+    dispatch({
+      type: 'CHANGE_WORD',
+      listName: params.id,
+      word: word,
+      newWord: newWord,
+      listIndex: params.index,
+      wordIndex: index,
+    })
   };
-
-
-  const findIndex = (word, index) => {
-    for (let x = 0; x < words.length; x++) {
-      if (words[x][index] === word) return x;
-    }
-  };
-
 
   const deleteTermAndDefinition = (e, arrWords, index) => {
-    deleteTermAndDefinitionAnimation(e, index)    
-
+    deleteTermAndDefinitionAnimation(e, index)
     dispatch({
       type: 'REMOVE_WORD',
       listName: params.id,
-      indexGlobal: wordListStore[params.id].terms.indexOf(arrWords[0]),
       listIndex: params.index,
       indexIndividual: index,
+      word: arrWords,
     })
-
   };
     
   return words.map((tdArray, index) => (
@@ -63,7 +59,7 @@ const Words = ({
           placeholder={td}
           onFocus={(e) => focusTextArea(e, td)}
           onChange={(e) => setNewWord(e.target.value)}
-          onBlur={(e) => blurTextArea(e, e.target.placeholder)}
+          onBlur={(e) => blurTextArea(e, e.target.placeholder, index)}
         />
       ))}
     </div>

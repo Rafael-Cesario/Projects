@@ -2,10 +2,10 @@ import { useParams } from "react-router-dom";
 import { animatedHover, animatedHoverOut } from "../gsap/animations";
 import { useNavigate } from "react-router-dom";
 import { WordListStore } from "../context/WordListStore";
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 
 function WordsContainer(props) {
-  const { wordListStore, dispatch } = useContext(WordListStore);
+  const { wordListStore } = useContext(WordListStore);
   const listName = useParams();
   const terms = wordListStore[listName.id]["terms"];
   const definitions = wordListStore[listName.id]["definitions"];
@@ -37,7 +37,7 @@ function WordsContainer(props) {
 
     const answerWith =
       wordListStore[listName.id]?.individualWordList[index]?.answerWith ||
-      "Definição";
+      "Definition";
 
       obj = {...obj, [index]: {
         status: status,

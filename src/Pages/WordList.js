@@ -32,6 +32,7 @@ function WordList() {
       e.preventDefault();
       showFormsAnimation(e, objMenus);
     },
+    
   };
 
   return (
