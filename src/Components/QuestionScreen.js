@@ -13,7 +13,7 @@ const QuestionScreen = ({ study, setScreen01, params}) => {
 
   const answerWith = [ 
     (wordListStore[params.id].individualWordList[params.index].answerWith),
-    (wordListStore[params.id].individualWordList[params.index].answerWith) === "Definition" ? "Term" : "Definition"
+    (wordListStore[params.id].individualWordList[params.index].answerWith) === "Definition" ? "Definition" : "Term"
   ];
 
   const next = (e) => {

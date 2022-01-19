@@ -1,4 +1,5 @@
 import { deleteTermAndDefinitionAnimation } from "../gsap/animations";
+import gsap from "gsap";
 import { useState } from "react";
 
 const Words = ({
@@ -22,7 +23,7 @@ const Words = ({
   };
 
 
-  const changingWord = (e, word, index) => {    
+  const changingWord = (word, index) => {    
     dispatch({
       type: 'CHANGE_WORD',
       listName: params.id,
@@ -33,8 +34,7 @@ const Words = ({
     })
   };
 
-  const deleteTermAndDefinition = (e, arrWords, index) => {
-    deleteTermAndDefinitionAnimation(e, index)
+  const deleteTermAndDefinition = (arrWords, index) => {
     dispatch({
       type: 'REMOVE_WORD',
       listName: params.id,
@@ -48,7 +48,7 @@ const Words = ({
     <div key={tdArray} className="words-textArea">
       <button 
         className="button-delete" 
-        onClick={(e) => deleteTermAndDefinition(e, tdArray, index)} >
+        onClick={(e) => deleteTermAndDefinitionAnimation(e, tdArray, index, deleteTermAndDefinition)}>
         Excluir
       </button>
 

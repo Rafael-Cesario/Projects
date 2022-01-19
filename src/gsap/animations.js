@@ -79,118 +79,44 @@ export const showConfigsAnimation = (e, obj) => {
 export const fakeComponents = () => {
   const tl = gsap.timeline();
 
-  tl.from(".fake-components", {
-    duration: 1,
-    x: "-100vw",
-    ease: "power2.out",
-    opacity: 0,
-  })
-    .from(
-      ".my-list-component",
-      { duration: 1, x: "-100vw", ease: "power2.out", opacity: 0 },
-      "<"
-    )
-    .from(
-      ".header",
-      { duration: 1, y: "-30", ease: "power2.out", opacity: 0 },
-      "<"
-    );
+  tl.from(".fake-components", {duration: 1, x: "-100vw", ease: "power2.out", opacity: 0, })
+    .from(".my-list-component",{ duration: 1, x: "-100vw", ease: "power2.out", opacity: 0 },"<")
+    .from(".header",{ duration: 1, y: "-30", ease: "power2.out", opacity: 0 },"<");
 };
 
 export const opening = () => {
   const tl = gsap.timeline();
 
-  tl.fromTo(
-    ".opening .img",
+  tl.fromTo(".opening .img",
     { opacity: 0, x: "-120vw" },
     { opacity: 1, ease: "power2.out", duration: 1.5, rotate: -10, x: 0 }
-  ).fromTo(
-    ".opening .title",
+  ).fromTo(".opening .title",
     { scale: 0.99, x: 10, opacity: 0, duration: 1, ease: "power2.out" },
-    { scale: 1, x: 0, opacity: 1 },
-    "-=1"
-  );
+    { scale: 1, x: 0, opacity: 1 },"-=1");
 };
 
 export const closures = () => {
   const tl = gsap.timeline();
 
-  tl.to(".listas", {
-    x: 0,
-    duration: 1,
-    ease: "power2.out",
-  })
-    .to(
-      ".opening .title, .img",
-      {
-        opacity: 0,
-        pointerEvents: "none",
-        ease: "power2.out",
-        zIndex: -1,
-        display: "none",
-      },
-      "-=0.8"
-    )
-    .to(
-      ".body-initial-screen .header",
-      {
-        opacity: 1,
-        y: 0,
-        ease: "power2.out",
-        duration: 1,
-      },
-      "-=0.5"
-    );
+  tl.to(".listas", {x: 0,duration: 1,ease: "power2.out",})
+    .to(".opening .title, .img",{opacity: 0, pointerEvents: "none", ease: "power2.out", zIndex: -1, display: "none", }, "-=0.8" ) 
+    .to(".body-initial-screen .header", { opacity: 1, y: 0, ease: "power2.out", duration: 1, }, "-=0.5" );
 };
 
 export const newList = (open) => {
   const tl = gsap.timeline();
 
   if (!open) {
-    tl.to("body", {
-      overflow: "hidden",
-    })
-      .to(
-        ".listas",
-        {
-          y: 500,
-        },
-        "<"
-      )
-      .fromTo(
-        ".form-new-list",
-        {
-          opacity: 0,
-          y: -50,
-        },
-        {
-          display: "flex",
-          position: "absolute",
-          y: 100,
-          opacity: 1,
-        },
-        "<"
-      );
+    tl.to("body", {overflow: "hidden",})
+      .to(".listas",{y: 500,},"<")
+      .fromTo(".form-new-list",
+        {opacity: 0,y: -50,},
+        {display: "flex",position: "absolute",y: 100,opacity: 1,},"<");
+        
   } else {
-    tl.to(
-      ".listas",
-      {
-        y: 0,
-      },
-      "<"
-    )
-      .to(
-        ".form-new-list",
-        {
-          opacity: 0,
-          y: -50,
-          display: "none",
-        },
-        "<"
-      )
-      .to("body", {
-        overflow: "auto",
-      });
+    tl.to(".listas",{y: 0,},"<")
+      .to(".form-new-list",{opacity: 0,y: -50,display: "none",},"<")
+      .to("body", {overflow: "auto",});
   }
 };
 
@@ -198,22 +124,11 @@ export const onFocusInput = (e) => {
   const tl = gsap.timeline();
 
   if (e.target.type === "text") {
-    tl.to(".form-new-list .span-input", {
-      y: 0,
-      fontSize: "1rem",
-    }).to(
-      ".form-new-list input",
-      {
-        borderBottom: "1px solid rgba(255, 255, 255, 0.637)",
-      },
-      "<"
-    );
+    tl.to(".form-new-list .span-input", {y: 0,fontSize: "1rem",})
+      .to(".form-new-list input",{borderBottom: "1px solid rgba(255, 255, 255, 0.637)",},"<");
   } else {
-    tl.to(".form-new-list .span-textarea", {
-      y: 0,
-    }).to(".form-new-list textarea", {
-      borderBottom: "1px solid rgba(255,255,255,0.637",
-    });
+    tl.to(".form-new-list .span-textarea", {y: 0,})
+      .to(".form-new-list textarea", {borderBottom: "1px solid rgba(255,255,255,0.637",});
   }
 };
 
@@ -224,26 +139,15 @@ export const onBlurInput = (e) => {
     if (e.target.value) {
       return;
     } else {
-      tl.to(".form-new-list .span-input", {
-        y: 50,
-        fontSize: "2rem",
-      }).to(
-        ".form-new-list input",
-        {
-          borderBottom: "1px solid rgba(255, 255, 255, 0.137)",
-        },
-        "<"
-      );
+      tl.to(".form-new-list .span-input", {y: 50,fontSize: "2rem",})
+        .to(".form-new-list input",{borderBottom: "1px solid rgba(255, 255, 255, 0.137)",},"<");
     }
   } else {
     if (e.target.value) {
       return;
     } else {
-      tl.to(".form-new-list .span-textarea", {
-        y: 50,
-      }).to(".form-new-list textarea", {
-        border: "1px solid rgba(255,255,255,0.137",
-      });
+      tl.to(".form-new-list .span-textarea", {y: 50,})
+        .to(".form-new-list textarea", {border: "1px solid rgba(255,255,255,0.137",});
     }
   }
 };
@@ -258,12 +162,14 @@ export const individualWordListAnimation = () => {
 };
 
 
-export const deleteTermAndDefinitionAnimation = (e, index) => {
+export const deleteTermAndDefinitionAnimation = (e,tdArray, index, deleteTermAndDefinition) => {
+  e.preventDefault();
   const div = e.target.parentNode;
   const tl = gsap.timeline();
 
   tl.to(div, {scale: 0, duration: 0.5})
-    .to(`.words-textArea:nth-child(n + ${index + 2})`, {y:0, duration: 0.5}, "<")
+    .call(deleteTermAndDefinition, [tdArray, index], "<")
+    .from(`.words-textArea:nth-child(n + ${index + 2})`, {y:90, duration: 0.5}, "<")
 }
 
 
