@@ -86,7 +86,7 @@ const IndividualWordList = () => {
             <button onClick={(e) => scheduleButton(e)}> Mudar tempo de estudo </button> 
 
             <button onClick={(e) => changeAnswerWith(e)}>
-              Responder com: {wordListStore[params.id].individualWordList[params.index].answerWith === "Definition" ? "Termo" : "Definição"}
+              Responder com: {wordListStore[params.id].individualWordList[params.index].answerWith === "Definition" ? "Definição" : "Termo"}
             </button>
           </div>
 
