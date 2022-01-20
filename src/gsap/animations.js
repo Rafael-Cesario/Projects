@@ -125,10 +125,8 @@ export const onFocusInput = (e) => {
 
   if (e.target.type === "text") {
     tl.to(".form-new-list .span-input", {y: 0,fontSize: "1rem",})
-      .to(".form-new-list input",{borderBottom: "1px solid rgba(255, 255, 255, 0.637)",},"<");
   } else {
     tl.to(".form-new-list .span-textarea", {y: 0,})
-      .to(".form-new-list textarea", {borderBottom: "1px solid rgba(255,255,255,0.637",});
   }
 };
 
@@ -140,14 +138,12 @@ export const onBlurInput = (e) => {
       return;
     } else {
       tl.to(".form-new-list .span-input", {y: 50,fontSize: "2rem",})
-        .to(".form-new-list input",{borderBottom: "1px solid rgba(255, 255, 255, 0.137)",},"<");
     }
   } else {
     if (e.target.value) {
       return;
     } else {
       tl.to(".form-new-list .span-textarea", {y: 50,})
-        .to(".form-new-list textarea", {border: "1px solid rgba(255,255,255,0.137",});
     }
   }
 };
@@ -174,13 +170,7 @@ export const deleteTermAndDefinitionAnimation = (e,tdArray, index, deleteTermAnd
 
 
 export const typeWriterAnimation = ($class, time) => {
-  const $elementHTML = document.querySelector($class);
-  const arrElementHTML = $elementHTML.textContent.split("");
 
-  arrElementHTML.forEach((letter, index) => {
-    $elementHTML.textContent = $elementHTML.textContent[0];
-    setTimeout( () => $elementHTML.textContent += letter, time * index)
-  })
 }
 
 

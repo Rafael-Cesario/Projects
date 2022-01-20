@@ -27,7 +27,6 @@ const IndividualWordList = () => {
 
   const scheduleButton = (e) => {
     e.preventDefault();
-    typeWriterAnimation(".study-time", 50);
 
     switch (status) {
       case "...":

@@ -1,4 +1,4 @@
-import { animationNextQuestion, animationCheckAnswer, next02FindAnimation, typeWriterAnimation } from "../gsap/animations";
+import { animationNextQuestion, animationCheckAnswer, next02FindAnimation } from "../gsap/animations";
 import { WordListStore } from "../context/WordListStore";
 import { useContext } from "react";
 import { useState } from "react";
@@ -26,7 +26,6 @@ const QuestionScreen = ({ study, setScreen01, params}) => {
       case "checkAnswer":
         animationCheckAnswer(isRigthAnswer);
         setWhichFuncCall("NextQuestion");
-        typeWriterAnimation(".word02", 100);   
         break;
 
       case "NextQuestion":
@@ -65,7 +64,6 @@ const QuestionScreen = ({ study, setScreen01, params}) => {
 
     (indexWord === study.studying.length - 1 || indexWord === study.studying.length) ? setIndexWord(0) : setIndexWord(indexWord + 1);
 
-    typeWriterAnimation(".word01", 100);    
     setChangeToRightAnswer(false)
     setInputAnswerValue("");
     inputAnswer.focus();

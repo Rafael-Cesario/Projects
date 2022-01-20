@@ -213,7 +213,6 @@ body {
   z-index: 1;
   background-color: transparent;
   border: none;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.137);
   outline: none;
   padding: 1px 5px;
   color: var(--white01);
@@ -228,12 +227,12 @@ body {
   border-radius: 5px;
   min-height: 200px;
   width: 100%;
-  border: 1px solid rgba(255, 255, 255, 0.137);
   color: white;
   padding: 10px;
   outline: none;
   resize: none;
   margin-bottom: 50px;
+  border: none;
 }
 
 .form-new-list .span-input {
@@ -257,6 +256,7 @@ body {
   text-align: center;
   margin: 10px;
   transform: translateY(50px);
+
 }
 
 /* WORDLIST */

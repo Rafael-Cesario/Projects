@@ -27,3 +27,4 @@ const AnswerComponent = ({ list, study }) => {
 };
 
 export default AnswerComponent;
+
