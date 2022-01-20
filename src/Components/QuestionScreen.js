@@ -81,10 +81,10 @@ const QuestionScreen = ({ study, setScreen01, params}) => {
 
   return (
     <div className="container">
-      <h2 className="word01">{study.studying[indexWord][answerWith[0]]}</h2>
+      <h2 className="word01">{study.studying[indexWord][answerWith[1]]}</h2>
 
       <h2 className="word02">
-        {study.studying[indexWord][answerWith[1]]}
+        {study.studying[indexWord][answerWith[0]]}
 
         {changeToRightAnswer && <button
           type="button"
