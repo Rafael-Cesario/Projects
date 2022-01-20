@@ -13,7 +13,7 @@ const QuestionScreen = ({ study, setScreen01, params}) => {
 
   const answerWith = [ 
     (wordListStore[params.id].individualWordList[params.index].answerWith),
-    (wordListStore[params.id].individualWordList[params.index].answerWith) === "Definition" ? "Definition" : "Term"
+    (wordListStore[params.id].individualWordList[params.index].answerWith) === "Definition" ? "Term" : "Definition"
   ];
 
   const next = (e) => {
@@ -81,10 +81,10 @@ const QuestionScreen = ({ study, setScreen01, params}) => {
 
   return (
     <div className="container">
-      <h2 className="word01">{study.studying[indexWord][answerWith[1]]}</h2>
+      <h2 className="word01">{study.studying[indexWord][answerWith[0]]}</h2>
 
       <h2 className="word02">
-        {study.studying[indexWord][answerWith[0]]}
+        {study.studying[indexWord][answerWith[1]]}
 
         {changeToRightAnswer && <button
           type="button"
