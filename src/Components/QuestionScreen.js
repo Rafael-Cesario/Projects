@@ -1,7 +1,9 @@
-import { animationNextQuestion, animationCheckAnswer, next02FindAnimation } from "../gsap/animations";
+import { animationNextQuestion, animationCheckAnswer, next02FindAnimation, typeWriterAnimation } from "../gsap/animations";
 import { WordListStore } from "../context/WordListStore";
 import { useContext } from "react";
 import { useState } from "react";
+
+
 
 const QuestionScreen = ({ study, setScreen01, params}) => {
   const { wordListStore } = useContext(WordListStore);
@@ -18,16 +20,17 @@ const QuestionScreen = ({ study, setScreen01, params}) => {
 
   const next = (e) => {
     e.preventDefault();      
-    const isRigthAnswer = finding();    
+    const isRigthAnswer = finding();        
     
     switch (whichFuncCall) {
       case "checkAnswer":
         animationCheckAnswer(isRigthAnswer);
         setWhichFuncCall("NextQuestion");
+        typeWriterAnimation(".word02", 100);   
         break;
 
       case "NextQuestion":
-        animationNextQuestion(nextQuestion, e, isRigthAnswer);
+        animationNextQuestion(nextQuestion, e, isRigthAnswer);        
         setWhichFuncCall("checkAnswer");
         break;
       
@@ -62,9 +65,10 @@ const QuestionScreen = ({ study, setScreen01, params}) => {
 
     (indexWord === study.studying.length - 1 || indexWord === study.studying.length) ? setIndexWord(0) : setIndexWord(indexWord + 1);
 
+    typeWriterAnimation(".word01", 100);    
     setChangeToRightAnswer(false)
     setInputAnswerValue("");
-    inputAnswer.focus();    
+    inputAnswer.focus();
   };
 
   const finding = () => {
@@ -79,24 +83,25 @@ const QuestionScreen = ({ study, setScreen01, params}) => {
     return false
   };
 
+  const markAnswerAsRight = (e) => {
+    const find = true;
+    animationNextQuestion(nextQuestion, e, find)
+    setWhichFuncCall("checkAnswer")
+  }
+
   return (
     <div className="container">
       <h2 className="word01">{study.studying[indexWord][answerWith[1]]}</h2>
 
       <h2 className="word02">
         {study.studying[indexWord][answerWith[0]]}
-
-        {changeToRightAnswer && <button
-          type="button"
-          onClick={(e) => {
-            const find = true;
-            animationNextQuestion(nextQuestion, e, find);
-            setWhichFuncCall("checkAnswer")
-            }}>
-            Marcar resposta como correta
-        </button>}
-
       </h2>
+
+      {changeToRightAnswer && 
+        <button type="button" onClick={(e) => markAnswerAsRight(e)}
+          >Marcar resposta como correta
+        </button>
+      }
 
       <form onSubmit={(e) => next(e)} className="form-answer">
         <input

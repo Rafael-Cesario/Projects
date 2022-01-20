@@ -173,6 +173,21 @@ export const deleteTermAndDefinitionAnimation = (e,tdArray, index, deleteTermAnd
 }
 
 
+export const typeWriterAnimation = ($class, time) => {
+  const $elementHTML = document.querySelector($class);
+  const arrElementHTML = $elementHTML.textContent.split("");
+
+  arrElementHTML.forEach((letter, index) => {
+    $elementHTML.textContent = $elementHTML.textContent[0];
+    setTimeout( () => $elementHTML.textContent += letter, time * index)
+  })
+}
+
+
+
+
+
+
 
 
 

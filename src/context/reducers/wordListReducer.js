@@ -11,26 +11,20 @@ export const wordListReducer = (state, action) => {
         lang01: "",
         lang02: "",
         individualWordList: {},
-      }
-      
-      state = {...state}
-      return state
+      }      
+      return {...state}
 
 
     case "ADD_WORD":
       state[action.listName].terms.push(action.term)
       state[action.listName].definitions.push(action.definition)
-
-      state = {...state}
-      return state
+      return {...state}
 
 
     case "REMOVE_LAST_WORD":
       state[action.listName].terms.pop()
       state[action.listName].definitions.pop()
-
-      state = {...state}
-      return state
+      return {...state}
     
 
     case "REMOVE_WORD":
@@ -39,9 +33,7 @@ export const wordListReducer = (state, action) => {
       
       state[action.listName].individualWordList[action.listIndex].words =
          state[action.listName].individualWordList[action.listIndex].words.filter((word, index) => index !== action.indexIndividual);    
-
-      state = {...state}
-      return state
+      return {...state}
       
       
     case 'CHANGE_CONFIGS':
@@ -56,9 +48,7 @@ export const wordListReducer = (state, action) => {
       if (action.newDescription) state[listName].description = action.newDescription;
 
       state[listName].perdiv = action.newPerdiv;
-
-      state = {...state}
-      return state
+      return {...state}
 
 
     case 'CHANGE_WORD':
@@ -70,20 +60,22 @@ export const wordListReducer = (state, action) => {
       const indexOfWhoChange = termIndexGlobal > -1 ? termIndexGlobal : definitionIndexGlobal;
       state[action.listName][changeWhoGlobal][indexOfWhoChange] = action.newWord;
       state[action.listName].individualWordList[action.listIndex].words[action.wordIndex][changeWhoIndividual] = action.newWord;       
-      state = {...state}
-      return state
+      return {...state}
 
 
     case 'DELET_LIST':
       state = filterObject(state, action.listName);
-      state = {...state};
-      return state
+      return {...state}
        
 
     case 'CHANGE_ANSWER_WITH':
       state[action.listName].individualWordList[action.listIndex].answerWith = action.answerWith;
-      state = {...state}
-      return state
+      return {...state}
+
+
+    case "CHANGE_LIST_STATUS":
+      state[action.listName].individualWordList[action.listIndex].status = action.status;
+      return {...state}
 
 
     default:

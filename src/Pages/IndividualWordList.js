@@ -1,7 +1,6 @@
-import gsap from "gsap";
 import { useEffect, useRef, useState, useContext } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { individualWordListAnimation } from "../gsap/animations";
+import { individualWordListAnimation, typeWriterAnimation } from "../gsap/animations";
 import { WordListStore } from "../context/WordListStore";
 import logo from "../imgs/Planet.svg";
 import Words from "../Components/Words";
@@ -28,9 +27,7 @@ const IndividualWordList = () => {
 
   const scheduleButton = (e) => {
     e.preventDefault();
-    const tl = gsap.timeline();
-    tl.to(".study-time", { scale: 0.95, color: "#ffc82d", duration: 0.2 });
-    tl.to(".study-time", { scale: 1, color: "#e6e6e6", duration: 0.2 });
+    typeWriterAnimation(".study-time", 50);
 
     switch (status) {
       case "...":
@@ -48,6 +45,14 @@ const IndividualWordList = () => {
       default:
         setStatus("...");
     }
+
+    dispatch({
+      type: 'CHANGE_LIST_STATUS',
+      listName: params.id,
+      listIndex: params.index,
+      status: status,
+    })
+    
   };
 
   const studyList = () => {
