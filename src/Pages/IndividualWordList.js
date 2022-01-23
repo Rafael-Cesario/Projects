@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState, useContext } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { individualWordListAnimation, typeWriterAnimation } from "../gsap/animations";
+import { individualWordListAnimation } from "../gsap/animations";
 import { WordListStore } from "../context/WordListStore";
 import logo from "../imgs/Planet.svg";
 import Words from "../Components/Words";
@@ -21,8 +21,30 @@ const IndividualWordList = () => {
     individualWordListAnimation();
   }, []);
 
+  /* experimentar criar meu proprio hook, dois useEffects parecem desnecessários */
+
+  useEffect(() => {
+    dispatch({
+      type: 'CHANGE_LIST_STATUS',
+      listName: params.id,
+      listIndex: params.index,
+      status: status,
+    })  
+  },[status, dispatch, params])
+
+  useEffect(() => {
+    dispatch({
+      type: 'CHANGE_ANSWER_WITH',
+      listName: params.id,
+      listIndex: params.index,
+      answerWith: answerWith,
+    })
+  },[answerWith, dispatch, params])
+
+
   const scheduleButton = (e) => {
     e.preventDefault();
+
     switch (status) {
       case "...":
         setStatus("Diariamente");
@@ -38,15 +60,7 @@ const IndividualWordList = () => {
 
       default:
         setStatus("...");
-    }
-
-    dispatch({
-      type: 'CHANGE_LIST_STATUS',
-      listName: params.id,
-      listIndex: params.index,
-      status: status,
-    })
-    
+    }  
   };
 
   const studyList = () => {
@@ -60,13 +74,6 @@ const IndividualWordList = () => {
     answerWith === "Term"
       ? setAnswerWith("Definition")
       : setAnswerWith("Term");
-
-    dispatch({
-      type: 'CHANGE_ANSWER_WITH',
-      listName: params.id,
-      listIndex: params.index,
-      answerWith: answerWith,
-    })
   };
 
   return (

@@ -67,19 +67,16 @@ export const wordListReducer = (state, action) => {
 
     case "DELET_LIST": {
       state = filterObject(state, action.listName);
-      state = { ...state };
       return;
     }
 
     case "CHANGE_ANSWER_WITH": {
-      state[action.listName].individualWordList[action.listIndex].answerWith =
-        action.answerWith;
+      state[action.listName].individualWordList[action.listIndex].answerWith = action.answerWith;
       return;
     }
 
     case "CHANGE_LIST_STATUS": {
-      state[action.listName].individualWordList[action.listIndex].status =
-        action.status;
+      state[action.listName].individualWordList[action.listIndex].status = action.status;
       return;
     }
 
@@ -138,6 +135,8 @@ const createLists = (state, listName) => {
         words: td,
       },
     };
+
   });
+  
   return obj;    
 };

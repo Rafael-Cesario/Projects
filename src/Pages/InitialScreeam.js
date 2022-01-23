@@ -2,6 +2,9 @@ import { useState, useEffect, useRef } from "react";
 import List from "../Components/List";
 import Planet from "../imgs/Planet.svg";
 import { useContext } from "react";
+import { WordListStore } from "../context/WordListStore";
+import "../Style/allstyles.css";
+
 import {
   onFocusInput,
   closures,
@@ -11,8 +14,6 @@ import {
   animatedHover,
   animatedHoverOut,
 } from "../gsap/animations";
-import "../Style/allstyles.css";
-import { WordListStore } from "../context/WordListStore";
 
 const InitialScream = () => {
   const { wordListStore, dispatch } = useContext(WordListStore);
