@@ -1,6 +1,6 @@
 import { showFormsAnimation, showConfigsAnimation } from "../gsap/animations";
 import { useParams, Link } from "react-router-dom";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { WordListStore } from "../context/WordListStore";
 import WordsContainer from "../Components/WordsContainer";
 import Configs from "../Components/Configs";
@@ -13,6 +13,8 @@ function WordList() {
   const listName = useParams();
   const removeid = listName.id.indexOf("_");
   const nameNew = listName.id.slice(0, removeid);
+  const [singleTerm, setSingleTerm] = useState("");
+  const [singleDefinition, setSingleDefinition] = useState("");
 
   const objMenus = {
     menuOpen: false,
@@ -31,10 +33,8 @@ function WordList() {
     addWords: (e, objMenus) => {
       e.preventDefault();
       showFormsAnimation(e, objMenus);
-    },    
+    },
   };
-
-  
 
   return (
     <div className="word-list">
@@ -64,9 +64,16 @@ function WordList() {
         <a href="#learned">Finalizadas</a>
       </div>
 
-      <FormsAddWord listName={listName} objMenus={objMenus} />
+      <FormsAddWord
+        listName={listName}
+        objMenus={objMenus}
+        singleTerm={singleTerm}
+        singleDefinition={singleDefinition}
+        setSingleDefinition={setSingleDefinition}
+        setSingleTerm={setSingleTerm}
+      />
 
-      <Configs nameNew={nameNew}/>
+      <Configs nameNew={nameNew} />
 
       <WordsContainer />
     </div>

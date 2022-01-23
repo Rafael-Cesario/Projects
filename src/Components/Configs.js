@@ -4,33 +4,37 @@ import { useNavigate } from "react-router-dom";
 import { useState, useContext } from "react";
 import { WordListStore } from "../context/WordListStore";
 
-function Configs({nameNew}) {
+function Configs({ nameNew, createLists }) {
   const navigate = useNavigate();
   const listName = useParams();
 
-  const {wordListStore, dispatch} = useContext(WordListStore)
+  const { wordListStore, dispatch } = useContext(WordListStore);
   const [valueInputDeleteList, setValueInputDeleteList] = useState("");
   const [incorrectInput, setIncorrectInput] = useState(false);
 
-  const [inputMaxPerDiv, setInputMaxPerDiv] = useState( wordListStore[listName.id].perdiv );
-  const [inputListName, setInputListName] = useState(nameNew)
-  const [inputListDescription, setInputListDescription] = useState( wordListStore[listName.id].description)
-
+  const [inputMaxPerDiv, setInputMaxPerDiv] = useState(
+    wordListStore[listName.id].perdiv
+  );
+  const [inputListName, setInputListName] = useState(nameNew);
+  const [inputListDescription, setInputListDescription] = useState(
+    wordListStore[listName.id].description
+  );
 
   const saveConfigs = (e) => {
     const id = `${Math.floor(Math.random() * 999)}`;
     const name = inputListName !== "" ? `${inputListName}_${id}` : false;
 
     dispatch({
-      type: 'CHANGE_CONFIGS',
+      type: "CHANGE_CONFIGS",
       oldName: listName.id,
       newName: name,
       newDescription: inputListDescription,
       newId: id,
-      newPerdiv: inputMaxPerDiv,            
-    })
+      newPerdiv: inputMaxPerDiv,
+    });
 
-    navigate(`/`);
+    document.location.reload();
+    createLists(wordListStore, listName.id);
   };
 
   const showDeleteList = (e) => {
@@ -44,20 +48,20 @@ function Configs({nameNew}) {
 
     if (!valueInputDeleteList) {
       p.style.color = "rgb(165, 49, 49)";
-      return
+      return;
     }
 
     if (valueInputDeleteList.toUpperCase() !== "DELETAR LISTA") {
       p.style.color = "#d14b4b";
       setIncorrectInput(true);
       setValueInputDeleteList("");
-      return
+      return;
     }
 
     dispatch({
-      type: 'DELET_LIST',
+      type: "DELET_LIST",
       listName: listName.id,
-    })
+    });
     navigate("/");
   };
 
@@ -72,32 +76,58 @@ function Configs({nameNew}) {
 
       <form onSubmit={deleteList} className="delete-list">
         <div className="para">
-          <p>Muita hora nessa calma, tem certeza que quer deletar a lista? <br />Digite Deletar lista:</p>
+          <p>
+            Muita hora nessa calma, tem certeza que quer deletar a lista? <br />
+            Digite Deletar lista:
+          </p>
           <h2>" DELETAR LISTA "</h2>
           {incorrectInput && <p>Digito Incorreto</p>}
         </div>
-        <input type="text" value={valueInputDeleteList} onChange={(e) => setValueInputDeleteList(e.target.value)} />
+        <input
+          type="text"
+          value={valueInputDeleteList}
+          onChange={(e) => setValueInputDeleteList(e.target.value)}
+        />
         <div className="buttons">
           <button type="submit">Deletar</button>
-          <button type="button" onClick={(e) => hideForm(e)}> Cancelar </button>
+          <button type="button" onClick={(e) => hideForm(e)}>
+            {" "}
+            Cancelar{" "}
+          </button>
         </div>
       </form>
 
       <div className="configs">
         <div className="config-single">
           <h2>Nome</h2>
-          <input type="text" value={inputListName} onChange={e => setInputListName(e.target.value)}/>
+          <input
+            type="text"
+            value={inputListName}
+            onChange={(e) => setInputListName(e.target.value)}
+          />
         </div>
 
         <div className="config-single">
           <h2>Palavras por grupo</h2>
-          <input type="text" value={inputMaxPerDiv} onChange={(e) => setInputMaxPerDiv(e.target.value)} />
-          <p> ! Alterar este valor fará com que todas as suas listas que não estiverem marcadas como estudadas, voltem ao valor inicial. </p>
+          <input
+            type="text"
+            value={inputMaxPerDiv}
+            onChange={(e) => setInputMaxPerDiv(e.target.value)}
+          />
+          <p>
+            {" "}
+            ! Alterar este valor fará com que todas as suas listas que não
+            estiverem marcadas como estudadas, voltem ao valor inicial.{" "}
+          </p>
         </div>
 
         <div className="config-single">
           <h2>Descrição</h2>
-          <textarea type="text" value={inputListDescription} onChange={e => setInputListDescription(e.target.value)} />
+          <textarea
+            type="text"
+            value={inputListDescription}
+            onChange={(e) => setInputListDescription(e.target.value)}
+          />
         </div>
       </div>
 

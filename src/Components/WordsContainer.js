@@ -17,23 +17,22 @@ function WordsContainer(props) {
     const words = list[1].words;
 
     switch (status) {
-  
       case "Diariamente":
         learning.push([words, status, index]);
         break;
-  
+
       case "Semanalmente":
         learning.push([words, status, index]);
         break;
-  
+
       case "Estudada":
         learned.push([words, status, index]);
         break;
-  
+
       default:
         onHold.push([words, status, index]);
-    }  
-  })
+    }
+  });
 
   return (
     <div className="words-body" ref={props.varRef}>
@@ -68,8 +67,6 @@ function WordsContainer(props) {
 }
 
 export default WordsContainer;
-
-
 
 const Container = ({ array, listName, nameDiv, title }) => {
   const navigate = useNavigate();
@@ -119,5 +116,3 @@ const WordsMapPara = ({ word }) => {
     </p>
   ));
 };
-
-

@@ -17,17 +17,12 @@ const IndividualWordList = () => {
   const [status, setStatus] = useState(list.status);
   const [answerWith, setAnswerWith] = useState(list.answerWith);
 
-
-  list.answerWith = answerWith;
-  list.status = status;
-
   useEffect(() => {
     individualWordListAnimation();
   }, []);
 
   const scheduleButton = (e) => {
     e.preventDefault();
-    typeWriterAnimation('.study-time', 50)
     switch (status) {
       case "...":
         setStatus("Diariamente");

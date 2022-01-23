@@ -1,20 +1,26 @@
 import { useRef, useState, useContext } from "react";
 import { WordListStore } from "../context/WordListStore";
 
-const FormsAddWord = ({ listName, objMenus }) => {
+const FormsAddWord = ({
+  listName,
+  objMenus,
+  createLists,
+  singleTerm,
+  singleDefinition,
+  setSingleTerm,
+  setSingleDefinition,
+}) => {
   const { wordListStore, dispatch } = useContext(WordListStore);
   const [hasTerm, setHasTerm] = useState(false);
   const [hasError, setHasError] = useState("");
   const [severalWords, setSeveralWords] = useState("");
-  const [singleTerm, setSingleTerm] = useState("");
-  const [singleDefinition, setSingleDefinition] = useState("");
   const inputWord01 = useRef(null);
   const inputWord02 = useRef(null);
 
   const addSeveralWords = () => {
     const textareaWords = severalWords
       .split(/\n/g)
-      .filter((word) => word !== "");    
+      .filter((word) => word !== "");
 
     setHasError("");
 
@@ -22,8 +28,11 @@ const FormsAddWord = ({ listName, objMenus }) => {
       const spacerIndex = word.indexOf(";") > -1 ? word.indexOf(";") : false;
       const term = word.slice(0, spacerIndex);
       const definition = word.slice(spacerIndex + 1);
-      const termosUpper = wordListStore[listName.id]["terms"].map((word) => word.toUpperCase());
-      const findTerm = termosUpper.indexOf(term.toUpperCase()) > -1 ? true : false;
+      const termosUpper = wordListStore[listName.id]["terms"].map((word) =>
+        word.toUpperCase()
+      );
+      const findTerm =
+        termosUpper.indexOf(term.toUpperCase()) > -1 ? true : false;
 
       if (!spacerIndex) {
         setHasError("Verifique se todas as palvras estão separadas por ;");
@@ -47,9 +56,7 @@ const FormsAddWord = ({ listName, objMenus }) => {
         definition: definition,
       });
     });
-
     setSeveralWords("");
-    createLists();
   };
 
   const addSingleWord = (e) => {
@@ -67,60 +74,13 @@ const FormsAddWord = ({ listName, objMenus }) => {
     setSingleTerm("");
     setSingleDefinition("");
     setHasTerm(false);
-    createLists();
   };
 
-  const removeLastWord = () => {
+  const removeLastWord = (e) => {
+    e.preventDefault();
     dispatch({
       type: "REMOVE_LAST_WORD",
       listName: listName.id,
-    });
-  };
-
-  const createLists = () => {
-    const terms = wordListStore[listName.id]["terms"];
-    const definitions = wordListStore[listName.id]["definitions"];
-    const maxperdiv = wordListStore[listName.id].perdiv;
-    const termsAndDefinitions = [];
-    let obj = {};
-
-    let x = 0;
-    while (x < terms.length) {
-      let tempArray = [];
-      let c = 0;
-      while (c < maxperdiv) {
-        if (terms[x] !== undefined) {
-          tempArray.push([terms[x], definitions[x]]);
-        }
-        x++;
-        c++;
-      }
-      termsAndDefinitions.push(tempArray.reverse());
-    }
-
-    termsAndDefinitions.forEach((td, index) => {
-      const status = wordListStore[listName.id].individualWordList[index]
-        ? wordListStore[listName.id].individualWordList[index].status
-        : "...";
-
-      const answerWith =
-        wordListStore[listName.id]?.individualWordList[index]?.answerWith ||
-        "Definition";
-
-      obj = {
-        ...obj,
-        [index]: {
-          status: status,
-          answerWith: answerWith,
-          words: td,
-        },
-      };
-    });
-
-    dispatch({
-      type: "MAKE_LIST",
-      listName: listName.id,
-      lists: obj,
     });
   };
 
@@ -207,12 +167,10 @@ const FormsAddWord = ({ listName, objMenus }) => {
         <div className="buttons">
           <button type="submit">Adicionar</button>
           <button type="button" onClick={(e) => objMenus.show(e, "addWords")}>
-            {" "}
-            Fechar{" "}
+            Fechar
           </button>
-          <button type="button" onClick={removeLastWord}>
-            {" "}
-            Remover Ultima palavra adicionada{" "}
+          <button type="button" onClick={(e) => removeLastWord(e)}>
+            Remover Ultima palavra adicionada
           </button>
         </div>
       </form>
