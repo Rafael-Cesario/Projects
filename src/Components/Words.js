@@ -23,7 +23,7 @@ const Words = ({
   };
 
 
-  const changingWord = (word, index) => {    
+  const changingWord = (e, word, index) => {    
     dispatch({
       type: 'CHANGE_WORD',
       listName: params.id,

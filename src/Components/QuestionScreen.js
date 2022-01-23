@@ -3,8 +3,6 @@ import { WordListStore } from "../context/WordListStore";
 import { useContext } from "react";
 import { useState } from "react";
 
-
-
 const QuestionScreen = ({ study, setScreen01, params}) => {
   const { wordListStore } = useContext(WordListStore);
   const inputAnswer = document.querySelector('.input-answer');
@@ -42,7 +40,7 @@ const QuestionScreen = ({ study, setScreen01, params}) => {
   const nextQuestion = (e, isRigthAnswer) => {
     e.preventDefault();
 
-    /* useState */
+    /* useState */    
     
     if (isRigthAnswer === true) {
       next02FindAnimation();
@@ -60,10 +58,16 @@ const QuestionScreen = ({ study, setScreen01, params}) => {
     if (study.studying.length === 0) {
       setScreen01(false);
       return
-    } 
-
-    (indexWord === study.studying.length - 1 || indexWord === study.studying.length) ? setIndexWord(0) : setIndexWord(indexWord + 1);
-
+    }
+    
+    if (isRigthAnswer === false && indexWord !== study.studying.length - 1) {
+      setIndexWord(indexWord + 1)
+    }
+    
+    if (isRigthAnswer === false && indexWord === study.studying.length - 1){      
+      setIndexWord(0)
+    }
+    
     setChangeToRightAnswer(false)
     setInputAnswerValue("");
     inputAnswer.focus();

@@ -7,63 +7,33 @@ import { useContext } from "react";
 function WordsContainer(props) {
   const { wordListStore } = useContext(WordListStore);
   const listName = useParams();
-  const terms = wordListStore[listName.id]["terms"];
-  const definitions = wordListStore[listName.id]["definitions"];
-  const termsAndDefinitions = [];
-  const maxperdiv = wordListStore[listName.id].perdiv;
+  const lists = Object.entries(wordListStore[listName.id].individualWordList);
   const learning = [];
   const onHold = [];
   const learned = [];
-  let obj = {}
-  
-  let x = 0;
-  while (x < terms.length) {
-    let tempArray = [];
-    let c = 0;
-    while (c < maxperdiv) {
-      if (terms[x] !== undefined) {
-        tempArray.push([terms[x], definitions[x]]);
-      }
-      x++;
-      c++;
-    }
-    termsAndDefinitions.push(tempArray.reverse());
-  }
 
-  termsAndDefinitions.forEach((td, index) => {
-    const status = wordListStore[listName.id].individualWordList[index]
-      ? wordListStore[listName.id].individualWordList[index].status
-      : "...";
-
-    const answerWith =
-      wordListStore[listName.id]?.individualWordList[index]?.answerWith ||
-      "Definition";
-
-      obj = {...obj, [index]: {
-        status: status,
-        answerWith: answerWith,
-        words: td,
-      }}
+  lists.forEach((list, index) => {
+    const status = list[1].status;
+    const words = list[1].words;
 
     switch (status) {
+  
       case "Diariamente":
-        learning.push([td, status, index]);
+        learning.push([words, status, index]);
         break;
-
+  
       case "Semanalmente":
-        learning.push([td, status, index]);
+        learning.push([words, status, index]);
         break;
-
+  
       case "Estudada":
-        learned.push([td, status, index]);
+        learned.push([words, status, index]);
         break;
-
+  
       default:
-        onHold.push([td, status, index]);
-    }
-  });
-
-  wordListStore[listName.id].individualWordList = obj
+        onHold.push([words, status, index]);
+    }  
+  })
 
   return (
     <div className="words-body" ref={props.varRef}>
@@ -96,6 +66,10 @@ function WordsContainer(props) {
     </div>
   );
 }
+
+export default WordsContainer;
+
+
 
 const Container = ({ array, listName, nameDiv, title }) => {
   const navigate = useNavigate();
@@ -146,4 +120,4 @@ const WordsMapPara = ({ word }) => {
   ));
 };
 
-export default WordsContainer;
+

@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useState, useContext } from "react";
 import { WordListStore } from "../context/WordListStore";
 
-function Configs() {
+function Configs({nameNew}) {
   const navigate = useNavigate();
   const listName = useParams();
 
@@ -13,14 +13,13 @@ function Configs() {
   const [incorrectInput, setIncorrectInput] = useState(false);
 
   const [inputMaxPerDiv, setInputMaxPerDiv] = useState( wordListStore[listName.id].perdiv );
-  const [inputListName, setInputListName] = useState("")
-  const [inputListDescription, setInputListDescription] = useState("")
+  const [inputListName, setInputListName] = useState(nameNew)
+  const [inputListDescription, setInputListDescription] = useState( wordListStore[listName.id].description)
 
 
   const saveConfigs = (e) => {
     const id = `${Math.floor(Math.random() * 999)}`;
     const name = inputListName !== "" ? `${inputListName}_${id}` : false;
-    console.log(name)
 
     dispatch({
       type: 'CHANGE_CONFIGS',

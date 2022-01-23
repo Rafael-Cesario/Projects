@@ -31,9 +31,10 @@ function WordList() {
     addWords: (e, objMenus) => {
       e.preventDefault();
       showFormsAnimation(e, objMenus);
-    },
-    
+    },    
   };
+
+  
 
   return (
     <div className="word-list">
@@ -65,7 +66,7 @@ function WordList() {
 
       <FormsAddWord listName={listName} objMenus={objMenus} />
 
-      <Configs />
+      <Configs nameNew={nameNew}/>
 
       <WordsContainer />
     </div>
