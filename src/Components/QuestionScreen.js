@@ -63,7 +63,7 @@ const QuestionScreen = ({ study, setScreen01, params }) => {
       return;
     }
 
-    indexWord === study.studying.length - 1
+    indexWord === study.studying.length - 1 || study.studying.length === 1
       ? setIndexWord(0)
       : isRigthAnswer === true
         ? setIndexWord(indexWord)
@@ -72,9 +72,7 @@ const QuestionScreen = ({ study, setScreen01, params }) => {
 
     setChangeToRightAnswer(false);
     setInputAnswerValue("");
-    inputAnswer.focus();
-
-    
+    inputAnswer.focus();    
   };
 
   const finding = () => {
