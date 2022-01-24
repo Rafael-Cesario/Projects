@@ -26,11 +26,10 @@ const QuestionScreen = ({ study, setScreen01, params }) => {
 
   const next = (e) => {
     e.preventDefault();
-    const find = finding();
     switch (whichFuncCall) {
       case "checkAnswer":
         finding();
-        animationCheckAnswer(find);
+        animationCheckAnswer(finding());
         setWhichFuncCall("NextQuestion");
         break;
 
@@ -52,8 +51,8 @@ const QuestionScreen = ({ study, setScreen01, params }) => {
 
       if (study.toStudy.length > 0) {
         study.studying.push({
-          term: study.toStudy[0][0],
-          definition: study.toStudy[0][1],
+          Term: study.toStudy[0][0],
+          Definition: study.toStudy[0][1],
         });
         study.toStudy.shift();
       }
@@ -66,26 +65,30 @@ const QuestionScreen = ({ study, setScreen01, params }) => {
 
     indexWord === study.studying.length - 1
       ? setIndexWord(0)
-      : setIndexWord(indexWord + 1);
+      : isRigthAnswer === true
+        ? setIndexWord(indexWord)
+        : setIndexWord(indexWord + 1);
+         
 
     setChangeToRightAnswer(false);
     setInputAnswerValue("");
     inputAnswer.focus();
+
+    
   };
 
   const finding = () => {
-    console.log(study.studying[indexWord]);
-    let word01 = study.studying[indexWord][answerWith[0]]?.trim().toUpperCase();
-    let word02 = inputAnswerValue?.trim().toUpperCase();
+    let word01 = study.studying[indexWord][answerWith[0]].trim().toUpperCase();
+    let word02 = inputAnswerValue.trim().toUpperCase();
 
-    if (word01 === word02 || word01?.split(", ").indexOf(word02) > -1) {
+    if (word01 === word02 || word01.split(", ").indexOf(word02) > -1) {
       setIsRightAnswer(true);
       return true;
-    } else {
-      setIsRightAnswer(false);
-      setChangeToRightAnswer(true);
-      return false;
     }
+
+    setIsRightAnswer(false);
+    setChangeToRightAnswer(true);
+    return false;
   };
 
   const markAnswerAsRight = (e) => {

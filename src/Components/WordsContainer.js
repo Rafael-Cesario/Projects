@@ -79,13 +79,14 @@ const Container = ({ array, listName, nameDiv, title }) => {
   return (
     <>
       <div id={nameDiv}></div>
+
       <div className={nameDiv}>
         <h2>{title}</h2>
         {array.map((td, index) => (
           <div
             key={index}
             className="container-words"
-            onClick={(e) => enterIndividualWords(e, index)}
+            onClick={(e) => enterIndividualWords(e, td[2])}
             onMouseEnter={(e) => animatedHover(e)}
             onMouseOut={(e) => animatedHoverOut(e)}
           >
@@ -93,7 +94,9 @@ const Container = ({ array, listName, nameDiv, title }) => {
               <span>Total: {td[0].length}</span>
               <span>{td[1]}</span>
             </div>
+
             <ContainerWords td={td[0]} />
+            
           </div>
         ))}
       </div>

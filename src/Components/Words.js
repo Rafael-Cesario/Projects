@@ -1,12 +1,7 @@
 import { deleteTermAndDefinitionAnimation } from "../gsap/animations";
-import gsap from "gsap";
 import { useState } from "react";
 
-const Words = ({
-  words,
-  dispatch,
-  params,
-}) => {
+const Words = ({words,dispatch,params,}) => {
   const [newWord, setNewWord] = useState("");
 
   const focusTextArea = (e, td) => {
