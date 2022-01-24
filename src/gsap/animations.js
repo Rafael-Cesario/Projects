@@ -1,6 +1,4 @@
 import gsap from "gsap";
-import { TimelineMax } from "gsap/gsap-core";
-import TextPlugin from "gsap/TextPlugin";
 
 export const animatedHover = (e) => {
   gsap.to(e.target, { scale: 1.08, duration: 0.5 });

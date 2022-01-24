@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useState, useContext } from "react";
 import { WordListStore } from "../context/WordListStore";
 
-function Configs({ nameNew, createLists }) {
+function Configs({ nameNew }) {
   const navigate = useNavigate();
   const listName = useParams();
 
@@ -24,6 +24,8 @@ function Configs({ nameNew, createLists }) {
     const id = `${Math.floor(Math.random() * 999)}`;
     const name = inputListName !== "" ? `${inputListName}_${id}` : false;
 
+    console.log(inputMaxPerDiv)
+
     dispatch({
       type: "CHANGE_CONFIGS",
       oldName: listName.id,
@@ -34,7 +36,6 @@ function Configs({ nameNew, createLists }) {
     });
 
     document.location.reload();
-    createLists(wordListStore, listName.id);
   };
 
   const showDeleteList = (e) => {

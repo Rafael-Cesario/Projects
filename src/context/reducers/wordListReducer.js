@@ -49,7 +49,7 @@ export const wordListReducer = (state, action) => {
 
       state[listName].description = action.newDescription;
       state[listName].perdiv = action.newPerdiv;
-      state[action.listName].individualWordList = createLists(state, action.listName);
+      state[listName].individualWordList = createLists(state, listName);
       return;
     }
 
