@@ -1,6 +1,6 @@
 # WordList 2.0
 
-WordList é um site para você aprender um novo idioma, mais especificamente para te ajudar a memorizar algumas palavras, você pode criar uma lista para o seu idioma, escolher quantas palavras por vez você quer estudar e pronto, é so começar a fazer 10 minutinhos 3x ao dia e você já vai estar fortalecendo o caminho até essas palavras no seu cérebro.
+WordList é um site para você aprender um novo idioma, mais especificamente para te ajudar a memorizar algumas palavras, você pode criar uma lista para o seu idioma, escolher quantas palavras por vez você quer estudar e pronto, é só começar a fazer 10 minutinhos 3x ao dia.
 
 ###### [Você pode usar o site clicando aqui.](https://wordlist-rafael.vercel.app/)
 
