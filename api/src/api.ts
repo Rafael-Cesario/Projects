@@ -26,4 +26,4 @@ app.delete("/", (req, res) => {
 	deleteTodo(req, res);
 });
 
-app.listen(4000, () => console.log("API is running"));
+export { app };
