@@ -1,0 +1,17 @@
+.div-side-bar {
+	background-color: rgb(245, 245, 245);
+	width: 20vw;
+	height: 100vh;
+	padding: 30px 20px;
+
+	.div-title {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+
+		.title {
+			color: black;
+			font-weight: 500;
+		}
+	}
+}
