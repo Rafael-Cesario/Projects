@@ -1,20 +1,14 @@
-### Dependencias API
-    "devDependencies": {
-        "@types/cors": "^2.8.12",
-        "@types/express": "^4.17.13",
-        "@types/mongoose": "^5.11.97",
-        "@types/node": "^17.0.16",
-        "express": "^4.17.2",
-        "ts-node-dev": "^1.1.8",
-        "typescript": "^4.5.5",
-        "webpack": "^5.68.0"
-      },
-    "dependencies": {
-        "cors": "^2.8.5",
-        "dotenv": "^16.0.0",
-        "mongoose": "^6.2.1"
-      }
+# To Do App
+![ezgif com-gif-maker (1)](https://user-images.githubusercontent.com/88716893/153306918-3167ee57-f2f7-4769-8384-a43f04c4e839.gif)
 
-### Dependencias To do List
-      "devDependencies": {},
-      "dependencies": {}
+## Feito com:
+<img width="40em" align="left" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" />
+<img width="40em" align="left" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/webpack/webpack-plain.svg" />
+<img width="40em" align="left" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jest/jest-plain.svg" />
+<img width="40em" align="left" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-plain.svg" />
+<img width="40em" align="left" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sass/sass-original.svg" />
+
+&nbsp;
+
+&nbsp;
+###### Este é apenas um projeto de estudo, talvez você encontre algumas linhas de codigo "curiosas".
