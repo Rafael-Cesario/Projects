@@ -8,4 +8,9 @@ const addEvents = (element: HTMLElement, events: [string, (e: Event) => void][])
 	events.forEach(([event, func]) => element.addEventListener(event, func));
 };
 
-export { addAttributes, addEvents };
+const addNodes = (parent: Element, nodes: {}) => {
+	const nodesToArray = Object.entries(nodes);
+	nodesToArray.forEach(([name, element]) => parent.append(element as Element));
+};
+
+export { addAttributes, addEvents, addNodes };
