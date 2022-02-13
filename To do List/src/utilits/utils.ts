@@ -13,4 +13,6 @@ const addNodes = (parent: Element, nodes: {}) => {
 	nodesToArray.forEach(([name, element]) => parent.append(element as Element));
 };
 
+
+
 export { addAttributes, addEvents, addNodes };

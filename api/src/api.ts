@@ -1,8 +1,9 @@
-import express from "express";
 import { connectDatabase } from "./database";
+import express from "express";
 import cors from "cors";
 
-import { allTodos, addTodo, updateTodo, deleteTodo } from "./utilits/methods";
+import todosRouter from "./routes/todos";
+import listsRouter from "./routes/lists";
 
 const app = express();
 connectDatabase();
@@ -10,20 +11,7 @@ connectDatabase();
 app.use(express.json());
 app.use(cors());
 
-app.get("/", (req, res) => {
-	allTodos(req, res);
-});
-
-app.post("/", (req, res) => {
-	addTodo(req, res);
-});
-
-app.put("/", (req, res) => {
-	updateTodo(req, res);
-});
-
-app.delete("/", (req, res) => {
-	deleteTodo(req, res);
-});
+app.use("/todos", todosRouter);
+app.use("/lists", listsRouter);
 
 export { app };

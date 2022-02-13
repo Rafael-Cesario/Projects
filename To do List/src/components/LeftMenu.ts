@@ -2,6 +2,8 @@ import "@fortawesome/fontawesome-free/js/all";
 import "../styles/LeftMenu.scss";
 
 import { elementFactory } from "../utilits/elementFactory";
+import { closeLeftBar } from "../utilits/animations";
+import { addNewList } from "../utilits/addNewList";
 
 const LeftMenu = () => {
 	elementFactory({
@@ -21,11 +23,16 @@ const LeftMenu = () => {
 
 					closeButton: elementFactory({
 						element: "button",
-						attributes: { class: "button-close-side-bar" },
+						attributes: { class: "button-close-side-bar", value: true },
+						events: [["click", () => closeLeftBar()]],
 						nodes: {
-							icon: elementFactory({
+							iconX: elementFactory({
 								element: "i",
 								attributes: { class: "fa-solid fa-square-xmark" },
+							}),
+							iconBars: elementFactory({
+								element: "i",
+								attributes: { class: "fa-solid fa-bars" },
 							}),
 						},
 					}),
@@ -35,49 +42,13 @@ const LeftMenu = () => {
 			divAllLists: elementFactory({
 				element: "div",
 				attributes: { class: "div-all-lists" },
-				nodes: {
-					divList: elementFactory({
-						element: "div",
-						attributes: { class: "div-list" },
-						nodes: {
-							listName: elementFactory({
-								element: "p",
-								text: "Tarefas",
-								attributes: { class: "list-name" },
-							}),
-
-							todoCount: elementFactory({
-								element: "p",
-								text: "32",
-								attributes: { class: "todo-count" },
-							}),
-						},
-					}),
-
-					lista2teste: elementFactory({
-						element: "div",
-						attributes: { class: "div-list" },
-						nodes: {
-							titlelista2teste: elementFactory({
-								element: "p",
-								text: "front-end",
-								attributes: { class: "list-name" },
-							}),
-
-							todocountlista2teste: elementFactory({
-								element: "p",
-								text: "8",
-								attributes: { class: "todo-count" },
-							}),
-						},
-					}),
-				},
 			}),
 
 			buttonAddNewList: elementFactory({
 				element: "button",
 				text: "+ Criar Lista",
 				attributes: { class: "button-new-list" },
+				events: [["click", addNewList]],
 			}),
 		},
 	});

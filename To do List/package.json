@@ -11,6 +11,7 @@
   "license": "MIT",
   "devDependencies": {
     "@fortawesome/fontawesome-free": "^6.0.0",
+    "@types/gsap": "^3.0.0",
     "@types/jest": "^27.4.0",
     "@types/jsdom": "^16.2.14",
     "@types/styled-components": "^5.1.22",
@@ -31,6 +32,7 @@
     "webpack-merge": "^5.8.0"
   },
   "dependencies": {
-    "bootstrap-icons": "^1.8.1"
+    "bootstrap-icons": "^1.8.1",
+    "gsap": "^3.9.1"
   }
 }

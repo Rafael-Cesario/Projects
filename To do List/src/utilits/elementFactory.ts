@@ -2,7 +2,7 @@ import { addAttributes, addEvents, addNodes } from "./utils";
 
 type elementPropertiesType = {
 	element: string;
-	text?: string;
+	text?: any;
 	attributes?: {};
 	events?: [string, (e: Event) => void][];
 	parent?: Element;

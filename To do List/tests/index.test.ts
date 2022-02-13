@@ -17,7 +17,14 @@ describe("testing my function for making html elements", () => {
 				}),
 			},
 		});
-
 		expect(elementTest).toBeDefined();
+	});
+
+	it("should create a input in the left side bar", () => {
+		const inputTest = elementFactory({
+			element: "input",
+			parent: document.querySelector(".div-side-bar") as HTMLDivElement,
+		});
+		expect(inputTest).toBeDefined();
 	});
 });

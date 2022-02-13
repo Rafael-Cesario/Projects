@@ -20,8 +20,8 @@ const addTodo = async (req: request, res: response): Promise<void> => {
 
 const updateTodo = async (req: request, res: response): Promise<void> => {
 	try {
-		const [updatePropertie, updateValue] = req.body.update;
 		const [findPropertie, findValue] = req.body.find;
+		const [updatePropertie, updateValue] = req.body.update;
 		await Todos.updateOne({ [findPropertie]: findValue }, { [updatePropertie]: updateValue });
 		allTodos(req, res);
 	} catch (error: any) {
