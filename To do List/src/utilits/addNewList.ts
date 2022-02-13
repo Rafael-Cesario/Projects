@@ -1,4 +1,5 @@
 import { elementFactory } from "./elementFactory";
+import { saveListOnDatabase } from "./databaseMethods";
 
 const addNewList = () => {
 	const newInput = elementFactory({
@@ -34,6 +35,7 @@ const saveNewList = (e: Event) => {
 		},
 	});
 
+	saveListOnDatabase(input.value);
 	input.parentNode?.removeChild(input);
 };
 

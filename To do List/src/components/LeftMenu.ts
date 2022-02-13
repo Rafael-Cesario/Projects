@@ -5,6 +5,8 @@ import { elementFactory } from "../utilits/elementFactory";
 import { closeLeftBar } from "../utilits/animations";
 import { addNewList } from "../utilits/addNewList";
 
+import { lists } from "./lists";
+
 const LeftMenu = () => {
 	elementFactory({
 		element: "div",
@@ -42,6 +44,7 @@ const LeftMenu = () => {
 			divAllLists: elementFactory({
 				element: "div",
 				attributes: { class: "div-all-lists" },
+				nodes: lists(),
 			}),
 
 			buttonAddNewList: elementFactory({

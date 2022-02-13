@@ -87,11 +87,13 @@ $radius: 5px;
 				transition: 0.3s;
 				width: 80%;
 				overflow: hidden;
+				pointer-events: none;
 			}
 
 			.todo-count {
 				color: black;
 				transition: 0.3s;
+				pointer-events: none;
 			}
 
 			&:active {

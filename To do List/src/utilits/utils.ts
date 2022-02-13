@@ -13,6 +13,9 @@ const addNodes = (parent: Element, nodes: {}) => {
 	nodesToArray.forEach(([name, element]) => parent.append(element as Element));
 };
 
+const openList = (e: Event) => {
+	const div = e.target as HTMLDivElement;
+	console.log(div.children[0].textContent);
+};
 
-
-export { addAttributes, addEvents, addNodes };
+export { addAttributes, addEvents, addNodes, openList };
