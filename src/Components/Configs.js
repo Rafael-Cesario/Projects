@@ -29,7 +29,7 @@ function Configs({ nameNew }) {
 			newPerdiv: inputMaxPerDiv,
 		});
 
-		document.location.reload();
+		navigate("/" + name);
 	};
 
 	const showDeleteList = (e) => {
