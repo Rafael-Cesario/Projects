@@ -1,13 +1,11 @@
-import { createContext, useReducer, useEffect } from "react";
+import { createContext, useEffect } from "react";
 import { wordListReducer } from "./reducers/wordListReducer";
-import produce from "immer";
+import { useImmerReducer } from "use-immer";
 
 export const WordListStore = createContext();
 
-const myWordReducer = produce(wordListReducer);
-
 const WordListStoreProvider = ({ children }) => {
-	const [wordListStore, dispatch] = useReducer(myWordReducer, {}, () => {
+	const [wordListStore, dispatch] = useImmerReducer(wordListReducer, {}, () => {
 		const data = localStorage.getItem("wordListStore");
 		return data ? JSON.parse(data) : {};
 	});

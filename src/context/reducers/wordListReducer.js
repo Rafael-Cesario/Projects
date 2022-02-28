@@ -11,28 +11,28 @@ export const wordListReducer = (draft, action) => {
 				lang02: "",
 				individualWordList: {},
 			};
-			return draft;
+			return;
 		}
 
 		case "ADD_WORD": {
 			draft[action.listName].terms.push(action.term);
 			draft[action.listName].definitions.push(action.definition);
 			draft[action.listName].individualWordList = createLists(draft, action.listName);
-			return draft;
+			return;
 		}
 
 		case "REMOVE_LAST_WORD": {
 			draft[action.listName].terms.pop();
 			draft[action.listName].definitions.pop();
 			draft[action.listName].individualWordList = createLists(draft, action.listName);
-			return draft;
+			return;
 		}
 
 		case "REMOVE_WORD": {
 			draft[action.listName].terms = draft[action.listName].terms.filter((word) => word !== action.word[0]);
 			draft[action.listName].definitions = draft[action.listName].definitions.filter((word) => word !== action.word[1]);
 			draft[action.listName].individualWordList[action.listIndex].words = draft[action.listName].individualWordList[action.listIndex].words.filter((word, index) => index !== action.indexIndividual);
-			return draft;
+			return;
 		}
 
 		case "CHANGE_CONFIGS": {
@@ -42,13 +42,14 @@ export const wordListReducer = (draft, action) => {
 
 			if (newName !== oldName) {
 				draft[action.newName] = { ...draft[action.oldName] };
-				draft[action.newName].id = action.newId;
 				draft = filterObject(draft, action.oldName);
+				draft[action.newName].id = action.newId;
 			}
 
 			draft[listName].description = action.newDescription;
 			draft[listName].perdiv = action.newPerdiv;
 			draft[listName].individualWordList = createLists(draft, listName);
+
 			return;
 		}
 
@@ -61,26 +62,26 @@ export const wordListReducer = (draft, action) => {
 			const indexOfWhoChange = termIndexGlobal > -1 ? termIndexGlobal : definitionIndexGlobal;
 			draft[action.listName][changeWhoGlobal][indexOfWhoChange] = action.newWord;
 			draft[action.listName].individualWordList[action.listIndex].words[action.wordIndex][changeWhoIndividual] = action.newWord;
-			return draft;
+			return;
 		}
 
-		case "DELET_LIST": {
+		case "DELETE_LIST": {
 			draft = filterObject(draft, action.listName);
 			return draft;
 		}
 
 		case "CHANGE_ANSWER_WITH": {
 			draft[action.listName].individualWordList[action.listIndex].answerWith = action.answerWith;
-			return draft;
+			return;
 		}
 
 		case "CHANGE_LIST_STATUS": {
 			draft[action.listName].individualWordList[action.listIndex].status = action.status;
-			return draft;
+			return;
 		}
 
 		default:
-			return draft;
+			return;
 	}
 };
 

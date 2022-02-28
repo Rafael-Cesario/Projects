@@ -29,7 +29,7 @@ function Configs({ nameNew }) {
 			newPerdiv: inputMaxPerDiv,
 		});
 
-		navigate("/");
+		document.location.reload();
 	};
 
 	const showDeleteList = (e) => {
@@ -54,7 +54,7 @@ function Configs({ nameNew }) {
 		}
 
 		dispatch({
-			type: "DELET_LIST",
+			type: "DELETE_LIST",
 			listName: listName.id,
 		});
 
