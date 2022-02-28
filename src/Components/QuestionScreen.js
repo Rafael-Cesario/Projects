@@ -57,10 +57,14 @@ const QuestionScreen = ({ study, setScreen01, params }) => {
 		}
 
 		if (isRigthAnswer === false) {
-			setIndexWord(indexWord + 1);
+			if (indexWord >= study.studying.length - 1) {
+				setIndexWord(0);
+			} else {
+				setIndexWord(indexWord + 1);
+			}
 		}
 
-		if (indexWord === study.studying.length - 1 || study.studying.length === 1) {
+		if (indexWord >= study.studying.length - 1) {
 			setIndexWord(0);
 		}
 
