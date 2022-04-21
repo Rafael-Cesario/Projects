@@ -1,10 +1,5 @@
-<<<<<<< HEAD
-=======
-# Lab
+![banner](https://user-images.githubusercontent.com/88716893/164409626-28880df9-23d9-4c40-951c-6f1a17d56149.png)
 
-Repositório para armazenar meus projetos de estudo.
-
->>>>>>> fd9145fc335e047a73d4f629208daf6cf4ea2037
 ## Projetos
 
 ### [JWT Login api](./01_Authentication_JWT/)
