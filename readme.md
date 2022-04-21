@@ -1,3 +1,10 @@
+<<<<<<< HEAD
+=======
+# Lab
+
+Repositório para armazenar meus projetos de estudo.
+
+>>>>>>> fd9145fc335e047a73d4f629208daf6cf4ea2037
 ## Projetos
 
 ### [JWT Login api](./01_Authentication_JWT/)
