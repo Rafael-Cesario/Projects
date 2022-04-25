@@ -29,4 +29,13 @@
     - Pode ser instalado
     - Contém um manifest.json
     - Armazena network requests em cache mantendo sempre 3 arquivos
-    - Funciona offline
+    - Funciona offline  
+    
+### [SNotes](./04_s_notes/)
+
+    - babel
+    - react
+    - webpack
+    - mongoDB
+    - typescript
+    - styled-components

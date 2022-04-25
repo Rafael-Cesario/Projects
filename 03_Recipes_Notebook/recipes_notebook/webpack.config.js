@@ -27,26 +27,27 @@ module.exports = {
 
 	devtool: "inline-source-map",
 
-	plugins: [
-		new HtmlWebpackPlugin({
-			filename: "index.html",
-			title: "Recipes",
-			chunks: ["index"],
-			template: "src/templates/index.html",
-		}),
-		new HtmlWebpackPlugin({
-			filename: "about.html",
-			title: "About",
-			chunks: ["about"],
-			template: "src/templates/index.html",
-		}),
-	],
+	// plugins: [
+	// 	new HtmlWebpackPlugin({
+	// 		filename: "index.html",
+	// 		title: "Recipes",
+	// 		chunks: ["index"],
+	// 		template: "src/templates/index.html",
+	// 	}),
+	// 	new HtmlWebpackPlugin({
+	// 		filename: "about.html",
+	// 		title: "About",
+	// 		chunks: ["about"],
+	// 		template: "src/templates/index.html",
+	// 	}),
+	// ],
 
 	module: {
 		rules: [
 			{
 				test: /\.tsx?$/,
 				use: "ts-loader",
+				include: [path.resolve(__dirname, "src")],
 				exclude: /node_modules/,
 			},
 		],
