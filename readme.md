@@ -17,13 +17,7 @@
     - lit-html
     - webcomponents
     - typescript
-    - webPack 
-
-    - Pode ser instalado
-    - Contém um manifest.json
-    - Armazena network requests em cache mantendo sempre 3 arquivos
-    - Funciona offline  
-    
+    - webPack     
     
 ### [BirthDay Reminder](./02_Birthday_Reminder/)
 
