@@ -1,7 +1,8 @@
 ![banner](https://user-images.githubusercontent.com/88716893/164410744-1de53f9a-719d-4955-83b5-5f6787401786.png)
 
 ## Projetos
-###### ***Do ultimo para o primeiro***
+###### Dica: Use a ferramenta de busca em página para procurar por uma tecnológia. [ CTRL + F ]
+###### ***Projetos listados do ultimo para o primeiro***
 
 ### [SNotes](./04_s_notes/)
 
