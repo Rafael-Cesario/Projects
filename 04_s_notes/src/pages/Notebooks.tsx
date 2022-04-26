@@ -1,11 +1,15 @@
 import React from "react";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
+
+//Components
+import { Search } from "../components/searchbar";
+import { Notebook } from "../components/Notebook";
 
 const Notebooks = () => {
 	return (
 		<div>
-			<h1>Notebooks page</h1>
-			<Link to="/notes">Notes page</Link>
+			<Search />
+			<Notebook />
 		</div>
 	);
 };
