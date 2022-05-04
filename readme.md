@@ -12,6 +12,8 @@
     - mongoDB
     - typescript
     - styled-components
+    - json-server
+    - gsap
     
 ### [PWA Template](./03_Recipes_Notebook/)
 

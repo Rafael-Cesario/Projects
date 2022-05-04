@@ -1,15 +1,24 @@
 import React from "react";
-// import { Link } from "react-router-dom";
 
 //Components
-import { Search } from "../components/searchbar";
-import { Notebook } from "../components/Notebook";
+import { Search } from "../components/SearchBar";
+import { NotebookContainer } from "../components/NotebookContainer";
+import { PopUpMessage } from "../components/PopUpMessage";
+
+//Context
+import { MessageContextProvider } from "../context/messageContext";
+import { NotebookContextProvider } from "../context/notebooksContext";
 
 const Notebooks = () => {
 	return (
 		<div>
-			<Search />
-			<Notebook />
+			<NotebookContextProvider>
+				<Search />
+				<MessageContextProvider>
+					<NotebookContainer />
+					<PopUpMessage />
+				</MessageContextProvider>
+			</NotebookContextProvider>
 		</div>
 	);
 };

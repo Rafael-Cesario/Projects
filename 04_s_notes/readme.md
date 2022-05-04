@@ -1,8 +1,9 @@
 ###### **_work in progress..._**
 
 # SNotes
+// Adicionar favicon aqui
 
-Aplicativo para anotações, uma espécie de um OneNote.
+Aplicativo para anotações, uma espécie de OneNote.
 
 # Feito com
 
@@ -12,6 +13,8 @@ Aplicativo para anotações, uma espécie de um OneNote.
     - mongoDB
     - typescript
     - styled-components
+    - json-server
+    - gsap
 
 # Funcionalidades
 

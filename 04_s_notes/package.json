@@ -4,8 +4,9 @@
 	"description": "",
 	"main": "index.js",
 	"scripts": {
-		"start": "webpack server --hot --mode development --open",
-		"build": "webpack --mode production"
+		"start": "webpack server --mode development --hot --open",
+		"build": "webpack --mode production",
+		"db": "json-server --watch data/db.json"
 	},
 	"keywords": [],
 	"author": "",
@@ -29,7 +30,10 @@
 		"webpack-dev-server": "^4.8.1"
 	},
 	"dependencies": {
+		"gsap": "^3.10.4",
+		"json-server": "^0.17.0",
 		"react": "^18.0.0",
+		"react-async": "^10.0.1",
 		"react-dom": "^18.0.0",
 		"react-router-dom": "^6.3.0",
 		"styled-components": "^5.3.5"
