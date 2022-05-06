@@ -2,6 +2,8 @@ import styled from "styled-components";
 
 const colors = {
 	BlueOne: "#2a5da8",
+	BlackTwo: "#1b1b1b",
+	RedOne: "#963232",
 };
 
 const NotebookStyle = styled.div`
@@ -59,6 +61,7 @@ const NotebookStyle = styled.div`
 			pointer-events: none;
 			user-select: none;
 			font-weight: lighter;
+			text-transform: capitalize;
 		}
 	}
 

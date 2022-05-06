@@ -15,15 +15,15 @@ const NewNotebook: React.FC = () => {
 		setRenderDiv(!renderDiv);
 	};
 
-	const handleSaveNB = (e: React.SyntheticEvent) => {
+	const handleSaveNB = async (e: React.SyntheticEvent) => {
 		e.preventDefault();
 
 		if (!nameNB) return warningMessage(setMessage, "O campo nome esta Vazio", setBGcolor, "crimson");
 
 		warningMessage(setMessage, "Novo Caderno Adicionado", setBGcolor, "#2a5da8");
 
-		saveOnDB(nameNB);
-		fetchNotebooks(setNotebooks);
+		await saveOnDB(nameNB);
+		await fetchNotebooks(setNotebooks);
 		openCloseNewNB();
 		setNameNB("");
 	};
@@ -35,10 +35,10 @@ const NewNotebook: React.FC = () => {
 			</button>
 
 			{renderDiv && (
-				<form className="note" onSubmit={(e) => handleSaveNB(e)}>
+				<form className="note" onSubmit={handleSaveNB}>
 					<input type="text" placeholder="Nome" className="input-new-nb" onChange={(e) => setNameNB(e.target.value)} />
 
-					<button type="submit" className="save-button" onClick={handleSaveNB}>
+					<button type="submit" className="save-button">
 						Salvar
 					</button>
 

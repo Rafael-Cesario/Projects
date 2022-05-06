@@ -31,8 +31,16 @@ const filterNotebooks = async (notebookName: string, setNotebooks: React.Dispatc
 const fetchOneNB = async (id: number, setData: React.Dispatch<React.SetStateAction<NB>>) => {
 	const request = await fetch(`${URL}?id=${id}`);
 	const [notebook] = await request.json();
-	console.log(notebook);
 	setData(notebook);
 };
 
-export { fetchNotebooks, saveOnDB, filterNotebooks, fetchOneNB };
+const deleteNB = async (id: number) => {
+	const options = {
+		headers: HEADERS,
+		method: "DELETE",
+	};
+
+	await fetch(`${URL}/${id}`, options);
+};
+
+export { fetchNotebooks, saveOnDB, filterNotebooks, fetchOneNB, deleteNB };
