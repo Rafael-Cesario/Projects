@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 const colors = {
-	BlueOne: "#2a5da8",
+	BlueOne: "#294e86",
 	BlackTwo: "#1b1b1b",
 	RedOne: "#963232",
 };

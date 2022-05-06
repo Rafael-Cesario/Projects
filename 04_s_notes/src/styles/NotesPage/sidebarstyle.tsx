@@ -3,15 +3,20 @@ import styled from "styled-components";
 import { colors } from "../Notebook.style";
 
 const SidebarStyle = styled.div`
+	position: absolute;
+	top: 0;
+	left: -30rem;
+	background-color: ${colors.BlackTwo};
+
 	font-family: "Oswald";
 	padding: 1.5rem;
-	width: 10rem;
-
-	background-color: #181818;
+	width: 20rem;
+	min-height: 100vh;
 
 	.buttons {
 		display: flex;
 		justify-content: space-between;
+		align-items: center;
 
 		a {
 			color: white;
@@ -35,6 +40,10 @@ const SidebarStyle = styled.div`
 				color: ${colors.BlueOne};
 			}
 		}
+
+		.icon {
+			font-size: 2rem;
+		}
 	}
 
 	h2 {
@@ -47,6 +56,7 @@ const SidebarStyle = styled.div`
 		font-weight: 300;
 		cursor: pointer;
 		color: #dadada;
+		text-transform: capitalize;
 
 		&:hover {
 			color: ${colors.BlueOne};
