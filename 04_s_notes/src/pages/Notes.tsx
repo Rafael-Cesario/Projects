@@ -37,8 +37,10 @@ const Notes = () => {
 				</button>
 
 				<Sidebar NB={NB} configs={configs} setConfigs={setConfigs} />
-				{configs && <Configs NB={NB} />}
-				<NoteArea />
+
+				{configs && <Configs NB={NB} setConfigs={setConfigs} />}
+
+				<NoteArea NB={NB} />
 
 				<PopUpMessage />
 			</NotesStyle>

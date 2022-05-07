@@ -6,12 +6,15 @@ const ConfigsStyle = styled.div`
 	position: absolute;
 	top: 20%;
 	left: 50%;
-	transform: translate(-50%, -50%);
+	transform: translate(-50%, 0);
 
 	font-family: "Oswald";
-	background-color: ${colors.BlackTwo};
-	width: 30rem;
-	padding: 10px;
+	background-color: #f0f0f0;
+	box-shadow: 10px 10px 5px #00000089;
+	color: black;
+	width: 100%;
+	max-width: 60rem;
+	padding: 50px;
 	border-radius: 5px;
 
 	h1 {
@@ -25,9 +28,8 @@ const ConfigsStyle = styled.div`
 			flex-direction: row;
 
 			p {
-				font-weight: 300;
-				color: #dadada;
 				margin-right: 1rem;
+				font-weight: 500;
 			}
 
 			input {
@@ -35,10 +37,10 @@ const ConfigsStyle = styled.div`
 				background-color: transparent;
 				border: none;
 				outline: none;
-				color: white;
-				font-weight: 300;
+				font-weight: 500;
 				::placeholder {
-					color: white;
+					font-weight: 500;
+					color: #000;
 				}
 			}
 		}
@@ -52,7 +54,6 @@ const ConfigsStyle = styled.div`
 			font-family: "Oswald";
 			background-color: transparent;
 			outline: none;
-			color: white;
 			border: none;
 			font-size: 1rem;
 			cursor: pointer;

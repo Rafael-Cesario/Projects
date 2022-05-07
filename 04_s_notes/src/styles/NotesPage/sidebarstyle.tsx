@@ -7,6 +7,7 @@ const SidebarStyle = styled.div`
 	top: 0;
 	left: -30rem;
 	background-color: ${colors.BlackTwo};
+	box-shadow: 2px 2px 2px #00000045;
 
 	font-family: "Oswald";
 	padding: 1.5rem;

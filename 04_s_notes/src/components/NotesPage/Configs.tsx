@@ -7,9 +7,10 @@ interface NBprops {
 		name: string;
 		id: number;
 	};
+	setConfigs: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const Configs: React.FC<NBprops> = ({ NB }) => {
+const Configs: React.FC<NBprops> = ({ NB, setConfigs }) => {
 	const [showDeleteDiv, setShowDeleteDiv] = useState(false);
 
 	return (

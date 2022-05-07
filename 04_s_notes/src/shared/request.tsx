@@ -43,4 +43,22 @@ const deleteNB = async (id: number) => {
 	await fetch(`${URL}/${id}`, options);
 };
 
-export { fetchNotebooks, saveOnDB, filterNotebooks, fetchOneNB, deleteNB };
+const saveNotesOnDB = async (id: string, name: string, notes: string) => {
+	const body = { name, notes };
+
+	const options = {
+		headers: HEADERS,
+		method: "PUT",
+		body: JSON.stringify(body),
+	};
+
+	await fetch(`${URL}/${id}`, options);
+};
+
+const fetchNotes = async (id: string) => {
+	const request = await fetch(`${URL}/${id}`);
+	const response = await request.json();
+	return response;
+};
+
+export { fetchNotebooks, saveOnDB, filterNotebooks, fetchOneNB, deleteNB, saveNotesOnDB, fetchNotes };

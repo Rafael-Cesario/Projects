@@ -1,7 +1,8 @@
 ###
-POST http://localhost:3000/notebooks
+PUT  http://localhost:3000/notebooks/1
 Content-Type: application/json
 
 {
-  "name" : "ingles"
+  "name" : "Programação",
+  "notes": "Teste"
 }
