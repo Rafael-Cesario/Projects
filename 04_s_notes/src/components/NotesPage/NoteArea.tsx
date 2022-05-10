@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import DOMPurify from "dompurify";
 import { NoteAreaStyle } from "../../styles/NotesPage/NoteAreaStyle";
 import { ButtonsNotearea } from "./ButtonsNoteArea";
@@ -7,6 +7,7 @@ import { fetchNotes, fetchOneNB, saveNotesOnDB } from "../../shared/request";
 import { useParams } from "react-router-dom";
 import { useEffect } from "react";
 import { useRef } from "react";
+import { addKeyEvents } from "../../shared/shotkeys";
 
 interface NBprops {
 	NB: { name: string; id: number };
@@ -20,7 +21,6 @@ const NoteArea: React.FC<NBprops> = () => {
 		const paragraph = paraNotes.current as HTMLParagraphElement;
 		const notes = paragraph.innerHTML || "";
 		const { name } = await fetchOneNB(Number(id));
-
 		saveNotesOnDB(id!, name, notes);
 	};
 
@@ -37,10 +37,13 @@ const NoteArea: React.FC<NBprops> = () => {
 
 	useEffect(() => {
 		attNotes();
+		addKeyEvents(saveNotes);
 
-		setInterval(() => {
+		const intervalSaveNotes = setInterval(() => {
 			saveNotes();
-		}, 100000);
+		}, 60000);
+
+		return () => clearInterval(intervalSaveNotes);
 	}, []);
 
 	return (

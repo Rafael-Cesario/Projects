@@ -1,20 +1,19 @@
-import React, { useCallback, useEffect } from "react";
+import React, {  useContext, useEffect } from "react";
+import { useParams } from "react-router-dom";
 
 import { ButtonNoteStyle } from "../../styles/NotesPage/buttonsNoteStyle";
-
-import { useImmerReducer } from "use-immer";
 
 import { AiOutlineOrderedList, AiOutlineUnorderedList } from "react-icons/ai";
 import { FaUndoAlt, FaRedoAlt } from "react-icons/fa";
 import { BsJustifyLeft, BsJustify, BsJustifyRight } from "react-icons/bs";
+
 import { changeText } from "../../shared/shotkeys";
-import { colorReducer } from "../../reducer/colorReducer";
-import { fetchNotes, saveColorsDB } from "../../shared/request";
-import { useParams } from "react-router-dom";
+import { fetchNotes } from "../../shared/request";
+import { NotebookContext } from "../../context/notebooksContext";
 
 const ButtonsNotearea = () => {
 	const { id } = useParams();
-	const [colors, dispatchColors] = useImmerReducer(colorReducer, { color: ["#e2e2e2", "#d8d8d8", "#307eac", "#dfba16", "#b13838"] });
+	const { colors, dispatchColors } = useContext(NotebookContext);
 
 	const changeFontColor = (value: string) => {
 		dispatchColors({ type: "CHANGECOLOR", payload: { colorIndex: 0, newColor: value } });
@@ -29,13 +28,6 @@ const ButtonsNotearea = () => {
 		const { favColors } = await fetchNotes(id!);
 		dispatchColors({ type: "ATTCOLORS", payload: { colors: favColors } });
 	};
-
-	const saveColors = useCallback(() => {
-		setInterval(() => {
-			console.log(colors.color);
-			saveColorsDB(colors, id!);
-		}, 2000);
-	}, [colors.color]);
 
 	useEffect(() => {
 		attColors();

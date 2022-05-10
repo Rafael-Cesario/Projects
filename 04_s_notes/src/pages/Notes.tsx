@@ -10,6 +10,7 @@ import { PopUpMessage } from "../components/PopUpMessage";
 import { MessageContextProvider } from "../context/messageContext";
 import { fetchOneNB, saveColorsDB, saveNotesOnDB } from "../shared/request";
 import { NotesStyle } from "../styles/NotesPage/NotesStyle";
+import { NotebookContextProvider } from "../context/notebooksContext";
 
 import { openSidebar } from "../shared/animations";
 
@@ -36,19 +37,21 @@ const Notes = () => {
 
 	return (
 		<MessageContextProvider>
-			<NotesStyle>
-				<button className="open-side-bar" onClick={(e) => openSidebar(false)}>
-					<GiHamburgerMenu className="icon" />
-				</button>
+			<NotebookContextProvider>
+				<NotesStyle>
+					<button className="open-side-bar" onClick={(e) => openSidebar(false)}>
+						<GiHamburgerMenu className="icon" />
+					</button>
 
-				<Sidebar NB={NB} configs={configs} setConfigs={setConfigs} />
+					<Sidebar NB={NB} configs={configs} setConfigs={setConfigs} />
 
-				{configs && <Configs NB={NB} setConfigs={setConfigs} />}
+					{configs && <Configs NB={NB} setConfigs={setConfigs} />}
 
-				<NoteArea NB={NB} />
+					<NoteArea NB={NB} />
 
-				<PopUpMessage />
-			</NotesStyle>
+					<PopUpMessage />
+				</NotesStyle>
+			</NotebookContextProvider>
 		</MessageContextProvider>
 	);
 };

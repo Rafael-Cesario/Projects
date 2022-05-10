@@ -1,3 +1,5 @@
+import { saveNotesOnDB } from "./request";
+
 const changeText = (change: string, value?: string) => {
 	switch (change) {
 		case "b":
@@ -85,9 +87,22 @@ const changeText = (change: string, value?: string) => {
 };
 
 document.addEventListener("keyup", (e) => {
-	if (!e.altKey || !e.ctrlKey) return;
-	const key = e.key;
+	if (!e.altKey) return;
+	e.preventDefault();
+	const key = e.key.toLocaleLowerCase();
 	changeText(key);
 });
 
-export { changeText };
+const addKeyEvents = (saveNotes: () => void) => {
+	document.addEventListener("keyup", (e) => {
+		if (!e.altKey) return;
+
+		e.preventDefault();
+
+		const key = e.key.toLowerCase();
+
+		if (key === "s") saveNotes();
+	});
+};
+
+export { changeText, addKeyEvents };
