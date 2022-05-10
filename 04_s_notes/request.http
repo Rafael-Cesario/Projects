@@ -1,8 +1,29 @@
-###
-PUT  http://localhost:3000/notebooks/1
+POST http://localhost:3000/notebooks
 Content-Type: application/json
 
 {
-  "name" : "Programação",
-  "notes": "Teste"
+  "name" : "Programação"
 }
+
+
+###
+PATCH  http://localhost:3000/notebooks/1
+Content-Type: application/json
+
+{
+  "notes" : "Teste"
+}
+
+
+###
+PATCH  http://localhost:3000/notebooks/1
+Content-Type: application/json
+
+{
+  "favColors" : ["teste"]
+}
+
+
+###
+GET   http://localhost:3000/notebooks/1
+Content-Type: application/json

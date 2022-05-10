@@ -28,10 +28,10 @@ const filterNotebooks = async (notebookName: string, setNotebooks: React.Dispatc
 	setNotebooks(response);
 };
 
-const fetchOneNB = async (id: number, setData: React.Dispatch<React.SetStateAction<NB>>) => {
+const fetchOneNB = async (id: number) => {
 	const request = await fetch(`${URL}?id=${id}`);
 	const [notebook] = await request.json();
-	setData(notebook);
+	return notebook;
 };
 
 const deleteNB = async (id: number) => {
@@ -48,7 +48,7 @@ const saveNotesOnDB = async (id: string, name: string, notes: string) => {
 
 	const options = {
 		headers: HEADERS,
-		method: "PUT",
+		method: "PATCH",
 		body: JSON.stringify(body),
 	};
 
@@ -56,9 +56,27 @@ const saveNotesOnDB = async (id: string, name: string, notes: string) => {
 };
 
 const fetchNotes = async (id: string) => {
-	const request = await fetch(`${URL}/${id}`);
-	const response = await request.json();
-	return response;
+	try {
+		const request = await fetch(`${URL}/${id}`);
+		const response = await request.json();
+		return response;
+	} catch (error: any) {
+		console.log(error.message);
+	}
 };
 
-export { fetchNotebooks, saveOnDB, filterNotebooks, fetchOneNB, deleteNB, saveNotesOnDB, fetchNotes };
+const saveColorsDB = async (colors: {}, id: string) => {
+	const body = {
+		favColors: colors,
+	};
+
+	const options = {
+		headers: HEADERS,
+		method: "PATCH",
+		body: JSON.stringify(body),
+	};
+
+	await fetch(`${URL}/${id}`, options);
+};
+
+export { fetchNotebooks, saveOnDB, filterNotebooks, fetchOneNB, deleteNB, saveNotesOnDB, fetchNotes, saveColorsDB };

@@ -4,9 +4,9 @@
 	"description": "",
 	"main": "index.js",
 	"scripts": {
-		"start": "webpack server --mode development --hot --open",
-		"build": "webpack --mode production",
-		"db": "json-server --watch data/db.json"
+		"dev": "webpack server --mode development --hot --open",
+		"db": "json-server --watch data/db.json",
+		"build": "webpack --mode production"
 	},
 	"keywords": [],
 	"author": "",
@@ -40,6 +40,7 @@
 		"react-dom": "^18.0.0",
 		"react-icons": "^4.3.1",
 		"react-router-dom": "^6.3.0",
-		"styled-components": "^5.3.5"
+		"styled-components": "^5.3.5",
+		"use-immer": "^0.7.0"
 	}
 }

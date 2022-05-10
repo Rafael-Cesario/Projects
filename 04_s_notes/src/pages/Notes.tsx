@@ -8,7 +8,7 @@ import { NoteArea } from "../components/NotesPage/NoteArea";
 import { Sidebar } from "../components/NotesPage/Sidebar";
 import { PopUpMessage } from "../components/PopUpMessage";
 import { MessageContextProvider } from "../context/messageContext";
-import { fetchOneNB } from "../shared/request";
+import { fetchOneNB, saveColorsDB, saveNotesOnDB } from "../shared/request";
 import { NotesStyle } from "../styles/NotesPage/NotesStyle";
 
 import { openSidebar } from "../shared/animations";
@@ -21,12 +21,17 @@ interface NB {
 }
 
 const Notes = () => {
-	const params = useParams();
+	const { id } = useParams();
 	const [configs, setConfigs] = useState(false);
 	const [NB, setNBdata] = useState<NB>({ name: "", id: 0 });
 
+	const attNB = async () => {
+		const NB = await fetchOneNB(Number(id));
+		setNBdata(NB);
+	};
+
 	useEffect(() => {
-		fetchOneNB(Number(params.id), setNBdata);
+		attNB();
 	}, []);
 
 	return (
