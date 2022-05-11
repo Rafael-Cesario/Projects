@@ -4,6 +4,7 @@ import { Link, useParams } from "react-router-dom";
 import { NotesContext } from "../../context/notesContext";
 import { openSidebar } from "../../shared/animations";
 import { fetchNotes } from "../../shared/request";
+import { colors } from "../../styles/Notebook.style";
 
 import { SidebarStyle } from "../../styles/NotesPage/sidebarstyle";
 
@@ -12,8 +13,6 @@ interface NBprops {
 		name: string;
 		id: number;
 	};
-	configs: boolean;
-	setConfigs: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 interface AllPagesProps {
@@ -22,10 +21,10 @@ interface AllPagesProps {
 	setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
 }
 
-const Sidebar: React.FC<NBprops> = ({ NB, setConfigs, configs }) => {
+const Sidebar: React.FC<NBprops> = ({ NB }) => {
 	const { id } = useParams();
 	const allPagesRef = useRef<HTMLParagraphElement>(null);
-	const { pages, setPages, currentPage, setCurrentPage } = useContext(NotesContext);
+	const { pages, setPages, currentPage, setCurrentPage, pageName, configs, setConfigs } = useContext(NotesContext);
 
 	const showConfigs = () => {
 		setConfigs(!configs);
@@ -36,9 +35,9 @@ const Sidebar: React.FC<NBprops> = ({ NB, setConfigs, configs }) => {
 		const pages = divPages.childNodes as NodeListOf<HTMLParagraphElement>;
 		const page = pages[currentPage];
 
-		pages.forEach((page) => (page.style.color = "white"));
+		pages.forEach((page) => (page.style.color = "#d1d1d1"));
 
-		if (page) page.style.color = "crimson";
+		if (page) page.style.color = colors.BlueTwo;
 	};
 
 	const attPages = async () => {
@@ -48,7 +47,7 @@ const Sidebar: React.FC<NBprops> = ({ NB, setConfigs, configs }) => {
 
 	useEffect(() => {
 		attPages();
-	}, []);
+	}, [pageName]);
 
 	useEffect(() => {
 		highlightPage();
@@ -61,7 +60,7 @@ const Sidebar: React.FC<NBprops> = ({ NB, setConfigs, configs }) => {
 					<GiHamburgerMenu className="icon" />
 				</button>
 				<Link to={"/"}>Voltar</Link>
-				<button onClick={showConfigs}>Configs</button>
+				<button onClick={e => showConfigs()}>Configs</button>
 			</div>
 
 			<h2>{NB.name}</h2>
@@ -75,18 +74,13 @@ const Sidebar: React.FC<NBprops> = ({ NB, setConfigs, configs }) => {
 const AllPages: React.FC<AllPagesProps> = ({ allPages, allPagesRef, setCurrentPage }) => {
 	const arrayPages = Object.keys(allPages);
 
-	const renderNotes = (index: number) => {
-		console.log(index);
-		setCurrentPage(index);
-	};
-
 	const pages = arrayPages.map((page, index) => (
-		<p key={page} onClick={(e) => renderNotes(index)}>
+		<p key={page} onClick={(e) => setCurrentPage(index)}>
 			{page}
 		</p>
 	));
 
-	return <div ref={allPagesRef}>{pages}</div>;
+	return <div ref={allPagesRef} className="all-pages">{pages}</div>;
 };
 
 export { Sidebar };

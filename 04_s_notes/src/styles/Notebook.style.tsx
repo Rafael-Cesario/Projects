@@ -2,8 +2,10 @@ import styled from "styled-components";
 
 const colors = {
 	BlueOne: "#294e86",
+	BlueTwo: "#307eac",
 	BlackTwo: "#1b1b1b",
 	RedOne: "#963232",
+	Green: "#286635"
 };
 
 const NotebookStyle = styled.div`

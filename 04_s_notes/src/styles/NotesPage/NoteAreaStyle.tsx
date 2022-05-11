@@ -37,7 +37,7 @@ const NoteAreaStyle = styled.div`
 		border-radius: 5px;
 		padding: 2rem;
 		font-family: "Oswald";
-		font-weight: lighter;
+		font-weight: normal;
 		outline: none;
 	}
 `;

@@ -16,7 +16,7 @@ Content-Type: application/json
 
 {
   "pages" : {
-  "pagina01" : "test"
+  "01" : "test"
   }
 }
 
@@ -31,5 +31,5 @@ Content-Type: application/json
 
 
 ### todos cadernos
-GET   http://localhost:3000/notebooks/1
+GET http://localhost:3000/notebooks/1
 Content-Type: application/json

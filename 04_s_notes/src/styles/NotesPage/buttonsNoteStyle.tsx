@@ -29,6 +29,7 @@ const ButtonNoteStyle = styled.div`
 	}
 
 	.compon {
+		margin: 1rem;
 		display: flex;
 		flex-wrap: wrap;
 		background-color: ${colors.BlackTwo};

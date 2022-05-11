@@ -1,87 +1,88 @@
 const URL = "http://localhost:3000/notebooks";
 const HEADERS = { "Content-Type": "application/json" };
 
-interface NB {
-	name: string;
-	pages: {};
-	id: number;
+type configs = {
+	NBname: string,
+	favColors: string[],
+	pages: {},
+	pageName: {
+		oldPageName: string,
+		newPageName: string
+	}
 }
 
-const fetchNotebooks = async (setNotebooks: React.Dispatch<React.SetStateAction<never[]>>) => {
+
+const replaceName = (OBJ: any, newName: string, oldName: string) => {
+	OBJ[newName] = OBJ[oldName];
+	delete OBJ[oldName];
+};
+
+export const fetchNotebooks = async (setNotebooks: React.Dispatch<React.SetStateAction<never[]>>) => {
 	const request = await fetch(`${URL}?_sort=id&_order=desc`);
 	const res = await request.json();
 	setNotebooks(res);
 };
 
-const saveOnDB = async (name: string) => {
-	const content = { name };
+export const saveOnDB = async (name: string) => {
+	const content = {
+		name: name,
+		pages: {
+			Pagina01: "<font color=\"#d8d8d8\" face=\"Segoe UI\">Altere o nome da página clicando nele...</font>"
+		},
+	};
 
-	fetch(URL, {
-		headers: HEADERS,
-		body: JSON.stringify(content),
-		method: "POST",
-	});
+	const options = { headers: HEADERS, body: JSON.stringify(content), method: "POST" }
+
+	await fetch(URL, options);
 };
 
-const filterNotebooks = async (notebookName: string, setNotebooks: React.Dispatch<React.SetStateAction<never[]>>) => {
+export const filterNotebooks = async (notebookName: string, setNotebooks: React.Dispatch<React.SetStateAction<never[]>>) => {
 	const request = await fetch(`${URL}?q=${notebookName}`);
 	const response = await request.json();
 	setNotebooks(response);
 };
 
-const fetchOneNB = async (id: number) => {
+export const fetchOneNB = async (id: number) => {
 	const request = await fetch(`${URL}?id=${id}`);
 	const [notebook] = await request.json();
 	return notebook;
 };
 
-const deleteNB = async (id: number) => {
-	const options = {
-		headers: HEADERS,
-		method: "DELETE",
-	};
+export const deleteNB = async (id: number) => {
+	const options = { headers: HEADERS, method: "DELETE" };
 
 	await fetch(`${URL}/${id}`, options);
 };
 
-const saveNotesOnDB = async (id: string, name: string, notes: string) => {
-	const body = { name, notes };
-
-	const options = {
-		headers: HEADERS,
-		method: "PATCH",
-		body: JSON.stringify(body),
-	};
-
+export const saveNotesOnDB = async (id: string, pages: {}, pageName: string, notes: string) => {
+	const body = { pages: { ...pages, [pageName]: notes } };
+	const options = { headers: HEADERS, method: "PATCH", body: JSON.stringify(body) };
 	await fetch(`${URL}/${id}`, options);
 };
 
-const fetchNotes = async (id: string) => {
-	try {
-		const request = await fetch(`${URL}/${id}`);
-		const response = await request.json();
-		return response;
-	} catch (error: any) {
-		console.log(error.message);
-	}
+export const fetchNotes = async (id: string) => {
+	const request = await fetch(`${URL}/${id}`);
+	const response = await request.json();
+	return response;
 };
 
-const saveColorsDB = async (colors: {}, id: string) => {
-	const body = {
-		favColors: colors,
-	};
-
-	const options = {
-		headers: HEADERS,
-		method: "PATCH",
-		body: JSON.stringify(body),
-	};
-
+export const saveColorsDB = async (colors: {}, id: string) => {
+	const body = { favColors: colors };
+	const options = { headers: HEADERS, method: "PATCH", body: JSON.stringify(body) };
 	await fetch(`${URL}/${id}`, options);
 };
 
-const saveNewPageName = async (pageName: string, id: string) => {
-	fetch(`${URL}/${id}`);
+export const saveNewPageNameDB = async (id: string, pages: any, oldName: string, newName: string) => {
+	replaceName(pages, newName, oldName);
+	const body = { pages: { ...pages } };
+	const options = { headers: HEADERS, method: "PATCH", body: JSON.stringify(body) };
+	await fetch(`${URL}/${id}`, options);
 };
 
-export { fetchNotebooks, saveOnDB, filterNotebooks, fetchOneNB, deleteNB, saveNotesOnDB, fetchNotes, saveColorsDB, saveNewPageName };
+export const saveConfigsDB = async (id: string, configs: configs) => {
+	replaceName(configs.pages, configs.pageName.newPageName, configs.pageName.oldPageName);
+	const pages = { ...configs.pages }
+	const body = { name: configs.NBname, favColors: configs.favColors, pages: pages }
+	const options = { headers: HEADERS, method: "PATCH", body: JSON.stringify(body) };
+	await fetch(`${URL}/${id}`, options)
+}

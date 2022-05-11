@@ -33,7 +33,7 @@ const ButtonsNotearea = () => {
 
 	const attColors = async () => {
 		const { favColors } = await fetchNotes(id!);
-		if (favColors) setFavColors(favColors);
+		if (favColors?.length > 0) setFavColors(favColors);
 	};
 
 	useEffect(() => {

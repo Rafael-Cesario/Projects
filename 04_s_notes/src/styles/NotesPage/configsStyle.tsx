@@ -17,6 +17,27 @@ const ConfigsStyle = styled.div`
 	padding: 50px;
 	border-radius: 5px;
 
+	.head{
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+
+		button{
+			font-size: 2rem;
+			font-weight: bold;
+			border:none;
+			outline:none;
+			background-color:transparent;
+			color: black;
+			cursor: pointer;
+			transition: 0.1s ease;
+
+			:hover {
+				transform:scale(1.1)
+			}
+		}
+	}
+
 	h1 {
 		margin-bottom: 1rem;
 	}
@@ -26,6 +47,8 @@ const ConfigsStyle = styled.div`
 		.config {
 			display: flex;
 			flex-direction: row;
+			margin-bottom:1rem;
+
 
 			p {
 				margin-right: 1rem;
@@ -38,9 +61,16 @@ const ConfigsStyle = styled.div`
 				border: none;
 				outline: none;
 				font-weight: 500;
+				font-size: 1rem;
+
+
 				::placeholder {
 					font-weight: 500;
-					color: #000;
+					color: #313131;
+				}
+
+				::-webkit-color-swatch{
+					border-radius:5px;
 				}
 			}
 		}

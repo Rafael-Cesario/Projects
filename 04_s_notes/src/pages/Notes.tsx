@@ -1,6 +1,6 @@
 import "../shared/shotkeys";
 
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 import { Configs } from "../components/NotesPage/Configs";
@@ -15,7 +15,7 @@ import { NotebookContextProvider } from "../context/notebooksContext";
 import { openSidebar } from "../shared/animations";
 
 import { GiHamburgerMenu } from "react-icons/gi";
-import { NotesContextProvider } from "../context/notesContext";
+import { NotesContext, NotesContextProvider } from "../context/notesContext";
 
 interface NB {
 	name: string;
@@ -24,8 +24,8 @@ interface NB {
 
 const Notes = () => {
 	const { id } = useParams();
-	const [configs, setConfigs] = useState(false);
 	const [NB, setNBdata] = useState<NB>({ name: "", id: 0 });
+	const { configs } = useContext(NotesContext)
 
 	const attNB = async () => {
 		const NB = await fetchOneNB(Number(id));
@@ -38,19 +38,19 @@ const Notes = () => {
 
 	return (
 		<MessageContextProvider>
-			<NotesStyle>
-				<button className="open-side-bar" onClick={(e) => openSidebar(false)}>
-					<GiHamburgerMenu className="icon" />
-				</button>
+			<NotesContextProvider>
+				<NotesStyle>
+					<button className="open-side-bar" onClick={(e) => openSidebar(false)}>
+						<GiHamburgerMenu className="icon" />
+					</button>
 
-				<NotesContextProvider>
-					<Sidebar NB={NB} configs={configs} setConfigs={setConfigs} />
-					{configs && <Configs NB={NB} setConfigs={setConfigs} />}
+					<Sidebar NB={NB} />
+					{configs && <Configs NB={NB} />}
 					<NoteArea />
-				</NotesContextProvider>
 
-				<PopUpMessage />
-			</NotesStyle>
+					<PopUpMessage />
+				</NotesStyle>
+			</NotesContextProvider>
 		</MessageContextProvider>
 	);
 };

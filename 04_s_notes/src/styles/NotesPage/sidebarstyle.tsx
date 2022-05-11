@@ -63,6 +63,10 @@ const SidebarStyle = styled.div`
 			color: ${colors.BlueOne};
 		}
 	}
+
+	.all-pages {
+		margin: 1rem 0;
+	}
 `;
 
 export { SidebarStyle };
