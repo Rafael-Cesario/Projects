@@ -3,48 +3,41 @@ import DOMPurify from "dompurify";
 import { NoteAreaStyle } from "../../styles/NotesPage/NoteAreaStyle";
 import { ButtonsNotearea } from "./ButtonsNoteArea";
 
-import { fetchNotes, fetchOneNB, saveColorsDB, saveNotesOnDB } from "../../shared/request";
+import { fetchNotes, fetchOneNB, saveColorsDB, saveNewPageName, saveNotesOnDB } from "../../shared/request";
 import { useParams } from "react-router-dom";
 import { useEffect } from "react";
 import { useRef } from "react";
 import { addKeyEvents } from "../../shared/shotkeys";
 import { MessageContext } from "../../context/messageContext";
 
-interface NBprops {
-	NB: { name: string; id: number };
-}
-
-const NoteArea: React.FC<NBprops> = () => {
+const NoteArea = () => {
 	const { id } = useParams();
 	const paraNotes = useRef<HTMLParagraphElement>(null);
 	const { warningMessage } = useContext(MessageContext);
-	const [arrayFavColors, setFavColors] = useState(["#e2e2e2", "#d8d8d8", "#307eac", "#dfba16", "#b13838"]);
+	const [pageName, setPageName] = useState("");
 
 	const saveNotes = async () => {
 		const paragraph = paraNotes.current as HTMLParagraphElement;
 		const notes = paragraph.innerHTML || "";
 		const { name } = await fetchOneNB(Number(id));
-
 		saveNotesOnDB(id!, name, notes);
-		saveColorsDB(arrayFavColors, id!);
 	};
 
 	const attNotes = async () => {
 		const p = paraNotes.current as HTMLParagraphElement;
-		const { notes } = await fetchNotes(id!);
+		const { notes, pages } = await fetchNotes(id!);
+		const page = Object.keys(pages)[0];
 
 		const sanitizedNotes = () => {
 			return DOMPurify.sanitize(notes);
 		};
 
 		p.innerHTML = sanitizedNotes();
+		setPageName(page);
 	};
 
 	useEffect(() => {
 		addKeyEvents(saveNotes, warningMessage);
-	}, [arrayFavColors]);
-
-	useEffect(() => {
 		attNotes();
 
 		const intervalSaveNotes = setInterval(() => {
@@ -56,8 +49,9 @@ const NoteArea: React.FC<NBprops> = () => {
 
 	return (
 		<NoteAreaStyle>
-			<ButtonsNotearea arrayFavColors={arrayFavColors} setFavColors={setFavColors} />
-			<p ref={paraNotes} className="note-area" contentEditable={true} onBlur={(e) => e.target.focus()}></p>
+			<ButtonsNotearea />
+			<input className="page-title" type="text" placeholder={pageName} onChange={(e) => saveNewPageName(e.target.value, id!)} />
+			<p ref={paraNotes} className="note-area" contentEditable={true}></p>
 		</NoteAreaStyle>
 	);
 };

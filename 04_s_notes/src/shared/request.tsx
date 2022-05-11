@@ -3,6 +3,7 @@ const HEADERS = { "Content-Type": "application/json" };
 
 interface NB {
 	name: string;
+	pages: {};
 	id: number;
 }
 
@@ -79,4 +80,8 @@ const saveColorsDB = async (colors: {}, id: string) => {
 	await fetch(`${URL}/${id}`, options);
 };
 
-export { fetchNotebooks, saveOnDB, filterNotebooks, fetchOneNB, deleteNB, saveNotesOnDB, fetchNotes, saveColorsDB };
+const saveNewPageName = async (pageName: string, id: string) => {
+	fetch(`${URL}/${id}`);
+};
+
+export { fetchNotebooks, saveOnDB, filterNotebooks, fetchOneNB, deleteNB, saveNotesOnDB, fetchNotes, saveColorsDB, saveNewPageName };

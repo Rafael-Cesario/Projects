@@ -15,6 +15,7 @@ import { NotebookContextProvider } from "../context/notebooksContext";
 import { openSidebar } from "../shared/animations";
 
 import { GiHamburgerMenu } from "react-icons/gi";
+import { NotesContextProvider } from "../context/notesContext";
 
 interface NB {
 	name: string;
@@ -42,11 +43,11 @@ const Notes = () => {
 					<GiHamburgerMenu className="icon" />
 				</button>
 
-				<Sidebar NB={NB} configs={configs} setConfigs={setConfigs} />
-
-				{configs && <Configs NB={NB} setConfigs={setConfigs} />}
-
-				<NoteArea NB={NB} />
+				<NotesContextProvider>
+					<Sidebar NB={NB} configs={configs} setConfigs={setConfigs} />
+					{configs && <Configs NB={NB} setConfigs={setConfigs} />}
+					<NoteArea />
+				</NotesContextProvider>
 
 				<PopUpMessage />
 			</NotesStyle>

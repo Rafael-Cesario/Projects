@@ -1,29 +1,35 @@
+### Criar caderno
 POST http://localhost:3000/notebooks
 Content-Type: application/json
 
 {
-  "name" : "Programação"
+  "name" : "Programação",
+  "pages": {
+    "pagina01,clique aqui para alterar o nome" : "Teste"
+  }
 }
 
 
-###
+### alterar notas
 PATCH  http://localhost:3000/notebooks/1
 Content-Type: application/json
 
 {
-  "notes" : "Teste"
+  "pages" : {
+  "pagina01" : "test"
+  }
 }
 
 
-###
+### mudar cores favoritas
 PATCH  http://localhost:3000/notebooks/1
 Content-Type: application/json
 
 {
-  "favColors" : ["teste"]
+  "favColors" : []
 }
 
 
-###
+### todos cadernos
 GET   http://localhost:3000/notebooks/1
 Content-Type: application/json

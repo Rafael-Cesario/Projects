@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 
 import { ButtonNoteStyle } from "../../styles/NotesPage/buttonsNoteStyle";
@@ -10,37 +10,39 @@ import { BsJustifyLeft, BsJustify, BsJustifyRight } from "react-icons/bs";
 import { changeText } from "../../shared/shotkeys";
 import { fetchNotes } from "../../shared/request";
 
-interface ButtonsProps {
-	arrayFavColors: string[];
-	setFavColors: React.Dispatch<React.SetStateAction<string[]>>;
-}
-
-const ButtonsNotearea: React.FC<ButtonsProps> = ({ arrayFavColors, setFavColors }) => {
+const ButtonsNotearea = () => {
 	const { id } = useParams();
+	const divButtonsColor = useRef<HTMLDivElement>(null);
+	const [fontColor, setFontColor] = useState("#dbdbdb");
+	const [arrayFavColors, setFavColors] = useState(["#d8d8d8", "#307eac", "#dfba16", "#b13838"]);
 
-	const changeFavColors = (value: string, index: number) => {
-		const newArray = [...arrayFavColors];
-		newArray[index] = value;
-		setFavColors(newArray);
+	const changeButtonsColor = () => {
+		const div = divButtonsColor.current as HTMLDivElement;
+		const buttons = div.childNodes;
+
+		buttons.forEach((button, index) => {
+			const b = button as HTMLButtonElement;
+			b.style.backgroundColor = arrayFavColors[index];
+		});
 	};
 
 	const changeFontColor = (value: string) => {
-		changeFavColors(value, 0);
+		setFontColor(value);
 		changeText("foreColor", value);
-	};
-
-	const changeFavColor = (newColor: string, index: number) => {
-		changeFavColors(newColor, index);
 	};
 
 	const attColors = async () => {
 		const { favColors } = await fetchNotes(id!);
-		favColors && setFavColors(favColors);
+		if (favColors) setFavColors(favColors);
 	};
 
 	useEffect(() => {
 		attColors();
 	}, []);
+
+	useEffect(() => {
+		changeButtonsColor();
+	}, [arrayFavColors]);
 
 	return (
 		<ButtonNoteStyle className="buttons">
@@ -74,28 +76,16 @@ const ButtonsNotearea: React.FC<ButtonsProps> = ({ arrayFavColors, setFavColors 
 
 				<div className="color-div">
 					<span>Font-Color</span>
-					<input type="color" className="color" value={arrayFavColors[0]} onChange={(e) => changeFontColor(e.target.value)} />
+					<input type="color" className="color" value={fontColor} onChange={(e) => changeFontColor(e.target.value)} />
 				</div>
 
 				<div className="fav-colors">
 					<span>Fav Colors</span>
-					<div className="colors">
-						<div>
-							<input type="color" value={arrayFavColors[1]} onChange={(e) => changeFavColor(e.target.value, 1)} />
-							<button onClick={(e) => changeText("foreColor", arrayFavColors[1])}></button>
-						</div>
-						<div>
-							<input type="color" value={arrayFavColors[2]} onChange={(e) => changeFavColor(e.target.value, 2)} />
-							<button onClick={(e) => changeText("foreColor", arrayFavColors[2])}></button>
-						</div>
-						<div>
-							<input type="color" value={arrayFavColors[3]} onChange={(e) => changeFavColor(e.target.value, 3)} />
-							<button onClick={(e) => changeText("foreColor", arrayFavColors[3])}></button>
-						</div>
-						<div>
-							<input type="color" value={arrayFavColors[4]} onChange={(e) => changeFavColor(e.target.value, 4)} />
-							<button onClick={(e) => changeText("foreColor", arrayFavColors[4])}></button>
-						</div>
+					<div className="colors" ref={divButtonsColor}>
+						<button onClick={(e) => changeText("foreColor", arrayFavColors[0])}></button>
+						<button onClick={(e) => changeText("foreColor", arrayFavColors[1])}></button>
+						<button onClick={(e) => changeText("foreColor", arrayFavColors[2])}></button>
+						<button onClick={(e) => changeText("foreColor", arrayFavColors[3])}></button>
 					</div>
 				</div>
 			</div>

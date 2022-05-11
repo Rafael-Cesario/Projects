@@ -1,5 +1,4 @@
 import { colors } from "../styles/Notebook.style";
-import { saveNotesOnDB } from "./request";
 
 const changeText = (change: string, value?: string) => {
 	switch (change) {
@@ -85,6 +84,9 @@ const changeText = (change: string, value?: string) => {
 		default:
 			return;
 	}
+
+	const para = document.querySelector(".note-area") as HTMLParagraphElement;
+	para.focus();
 };
 
 document.addEventListener("keyup", (e) => {
@@ -96,13 +98,9 @@ document.addEventListener("keyup", (e) => {
 
 const addKeyEvents = (saveNotes: () => void, warningMessage: (message: string, bgColor: string) => void) => {
 	document.addEventListener("keydown", (e) => {
-		if (!e.ctrlKey) return;
-
-		e.preventDefault();
-
 		const key = e.key.toLowerCase();
-
-		if (key === "s") {
+		if (key === "s" && e.ctrlKey) {
+			e.preventDefault();
 			saveNotes();
 			warningMessage("Notas Salvas", colors.BlueOne);
 		}

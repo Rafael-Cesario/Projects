@@ -89,11 +89,12 @@ const ButtonNoteStyle = styled.div`
 		border-radius: 5px;
 		border: none;
 		outline: none;
-		color: #000000;
-		background-color: white;
+		color: white;
+		background-color: transparent;
 
 		option {
-			background-color: white;
+			background-color: ${colors.BlackTwo};
+			padding: 5px;
 		}
 	}
 
@@ -120,35 +121,21 @@ const ButtonNoteStyle = styled.div`
 			display: flex;
 			flex-wrap: wrap;
 
-			div {
-				display: flex;
-				flex-direction: column;
-				align-items: center;
+			button {
+				background-color: transparent;
+				box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.116);
+				margin: 2px;
+				padding: 0;
+				border-radius: 5px;
+				width: 20px;
+				height: 20px;
 
-				input {
-					margin: 0;
-					padding: 0;
-					outline: none;
-					border: none;
-
-					width: 25px;
-					height: 25px;
-
-					&::-webkit-color-swatch {
-						border: 1px solid white;
-						border-radius: 5px;
-						outline: none;
-					}
+				&:hover {
+					transform: scale(1.1);
 				}
 
-				button {
-					background-color: #dfdfdf;
-					box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.116);
-					margin: 0;
-					padding: 0;
-					border-radius: 5px;
-					width: 15px;
-					height: 10px;
+				&:active {
+					transform: scale(1);
 				}
 			}
 		}
