@@ -7,6 +7,8 @@ const PopUpMessage: React.FC = () => {
 	const popupDiv = useRef<HTMLDivElement>(null);
 	const display = message ? "flex" : "none";
 
+
+
 	useLayoutEffect(() => {
 		popupDiv.current!.style.display = display;
 		popupDiv.current!.style.backgroundColor = BGcolor;

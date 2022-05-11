@@ -37,21 +37,19 @@ const Notes = () => {
 
 	return (
 		<MessageContextProvider>
-			<NotebookContextProvider>
-				<NotesStyle>
-					<button className="open-side-bar" onClick={(e) => openSidebar(false)}>
-						<GiHamburgerMenu className="icon" />
-					</button>
+			<NotesStyle>
+				<button className="open-side-bar" onClick={(e) => openSidebar(false)}>
+					<GiHamburgerMenu className="icon" />
+				</button>
 
-					<Sidebar NB={NB} configs={configs} setConfigs={setConfigs} />
+				<Sidebar NB={NB} configs={configs} setConfigs={setConfigs} />
 
-					{configs && <Configs NB={NB} setConfigs={setConfigs} />}
+				{configs && <Configs NB={NB} setConfigs={setConfigs} />}
 
-					<NoteArea NB={NB} />
+				<NoteArea NB={NB} />
 
-					<PopUpMessage />
-				</NotesStyle>
-			</NotebookContextProvider>
+				<PopUpMessage />
+			</NotesStyle>
 		</MessageContextProvider>
 	);
 };

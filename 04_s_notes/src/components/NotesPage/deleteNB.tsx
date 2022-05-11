@@ -16,13 +16,13 @@ interface NBprops {
 
 const DeleteNB: React.FC<NBprops> = ({ NB, setShowDeleteDiv }) => {
 	const [deleteInput, setDeleteInput] = useState("");
-	const { setMessage, setBGcolor } = useContext(MessageContext);
+	const { warningMessage } = useContext(MessageContext);
 	const navigate = useNavigate();
 
 	const handleDeleteNB = async (e: React.SyntheticEvent) => {
 		e.preventDefault();
 
-		const hasError = verifyInput(deleteInput, setMessage, setBGcolor, NB);
+		const hasError = verifyInput(deleteInput, warningMessage, NB);
 		if (hasError) return;
 
 		await deleteNB(NB.id);

@@ -3,11 +3,10 @@ import React, { useContext, useState } from "react";
 import { MessageContext } from "../context/messageContext";
 import { NotebookContext } from "../context/notebooksContext";
 import { fetchNotebooks, saveOnDB } from "../shared/request";
-import { warningMessage } from "../shared/warningMessage";
 
 const NewNotebook: React.FC = () => {
 	const { setNotebooks } = useContext(NotebookContext);
-	const { setMessage, setBGcolor } = useContext(MessageContext);
+	const { warningMessage } = useContext(MessageContext);
 	const [renderDiv, setRenderDiv] = useState<Boolean>(false);
 	const [nameNB, setNameNB] = useState<string>("");
 
@@ -18,9 +17,9 @@ const NewNotebook: React.FC = () => {
 	const handleSaveNB = async (e: React.SyntheticEvent) => {
 		e.preventDefault();
 
-		if (!nameNB) return warningMessage(setMessage, "O campo nome esta Vazio", setBGcolor, "crimson");
+		if (!nameNB) return warningMessage("O campo nome esta Vazio", "crimson");
 
-		warningMessage(setMessage, "Novo Caderno Adicionado", setBGcolor, "#2a5da8");
+		warningMessage("Novo Caderno Adicionado", "#2a5da8");
 
 		await saveOnDB(nameNB);
 		await fetchNotebooks(setNotebooks);

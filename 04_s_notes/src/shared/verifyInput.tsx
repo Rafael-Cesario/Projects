@@ -1,20 +1,18 @@
-import { warningMessage } from "../shared/warningMessage";
 import { colors } from "../styles/Notebook.style";
 
-type setMessage = React.Dispatch<React.SetStateAction<string>>;
-type setBGcolor = React.Dispatch<React.SetStateAction<string>>;
+type warningMessage = (message: string, bgColor: string) => void;
 
-const verifyInput = (value: string, setMessage: setMessage, setBGcolor: setBGcolor, NB: { name: string }) => {
+const verifyInput = (value: string, warningMessage: warningMessage, NB: { name: string }) => {
 	const valueREGX = new RegExp(value.trim(), "ig");
 	const incorretValue = NB.name.search(valueREGX) === -1 ? true : false;
 
 	if (!value) {
-		warningMessage(setMessage, "Nenhum valor foi digitado para deletar o caderno", setBGcolor, colors.RedOne);
+		warningMessage("Nenhum valor foi digitado para deletar o caderno", colors.RedOne);
 		return true;
 	}
 
 	if (incorretValue) {
-		warningMessage(setMessage, "O Nome foi digitado incorretamente", setBGcolor, colors.RedOne);
+		warningMessage("O Nome foi digitado incorretamente", colors.RedOne);
 		return true;
 	}
 

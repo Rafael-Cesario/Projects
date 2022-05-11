@@ -1,3 +1,4 @@
+import { colors } from "../styles/Notebook.style";
 import { saveNotesOnDB } from "./request";
 
 const changeText = (change: string, value?: string) => {
@@ -87,21 +88,24 @@ const changeText = (change: string, value?: string) => {
 };
 
 document.addEventListener("keyup", (e) => {
-	if (!e.altKey) return;
 	e.preventDefault();
+	if (!e.altKey) return;
 	const key = e.key.toLocaleLowerCase();
 	changeText(key);
 });
 
-const addKeyEvents = (saveNotes: () => void) => {
-	document.addEventListener("keyup", (e) => {
-		if (!e.altKey) return;
+const addKeyEvents = (saveNotes: () => void, warningMessage: (message: string, bgColor: string) => void) => {
+	document.addEventListener("keydown", (e) => {
+		if (!e.ctrlKey) return;
 
 		e.preventDefault();
 
 		const key = e.key.toLowerCase();
 
-		if (key === "s") saveNotes();
+		if (key === "s") {
+			saveNotes();
+			warningMessage("Notas Salvas", colors.BlueOne);
+		}
 	});
 };
 

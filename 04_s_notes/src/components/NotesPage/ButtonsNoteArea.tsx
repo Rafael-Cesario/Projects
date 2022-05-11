@@ -1,4 +1,4 @@
-import React, {  useContext, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 
 import { ButtonNoteStyle } from "../../styles/NotesPage/buttonsNoteStyle";
@@ -9,24 +9,33 @@ import { BsJustifyLeft, BsJustify, BsJustifyRight } from "react-icons/bs";
 
 import { changeText } from "../../shared/shotkeys";
 import { fetchNotes } from "../../shared/request";
-import { NotebookContext } from "../../context/notebooksContext";
 
-const ButtonsNotearea = () => {
+interface ButtonsProps {
+	arrayFavColors: string[];
+	setFavColors: React.Dispatch<React.SetStateAction<string[]>>;
+}
+
+const ButtonsNotearea: React.FC<ButtonsProps> = ({ arrayFavColors, setFavColors }) => {
 	const { id } = useParams();
-	const { colors, dispatchColors } = useContext(NotebookContext);
+
+	const changeFavColors = (value: string, index: number) => {
+		const newArray = [...arrayFavColors];
+		newArray[index] = value;
+		setFavColors(newArray);
+	};
 
 	const changeFontColor = (value: string) => {
-		dispatchColors({ type: "CHANGECOLOR", payload: { colorIndex: 0, newColor: value } });
+		changeFavColors(value, 0);
 		changeText("foreColor", value);
 	};
 
 	const changeFavColor = (newColor: string, index: number) => {
-		dispatchColors({ type: "CHANGECOLOR", payload: { colorIndex: index, newColor: newColor } });
+		changeFavColors(newColor, index);
 	};
 
 	const attColors = async () => {
 		const { favColors } = await fetchNotes(id!);
-		dispatchColors({ type: "ATTCOLORS", payload: { colors: favColors } });
+		favColors && setFavColors(favColors);
 	};
 
 	useEffect(() => {
@@ -65,27 +74,27 @@ const ButtonsNotearea = () => {
 
 				<div className="color-div">
 					<span>Font-Color</span>
-					<input type="color" className="color" value={colors.color[0]} onChange={(e) => changeFontColor(e.target.value)} />
+					<input type="color" className="color" value={arrayFavColors[0]} onChange={(e) => changeFontColor(e.target.value)} />
 				</div>
 
 				<div className="fav-colors">
 					<span>Fav Colors</span>
 					<div className="colors">
 						<div>
-							<input type="color" value={colors.color[1]} onChange={(e) => changeFavColor(e.target.value, 1)} />
-							<button onClick={(e) => changeText("foreColor", colors.color[1])}></button>
+							<input type="color" value={arrayFavColors[1]} onChange={(e) => changeFavColor(e.target.value, 1)} />
+							<button onClick={(e) => changeText("foreColor", arrayFavColors[1])}></button>
 						</div>
 						<div>
-							<input type="color" value={colors.color[2]} onChange={(e) => changeFavColor(e.target.value, 2)} />
-							<button onClick={(e) => changeText("foreColor", colors.color[2])}></button>
+							<input type="color" value={arrayFavColors[2]} onChange={(e) => changeFavColor(e.target.value, 2)} />
+							<button onClick={(e) => changeText("foreColor", arrayFavColors[2])}></button>
 						</div>
 						<div>
-							<input type="color" value={colors.color[3]} onChange={(e) => changeFavColor(e.target.value, 3)} />
-							<button onClick={(e) => changeText("foreColor", colors.color[3])}></button>
+							<input type="color" value={arrayFavColors[3]} onChange={(e) => changeFavColor(e.target.value, 3)} />
+							<button onClick={(e) => changeText("foreColor", arrayFavColors[3])}></button>
 						</div>
 						<div>
-							<input type="color" value={colors.color[4]} onChange={(e) => changeFavColor(e.target.value, 4)} />
-							<button onClick={(e) => changeText("foreColor", colors.color[4])}></button>
+							<input type="color" value={arrayFavColors[4]} onChange={(e) => changeFavColor(e.target.value, 4)} />
+							<button onClick={(e) => changeText("foreColor", arrayFavColors[4])}></button>
 						</div>
 					</div>
 				</div>

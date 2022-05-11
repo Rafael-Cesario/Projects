@@ -19,10 +19,6 @@ const Sidebar: React.FC<NBprops> = ({ NB, setConfigs, configs }) => {
 		setConfigs(!configs);
 	};
 
-	const closeSidebar = () => {
-		openSidebar(true);
-	};
-
 	return (
 		<SidebarStyle className="sidebar">
 			<div className="buttons">
