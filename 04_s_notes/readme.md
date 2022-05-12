@@ -20,3 +20,5 @@
     - Salvas as anotações em um arquivo json
     - Salva as anotações automaticamente.
     - Notificações como resposta para ações do usuario
+
+![ezgif com-gif-maker](https://user-images.githubusercontent.com/88716893/168029017-b0128dcf-aa27-48b6-8654-9792cc2ae019.gif)
