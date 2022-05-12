@@ -14,6 +14,20 @@ const SidebarStyle = styled.div`
 	width: 20rem;
 	min-height: 100vh;
 
+	button {
+			font-family: "Oswald";
+			background-color: transparent;
+			outline: none;
+			color: white;
+			border: none;
+			font-size: 1rem;
+			cursor: pointer;
+
+			&:hover {
+				color: ${colors.BlueOne};
+			}
+		}
+
 	.buttons {
 		display: flex;
 		justify-content: space-between;
@@ -22,20 +36,6 @@ const SidebarStyle = styled.div`
 		a {
 			color: white;
 			text-decoration: none;
-
-			&:hover {
-				color: ${colors.BlueOne};
-			}
-		}
-
-		button {
-			font-family: "Oswald";
-			background-color: transparent;
-			outline: none;
-			color: white;
-			border: none;
-			font-size: 1rem;
-			cursor: pointer;
 
 			&:hover {
 				color: ${colors.BlueOne};
@@ -67,6 +67,7 @@ const SidebarStyle = styled.div`
 	.all-pages {
 		margin: 1rem 0;
 	}
+
 `;
 
 export { SidebarStyle };

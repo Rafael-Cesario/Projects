@@ -13,6 +13,7 @@ type configs = {
 
 
 const replaceName = (OBJ: any, newName: string, oldName: string) => {
+	if (newName === oldName || !newName) return
 	OBJ[newName] = OBJ[oldName];
 	delete OBJ[oldName];
 };
@@ -27,7 +28,7 @@ export const saveOnDB = async (name: string) => {
 	const content = {
 		name: name,
 		pages: {
-			Pagina01: "<font color=\"#d8d8d8\" face=\"Segoe UI\">Altere o nome da página clicando nele...</font>"
+			Pagina01: "<div><font face=\"Segoe UI\" color=\"#307eac\" size=\"5\"><b style=\"\">Configs</b></font></div><div><font face=\"Segoe UI\" color=\"#307eac\" size=\"5\"><b style=\"\"><br></b></font></div><div><font face=\"Segoe UI\" color=\"#cfcfcf\">O menu configs fica na barra lateral a esquerda&nbsp;da tela, nele você pode alterar coisas como suas cores favoritas ou o nome da página atual.&nbsp;</font></div><div><font face=\"Segoe UI\" color=\"#cfcfcf\"><br></font></div><div><font face=\"Segoe UI\" size=\"5\" color=\"#9c3030\"><b style=\"\"><br></b></font></div><div><font face=\"Segoe UI\" size=\"5\" color=\"#9c3030\"><b style=\"\">Teclas de atalho</b></font></div><div><font face=\"Segoe UI\" size=\"5\" color=\"#9c3030\"><b style=\"\"><br></b></font></div><div><div><div><font color=\"#cfcfcf\" face=\"Segoe UI\">Também existem algumas teclas de atalho que você pode usar para agilizar sua escrita, você pode encontrar&nbsp;elas no menu dicas na barra lateral.</font></div></div></div>"
 		},
 	};
 
@@ -72,12 +73,12 @@ export const saveColorsDB = async (colors: {}, id: string) => {
 	await fetch(`${URL}/${id}`, options);
 };
 
-export const saveNewPageNameDB = async (id: string, pages: any, oldName: string, newName: string) => {
-	replaceName(pages, newName, oldName);
-	const body = { pages: { ...pages } };
-	const options = { headers: HEADERS, method: "PATCH", body: JSON.stringify(body) };
-	await fetch(`${URL}/${id}`, options);
-};
+// export const saveNewPageNameDB = async (id: string, pages: any, oldName: string, newName: string) => {
+// 	replaceName(pages, newName, oldName);
+// 	const body = { pages: { ...pages } };
+// 	const options = { headers: HEADERS, method: "PATCH", body: JSON.stringify(body) };
+// 	await fetch(`${URL}/${id}`, options);
+// };
 
 export const saveConfigsDB = async (id: string, configs: configs) => {
 	replaceName(configs.pages, configs.pageName.newPageName, configs.pageName.oldPageName);
@@ -85,4 +86,25 @@ export const saveConfigsDB = async (id: string, configs: configs) => {
 	const body = { name: configs.NBname, favColors: configs.favColors, pages: pages }
 	const options = { headers: HEADERS, method: "PATCH", body: JSON.stringify(body) };
 	await fetch(`${URL}/${id}`, options)
+}
+
+export const createNewPageDB = async (id: string, pages: {}) => {
+	pages = { ...pages, NovaPágina: "<font color=\"#d8d8d8\" face=\"Segoe UI\">Altere o nome da página clicando nele...</font>" }
+	const body = { pages }
+	const options = { headers: HEADERS, method: 'PATCH', body: JSON.stringify(body) }
+	await fetch(`${URL}/${id}`, options)
+}
+
+export const deleteCurrentPageDB = async (id: string, pages: any, currentPageName: string) => {
+	delete pages[currentPageName]
+	const body = { pages }
+	const options = { headers: HEADERS, method: 'PATCH', body: JSON.stringify(body) }
+
+	try {
+		fetch(`${URL}/${id}`, options)
+		console.log('Pagina deletada')
+	} catch (error: any) {
+		if (error) return console.log(error.message)
+	}
+
 }

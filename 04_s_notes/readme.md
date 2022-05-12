@@ -15,7 +15,9 @@
 # Funcionalidades
 
     - Criar cadernos de estudos
-    - Criar seções em cada caderno
+    - Criar páginas em cada caderno
     - Alterar tamanho, estilo, cor de fonte.
-    - Presets customizaveis.
-    - Teclas de atalho para alternar entre presets.
+    - Teclas de atalho.
+    - Salvas as anotações em um arquivo json
+    - Salva as anotações automaticamente.
+    - Notificações como resposta para ações do usuario

@@ -3,22 +3,20 @@ import DOMPurify from "dompurify";
 import { NoteAreaStyle } from "../../styles/NotesPage/NoteAreaStyle";
 import { ButtonsNotearea } from "./ButtonsNoteArea";
 
-import { fetchNotes, saveNewPageNameDB, saveNotesOnDB } from "../../shared/request";
+import { fetchNotes, saveNotesOnDB } from "../../shared/request";
 import { useParams } from "react-router-dom";
 import { useEffect } from "react";
 import { useRef } from "react";
 import { addKeyEvents } from "../../shared/shotkeys";
 import { MessageContext } from "../../context/messageContext";
 import { NotesContext } from "../../context/notesContext";
-import { colors } from "../../styles/Notebook.style";
 
 const NoteArea = () => {
 	const { id } = useParams();
 	const paraNotes = useRef<HTMLParagraphElement>(null);
 	const { warningMessage } = useContext(MessageContext);
-	const { currentPage, pageName, setPageName, setCurrentPage, setConfigs, configs } = useContext(NotesContext);
+	const { currentPage, pageName, setPageName, setConfigs, configs } = useContext(NotesContext);
 	const [pages, setPages] = useState({});
-	const [oldName, setOldName] = useState(pageName);
 
 	const fetchPageData = async () => {
 		const { pages } = await fetchNotes(id!);
@@ -40,13 +38,9 @@ const NoteArea = () => {
 		setPageName(page);
 	};
 
-	const saveNewPageName = (input: HTMLInputElement) => {
-		const { value } = input;
-		if (!value) return;
-		saveNewPageNameDB(id!, pages, oldName, value);
-		warningMessage("Nome da página alterado, vou precisar recarregar ela", colors.Green)
-		setTimeout(() => location.reload(), 1000)
-	};
+	const showConfigs = () => {
+		setConfigs(!configs)
+	}
 
 	useEffect(() => {
 		attNotes();
@@ -57,11 +51,16 @@ const NoteArea = () => {
 		addKeyEvents(saveNotes, warningMessage);
 	}, [currentPage, pageName]);
 
+	useEffect(() => {
+		const saveInterval = setInterval(() => { saveNotes() }, 60000)
+		return clearInterval(saveInterval)
+	}, [])
+
 	return (
 		<NoteAreaStyle>
 			<ButtonsNotearea />
-			<button className="page-title" onClick={e => setConfigs(!configs)}>{pageName}</button>
-			<p ref={paraNotes} className="note-area" contentEditable={true} onKeyUp={(e) => saveNotes()} onBlur={e => saveNotes()}></p>
+			<button className="page-title" onClick={e => showConfigs()}>{pageName}</button>
+			<p ref={paraNotes} className="note-area" contentEditable={true} onBlur={e => saveNotes()}></p>
 		</NoteAreaStyle>
 	);
 };

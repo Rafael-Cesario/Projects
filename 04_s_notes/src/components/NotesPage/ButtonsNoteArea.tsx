@@ -63,7 +63,7 @@ const ButtonsNotearea = () => {
 
 				<div className="size">
 					<span>Font Size</span>
-					<select name="font-size" className="font-size" onChange={(e) => changeText("fontSize", e.target.value)}>
+					<select name="font-size" className="font-size" onChange={(e: any) => changeText("fontSize", e.target.value)} onFocus={(e: any) => changeText("fontSize", e.target.value)}>
 						<option value="1">1</option>
 						<option value="2">2</option>
 						<option value="3">3</option>

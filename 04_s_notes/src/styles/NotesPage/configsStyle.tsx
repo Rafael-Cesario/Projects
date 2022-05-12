@@ -39,16 +39,18 @@ const ConfigsStyle = styled.div`
 	}
 
 	h1 {
-		margin-bottom: 1rem;
+		margin-bottom: 3rem;
 	}
-
+	
 	.configs {
 		margin-bottom: 2rem;
+
+
 		.config {
 			display: flex;
 			flex-direction: row;
 			margin-bottom:1rem;
-
+			align-items: center;
 
 			p {
 				margin-right: 1rem;
@@ -62,7 +64,8 @@ const ConfigsStyle = styled.div`
 				outline: none;
 				font-weight: 500;
 				font-size: 1rem;
-
+				padding: 0.5rem 1rem;
+				border-radius:5px;
 
 				::placeholder {
 					font-weight: 500;
@@ -72,6 +75,19 @@ const ConfigsStyle = styled.div`
 				::-webkit-color-swatch{
 					border-radius:5px;
 				}
+
+				:focus {
+					color: white;
+					background-color: ${colors.BlackTwo};
+				}
+			}
+		}
+		.colors{
+			input{
+				padding: 0;
+				:focus {
+					background-color: transparent;
+				}
 			}
 		}
 	}
@@ -79,6 +95,7 @@ const ConfigsStyle = styled.div`
 	.buttons {
 		display: flex;
 		justify-content: space-between;
+		margin-top: 5rem;
 
 		button {
 			font-family: "Oswald";
@@ -87,10 +104,27 @@ const ConfigsStyle = styled.div`
 			border: none;
 			font-size: 1rem;
 			cursor: pointer;
+			width: 10rem;
 
 			&:hover {
 				color: ${colors.BlueOne};
 			}
+		}
+	}
+
+	.delete-current-page {
+		display: flex;
+		justify-content: center;
+		margin-top: 1rem;
+
+		button {
+			margin: 1rem;
+			font-family: "Oswald";
+			background-color: transparent;
+			outline: none;
+			border: none;
+			font-size: 1rem;
+			cursor: pointer;
 		}
 	}
 `;

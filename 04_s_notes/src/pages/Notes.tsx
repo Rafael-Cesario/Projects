@@ -15,7 +15,7 @@ import { NotebookContextProvider } from "../context/notebooksContext";
 import { openSidebar } from "../shared/animations";
 
 import { GiHamburgerMenu } from "react-icons/gi";
-import { NotesContext, NotesContextProvider } from "../context/notesContext";
+import { NotesContext } from "../context/notesContext";
 
 interface NB {
 	name: string;
@@ -32,25 +32,24 @@ const Notes = () => {
 		setNBdata(NB);
 	};
 
+
 	useEffect(() => {
 		attNB();
 	}, []);
 
 	return (
 		<MessageContextProvider>
-			<NotesContextProvider>
-				<NotesStyle>
-					<button className="open-side-bar" onClick={(e) => openSidebar(false)}>
-						<GiHamburgerMenu className="icon" />
-					</button>
+			<NotesStyle>
+				<button className="open-side-bar" onClick={(e) => openSidebar(false)}>
+					<GiHamburgerMenu className="icon" />
+				</button>
 
-					<Sidebar NB={NB} />
-					{configs && <Configs NB={NB} />}
-					<NoteArea />
+				<Sidebar NB={NB} />
+				{configs && <Configs NB={NB} attNB={attNB}/>}
+				<NoteArea />
 
-					<PopUpMessage />
-				</NotesStyle>
-			</NotesContextProvider>
+				<PopUpMessage />
+			</NotesStyle>
 		</MessageContextProvider>
 	);
 };

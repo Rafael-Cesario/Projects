@@ -30,6 +30,18 @@ Content-Type: application/json
 }
 
 
+### Criar nova pagina
+PATCh http://localhost:3000/notebooks/1
+Content-Type: application/json
+
+{
+  "pages":{
+    "novocaderno" : "titulo",
+    "maisumcaderno" : "titulo"
+  }
+}
+
+
 ### todos cadernos
 GET http://localhost:3000/notebooks/1
 Content-Type: application/json

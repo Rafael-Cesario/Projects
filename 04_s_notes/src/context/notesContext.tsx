@@ -38,7 +38,7 @@ const NotesContextProvider: React.FC<NotesContextProps> = ({ children }) => {
 	const [currentPage, setCurrentPage] = useState(initialValue.currentPage);
 	const [pageName, setPageName] = useState(initialValue.pageName);
 	const [favColors, setFavColors] = useState(initialValue.favColors)
-	const [configs, setConfigs] = useState(false);
+	const [configs, setConfigs] = useState(initialValue.configs);
 
 	return (
 		<NotesContext.Provider

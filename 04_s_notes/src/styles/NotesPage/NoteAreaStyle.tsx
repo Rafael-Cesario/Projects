@@ -19,9 +19,15 @@ const NoteAreaStyle = styled.div`
 		outline: none;
 		font-size: 1.1rem;
 		font-weight: 300;
+		cursor: pointer;
+		transition: 0.1s ease;
 
-		::placeholder {
-			color: #b6b6b6;
+		:hover{
+			transform: scale(1.1);
+		}
+
+		:active{
+			transform: scale(1);
 		}
 	}
 

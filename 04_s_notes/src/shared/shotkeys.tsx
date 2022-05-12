@@ -14,7 +14,7 @@ const changeText = (change: string, value?: string) => {
 			document.execCommand("underline");
 			break;
 
-		case "s":
+		case "l":
 			document.execCommand("strikeThrough");
 			break;
 
@@ -97,9 +97,9 @@ document.addEventListener("keyup", (e) => {
 });
 
 const addKeyEvents = (saveNotes: () => void, warningMessage: (message: string, bgColor: string) => void) => {
-	document.addEventListener("keydown", (e) => {
+	document.addEventListener("keyup", (e) => {
 		const key = e.key.toLowerCase();
-		if (key === "s" && e.ctrlKey) {
+		if (key === "s" && e.altKey) {
 			e.preventDefault();
 			saveNotes();
 			warningMessage("Notas Salvas", colors.BlueOne);

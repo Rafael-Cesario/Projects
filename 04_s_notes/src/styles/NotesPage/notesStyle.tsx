@@ -5,6 +5,8 @@ const NotesStyle = styled.div`
 	flex-direction: column;
 	justify-content: center;
 
+
+
 	.open-side-bar {
 		position: absolute;
 		top: 1rem;
