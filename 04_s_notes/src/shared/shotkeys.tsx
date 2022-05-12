@@ -78,7 +78,7 @@ const changeText = (change: string, value?: string) => {
 
 		case "t":
 			//titulos
-			document.execCommand("fontSize", false, "6");
+			document.execCommand("fontSize", false, "5");
 			break;
 
 		default:

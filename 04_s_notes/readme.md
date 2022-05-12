@@ -1,16 +1,15 @@
 # ![icons8-notebook-justicon-lineal-color-32](https://user-images.githubusercontent.com/88716893/167047749-cd721ba2-db23-4c22-a551-2d14538f1147.png) SNotes
-##### Aplicativo para anotações, uma espécie de OneNote.
+##### Aplicativo para anotações, um Rich Text Editor.
 
 # Feito com
 
     - babel
-    - react
+    - react / react hooks
     - webpack
     - mongoDB
     - typescript
     - styled-components
     - json-server
-    - gsap
 
 # Funcionalidades
 

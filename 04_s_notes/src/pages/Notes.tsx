@@ -16,6 +16,7 @@ import { openSidebar } from "../shared/animations";
 
 import { GiHamburgerMenu } from "react-icons/gi";
 import { NotesContext } from "../context/notesContext";
+import { Tips } from "../components/NotesPage/Tips";
 
 interface NB {
 	name: string;
@@ -25,7 +26,7 @@ interface NB {
 const Notes = () => {
 	const { id } = useParams();
 	const [NB, setNBdata] = useState<NB>({ name: "", id: 0 });
-	const { configs } = useContext(NotesContext)
+	const { configs, tips } = useContext(NotesContext)
 
 	const attNB = async () => {
 		const NB = await fetchOneNB(Number(id));
@@ -45,7 +46,8 @@ const Notes = () => {
 				</button>
 
 				<Sidebar NB={NB} />
-				{configs && <Configs NB={NB} attNB={attNB}/>}
+				{configs && <Configs NB={NB} attNB={attNB} />}
+				{tips && <Tips />}
 				<NoteArea />
 
 				<PopUpMessage />

@@ -7,15 +7,15 @@
 
 ## ![icons8-notebook-justicon-lineal-color-32](https://user-images.githubusercontent.com/88716893/166608554-33f3d8fb-1b1a-4414-8fa5-3b2b52dca1f9.png)    [**SNotes**](./04_s_notes/)
 
-##### Aplicativo para anotações, uma espécie de OneNote.
+##### Aplicativo para anotações, um Rich Text Editor.
+
     - babel
-    - react
+    - react / react hooks
     - webpack
     - mongoDB
     - typescript
     - styled-components
     - json-server
-    - gsap
     
 ### ![favicon-32x32](https://user-images.githubusercontent.com/88716893/166608701-67e46550-6551-407d-a68f-997ddc4f5204.png)     [Recipes, PWA](./03_Recipes_Notebook/)
 

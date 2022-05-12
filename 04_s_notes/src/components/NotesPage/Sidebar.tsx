@@ -24,8 +24,9 @@ interface AllPagesProps {
 const Sidebar: React.FC<NBprops> = ({ NB }) => {
 	const { id } = useParams();
 	const allPagesRef = useRef<HTMLParagraphElement>(null);
-	const { pages, setPages, currentPage, setCurrentPage, pageName, configs, setConfigs } = useContext(NotesContext);
+	
 	const { warningMessage } = useContext(MessageContext)
+	const { pages, setPages, currentPage, setCurrentPage, pageName, configs, setConfigs, tips, setTips } = useContext(NotesContext);
 
 
 	const highlightPage = () => {
@@ -45,8 +46,11 @@ const Sidebar: React.FC<NBprops> = ({ NB }) => {
 	};
 
 	const showConfigs = () => {
-		console.log('teste')
 		setConfigs(!configs)
+	}
+
+	const showTips = () => {
+		setTips(!tips)
 	}
 
 	const createNewPage = async () => {
@@ -75,12 +79,19 @@ const Sidebar: React.FC<NBprops> = ({ NB }) => {
 
 	return (
 		<SidebarStyle className="sidebar">
+
 			<div className="buttons">
+
 				<button className="close-side-bar" onClick={(e) => openSidebar(true)}>
 					<GiHamburgerMenu className="icon" />
 				</button>
+
 				<Link to={"/"}>Voltar</Link>
+
+				<button onClick={e => showTips()}>Dicas</button>
+
 				<button onClick={e => showConfigs()}>Configs</button>
+
 			</div>
 
 			<h2>{NB.name}</h2>

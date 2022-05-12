@@ -11,11 +11,13 @@ interface contextType {
 	pageName: string;
 	favColors: string[]
 	configs: boolean;
+	tips: boolean;
 	setPages: React.Dispatch<React.SetStateAction<{}>>;
 	setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
 	setPageName: React.Dispatch<React.SetStateAction<string>>;
 	setFavColors: React.Dispatch<React.SetStateAction<string[]>>;
-	setConfigs: React.Dispatch<React.SetStateAction<boolean>>
+	setConfigs: React.Dispatch<React.SetStateAction<boolean>>;
+	setTips: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const initialValue = {
@@ -24,11 +26,13 @@ const initialValue = {
 	pageName: "",
 	favColors: ["#d8d8d8", "#307eac", "#dfba16", "#b13838"],
 	configs: false,
+	tips: false,
 	setPages: () => { },
 	setCurrentPage: () => { },
 	setPageName: () => { },
 	setFavColors: () => { },
 	setConfigs: () => { },
+	setTips: () => { },
 };
 
 const NotesContext = createContext<contextType>(initialValue);
@@ -39,6 +43,7 @@ const NotesContextProvider: React.FC<NotesContextProps> = ({ children }) => {
 	const [pageName, setPageName] = useState(initialValue.pageName);
 	const [favColors, setFavColors] = useState(initialValue.favColors)
 	const [configs, setConfigs] = useState(initialValue.configs);
+	const [tips, setTips] = useState(initialValue.tips)
 
 	return (
 		<NotesContext.Provider
@@ -52,7 +57,9 @@ const NotesContextProvider: React.FC<NotesContextProps> = ({ children }) => {
 				favColors,
 				setFavColors,
 				configs,
-				setConfigs
+				setConfigs,
+				tips,
+				setTips
 			}}>
 			{children}
 		</NotesContext.Provider>
