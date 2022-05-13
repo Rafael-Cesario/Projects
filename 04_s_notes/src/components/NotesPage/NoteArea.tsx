@@ -60,7 +60,7 @@ const NoteArea = () => {
 		<NoteAreaStyle>
 			<ButtonsNotearea />
 			<button className="page-title" onClick={e => showConfigs()}>{pageName}</button>
-			<p ref={paraNotes} className="note-area" contentEditable={true} spellCheck={false} onBlur={e => saveNotes()}></p>
+			<p ref={paraNotes} className="note-area" contentEditable={true} onBlur={e => saveNotes()}></p>
 		</NoteAreaStyle>
 	);
 };
