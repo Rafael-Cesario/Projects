@@ -10,7 +10,7 @@
 
 
 
-## ![favicon](./05_planner/public/favicon/icons8-lista-de-ingredientes-40.png) Planner
+## ![icons8-lista-de-ingredientes-40](https://user-images.githubusercontent.com/88716893/168284556-da516648-ccdb-4d08-86b3-97a039c959ff.png) Planner
 
 ##### **Um simples aplicativo com drag and drop para planejar seus afazeres.**
 
