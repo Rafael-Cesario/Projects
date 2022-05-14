@@ -8,21 +8,6 @@
 
 ##### **_Projetos listados do ultimo para o primeiro_**
 
-<<<<<<< HEAD
-=======
-
-
-## ![icons8-lista-de-ingredientes-40](https://user-images.githubusercontent.com/88716893/168284556-da516648-ccdb-4d08-86b3-97a039c959ff.png) Planner
-
-##### **Um simples aplicativo com drag and drop para planejar seus afazeres.**
-
-    - Babel
-    - React / React Hooks / React Beautiful DnD
-    - Typescript
-    - Webpack
-    - Styled-components
-
->>>>>>> refs/remotes/origin/main
 ## ![icons8-notebook-justicon-lineal-color-32](https://user-images.githubusercontent.com/88716893/166608554-33f3d8fb-1b1a-4414-8fa5-3b2b52dca1f9.png) [**SNotes**](./04_s_notes/)
 
 ##### Aplicativo para anotações, um Rich Text Editor.
@@ -30,7 +15,6 @@
     - babel
     - react / react hooks
     - webpack
-    - mongoDB
     - typescript
     - styled-components
     - json-server
