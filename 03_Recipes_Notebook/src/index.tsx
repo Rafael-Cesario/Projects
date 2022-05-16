@@ -1,21 +1,16 @@
-import { LitElement, html, render } from "lit";
-import { customElement } from "lit/decorators.js";
+import React from "react";
+import { createRoot } from "react-dom/client";
+import App from "./app";
 
-if ("serviceWorker" in navigator) {
-	window.addEventListener("load", (event) => {
-		navigator.serviceWorker.register("/sw.js");
-	});
-}
+const body = document.querySelector("#root") as HTMLDivElement;
+const root = createRoot(body);
 
-@customElement("index-page")
-class IndexPage extends LitElement {
-	render() {
-		return html`
-			<h1>Hello World.</h1>
-			<p>Está é a pagina principal</p>
-      <a href="/about.html">About Page</a>
-		`;
-	}
-}
+const Index = () => {
+  return (
+    <div className="Index">
+      <App />
+    </div>
+  );
+};
 
-render(new IndexPage(), document.body);
+root.render(Index());
