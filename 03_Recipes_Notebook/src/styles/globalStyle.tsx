@@ -3,8 +3,8 @@ import { createGlobalStyle } from "styled-components";
 export const global = {
   fontfamily: "sans-serif",
   colors: {
-    font: "#dddddd",
-    background01: " #303030",
+    font: "#c7c7c7",
+    background01: " #161515",
     yellow: "#ffd000",
   },
 };
@@ -19,7 +19,7 @@ export default createGlobalStyle`
 }
 
   body {
-    background-color: #181818;
-    color: white;
+    background-color: #cfcfcf;
+    color: #cacaca;
   }
 `;

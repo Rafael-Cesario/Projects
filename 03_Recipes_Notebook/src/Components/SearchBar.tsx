@@ -8,7 +8,7 @@ const SearchBar = () => {
     const input = e.target as HTMLInputElement;
     console.log(input.value);
     
-    // ir no DB e retornar a receita
+    // ir na api e retornar a receita
   };
 
   return (

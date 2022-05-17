@@ -21,12 +21,13 @@
 
 ### ![favicon-32x32](https://user-images.githubusercontent.com/88716893/166608701-67e46550-6551-407d-a68f-997ddc4f5204.png) [Recipes, PWA](./03_Recipes_Notebook/)
 
-##### Inicio de uma PWA com suas funcionalidades.
+##### Inicio de uma PWA.
 
-    - lit-html
-    - webcomponents
+    - react
+    - styled-components
+    - babel
     - typescript
-    - webPack
+    - webpack
 
 ### ![favicon-32x32](https://user-images.githubusercontent.com/88716893/166608816-45ad7903-c116-420c-b85e-24a976e177a4.png) [BirthDay Reminder](./02_Birthday_Reminder/)
 

@@ -3,6 +3,7 @@ const path = require("path");
 module.exports = {
   entry: {
     index: "./src/index.tsx",
+    serviceWorker: "./src/serviceWorker.ts"
   },
 
   devServer: {
@@ -17,7 +18,7 @@ module.exports = {
         use: "babel-loader",
       },
       {
-        test: /\.tsx$/,
+        test: /\.tsx?$/,
         exclude: /node_modules/,
         use: "ts-loader",
       },

@@ -8,8 +8,10 @@ const FavRecipesStyle = styled.div`
   align-items: center;
   justify-content: center;
   margin: 2rem;
+  padding: 1rem;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.089);
 
-  background-color: #303030;
+  background-color: ${global.colors.background01};
   border-radius: 10px;
 
   .arrows {

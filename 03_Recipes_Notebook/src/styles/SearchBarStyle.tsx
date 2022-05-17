@@ -9,8 +9,9 @@ const SearchBarStyle = styled.div`
   padding: 1rem;
   background-color: ${global.colors.background01};
   border-radius: 10px;
-  width: 50vw;
-  box-shadow: 5px 5px 2px rgba(0, 0, 0, 0.089);
+  max-width: 70vw;
+  min-width: 50vw;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.089);
 
   .icon {
     margin: 0 0.5rem;

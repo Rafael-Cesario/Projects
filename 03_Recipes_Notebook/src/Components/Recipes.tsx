@@ -4,6 +4,9 @@ import { fetchRepices } from "../shared/request";
 import { RecipesType } from "../shared/types";
 import { RecipesStyle } from "../styles/RecipesStyle";
 
+import { AiOutlineClockCircle } from "react-icons/ai";
+import { BiDish } from "react-icons/bi";
+
 const Recipes = () => {
   const [recipes, setRecipes] = useState<RecipesType>([]);
 
@@ -24,8 +27,14 @@ const Recipes = () => {
             <img src={recipe.imgURL} alt="foto de comida" />
             <div>
               <h1>{recipe.name}</h1>
-              <span>{recipe.time}</span>
-              <span>{recipe.plates}</span>
+              <span>
+                <AiOutlineClockCircle className="icon" />
+                {recipe.time}
+              </span>
+              <span>
+                <BiDish className="icon" />
+                {recipe.plates}
+              </span>
             </div>
           </div>
         );
