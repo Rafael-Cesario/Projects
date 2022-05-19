@@ -45,9 +45,10 @@ const App = () => {
 	};
 
 	const handleDragEnd = () => {
+		if (!draggingElem || !underElem) return;
+
 		const draggingIndex = draggingElem.getAttribute("data-index");
 		const underElemIndex = underElem.getAttribute("data-index");
-		console.log(draggingIndex, underElemIndex);
 
 		setTodos(
 			produce(todos, (draft) => {
