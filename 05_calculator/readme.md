@@ -1,1 +1,1 @@
-##### Uma simples calculadora para fazer entender como funciona o jest e o @testing-library
+##### Uma simples calculadora para fazer entender como funciona o jest e o testing-library

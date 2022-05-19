@@ -15,17 +15,27 @@ const App = () => {
 
   const addOperator = (e: SyntheticEvent) => {
     const button = e.target as HTMLButtonElement;
-    const value = button.textContent;
+    const value = button.textContent!;
+
+    if (previous) {
+      return makeOperation(value);
+    }
 
     setPrevious(`${typing} ${value}`);
     setTyping("");
   };
 
-  const makeOperation = () => {
+  const makeOperation = (newOperator?: string) => {
     const operator = previous[previous.search(/ /) + 1];
     const value01 = Number(previous.slice(0, previous.search(/ /)));
     const value02 = Number(typing);
     const result = handleSum(operator, value01, value02);
+
+    if (newOperator) {
+      setPrevious(`${result} ${newOperator}`);
+      setTyping("");
+      return;
+    }
 
     setPrevious("");
     setTyping(String(result));
@@ -70,8 +80,8 @@ const App = () => {
   return (
     <Calculator className="calculator-container">
       <div className="screen">
-        <span>{previous}</span>
-        <h1>{typing}</h1>
+        <span className="previous">{previous}</span>
+        <h1 className="typing">{typing}</h1>
       </div>
       <div className="keyboard">
         <button onClick={(e) => clearAll()} className="func c">
