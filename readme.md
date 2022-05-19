@@ -9,7 +9,7 @@
 ##### **_Os Projetos não estão listados na mesma ordem das pastas acima_**
 
 
-## [**Planner**](./06_planner/)
+## <img src="https://img.icons8.com/dusk/40/000000/list--v1.png" alt="list image"/> [**Planner**](./06_planner/)
 
     - HTML Drag/Drop
     - eslint
@@ -20,7 +20,7 @@
 
 
 
-## <img src="https://img.icons8.com/dusk/40/000000/apple-calculator.png"/> [**Calculator**](./05_calculator/)
+## <img src="https://img.icons8.com/dusk/40/000000/apple-calculator.png" alt="Calculator image"/> [**Calculator**](./05_calculator/)
 
 ##### Uma simples calculadora para usar jest e testing-library.
 
@@ -63,7 +63,7 @@
     - mongoDB
     - API REST.
 
-## <img src="https://img.icons8.com/bubbles/32/000000/lock-2.png"/> [JWT Login api](./01_Authentication_JWT/)
+## <img src="https://img.icons8.com/bubbles/32/000000/lock-2.png" alt="image"/> [JWT Login api](./01_Authentication_JWT/)
 
 ##### Uma API feita utilizando JWT
 
