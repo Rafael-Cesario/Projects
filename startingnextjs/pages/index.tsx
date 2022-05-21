@@ -1,7 +1,5 @@
+import App from "./_app";
+
 export default () => {
-	return (
-		<>
-			<h1>Hello World</h1>
-		</>
-	);
+	return <App />;
 };
