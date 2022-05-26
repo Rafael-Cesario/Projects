@@ -1,5 +1,3 @@
-<!-- ![banner](https://user-images.githubusercontent.com/88716893/164410744-1de53f9a-719d-4955-83b5-5f6787401786.png) -->
-
 ## Projetos
 
 ##### Alguns projetos ainda não estão finalizados.
@@ -8,7 +6,6 @@
 
 ##### **_Os Projetos não estão listados na mesma ordem das pastas acima_**
 
-
 ## <img src="https://img.icons8.com/dusk/40/000000/list--v1.png" alt="list image"/> [**Planner**](./06_planner/)
 
     - HTML Drag/Drop
@@ -16,9 +13,6 @@
     - react
     - typescript
     - webpack
-
-
-
 
 ## <img src="https://img.icons8.com/dusk/40/000000/apple-calculator.png" alt="Calculator image"/> [**Calculator**](./05_calculator/)
 
@@ -41,6 +35,16 @@
     - typescript
     - styled-components
     - json-server
+
+## <img src="./07_theme_toggle_nextjs/public/favicon.png" width="30px"> Theme Toggle
+
+##### **Um simple 'theme toggle' para iniciar com next.js**
+
+    - next
+    - styled-components
+    - typescript
+    - eslint
+    - react
 
 ## ![favicon-32x32](https://user-images.githubusercontent.com/88716893/166608701-67e46550-6551-407d-a68f-997ddc4f5204.png) [Recipes, PWA](./03_Recipes_Notebook/)
 
