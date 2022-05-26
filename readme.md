@@ -4,7 +4,7 @@
 ##### Aqui eu coloco os projetos que estou fazendo enquanto aprendo alguma Tecnologia, conforme vou aprendendo vou atualizando alguns deles para testar novas coisas.
 ##### Não são projetos com o intuito de serem grandes ou complexos, apenas projetos para utilizar algum framework.
 
-###### Você pode utilizar a ferramenta de busca em página para procurar por uma tecnológia. [ CTRL + F ].
+###### Você pode utilizar a ferramenta de busca em página para procurar por uma tecnologia. [ CTRL + F ].
 
 ###### **Os Projetos não estão listados na mesma ordem das pastas acima.**
 
