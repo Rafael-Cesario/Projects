@@ -10,13 +10,14 @@
 
 ## <img src="https://img.icons8.com/dusk/40/000000/list--v1.png" alt="list image"/> [**Planner**](./06_planner/)
 
-##### Um simples drag and drop.
+##### **Um planner para você organizar o que fazer em cada hora do seu dia.**
 
-    - HTML Drag/Drop
-    - eslint
-    - react
+    - next.js
+    - styled-components
+    - localstorage
+    - eslit
     - typescript
-    - webpack
+    - HTML drag and drop
 
 ## <img src="https://img.icons8.com/dusk/40/000000/apple-calculator.png" alt="Calculator image"/> [**Calculator**](./05_calculator/)
 
