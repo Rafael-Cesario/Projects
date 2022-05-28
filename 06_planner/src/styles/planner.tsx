@@ -2,15 +2,16 @@ import styled from "styled-components";
 import { Style } from "./globalStyle";
 
 const PlannerStyle = styled.div`
-	border-radius: 5px;
 	overflow: hidden;
-	background-color: ${Style.plannerBackground};
+	border-radius: 5px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 
 	.planner {
+		background-color: ${Style.plannerBackground};
 		display: grid;
-		grid-template-columns: 1fr auto;
-		justify-items: center;
-		align-items: center;
+		grid-template-columns: 5rem auto;
 	}
 
 	.hour,
@@ -28,8 +29,8 @@ const PlannerStyle = styled.div`
 
 	.task {
 		display: flex;
-		justify-content: space-between;
-		align-items: baseline;
+		align-items: center;
+		transition: 0.1s ease;
 
 		.icon {
 			cursor: pointer;
@@ -37,16 +38,14 @@ const PlannerStyle = styled.div`
 			margin-right: 1rem;
 		}
 
-		textarea {
-			resize: vertical;
+		input {
 			border: none;
 			outline: none;
 			background-color: transparent;
 			font-size: 1rem;
 			color: #fff;
 			font-family: "Roboto";
-
-			overflow: auto;
+			width: 100%;
 
 			::placeholder {
 				color: #fff;

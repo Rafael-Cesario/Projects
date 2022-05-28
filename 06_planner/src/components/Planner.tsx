@@ -74,7 +74,6 @@ const Planner = () => {
 		const target = e.target as HTMLDivElement;
 
 		if (target.nodeName != "DIV") return;
-		if (dragginElem === target) return;
 
 		overElem = target;
 	};
@@ -118,7 +117,7 @@ const Planner = () => {
 					<p className="hour">{hour}</p>
 					<div data-index={index} className="task" draggable="true" onDragStart={(e) => dragStart(e)} onDragEnd={(e) => dragEnd(e)} onDragEnter={(e) => dragEnter(e)}>
 						<MdDragIndicator color="#ffffff" className="icon" />
-						<textarea data-index={index} placeholder={tasks[index]} onChange={(e) => changeTask(e)} />
+						<input type={"text"} data-index={index} placeholder={tasks[index]} onChange={(e) => changeTask(e)} />
 					</div>
 				</div>
 			))}

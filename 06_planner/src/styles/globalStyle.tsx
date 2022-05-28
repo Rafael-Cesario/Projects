@@ -17,11 +17,7 @@ const GlobalStyle = createGlobalStyle`
     background-color: #101010;
     color: #dddddd;
 
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
+
     margin: 2rem;
   }
 `;
