@@ -1,0 +1,29 @@
+{
+  "name": "08_api_rest_nextjs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "@next/eslint-plugin-next": "^12.1.6",
+    "mongoose": "^6.3.4",
+    "next": "^12.1.6",
+    "react": "^18.1.0",
+    "react-dom": "^18.1.0",
+    "typescript": "^4.7.2"
+  },
+  "devDependencies": {
+    "@types/node": "^17.0.35",
+    "@types/react": "^18.0.9",
+    "@typescript-eslint/eslint-plugin": "^5.26.0",
+    "@typescript-eslint/parser": "^5.26.0",
+    "eslint": "^8.16.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-react": "^7.30.0"
+  },
+  "scripts": {
+    "dev": "next dev"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

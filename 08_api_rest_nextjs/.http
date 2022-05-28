@@ -1,0 +1,20 @@
+### Return all users.
+GET http://localhost:3000/api/users
+
+
+### add new User
+POST http://localhost:3000/api/users
+Content-Type: application/json
+
+{
+  "name": "rafael"
+}
+
+
+### Remove User
+DELETE  http://localhost:3000/api/users
+Content-Type: application/json
+
+{
+  "name": "teste"
+}
