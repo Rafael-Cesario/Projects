@@ -1,12 +1,25 @@
 # <img src="https://cdn-icons-png.flaticon.com/128/1705/1705317.png" width="50px"> Projetos
 
 ##### Oi, Meu nome é Rafael e este é o meu repositório de 'testes'. 
+
 ##### Aqui eu coloco os projetos que estou fazendo enquanto aprendo alguma Tecnologia, conforme vou aprendendo vou atualizando alguns deles para testar novas coisas.
+
 ##### Não são projetos com o intuito de serem grandes ou complexos, apenas projetos para utilizar algum framework.
 
 ###### Você pode utilizar a ferramenta de busca em página para procurar por uma tecnologia. [ CTRL + F ].
 
 ###### **Os Projetos não estão listados na mesma ordem das pastas acima.**
+
+## <img src="https://img.icons8.com/dusk/40/000000/api.png"/> [API REST com Next](./08_api_rest_nextjs/)
+
+##### Uma API feita no Next.
+
+    - mongoDB | mongoose
+    - next.js   
+    - typescript
+    - eslint
+    - API Rest
+
 
 ## <img src="https://img.icons8.com/dusk/40/000000/list--v1.png" alt="list image"/> [**Planner**](./06_planner/)
 
@@ -41,7 +54,7 @@
     - styled-components
     - json-server
 
-## <img src="https://user-images.githubusercontent.com/88716893/170414207-a2be26ac-df99-4456-ad27-d01f1428426a.png" width="30px" alt="sun and moon vector"> [Theme Toggle](https://github.com/Rafael-Cesario/Lab/tree/main/07_theme_toggle_nextjs)
+## <img src="https://user-images.githubusercontent.com/88716893/170414207-a2be26ac-df99-4456-ad27-d01f1428426a.png" width="40px" alt="sun and moon vector"> [Theme Toggle](https://github.com/Rafael-Cesario/Lab/tree/main/07_theme_toggle_nextjs)
 
 ##### **Um simple 'theme toggle' para iniciar com next.js**
 
@@ -72,7 +85,7 @@
     - mongoDB
     - API REST.
 
-## <img src="https://img.icons8.com/bubbles/32/000000/lock-2.png" alt="image"/> [JWT Login api](./01_Authentication_JWT/)
+## <img src="https://img.icons8.com/bubbles/40/000000/lock-2.png" alt="image"/> [JWT Login api](./01_Authentication_JWT/)
 
 ##### Uma API feita utilizando JWT
 
