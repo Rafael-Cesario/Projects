@@ -12,7 +12,4 @@
 ## Funcionalidades
 
     - Adicionar tarefas ao seu dia.
-    - Criar categorias.
-    - Escolher cores para cada categoria.
-    - Escolher categorias para cada tarefa.
     - Drag and Drop para organizar seu dia.
