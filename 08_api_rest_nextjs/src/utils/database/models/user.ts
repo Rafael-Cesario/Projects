@@ -1,9 +1,13 @@
-import mongoose, { Schema, Document } from "mongoose";
+import { Schema, model } from "mongoose";
 
-const UserSchema = new Schema({
-	name: String,
+interface IUser {
+	name: string;
+}
+
+const UserSchema = new Schema<IUser>({
+	name: { type: String, required: true },
 });
 
-const User = mongoose.model("User", UserSchema);
+const User = model<IUser>("User", UserSchema);
 
 export { User };
