@@ -13,7 +13,11 @@ const server = new ApolloServer({
 	typeDefs,
 	resolvers,
 	formatError: (error) => {
-		if (error.message.startsWith("Favorite")) return new Error("Favorite Not Found");
+		if (error.message.startsWith("Id")) return new Error(error.message);
+		if (error.message.startsWith("Favorite")) return new Error(error.message);
+		if (error.message.startsWith("Cannot")) return new Error(error.message);
+		if (error.message.startsWith("Cast to ObjectId")) return new Error("Please pass a id to delete a favorite");
+		if (error.message.startsWith("Field")) return new Error(error.message);
 
 		return error;
 	},

@@ -19,14 +19,13 @@ export const resolvers = {
 			return newFavorite;
 		},
 
-		async deleteFavorite(_: {}, args: { id: String; name: String }) {
-			const { id, name } = args;
-			const filter = id ? id : name;
-			const deleted = await deleteFavoriteDB(filter);
+		async deleteFavorite(_: {}, args: { id: String }) {
+			const { id } = args;
+			const deleted = await deleteFavoriteDB(id);
 
-			if (deleted.deletedCount === 0) throw new Error("Favorite Not Found");
+			if (deleted.deletedCount === 0) throw new Error("Id not found");
 
-			return { id: filter };
+			return { id: id };
 		},
 
 		async modifyFavorite(_: {}, args: { id: string; changes: favoriteTypeObj }) {
