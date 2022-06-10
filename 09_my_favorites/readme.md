@@ -8,6 +8,7 @@
     - NextJS
     - React
     - Typescript
+    - MongoDB / Mongoose
 
 ## Funcionalidades
 
