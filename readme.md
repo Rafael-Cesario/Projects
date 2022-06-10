@@ -10,6 +10,24 @@
 
 ###### **Os Projetos não estão listados na mesma ordem das pastas acima.**
 
+
+&nbsp;
+
+
+## <img src="https://cdn-icons.flaticon.com/png/512/4208/premium/4208408.png?token=exp=1654824500~hmac=93ad6688b4bc9ffb0604e9ba0ab870ea" width="50px"> [My Favorites](./09_my_favorites/)
+
+##### Um aplicativo para salvar suas coisas favoritas.
+
+    - GraphQL / Apollo-Server
+    - NextJS
+    - React
+    - Typescript
+    - MongoDB / Mongoose
+
+
+&nbsp;
+
+
 ## <img src="https://img.icons8.com/dusk/40/000000/api.png"/> [API REST com Next](./08_api_rest_nextjs/)
 
 ##### Uma API feita no Next.
@@ -19,6 +37,9 @@
     - typescript
     - eslint
     - API Rest
+
+
+&nbsp;
 
 
 ## <img src="https://img.icons8.com/dusk/40/000000/list--v1.png" alt="list image"/> [**Planner**](./06_planner/)
@@ -31,6 +52,10 @@
     - eslit
     - typescript
     - HTML drag and drop
+    
+
+&nbsp;
+
 
 ## <img src="https://img.icons8.com/dusk/40/000000/apple-calculator.png" alt="Calculator image"/> [**Calculator**](./05_calculator/)
 
@@ -43,6 +68,10 @@
     - typescript
     - webpack
 
+
+&nbsp;
+
+
 ## ![icons8-notebook-justicon-lineal-color-32](https://user-images.githubusercontent.com/88716893/166608554-33f3d8fb-1b1a-4414-8fa5-3b2b52dca1f9.png) [**SNotes**](./04_s_notes/)
 
 ##### Aplicativo para anotações, um Rich Text Editor.
@@ -54,6 +83,10 @@
     - styled-components
     - json-server
 
+
+&nbsp;
+
+
 ## <img src="https://user-images.githubusercontent.com/88716893/170414207-a2be26ac-df99-4456-ad27-d01f1428426a.png" width="40px" alt="sun and moon vector"> [Theme Toggle](https://github.com/Rafael-Cesario/Lab/tree/main/07_theme_toggle_nextjs)
 
 ##### **Um simple 'theme toggle' para iniciar com next.js**
@@ -63,6 +96,10 @@
     - typescript
     - eslint
     - react
+
+
+&nbsp;
+
 
 ## ![favicon-32x32](https://user-images.githubusercontent.com/88716893/166608701-67e46550-6551-407d-a68f-997ddc4f5204.png) [Recipes, PWA](./03_Recipes_Notebook/)
 
@@ -74,6 +111,10 @@
     - typescript
     - webpack
 
+
+&nbsp;
+
+
 ## ![favicon-32x32](https://user-images.githubusercontent.com/88716893/166608816-45ad7903-c116-420c-b85e-24a976e177a4.png) [BirthDay Reminder](https://github.com/Rafael-Cesario/Lab/tree/main/02_birthday_reminder)
 
 ##### Salva amigos, suas datas de aniversário e algumas anotações sobre cada amigo.
@@ -84,6 +125,10 @@
     - webPack
     - mongoDB
     - API REST.
+
+
+&nbsp;
+
 
 ## <img src="https://img.icons8.com/bubbles/40/000000/lock-2.png" alt="image"/> [JWT Login api](./01_Authentication_JWT/)
 
