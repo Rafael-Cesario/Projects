@@ -17,3 +17,5 @@
     - Escolher uma imagem como capa.
     - Adicionar a uma categoria.
     - Filtros.
+
+![Slide 16_9 - 1](https://user-images.githubusercontent.com/88716893/173166197-04ddad81-6629-4647-b86f-21bfad5f52a5.png)
