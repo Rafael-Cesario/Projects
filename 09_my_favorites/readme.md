@@ -2,6 +2,8 @@
 
 ##### Um aplicativo para salvar suas coisas favoritas.
 
+![Slide 16_9 - 1](https://user-images.githubusercontent.com/88716893/173167988-d977b2ca-29bc-4869-9f1c-369b7d189dfe.png)
+
 ## Feito com
 
     - GraphQL / Apollo-Server
@@ -19,4 +21,3 @@
     - Filtros.
 
 
-![Slide 16_9 - 1](https://user-images.githubusercontent.com/88716893/173167988-d977b2ca-29bc-4869-9f1c-369b7d189dfe.png)
