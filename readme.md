@@ -14,7 +14,7 @@
 &nbsp;
 
 
-## <img src="https://cdn-icons.flaticon.com/png/512/4208/premium/4208408.png?token=exp=1654824500~hmac=93ad6688b4bc9ffb0604e9ba0ab870ea" width="50px"> [My Favorites](./09_my_favorites/)
+## <img src="https://user-images.githubusercontent.com/88716893/173566896-597eb8d8-acc8-4562-a949-f7af376c790b.png" width="50px"> [My Favorites](./09_my_favorites/)
 
 ##### Um aplicativo para salvar suas coisas favoritas.
 
@@ -23,6 +23,8 @@
     - React
     - Typescript
     - MongoDB / Mongoose
+    - Styled-Components
+    - Eslint
 
 
 &nbsp;
