@@ -8,25 +8,30 @@ interface TagContextProps {
 interface Tags {
 	active: string[];
 	setActive: React.Dispatch<React.SetStateAction<string[]>>;
+	showCreateNew: boolean;
+	setShowCreateNew: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const initialValue = {
-	title: "",
-	tags: [],
 	active: ["Jogos", "Todos"],
 	setActive: () => {},
+	showCreateNew: false,
+	setShowCreateNew: () => {},
 };
 
 const TagContext = createContext<Tags>(initialValue);
 
 const TagContextProvider = ({ children }: TagContextProps) => {
 	const [active, setActive] = useState(initialValue.active);
+	const [showCreateNew, setShowCreateNew] = useState(initialValue.showCreateNew);
 
 	return (
 		<TagContext.Provider
 			value={{
 				active,
 				setActive,
+				showCreateNew,
+				setShowCreateNew,
 			}}
 		>
 			{children}

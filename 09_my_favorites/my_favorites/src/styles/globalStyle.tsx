@@ -7,23 +7,32 @@ export const colors = {
 };
 
 export const GlobalStyle = createGlobalStyle`
+	* {
+		margin: 0;
+		padding: 0;
+		box-sizing: border-box;
+	}
 
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
+	body {
+		background: rgb(43,43,43);
+		background: radial-gradient(circle, rgba(43,43,43,1) 0%, rgba(0,0,0,1) 0%, rgba(24,24,24,1) 100%);	
+		color: #dddddd;
+		font-family: "Roboto", 'Courier New', Courier, monospace;
+		scroll-behavior: smooth;
 
-  body {
+		&::-webkit-scrollbar-button{
+			background-color: ${colors.background};
+		}
 
+		&::-webkit-scrollbar {
+			background-color: ${colors.black};
+		}
 
-    background-color: #202020;
-		background: linear-gradient(180deg, #151515 0%, #101010 100%);
-    color: #dddddd;
-
-
-    font-family: "Roboto", 'Courier New', Courier, monospace;
-  }
+		&::-webkit-scrollbar-thumb{
+			border-radius: 5px;
+			background-color: ${colors.fontBlue};
+		}
+	}
 
   .app {
     display: grid;

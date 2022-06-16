@@ -2,24 +2,50 @@ import styled from "styled-components";
 
 export const FavoritesStyles = styled.div`
 	display: flex;
+	width: fit-content;
+	margin-top: 10px;
 	flex-wrap: wrap;
+	justify-content: center;
 
 	.favorite {
-		display: flex;
-		flex-direction: column;
-		width: 200px;
-		height: 300px;
+		width: 8rem;
+		height: 11rem;
 		margin: 10px;
-		overflow: hidden;
+		cursor: pointer;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		user-select: none;
 
 		img {
+			width: 100%;
+			height: 100%;
+			object-fit: fill;
 			border-radius: 5px;
-			width: inherit;
-			height: inherit;
+			transition: 0.1s ease;
 		}
 
-		h2 {
+		p {
+			width: 7rem;
+			display: none;
+			pointer-events: none;
+			z-index: 1;
+			font-family: "Courier New", Courier, monospace;
+			font-size: 1rem;
+			opacity: 0.8;
+			position: absolute;
 			text-align: center;
+			text-transform: capitalize;
+			text-shadow: 1px 1px 1px #000000;
+		}
+
+		:hover {
+			p {
+				display: block;
+			}
+			img {
+				filter: blur(2px) brightness(50%);
+			}
 		}
 	}
 `;

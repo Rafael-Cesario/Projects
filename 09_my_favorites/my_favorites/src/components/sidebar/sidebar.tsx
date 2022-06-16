@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import { SidebarStyle } from "../../styles/sidebar/sidebarStyle";
 
 import { TagContainer } from "./tagContainer";
+import { NewFavorite } from "./newFavorite";
+import { TagContext } from "../../context/tagContext";
 
 const Sidebar = () => {
 	// will come from a dB.
@@ -10,6 +12,8 @@ const Sidebar = () => {
 		Livros: ["Todos", "wishlist", "lidos", "favoritos"],
 	};
 
+	const { setShowCreateNew, showCreateNew } = useContext(TagContext);
+
 	const tagsTitle = Object.keys(data);
 	const tags = Object.values(data);
 
@@ -17,12 +21,14 @@ const Sidebar = () => {
 
 	return (
 		<SidebarStyle>
-			<button>
+			<button onClick={() => setShowCreateNew(!showCreateNew)}>
 				<span className="icon">+</span>
 				<span className="txt">Adicionar Novo</span>
 			</button>
 
 			{tagsTitleArray}
+
+			{showCreateNew && <NewFavorite />}
 		</SidebarStyle>
 	);
 };
