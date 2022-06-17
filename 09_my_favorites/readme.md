@@ -2,7 +2,7 @@
 
 ##### Um aplicativo para salvar suas coisas favoritas.
 
-![Slide 16_9 - 1](https://user-images.githubusercontent.com/88716893/173167988-d977b2ca-29bc-4869-9f1c-369b7d189dfe.png)
+![Captura de tela 2022-06-17 074608](https://user-images.githubusercontent.com/88716893/174284055-4ab1c6f0-61fb-4936-b451-102731ea7ae1.png)
 
 ## Feito com
 
