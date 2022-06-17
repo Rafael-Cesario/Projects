@@ -3,7 +3,7 @@ import { createGlobalStyle } from "styled-components";
 export const colors = {
 	background: "#202020",
 	black: "#101010",
-	fontBlue: "#1780e1",
+	fontBlue: "#1279da",
 };
 
 export const GlobalStyle = createGlobalStyle`
@@ -35,8 +35,7 @@ export const GlobalStyle = createGlobalStyle`
 	}
 
   .app {
-    display: grid;
-    grid-template-columns: auto 1fr;
+    display: flex;
   }
 
   button {

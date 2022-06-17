@@ -3,7 +3,7 @@ import { colors } from "../globalStyle";
 
 export const MenuBarStyle = styled.div`
 	display: grid;
-	grid-template-columns: repeat(3, 1fr);
+	grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
 	align-items: flex-center;
 
 	.tag {
@@ -39,14 +39,16 @@ export const MenuBarStyle = styled.div`
 		display: flex;
 		align-items: center;
 		background-color: ${colors.fontBlue};
-		padding-left: 10px;
+		padding: 2px 2px 2px 10px;
 		border-radius: 5px;
 
 		.icon {
 			pointer-events: none;
+			margin-right: 5px;
 		}
 
 		input {
+			border-radius: 5px;
 			border: none;
 			background-color: ${colors.fontBlue};
 			outline: none;
@@ -56,8 +58,18 @@ export const MenuBarStyle = styled.div`
 			transition: 0.3s ease-in-out;
 
 			:focus {
+				width: 100%;
 				font-size: 1.5rem;
 			}
+		}
+	}
+
+	@media (max-width: 800px) {
+		.tag,
+		.filter,
+		.search {
+			justify-self: start;
+			margin: 10px 0;
 		}
 	}
 `;

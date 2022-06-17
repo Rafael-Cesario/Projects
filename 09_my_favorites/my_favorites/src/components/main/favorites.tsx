@@ -23,8 +23,8 @@ export const Favorites = () => {
 		},
 	];
 
-	const favoritesArray = favoriteData.map((data: favoriteData) => (
-		<div key={data.name} className="favorite">
+	const favoritesArray = favoriteData.map((data: favoriteData, index: number) => (
+		<div key={data.name + index} className="favorite">
 			<p>{data.name}</p>
 			<img src={data.imgURL} alt="front cover of a favorite" />
 		</div>

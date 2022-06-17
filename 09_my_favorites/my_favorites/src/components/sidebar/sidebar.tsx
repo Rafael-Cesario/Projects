@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { SidebarStyle } from "../../styles/sidebar/sidebarStyle";
 
 import { TagContainer } from "./tagContainer";
-import { NewFavorite } from "./newFavorite";
+
 import { TagContext } from "../../context/tagContext";
 
 const Sidebar = () => {
@@ -28,7 +28,7 @@ const Sidebar = () => {
 
 			{tagsTitleArray}
 
-			{showCreateNew && <NewFavorite />}
+
 		</SidebarStyle>
 	);
 };
