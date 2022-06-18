@@ -1,11 +1,11 @@
 import React from "react";
 import { PreviewStyled } from "../../styles/newFavorite/previewStyled";
-import { FildsValuetype } from "./newFavorite";
+import { FavoriteType } from "./newFavorite";
 
 import { AiOutlinePicture } from "react-icons/ai";
 
 interface PreviewProps {
-	fildsValue: FildsValuetype;
+	fildsValue: FavoriteType;
 }
 
 export const Preview = ({ fildsValue }: PreviewProps) => {

@@ -2,12 +2,12 @@ import React from "react";
 
 import produce from "immer";
 
-import type { FildsValuetype } from "../newFavorite/newFavorite";
+import type { FavoriteType } from "../newFavorite/newFavorite";
 import { FormFildsStyle } from "../../styles/newFavorite/formFildsStyle";
 
 interface FormFildsProps {
-	fildsValue: FildsValuetype;
-	setFildsValue: React.Dispatch<React.SetStateAction<FildsValuetype>>;
+	fildsValue: FavoriteType;
+	setFildsValue: React.Dispatch<React.SetStateAction<FavoriteType>>;
 }
 
 export const FormFilds = ({ fildsValue, setFildsValue }: FormFildsProps) => {

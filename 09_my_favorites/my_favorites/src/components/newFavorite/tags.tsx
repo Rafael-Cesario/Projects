@@ -1,11 +1,11 @@
 import React from "react";
-import { FildsValuetype } from "./newFavorite";
+import { FavoriteType } from "./newFavorite";
 import produce from "immer";
 import { TagsStyled } from "../../styles/newFavorite/tagsStyled";
 
 interface TagsProps {
-	fildsValue: FildsValuetype;
-	setFildsValue: React.Dispatch<React.SetStateAction<FildsValuetype>>;
+	fildsValue: FavoriteType;
+	setFildsValue: React.Dispatch<React.SetStateAction<FavoriteType>>;
 }
 
 export const Tags = ({ fildsValue, setFildsValue }: TagsProps) => {

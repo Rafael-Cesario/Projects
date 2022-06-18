@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { MenuBar } from "./menuBar";
+import { MenuBar } from "./menuBar/menuBar";
 
 import { MainStyle } from "../../styles/main/mainStyle";
 import { Favorites } from "./favorites";

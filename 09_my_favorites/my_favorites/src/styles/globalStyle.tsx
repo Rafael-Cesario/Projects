@@ -65,7 +65,7 @@ export const GlobalStyle = createGlobalStyle`
 		}
 
 		.txt {
-			padding: 20px;
+			padding: 20px 30px;
 			pointer-events: none;
 		}
 

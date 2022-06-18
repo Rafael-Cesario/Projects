@@ -5,19 +5,17 @@ import { TagContainer } from "./tagContainer";
 
 import { TagContext } from "../../context/tagContext";
 
-const Sidebar = () => {
-	// will come from a dB.
-	const data = {
-		Jogos: ["Todos", "wishlist", "Instalados", "favoritos", "Zerados"],
-		Livros: ["Todos", "wishlist", "lidos", "favoritos"],
-	};
+import { tagsData } from "../../utils/tagsData";
 
+const Sidebar = () => {
 	const { setShowCreateNew, showCreateNew } = useContext(TagContext);
 
-	const tagsTitle = Object.keys(data);
-	const tags = Object.values(data);
+	const tagsTitle = Object.keys(tagsData);
+	const tags = Object.values(tagsData);
 
-	const tagsTitleArray = tagsTitle.map((title, index) => <TagContainer key={title} title={title} tags={tags[index]} />);
+	const tagsTitleArray = tagsTitle.map((title, index) => (
+		<TagContainer key={title} title={title} tags={tags[index]} />
+	));
 
 	return (
 		<SidebarStyle>
@@ -27,8 +25,6 @@ const Sidebar = () => {
 			</button>
 
 			{tagsTitleArray}
-
-
 		</SidebarStyle>
 	);
 };

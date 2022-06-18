@@ -5,19 +5,21 @@ import { FormFilds } from "./formFilds";
 import { Preview } from "./preview";
 import { Tags } from "./tags";
 
-export type FildsValuetype = {
+export type NoteType = "Incrivel" | "Bom" | "Normal" | "Ruim" | "Sem Nota";
+
+export type FavoriteType = {
 	name: string;
-	note: string;
-	genre: string;
+	note: NoteType;
+	genre: string[];
 	imgURL: string;
 	tags: string[];
 };
 
 export const NewFavorite = () => {
-	const [fildsValue, setFildsValue] = useState({
+	const [fildsValue, setFildsValue] = useState<FavoriteType>({
 		name: "Nome",
-		note: "nota",
-		genre: "Genero",
+		note: "Sem Nota",
+		genre: [],
 		imgURL: "",
 		tags: [],
 	});

@@ -16,6 +16,7 @@ export const NewFavoriteStyle = styled.div`
 	border-radius: 16px;
 	box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
 	backdrop-filter: blur(10px);
+	z-index: 2;
 
 	.user-inputs {
 		margin: 50px 0;

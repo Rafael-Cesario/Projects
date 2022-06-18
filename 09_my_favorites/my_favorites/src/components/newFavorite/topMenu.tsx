@@ -2,10 +2,10 @@ import React, { useContext } from "react";
 
 import { TagContext } from "../../context/tagContext";
 import { TopMenuStyle } from "../../styles/newFavorite/topMenuStyle";
-import { FildsValuetype } from "./newFavorite";
+import { FavoriteType } from "./newFavorite";
 
 interface TopMenuProps {
-	fildsValue: FildsValuetype;
+	fildsValue: FavoriteType;
 }
 
 export const TopMenu = ({ fildsValue }: TopMenuProps) => {
