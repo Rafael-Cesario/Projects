@@ -17,6 +17,11 @@ export const FavoritesStyles = styled.div`
 		align-items: center;
 		user-select: none;
 
+		p,
+		img {
+			pointer-events: none;
+		}
+
 		img {
 			width: 100%;
 			height: 100%;

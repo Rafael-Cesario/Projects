@@ -10,6 +10,7 @@ export const TopMenuStyle = styled.div`
 
 	h2 {
 		color: ${colors.fontBlue};
+		text-transform: capitalize;
 	}
 
 	.buttons {

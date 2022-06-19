@@ -7,13 +7,19 @@ import { TagContext } from "../../context/tagContext";
 import { NewFavorite } from "../newFavorite/newFavorite";
 
 const Main = () => {
-	const { showCreateNew } = useContext(TagContext);
+	const { showCreateNew, setShowCreateNew } = useContext(TagContext);
 
 	return (
 		<MainStyle>
 			<MenuBar />
 			<Favorites />
-			{showCreateNew && <NewFavorite />}
+			{showCreateNew && (
+				<NewFavorite
+					title="Criando um novo Favorito"
+					changeDisplay={setShowCreateNew}
+					isDisplayActive={showCreateNew}
+				/>
+			)}
 		</MainStyle>
 	);
 };

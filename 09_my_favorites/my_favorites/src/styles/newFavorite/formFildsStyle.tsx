@@ -18,7 +18,8 @@ export const FormFildsStyle = styled.div`
 			margin-bottom: 5px;
 		}
 
-		input {
+		input,
+		select {
 			border-radius: 5px;
 			outline: none;
 			padding: 10px 20px;

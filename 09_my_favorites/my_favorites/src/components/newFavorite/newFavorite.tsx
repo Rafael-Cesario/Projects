@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React ,{useState } from "react";
 import { NewFavoriteStyle } from "../../styles/newFavorite/newFavoriteStyle";
 import { TopMenu } from "./topMenu";
 import { FormFilds } from "./formFilds";
@@ -6,6 +6,13 @@ import { Preview } from "./preview";
 import { Tags } from "./tags";
 
 export type NoteType = "Incrivel" | "Bom" | "Normal" | "Ruim" | "Sem Nota";
+
+interface NewFavoriteProps {
+	details?: FavoriteType;
+	title: string;
+	isDisplayActive: boolean;
+	changeDisplay: React.Dispatch<React.SetStateAction<boolean>>;
+}
 
 export type FavoriteType = {
 	name: string;
@@ -15,18 +22,30 @@ export type FavoriteType = {
 	tags: string[];
 };
 
-export const NewFavorite = () => {
-	const [fildsValue, setFildsValue] = useState<FavoriteType>({
+export const NewFavorite = ({
+	details,
+	title,
+	changeDisplay,
+	isDisplayActive,
+}: NewFavoriteProps) => {
+	const fildsInitialValue = details || {
 		name: "Nome",
 		note: "Sem Nota",
-		genre: [],
-		imgURL: "",
-		tags: [],
-	});
+		genre: ["Sem Genero"],
+		imgURL: "Busque no google pelo nome da sua obra...",
+		tags: ["Sem Tags"],
+	};
+
+	const [fildsValue, setFildsValue] = useState<FavoriteType>(fildsInitialValue);
 
 	return (
 		<NewFavoriteStyle>
-			<TopMenu fildsValue={fildsValue} />
+			<TopMenu
+				fildsValue={fildsValue}
+				title={title}
+				isDisplayActive={isDisplayActive}
+				changeDisplay={changeDisplay}
+			/>
 
 			<div className="user-inputs">
 				<FormFilds setFildsValue={setFildsValue} fildsValue={fildsValue} />

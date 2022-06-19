@@ -1,16 +1,16 @@
-import React, { useContext } from "react";
+import React from "react";
 
-import { TagContext } from "../../context/tagContext";
 import { TopMenuStyle } from "../../styles/newFavorite/topMenuStyle";
 import { FavoriteType } from "./newFavorite";
 
 interface TopMenuProps {
 	fildsValue: FavoriteType;
+	title: string;
+	isDisplayActive: boolean;
+	changeDisplay: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export const TopMenu = ({ fildsValue }: TopMenuProps) => {
-	const { showCreateNew, setShowCreateNew } = useContext(TagContext);
-
+export const TopMenu = ({ fildsValue, title, changeDisplay, isDisplayActive }: TopMenuProps) => {
 	const saveNewFavorite = async () => {
 		const inputsAreValid = await verifyInputs();
 		if (!inputsAreValid) return;
@@ -26,7 +26,7 @@ export const TopMenu = ({ fildsValue }: TopMenuProps) => {
 			return false;
 		}
 
-		if (imgURL != "") {
+		if (imgURL != "" && !imgURL.startsWith("Busque")) {
 			try {
 				const response = await fetch(imgURL);
 
@@ -46,7 +46,10 @@ export const TopMenu = ({ fildsValue }: TopMenuProps) => {
 	const sendErrorMessage = (fildName: string) => {
 		const errorMessages = {
 			Nome: { default: "Nome", error: "Nome: Um nome é obrigatorio!" },
-			Link: { default: "Link para uma imagem", error: "Não estou conseguindo encontrar uma imagem seguindo este link 😥" },
+			Link: {
+				default: "Link para uma imagem",
+				error: "Não estou conseguindo encontrar uma imagem seguindo este link 😥",
+			},
 		};
 		const filds = document.querySelectorAll(".fild");
 
@@ -69,10 +72,10 @@ export const TopMenu = ({ fildsValue }: TopMenuProps) => {
 
 	return (
 		<TopMenuStyle>
-			<h2>Criando um novo favorito</h2>
+			<h2>{title}</h2>
 			<div className="buttons">
 				<button onClick={() => saveNewFavorite()}>Salvar</button>
-				<button onClick={() => setShowCreateNew(!showCreateNew)}>X</button>
+				<button onClick={() => changeDisplay(!isDisplayActive)}>X</button>
 			</div>
 		</TopMenuStyle>
 	);

@@ -21,11 +21,17 @@ export const FilterStyle = styled.div`
 			margin-right: 10px;
 
 			button {
-				color: #dddddd;
 				background-color: transparent;
 				width: 100%;
 				display: flex;
 				justify-content: space-between;
+				opacity: 0.6;
+				color: #000000;
+
+				:hover {
+					color: white;
+					opacity: 1;
+				}
 			}
 
 			span {
@@ -41,18 +47,6 @@ export const FilterStyle = styled.div`
 				transform: rotate(-90deg);
 				justify-self: flex-end;
 				padding: 0;
-			}
-		}
-
-		.filter-options {
-			button {
-				opacity: 0.6;
-				color: #000;
-
-				:hover {
-					color: white;
-					opacity: 1;
-				}
 			}
 
 			.active {

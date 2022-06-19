@@ -26,34 +26,51 @@ export const Options = ({ filterOption }: OptionsProps) => {
 		return options;
 	};
 
-	const giveButtonClass = () => {
+	const giveClassToOptions = () => {
 		const filterOptionsDiv = document.querySelector(".filter-options") as HTMLDivElement;
-		const buttons = filterOptionsDiv.childNodes as NodeListOf<HTMLButtonElement>;
+		const buttonsOptions = filterOptionsDiv.childNodes as NodeListOf<HTMLButtonElement>;
 		const allFilters = [...filters.genre, ...filters.note, ...filters.tags];
 
-		buttons.forEach((button) => {
+		buttonsOptions.forEach((button) => {
 			if (allFilters.includes(button.textContent)) button.classList.add("active");
 		});
 	};
 
-	useEffect(() => giveButtonClass());
+	const giveClassToMenus = () => {
+		const filterMenuDiv = document.querySelector(".filter-menu") as HTMLDivElement;
+		const buttonsMenu = filterMenuDiv.childNodes as NodeListOf<HTMLButtonElement>;
+
+		buttonsMenu.forEach((button) => {
+			const hasActiveFilter = filters[button.name].length > 0 ? "active" : "";
+			button.className = hasActiveFilter;
+		});
+	};
+
+	useEffect(() => {
+		giveClassToOptions();
+		giveClassToMenus();
+	});
 
 	useEffect(() => {
 		const favorites = document.querySelectorAll(".favorite") as NodeListOf<HTMLDivElement>;
+		const activeFiltersTotal = filters.genre.length + filters.note.length + filters.tags.length;
+		const allFilters = [...filters.genre, ...filters.note, ...filters.tags];
+		const filterKeys = Object.keys(filters);
 
-		const activeFilters = filters.genre.length + filters.note.length + filters.tags.length;
-
-		if (activeFilters === 0) {
+		if (activeFiltersTotal === 0) {
 			favorites.forEach((favorite) => (favorite.style.display = "flex"));
 			return;
 		}
 
 		favorites.forEach((favorite) => {
-			const options = favorite.getAttribute(`data-${filterOption}`).split(",");
+			filterKeys.forEach((key) => {
+				const options = favorite.getAttribute(`data-${key}`).split(",");
 
-			options.forEach((option) => {
-				const hasFilter = filters[filterOption].includes(option);
-				if (hasFilter) favorite.style.display = "flex";
+				options.forEach((option) => {
+					const hasFilter = allFilters.includes(option);
+
+					if (hasFilter) favorite.style.display = "flex";
+				});
 			});
 		});
 	}, [filters]);

@@ -11,14 +11,21 @@ interface PreviewProps {
 export const Preview = ({ fildsValue }: PreviewProps) => {
 	const { name, note, genre, imgURL } = fildsValue;
 
-	const imgContainer = imgURL ? <img src={imgURL} alt="unknown image" /> : <AiOutlinePicture className="icon" />;
-
 	return (
 		<PreviewStyled>
-			<div className="image">{imgContainer}</div>
+			<div className="image">
+				<ImgContainer imgURL={imgURL} />
+			</div>
 			<span>Nome: {name}</span>
 			<span>Nota: {note}</span>
 			<span>Genero: {genre}</span>
 		</PreviewStyled>
 	);
+};
+
+const ImgContainer = ({ imgURL }: { imgURL: string }) => {
+	if (!imgURL.startsWith("Busque") || !imgURL) {
+		return <img src={imgURL} alt="unknown image" />;
+	}
+	return <AiOutlinePicture className="icon" />;
 };
