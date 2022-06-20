@@ -1,9 +1,10 @@
-import { newFavoriteDB } from "../../database/methods/newFavorite";
-
-import type { favoriteTypeObj } from "../../database/methods/newFavorite";
-import { allFavoritesDB } from "../../database/methods/allFavorites";
-import { deleteFavoriteDB } from "../../database/methods/deleteFavorite";
-import { modifyFavoriteDB } from "../../database/methods/modifyFavorite";
+import {
+	allFavoritesDB,
+	deleteFavoriteDB,
+	modifyFavoriteDB,
+	newFavoriteDB,
+	favoriteTypeObj,
+} from "../../database/methods/favorites";
 
 export const resolvers = {
 	Query: {
