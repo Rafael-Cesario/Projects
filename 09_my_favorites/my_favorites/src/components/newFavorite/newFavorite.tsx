@@ -1,4 +1,4 @@
-import React ,{useState } from "react";
+import React, { useState } from "react";
 import { NewFavoriteStyle } from "../../styles/newFavorite/newFavoriteStyle";
 import { TopMenu } from "./topMenu";
 import { FormFilds } from "./formFilds";
@@ -15,6 +15,7 @@ interface NewFavoriteProps {
 }
 
 export type FavoriteType = {
+	list: string;
 	name: string;
 	note: NoteType;
 	genre: string[];
@@ -29,10 +30,11 @@ export const NewFavorite = ({
 	isDisplayActive,
 }: NewFavoriteProps) => {
 	const fildsInitialValue = details || {
+		list: "Jogos, Livros, Animes, Series",
 		name: "Nome",
 		note: "Sem Nota",
 		genre: ["Sem Genero"],
-		imgURL: "Busque no google pelo nome da sua obra...",
+		imgURL: "Busque no google por uma imagem",
 		tags: ["Sem Tags"],
 	};
 

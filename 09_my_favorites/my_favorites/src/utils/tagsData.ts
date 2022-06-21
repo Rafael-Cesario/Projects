@@ -1,5 +1,10 @@
-// will come from a dB.
-export const tagsData = {
-	Jogos: ["Todos", "wishlist", "Instalados", "favoritos", "Zerados"],
-	Livros: ["Todos", "wishlist", "lidos", "favoritos"],
-};
+import { gql } from "@apollo/client";
+
+export const ALLTAGS = gql`
+	query AllTags {
+		tags {
+			name
+			tags
+		}
+	}
+`;

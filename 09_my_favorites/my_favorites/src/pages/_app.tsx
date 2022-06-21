@@ -6,18 +6,21 @@ import { GlobalStyle } from "../styles/globalStyle";
 
 import { TagContextProvider } from "../context/tagContext";
 
+import { ApolloProvider } from "@apollo/client";
+import { client } from "../utils/apolloClient";
+
 const App = () => {
 	return (
-		<div className="app">
-			<Header title="MyFavorites" />
-
-			<TagContextProvider>
-				<Sidebar />
-				<Main />
-			</TagContextProvider>
-
-			<GlobalStyle />
-		</div>
+		<ApolloProvider client={client}>
+			<div className="app">
+				<Header title="MyFavorites" />
+				<TagContextProvider>
+					<Sidebar />
+					<Main />
+				</TagContextProvider>
+				<GlobalStyle />
+			</div>
+		</ApolloProvider>
 	);
 };
 

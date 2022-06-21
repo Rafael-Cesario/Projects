@@ -11,7 +11,7 @@ interface FormFildsProps {
 }
 
 export const FormFilds = ({ fildsValue, setFildsValue }: FormFildsProps) => {
-	const { name, note, genre, imgURL, tags } = fildsValue;
+	const { list, name, note, genre, imgURL, tags } = fildsValue;
 	const notes = ["Incrivel", "Bom", "Normal", "Ruim", "Sem Nota"];
 
 	const optionsJSXArray = notes.map((note, index) => (
@@ -32,6 +32,15 @@ export const FormFilds = ({ fildsValue, setFildsValue }: FormFildsProps) => {
 
 	return (
 		<FormFildsStyle>
+			<div className="fild">
+				<span>A qual lista este Favorito Pertence?</span>
+				<input
+					type="text"
+					placeholder={list}
+					onChange={(e) => changeFildValue("list", e.target.value)}
+				/>
+			</div>
+
 			<div className="fild">
 				<span>Nome</span>
 				<input

@@ -15,6 +15,8 @@ export const TopMenu = ({ fildsValue, title, changeDisplay, isDisplayActive }: T
 		const inputsAreValid = await verifyInputs();
 		if (!inputsAreValid) return;
 
+		console.log(fildsValue);
+
 		console.log("todos os inputs estão certos");
 	};
 
