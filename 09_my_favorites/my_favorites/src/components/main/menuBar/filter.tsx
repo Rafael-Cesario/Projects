@@ -1,6 +1,4 @@
-import React, { useState } from "react";
-
-// FaRegBookmark, AiFillFilter
+import { useState } from "react";
 import { AiFillFilter } from "react-icons/ai";
 import { TiArrowSortedDown } from "react-icons/ti";
 import { FilterStyle } from "../../../styles/main/menuBar/filterStyle";

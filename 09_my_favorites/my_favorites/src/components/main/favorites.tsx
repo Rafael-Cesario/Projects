@@ -1,13 +1,17 @@
-import React, { useContext, useState } from "react";
-import { TagContext } from "../../context/tagContext";
+import { useQuery } from "@apollo/client";
+import React, { useState } from "react";
 import { FavoritesStyles } from "../../styles/main/favoritesStyle";
 
-import { favoriteData } from "../../utils/favoriteData";
+import { allFavoritesOnDB } from "../../utils/dataBase/querys/favorites";
 import { FavoriteType, NewFavorite, NoteType } from "../newFavorite/newFavorite";
 
 export const Favorites = () => {
 	const [details, setDetails] = useState<FavoriteType>();
 	const [showFavoriteDetails, setShowFavoriteDetails] = useState(false);
+	const { loading, error, data } = useQuery(allFavoritesOnDB);
+
+	if (loading) return <p>Loading</p>;
+	if (error) return <p>Error</p>;
 
 	const pickDetails = (e: React.SyntheticEvent) => {
 		const div = e.target as HTMLDivElement;
@@ -17,8 +21,9 @@ export const Favorites = () => {
 		const genre = div.getAttribute("data-genre").split(",");
 		const note = div.getAttribute("data-note") as NoteType;
 		const tags = div.getAttribute("data-tags").split(",");
+		const list = div.getAttribute("data-list");
 
-		const objDetails: FavoriteType = { name, imgURL, genre, note, tags };
+		const objDetails: FavoriteType = { list, name, imgURL, genre, note, tags };
 
 		setDetails(objDetails);
 		setShowFavoriteDetails(!showFavoriteDetails);
@@ -26,7 +31,7 @@ export const Favorites = () => {
 
 	return (
 		<FavoritesStyles>
-			{favoriteData.map((data: FavoriteType, index: number) => (
+			{data.favorites.map((data: FavoriteType, index: number) => (
 				<div
 					onClick={(e) => pickDetails(e)}
 					key={data.name + index}
@@ -34,6 +39,7 @@ export const Favorites = () => {
 					data-note={data.note}
 					data-genre={data.genre}
 					data-tags={data.tags}
+					data-list={data.list}
 				>
 					<p>{data.name}</p>
 					<img src={data.imgURL} alt="front cover of a favorite" />
@@ -46,6 +52,7 @@ export const Favorites = () => {
 					details={details}
 					isDisplayActive={showFavoriteDetails}
 					changeDisplay={setShowFavoriteDetails}
+					deleteButton={true}
 				/>
 			)}
 		</FavoritesStyles>

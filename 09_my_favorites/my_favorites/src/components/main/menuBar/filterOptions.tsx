@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 
 import produce from "immer";
 import { FilterOptions } from "./filter";
-import { favoriteData } from "../../../utils/favoriteData";
+import { useQuery } from "@apollo/client";
+import { allFavoritesOnDB } from "../../../utils/dataBase/querys/favorites";
 
 type Filters = {
 	genre: string[];
@@ -16,9 +17,10 @@ interface OptionsProps {
 
 export const Options = ({ filterOption }: OptionsProps) => {
 	const [filters, setFilters] = useState<Filters>({ genre: [], tags: [], note: [] });
+	const { data } = useQuery(allFavoritesOnDB);
 
 	const generateOptions = (option: string) => {
-		const options = favoriteData
+		const options = data.favorites
 			.map((favorite) => favorite[option])
 			.filter((option) => option != "")
 			.flat();

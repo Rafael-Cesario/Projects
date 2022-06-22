@@ -1,18 +1,27 @@
 import { gql } from "apollo-server";
 
 export const typeDefs = gql`
-	type Favorite {
+	type Confirmation {
 		name: String
-		rate: Int
-		imgURL: String
-		category: [String]
+		deleted: Boolean
 	}
 
-	input ChangeInput {
+	type Favorite {
+		list: String
 		name: String
-		rate: Int
+		note: String
+		genre: [String]
 		imgURL: String
-		category: [String]
+		tags: [String]
+	}
+
+	input FavoriteData {
+		list: String
+		name: String
+		note: String
+		genre: [String]
+		imgURL: String
+		tags: [String]
 	}
 
 	type Query {
@@ -20,8 +29,8 @@ export const typeDefs = gql`
 	}
 
 	type Mutation {
-		createFavorite(name: String, rate: Int): Favorite
-		deleteFavorite(id: String, name: String): Favorite
-		modifyFavorite(id: String!, changes: ChangeInput): Favorite
+		createFavorite(favoriteData: FavoriteData): Favorite
+		deleteFavorite(name: String): Confirmation
+		modifyFavorite(id: String!, changes: FavoriteData): Favorite
 	}
 `;

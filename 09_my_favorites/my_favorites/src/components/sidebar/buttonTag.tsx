@@ -1,25 +1,25 @@
 import React, { useContext } from "react";
 
-import { FaRegBookmark, FaBookmark } from "react-icons/fa";
+import { FaBookmark, FaRegBookmark } from "react-icons/fa";
 import { TagContext } from "../../context/tagContext";
 
-interface BtnTag {
-	tag: string;
+interface buttonTagProps {
 	title: string;
+	tag: string;
 }
 
-const ButtonTag = ({ tag, title }: BtnTag) => {
-	const { active, setActive } = useContext(TagContext);
+const ButtonTag = ({ tag, title }: buttonTagProps) => {
+	const { activeTag, setActiveTag } = useContext(TagContext);
 
-	const className = title === active[0] && tag === active[1] ? "active" : "";
-	const icon = title === active[0] && tag === active[1] ? <FaBookmark /> : <FaRegBookmark />;
+	const className = title === activeTag[0] && tag === activeTag[1] ? "active" : "";
+	const icon = title === activeTag[0] && tag === activeTag[1] ? <FaBookmark /> : <FaRegBookmark />;
 
 	const changeActive = (e: React.SyntheticEvent) => {
 		const button = e.target as HTMLButtonElement;
 		const tag = button.childNodes[1].textContent;
 		const title = button.parentNode.previousSibling.textContent;
 
-		setActive([title, tag]);
+		setActiveTag([title, tag]);
 	};
 
 	return (

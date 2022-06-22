@@ -1,19 +1,15 @@
 import { Schema, model } from "mongoose";
+import { FavoriteType } from "../../types/favorites";
 
-type FavoriteModel = {
-	name: String;
-	category: String[];
-	rate: Number;
-	imgURL: String;
-};
-
-const FavoriteSchema = new Schema<FavoriteModel>({
+const FavoriteSchema = new Schema<FavoriteType>({
+	list: { type: String, required: true },
 	name: { type: String, required: true },
-	category: [String],
-	rate: Number,
+	note: String,
 	imgURL: String,
+	genre: [String],
+	tags: [String],
 });
 
-const Favorite = model<FavoriteModel>("Favorite", FavoriteSchema);
+const Favorite = model<FavoriteType>("Favorite", FavoriteSchema);
 
 export { Favorite };

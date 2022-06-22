@@ -1,3 +1,4 @@
+import { FavoriteType } from "../../types/favorites";
 import { Favorite } from "../models/favorite";
 
 export interface favoriteTypeObj {
@@ -12,10 +13,12 @@ export const allFavoritesDB = async () => {
 	return favorites;
 };
 
-export const deleteFavoriteDB = async (id: String) => {
-	const deleted = await Favorite.deleteOne({ _id: id });
+export const deleteFavoriteDB = async (name: String) => {
+	const deleted = await Favorite.deleteOne({ name });
 
-	return deleted;
+	if (deleted.deletedCount === 0) throw new Error("Name not found")
+
+	return true;
 };
 
 export const modifyFavoriteDB = async (args: { id: string; changes: favoriteTypeObj }) => {
@@ -34,10 +37,8 @@ export const modifyFavoriteDB = async (args: { id: string; changes: favoriteType
 	return newFavorite[0];
 };
 
-export const newFavoriteDB = async (obj: favoriteTypeObj) => {
-	const { name, rate, imgURL, category } = obj;
-
-	const favorite = new Favorite({ name, rate, imgURL, category });
+export const newFavoriteDB = async (favoriteData: FavoriteType) => {
+	const favorite = new Favorite({ ...favoriteData });
 	const response = await favorite.save();
 	return response;
 };

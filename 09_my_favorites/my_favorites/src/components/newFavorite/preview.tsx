@@ -1,8 +1,7 @@
-import React from "react";
 import { PreviewStyled } from "../../styles/newFavorite/previewStyled";
-import { FavoriteType } from "./newFavorite";
 
 import { AiOutlinePicture } from "react-icons/ai";
+import { FavoriteType } from "../../utils/types/favorite";
 
 interface PreviewProps {
 	fildsValue: FavoriteType;
@@ -24,8 +23,9 @@ export const Preview = ({ fildsValue }: PreviewProps) => {
 };
 
 const ImgContainer = ({ imgURL }: { imgURL: string }) => {
-	if (!imgURL.startsWith("Busque") || !imgURL) {
+	if (imgURL) {
 		return <img src={imgURL} alt="unknown image" />;
 	}
+
 	return <AiOutlinePicture className="icon" />;
 };

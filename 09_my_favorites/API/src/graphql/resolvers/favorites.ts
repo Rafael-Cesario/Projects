@@ -5,6 +5,7 @@ import {
 	newFavoriteDB,
 	favoriteTypeObj,
 } from "../../database/methods/favorites";
+import { FavoriteType } from "../../types/favorites";
 
 export const resolvers = {
 	Query: {
@@ -15,18 +16,17 @@ export const resolvers = {
 	},
 
 	Mutation: {
-		async createFavorite(_: {}, args: favoriteTypeObj) {
-			const newFavorite = await newFavoriteDB(args);
+		createFavorite(obj: unknown, args: { favoriteData: FavoriteType }) {
+			const { favoriteData } = args;
+			const newFavorite = newFavoriteDB(favoriteData);
 			return newFavorite;
 		},
 
-		async deleteFavorite(_: {}, args: { id: String }) {
-			const { id } = args;
-			const deleted = await deleteFavoriteDB(id);
+		deleteFavorite(obj: unknown, args: { name: string }) {
+			const { name } = args;
+			const deleted = deleteFavoriteDB(name);
 
-			if (deleted.deletedCount === 0) throw new Error("Id not found");
-
-			return { id: id };
+			return { deleted, name };
 		},
 
 		async modifyFavorite(_: {}, args: { id: string; changes: favoriteTypeObj }) {

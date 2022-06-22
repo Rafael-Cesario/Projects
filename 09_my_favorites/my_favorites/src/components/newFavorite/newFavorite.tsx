@@ -1,61 +1,40 @@
-import React, { useState } from "react";
+import { useContext } from "react";
+import { FavoriteContextProvider } from "../../context/favoriteContext";
+import { formFildsContext } from "../../context/formFildsContext";
 import { NewFavoriteStyle } from "../../styles/newFavorite/newFavoriteStyle";
-import { TopMenu } from "./topMenu";
+import { FavoriteType } from "../../utils/types/favorite";
 import { FormFilds } from "./formFilds";
 import { Preview } from "./preview";
 import { Tags } from "./tags";
-
-export type NoteType = "Incrivel" | "Bom" | "Normal" | "Ruim" | "Sem Nota";
+import { TopMenu } from "./topMenu";
 
 interface NewFavoriteProps {
 	details?: FavoriteType;
 	title: string;
 	isDisplayActive: boolean;
 	changeDisplay: React.Dispatch<React.SetStateAction<boolean>>;
+	deleteButton?: boolean;
 }
 
-export type FavoriteType = {
-	list: string;
-	name: string;
-	note: NoteType;
-	genre: string[];
-	imgURL: string;
-	tags: string[];
-};
-
-export const NewFavorite = ({
-	details,
-	title,
-	changeDisplay,
-	isDisplayActive,
-}: NewFavoriteProps) => {
-	const fildsInitialValue = details || {
-		list: "Jogos, Livros, Animes, Series",
-		name: "Nome",
-		note: "Sem Nota",
-		genre: ["Sem Genero"],
-		imgURL: "Busque no google por uma imagem",
-		tags: ["Sem Tags"],
-	};
-
-	const [fildsValue, setFildsValue] = useState<FavoriteType>(fildsInitialValue);
+export const NewFavorite = (props: NewFavoriteProps) => {
+	const { title, isDisplayActive, changeDisplay, deleteButton } = props;
+	const { fildsValue, setFildsValue } = useContext(formFildsContext);
 
 	return (
 		<NewFavoriteStyle>
-			<TopMenu
-				fildsValue={fildsValue}
-				title={title}
-				isDisplayActive={isDisplayActive}
-				changeDisplay={changeDisplay}
-			/>
-
-			<div className="user-inputs">
-				<FormFilds setFildsValue={setFildsValue} fildsValue={fildsValue} />
-
-				<Preview fildsValue={fildsValue} />
-
-				<Tags fildsValue={fildsValue} setFildsValue={setFildsValue} />
-			</div>
+			<FavoriteContextProvider>
+				<TopMenu
+					title={title}
+					isDisplayActive={isDisplayActive}
+					changeDisplay={changeDisplay}
+					deleteButton={deleteButton}
+				/>
+				<div className="user-inputs">
+					<FormFilds setFildsValue={setFildsValue} fildsValue={fildsValue} />
+					<Preview fildsValue={fildsValue} />
+					<Tags fildsValue={fildsValue} setFildsValue={setFildsValue} />
+				</div>
+			</FavoriteContextProvider>
 		</NewFavoriteStyle>
 	);
 };

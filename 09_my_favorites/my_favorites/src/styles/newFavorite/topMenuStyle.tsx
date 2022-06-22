@@ -22,5 +22,13 @@ export const TopMenuStyle = styled.div`
 			padding: 10px 20px;
 			margin: 10px;
 		}
+
+		.confirmButton {
+			position: absolute;
+			transform: translate(70px, 50px);
+			background-color: crimson;
+			color: white;
+			padding: 10px 20px;
+		}
 	}
 `;

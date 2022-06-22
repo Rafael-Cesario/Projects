@@ -3,7 +3,7 @@ import React from "react";
 import produce from "immer";
 
 import { FormFildsStyle } from "../../styles/newFavorite/formFildsStyle";
-import type { FavoriteType } from "../newFavorite/newFavorite";
+import { FavoriteType } from "../../utils/types/favorite";
 
 interface FormFildsProps {
 	fildsValue: FavoriteType;
@@ -11,7 +11,7 @@ interface FormFildsProps {
 }
 
 export const FormFilds = ({ fildsValue, setFildsValue }: FormFildsProps) => {
-	const { list, name, note, genre, imgURL, tags } = fildsValue;
+	const { note, genre, tags } = fildsValue;
 	const notes = ["Incrivel", "Bom", "Normal", "Ruim", "Sem Nota"];
 
 	const optionsJSXArray = notes.map((note, index) => (
@@ -33,10 +33,10 @@ export const FormFilds = ({ fildsValue, setFildsValue }: FormFildsProps) => {
 	return (
 		<FormFildsStyle>
 			<div className="fild">
-				<span>A qual lista este Favorito Pertence?</span>
+				<span>Lista</span>
 				<input
 					type="text"
-					placeholder={list}
+					placeholder={"Jogos, Livros..."}
 					onChange={(e) => changeFildValue("list", e.target.value)}
 				/>
 			</div>
@@ -45,7 +45,7 @@ export const FormFilds = ({ fildsValue, setFildsValue }: FormFildsProps) => {
 				<span>Nome</span>
 				<input
 					type="text"
-					placeholder={name}
+					placeholder={"As aventuras do..."}
 					onChange={(e) => changeFildValue("name", e.target.value)}
 				/>
 			</div>
@@ -68,7 +68,10 @@ export const FormFilds = ({ fildsValue, setFildsValue }: FormFildsProps) => {
 
 			<div className="fild">
 				<span>Link para uma Imagem</span>
-				<input placeholder={imgURL} onChange={(e) => changeFildValue("imgURL", e.target.value)} />
+				<input
+					placeholder={"Cole aqui o endereço de uma imagem"}
+					onChange={(e) => changeFildValue("imgURL", e.target.value)}
+				/>
 			</div>
 
 			<div className="fild">

@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import { useContext, useEffect } from "react";
 
 import { FaBookmark } from "react-icons/fa";
 
@@ -6,11 +6,20 @@ import { TagContext } from "../../../context/tagContext";
 import { TagStyle } from "../../../styles/main/menuBar/tagStyle";
 
 export const Tag = () => {
-	const { active } = useContext(TagContext);
-
+	const { activeTag: active } = useContext(TagContext);
 	const tag = active[1];
+	const filter = active[0];
 
-	const filter = "Todos";
+	useEffect(() => {
+		const favorites = document.querySelectorAll(".favorite") as NodeListOf<HTMLDivElement>;
+
+		favorites.forEach((favorite) => {
+			const belongsTolistName = favorite.getAttribute("data-list");
+			const display = belongsTolistName != filter ? "none" : "flex";
+
+			favorite.style.display = display;
+		});
+	}, [active]);
 
 	return (
 		<TagStyle className="tag">
