@@ -1,7 +1,7 @@
 import React from "react";
-import { FavoriteType } from "./newFavorite";
 import produce from "immer";
 import { TagsStyled } from "../../styles/newFavorite/tagsStyled";
+import { FavoriteType } from "../../utils/types/favorite";
 
 interface TagsProps {
 	fildsValue: FavoriteType;

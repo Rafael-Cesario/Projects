@@ -1,6 +1,6 @@
 import { gql } from "@apollo/client";
 
-export const allTagsOnDB = gql`
+export const ALL_TAGS = gql`
 	query AllTags {
 		tags {
 			name
@@ -9,7 +9,7 @@ export const allTagsOnDB = gql`
 	}
 `;
 
-export const saveNewTagOnDB = gql`
+export const NEW_TAG = gql`
 	mutation createNewTag($name: String, $tags: [String]) {
 		createNewTag(name: $name, tags: $tags) {
 			name

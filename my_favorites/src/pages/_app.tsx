@@ -6,7 +6,6 @@ import { GlobalStyle } from "../styles/globalStyle";
 import { TagContextProvider } from "../context/tagContext";
 import { ApolloProvider } from "@apollo/client";
 import { client } from "../utils/dataBase/apolloClient";
-import { FormFildsContextProvider } from "../context/formFildsContext";
 
 const App = () => {
 	return (
@@ -15,10 +14,8 @@ const App = () => {
 				<Header title="MyFavorites" />
 
 				<TagContextProvider>
-					<FormFildsContextProvider>
-						<Sidebar />
-						<Main />
-					</FormFildsContextProvider>
+					<Sidebar />
+					<Main />
 				</TagContextProvider>
 
 				<GlobalStyle />

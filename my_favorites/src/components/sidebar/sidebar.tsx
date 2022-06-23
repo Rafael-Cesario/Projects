@@ -5,6 +5,7 @@ import { TagContext } from "../../context/tagContext";
 import { SidebarStyle } from "../../styles/sidebar/sidebarStyle";
 import { NewFavorite } from "../newFavorite/newFavorite";
 import { TagContainer } from "./tagContainer";
+import { FormFildsContextProvider } from "../../context/formFildsContext";
 
 const Sidebar = () => {
 	const [showCreateNew, setShowCreateNew] = useState(false);
@@ -39,13 +40,15 @@ const Sidebar = () => {
 
 			{tagsJSXArray}
 
-			{showCreateNew && (
-				<NewFavorite
-					title="Novo Favorito"
-					changeDisplay={setShowCreateNew}
-					isDisplayActive={showCreateNew}
-				/>
-			)}
+			<FormFildsContextProvider>
+				{showCreateNew && (
+					<NewFavorite
+						title="Novo Favorito"
+						changeDisplay={setShowCreateNew}
+						isDisplayActive={showCreateNew}
+					/>
+				)}
+			</FormFildsContextProvider>
 		</SidebarStyle>
 	);
 };

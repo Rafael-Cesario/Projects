@@ -1,11 +1,8 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 import { useMutation } from "@apollo/client";
 import { createContext, ReactNode } from "react";
-import {
-	allFavoritesOnDB,
-	DeleteFavoriteOnDB,
-	SaveNewFavoriteOnDB,
-} from "../utils/dataBase/querys/favorites";
+import { createNewFavoriteCache, deleteFavoriteCache } from "../utils/dataBase/cache/favorites";
+import { DELETE_FAVORITE, NEW_FAVORITE } from "../utils/dataBase/querys/favorites";
 import { FavoriteType } from "../utils/types/favorite";
 
 type deleteFavoriteType = { variables: { name: string } };
@@ -28,39 +25,13 @@ const initialValue = {
 const favoriteContext = createContext<FavoriteContext>(initialValue);
 
 const FavoriteContextProvider = ({ children }: favoriteProps) => {
-	const [deleteFavoriteOnDB] = useMutation(DeleteFavoriteOnDB, {
-		update(cache, { data }) {
-			const name = data?.deleteFavorite?.name;
-			const existingFavorites: { favorites: FavoriteType[] } = cache.readQuery({
-				query: allFavoritesOnDB,
-			});
-			const favorites = existingFavorites.favorites.filter((favorite) => favorite.name != name);
-
-			cache.writeQuery({
-				query: allFavoritesOnDB,
-				data: { favorites },
-			});
-		},
-	});
-
-	const [createNewFavorite] = useMutation(SaveNewFavoriteOnDB, {
-		update(cache, { data }) {
-			const createFavoriteResponse = [data?.createFavorite];
-			const existingFavorites: { favorites: FavoriteType[] } = cache.readQuery({
-				query: allFavoritesOnDB,
-			});
-
-			const favorites = [...existingFavorites.favorites, ...createFavoriteResponse];
-
-			cache.writeQuery({
-				query: allFavoritesOnDB,
-				data: { favorites },
-			});
-		},
-	});
+	const [createNewFavoriteOnDB] = useMutation(NEW_FAVORITE, createNewFavoriteCache);
+	const [deleteFavoriteOnDB] = useMutation(DELETE_FAVORITE, deleteFavoriteCache);
 
 	return (
-		<favoriteContext.Provider value={{ deleteFavoriteOnDB, createNewFavorite }}>
+		<favoriteContext.Provider
+			value={{ deleteFavoriteOnDB, createNewFavorite: createNewFavoriteOnDB }}
+		>
 			{children}
 		</favoriteContext.Provider>
 	);

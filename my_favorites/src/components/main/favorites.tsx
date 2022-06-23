@@ -1,17 +1,15 @@
 import { useQuery } from "@apollo/client";
 import React, { useState } from "react";
+import { FormFildsContextProvider } from "../../context/formFildsContext";
 import { FavoritesStyles } from "../../styles/main/favoritesStyle";
-
-import { allFavoritesOnDB } from "../../utils/dataBase/querys/favorites";
-import { FavoriteType, NewFavorite, NoteType } from "../newFavorite/newFavorite";
+import { ALL_FAVORITES } from "../../utils/dataBase/querys/favorites";
+import { FavoriteType, NoteType } from "../../utils/types/favorite";
+import { NewFavorite } from "../newFavorite/newFavorite";
 
 export const Favorites = () => {
 	const [details, setDetails] = useState<FavoriteType>();
 	const [showFavoriteDetails, setShowFavoriteDetails] = useState(false);
-	const { loading, error, data } = useQuery(allFavoritesOnDB);
-
-	if (loading) return <p>Loading</p>;
-	if (error) return <p>Error</p>;
+	const { loading, error, data } = useQuery(ALL_FAVORITES);
 
 	const pickDetails = (e: React.SyntheticEvent) => {
 		const div = e.target as HTMLDivElement;
@@ -28,6 +26,9 @@ export const Favorites = () => {
 		setDetails(objDetails);
 		setShowFavoriteDetails(!showFavoriteDetails);
 	};
+
+	if (loading) return <p>Loading</p>;
+	if (error) return <p>Error</p>;
 
 	return (
 		<FavoritesStyles>
@@ -46,15 +47,17 @@ export const Favorites = () => {
 				</div>
 			))}
 
-			{showFavoriteDetails && (
-				<NewFavorite
-					title={details.name}
-					details={details}
-					isDisplayActive={showFavoriteDetails}
-					changeDisplay={setShowFavoriteDetails}
-					deleteButton={true}
-				/>
-			)}
+			<FormFildsContextProvider>
+				{showFavoriteDetails && (
+					<NewFavorite
+						title={details.name}
+						details={details}
+						isDisplayActive={showFavoriteDetails}
+						changeDisplay={setShowFavoriteDetails}
+						deleteButton={true}
+					/>
+				)}
+			</FormFildsContextProvider>
 		</FavoritesStyles>
 	);
 };

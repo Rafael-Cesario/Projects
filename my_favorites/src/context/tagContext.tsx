@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 import { useMutation, useQuery } from "@apollo/client";
-import React, { createContext, ReactNode, useState } from "react";
-import { allTagsOnDB, saveNewTagOnDB } from "../utils/dataBase/querys/tags";
+import { createContext, ReactNode, useState } from "react";
+import { createNewListCache } from "../utils/dataBase/cache/tags";
+import { ALL_TAGS, NEW_TAG } from "../utils/dataBase/querys/tags";
 import type { Tag } from "../utils/types/tag";
 
-type Tags = Tag[];
 type createNewListType = { variables: Tag };
 
 interface TagContextProps {
@@ -33,21 +33,9 @@ const TagContext = createContext<TagContextInterface>(initialValue);
 
 const TagContextProvider = ({ children }: TagContextProps) => {
 	const [activeTag, setActiveTag] = useState(initialValue.activeTag);
-	const { loading, error, data } = useQuery(allTagsOnDB);
+	const { loading, error, data } = useQuery(ALL_TAGS);
 
-	const [createNewList] = useMutation(saveNewTagOnDB, {
-		update(cache, { data }) {
-			const createListResponse = [data?.createNewTag];
-			const existingLists: { tags: Tags } = cache.readQuery({ query: allTagsOnDB });
-
-			const tags = [...existingLists.tags, ...createListResponse];
-
-			cache.writeQuery({
-				query: allTagsOnDB,
-				data: { tags },
-			});
-		},
-	});
+	const [createNewList] = useMutation(NEW_TAG, createNewListCache);
 
 	return (
 		<TagContext.Provider
