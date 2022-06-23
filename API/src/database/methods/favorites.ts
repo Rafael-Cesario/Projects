@@ -16,7 +16,7 @@ export const allFavoritesDB = async () => {
 export const deleteFavoriteDB = async (name: String) => {
 	const deleted = await Favorite.deleteOne({ name });
 
-	if (deleted.deletedCount === 0) throw new Error("Name not found")
+	if (deleted.deletedCount === 0) throw new Error("Name not found");
 
 	return true;
 };
@@ -38,7 +38,16 @@ export const modifyFavoriteDB = async (args: { id: string; changes: favoriteType
 };
 
 export const newFavoriteDB = async (favoriteData: FavoriteType) => {
-	const favorite = new Favorite({ ...favoriteData });
+	const newFavoriteData = {
+		list: favoriteData.list,
+		name: favoriteData.name,
+		note: favoriteData.note || "Sem Nota",
+		genre: favoriteData.genre[0] ? favoriteData.genre : ["Sem Genero"],
+		imgURL: favoriteData.imgURL,
+		tags: favoriteData.tags[0] ? favoriteData.tags : ["Sem Tags"],
+	};
+
+	const favorite = new Favorite(newFavoriteData);
 	const response = await favorite.save();
 	return response;
 };
