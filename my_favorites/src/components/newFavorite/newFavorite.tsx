@@ -2,14 +2,12 @@ import { useContext } from "react";
 import { FavoriteContextProvider } from "../../context/favoriteContext";
 import { formFildsContext } from "../../context/formFildsContext";
 import { NewFavoriteStyle } from "../../styles/newFavorite/newFavoriteStyle";
-import { FavoriteType } from "../../utils/types/favorite";
 import { FormFilds } from "./formFilds";
 import { Preview } from "./preview";
 import { Tags } from "./tags";
 import { TopMenu } from "./topMenu";
 
 interface NewFavoriteProps {
-	details?: FavoriteType;
 	title: string;
 	isDisplayActive: boolean;
 	changeDisplay: React.Dispatch<React.SetStateAction<boolean>>;
@@ -18,7 +16,7 @@ interface NewFavoriteProps {
 
 export const NewFavorite = (props: NewFavoriteProps) => {
 	const { title, isDisplayActive, changeDisplay, deleteButton } = props;
-	const { fildsValue, setFildsValue } = useContext(formFildsContext);
+	const { fildsValue } = useContext(formFildsContext);
 
 	return (
 		<NewFavoriteStyle>
@@ -28,11 +26,12 @@ export const NewFavorite = (props: NewFavoriteProps) => {
 					isDisplayActive={isDisplayActive}
 					changeDisplay={changeDisplay}
 					deleteButton={deleteButton}
+					fildsValue={fildsValue}
 				/>
 				<div className="user-inputs">
-					<FormFilds setFildsValue={setFildsValue} fildsValue={fildsValue} />
+					<FormFilds fildsValue={fildsValue} />
 					<Preview fildsValue={fildsValue} />
-					<Tags fildsValue={fildsValue} setFildsValue={setFildsValue} />
+					<Tags fildsValue={fildsValue} />
 				</div>
 			</FavoriteContextProvider>
 		</NewFavoriteStyle>

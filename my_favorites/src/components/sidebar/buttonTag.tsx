@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 
 import { FaBookmark, FaRegBookmark } from "react-icons/fa";
-import { TagContext } from "../../context/tagContext";
+import { displayContext } from "../../context/displayContext";
 
 interface buttonTagProps {
 	title: string;
@@ -9,17 +9,18 @@ interface buttonTagProps {
 }
 
 const ButtonTag = ({ tag, title }: buttonTagProps) => {
-	const { activeTag, setActiveTag } = useContext(TagContext);
+	const { activeTag, setActiveTag } = useContext(displayContext);
 
-	const className = title === activeTag[0] && tag === activeTag[1] ? "active" : "";
-	const icon = title === activeTag[0] && tag === activeTag[1] ? <FaBookmark /> : <FaRegBookmark />;
+	const className = title === activeTag.listName && tag === activeTag.tagName ? "active" : "";
+	const icon =
+		title === activeTag.listName && tag === activeTag.tagName ? <FaBookmark /> : <FaRegBookmark />;
 
 	const changeActive = (e: React.SyntheticEvent) => {
 		const button = e.target as HTMLButtonElement;
-		const tag = button.childNodes[1].textContent;
-		const title = button.parentNode.previousSibling.textContent;
+		const listName = button.parentNode.previousSibling.textContent;
+		const tagName = button.childNodes[1].textContent;
 
-		setActiveTag([title, tag]);
+		setActiveTag({ listName, tagName });
 	};
 
 	return (

@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
-import { useMutation } from "@apollo/client";
-import { createContext, ReactNode } from "react";
+import { useMutation, useQuery } from "@apollo/client";
+import { createContext, ReactNode, useEffect, useState } from "react";
 import { createNewFavoriteCache, deleteFavoriteCache } from "../utils/dataBase/cache/favorites";
-import { DELETE_FAVORITE, NEW_FAVORITE } from "../utils/dataBase/querys/favorites";
+import { ALL_FAVORITES, DELETE_FAVORITE, NEW_FAVORITE } from "../utils/dataBase/querys/favorites";
 import { FavoriteType } from "../utils/types/favorite";
 
 type deleteFavoriteType = { variables: { name: string } };
@@ -13,24 +13,36 @@ interface favoriteProps {
 }
 
 interface FavoriteContext {
-	createNewFavorite: (variables: newFavoriteType) => void;
+	allFavoritesData: FavoriteType[];
+	createNewFavoriteOnDB: (variables: newFavoriteType) => void;
 	deleteFavoriteOnDB: (variables: deleteFavoriteType) => void;
 }
 
 const initialValue = {
-	createNewFavorite: () => {},
+	allFavoritesData: [],
+	createNewFavoriteOnDB: () => {},
 	deleteFavoriteOnDB: () => {},
 };
 
 const favoriteContext = createContext<FavoriteContext>(initialValue);
 
 const FavoriteContextProvider = ({ children }: favoriteProps) => {
+	const { loading, data } = useQuery(ALL_FAVORITES);
+	const [allFavoritesData, setAllfavoritesData] = useState(initialValue.allFavoritesData);
 	const [createNewFavoriteOnDB] = useMutation(NEW_FAVORITE, createNewFavoriteCache);
 	const [deleteFavoriteOnDB] = useMutation(DELETE_FAVORITE, deleteFavoriteCache);
 
+	useEffect(() => {
+		!loading && setAllfavoritesData(data.favorites);
+	}, [loading, data]);
+
 	return (
 		<favoriteContext.Provider
-			value={{ deleteFavoriteOnDB, createNewFavorite: createNewFavoriteOnDB }}
+			value={{
+				deleteFavoriteOnDB,
+				createNewFavoriteOnDB,
+				allFavoritesData,
+			}}
 		>
 			{children}
 		</favoriteContext.Provider>

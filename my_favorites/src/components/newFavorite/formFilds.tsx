@@ -1,16 +1,17 @@
-import React from "react";
+import React, { useContext } from "react";
 
 import produce from "immer";
 
 import { FormFildsStyle } from "../../styles/newFavorite/formFildsStyle";
 import { FavoriteType } from "../../utils/types/favorite";
+import { formFildsContext } from "../../context/formFildsContext";
 
 interface FormFildsProps {
 	fildsValue: FavoriteType;
-	setFildsValue: React.Dispatch<React.SetStateAction<FavoriteType>>;
 }
 
-export const FormFilds = ({ fildsValue, setFildsValue }: FormFildsProps) => {
+export const FormFilds = ({ fildsValue }: FormFildsProps) => {
+	const { setFildsValue } = useContext(formFildsContext);
 	const { note, genre, tags } = fildsValue;
 	const notes = ["Incrivel", "Bom", "Normal", "Ruim", "Sem Nota"];
 
@@ -36,7 +37,7 @@ export const FormFilds = ({ fildsValue, setFildsValue }: FormFildsProps) => {
 				<span>Lista</span>
 				<input
 					type="text"
-					placeholder={"Jogos, Livros..."}
+					placeholder={fildsValue.list || "Jogos, Livros..."}
 					onChange={(e) => changeFildValue("list", e.target.value)}
 				/>
 			</div>
@@ -45,7 +46,7 @@ export const FormFilds = ({ fildsValue, setFildsValue }: FormFildsProps) => {
 				<span>Nome</span>
 				<input
 					type="text"
-					placeholder={"As aventuras do..."}
+					placeholder={fildsValue.name || "As aventuras do..."}
 					onChange={(e) => changeFildValue("name", e.target.value)}
 				/>
 			</div>
@@ -69,7 +70,8 @@ export const FormFilds = ({ fildsValue, setFildsValue }: FormFildsProps) => {
 			<div className="fild">
 				<span>Link para uma Imagem</span>
 				<input
-					placeholder={"Cole aqui o endereço de uma imagem"}
+					type="text"
+					placeholder={fildsValue.imgURL || "Cole aqui o endereço de uma imagem"}
 					onChange={(e) => changeFildValue("imgURL", e.target.value)}
 				/>
 			</div>
@@ -79,7 +81,7 @@ export const FormFilds = ({ fildsValue, setFildsValue }: FormFildsProps) => {
 				<input
 					className="tags-input"
 					type="text"
-					placeholder={tags.toString()}
+					placeholder={tags.toString() || "Favoritos, Zerados, WishList..."}
 					onChange={(e) => changeFildValue("tags", e.target.value)}
 				/>
 			</div>

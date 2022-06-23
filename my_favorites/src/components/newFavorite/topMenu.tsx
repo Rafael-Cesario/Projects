@@ -1,27 +1,31 @@
 import { useContext, useState } from "react";
 import { TopMenuStyle } from "../../styles/newFavorite/topMenuStyle";
 
-import { formFildsContext } from "../../context/formFildsContext";
 import { favoriteContext } from "../../context/favoriteContext";
 import { TagContext } from "../../context/tagContext";
+import { FavoriteType } from "../../utils/types/favorite";
 
 interface TopMenuProps {
 	title: string;
 	isDisplayActive: boolean;
 	changeDisplay: React.Dispatch<React.SetStateAction<boolean>>;
 	deleteButton?: boolean;
+	fildsValue: FavoriteType;
 }
 
 export const TopMenu = (props: TopMenuProps) => {
-	const { title, isDisplayActive, changeDisplay, deleteButton } = props;
+	const { title, isDisplayActive, changeDisplay, deleteButton, fildsValue } = props;
 	const [confirmButton, setConfirmButton] = useState(false);
-	const { fildsValue } = useContext(formFildsContext);
-	const { deleteFavoriteOnDB, createNewFavorite } = useContext(favoriteContext);
+	const { deleteFavoriteOnDB, createNewFavoriteOnDB: createNewFavorite } =
+		useContext(favoriteContext);
 	const { createNewList } = useContext(TagContext);
 
 	const saveNewFavorite = async () => {
 		const inputsAreValid = await verifyInputs();
+
 		if (!inputsAreValid) return;
+
+		const listName = fildsValue.list[0].toUpperCase() + fildsValue.list.substring(1);
 
 		createNewFavorite({
 			variables: {
@@ -31,8 +35,8 @@ export const TopMenu = (props: TopMenuProps) => {
 
 		createNewList({
 			variables: {
-				name: fildsValue.list,
-				tags: [],
+				name: listName,
+				tags: fildsValue.tags,
 			},
 		});
 
@@ -41,8 +45,6 @@ export const TopMenu = (props: TopMenuProps) => {
 
 	const verifyInputs = async () => {
 		const { list, name, imgURL } = fildsValue;
-		const img = await fetch(imgURL);
-		const isValidImg = img.status.toString().search(/2[0-99]/);
 
 		if (!list) {
 			sendErrorMessage("Lista");
@@ -52,7 +54,7 @@ export const TopMenu = (props: TopMenuProps) => {
 			sendErrorMessage("Nome");
 			return false;
 		}
-		if (!imgURL || isValidImg) {
+		if (!imgURL) {
 			sendErrorMessage("Link");
 			return false;
 		}
@@ -98,6 +100,7 @@ export const TopMenu = (props: TopMenuProps) => {
 	};
 
 	const deleteFavorite = (name: string) => {
+		console.log(name);
 		deleteFavoriteOnDB({
 			variables: { name },
 		});

@@ -1,14 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 import produce from "immer";
 import { TagsStyled } from "../../styles/newFavorite/tagsStyled";
 import { FavoriteType } from "../../utils/types/favorite";
+import { formFildsContext } from "../../context/formFildsContext";
 
 interface TagsProps {
 	fildsValue: FavoriteType;
-	setFildsValue: React.Dispatch<React.SetStateAction<FavoriteType>>;
 }
 
-export const Tags = ({ fildsValue, setFildsValue }: TagsProps) => {
+export const Tags = ({ fildsValue }: TagsProps) => {
+	const { setFildsValue } = useContext(formFildsContext);
 	const { tags } = fildsValue;
 
 	const removeTag = (e: React.SyntheticEvent) => {

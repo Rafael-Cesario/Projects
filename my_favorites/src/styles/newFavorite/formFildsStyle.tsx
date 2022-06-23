@@ -20,13 +20,17 @@ export const FormFildsStyle = styled.div`
 
 		input,
 		select {
+			border: 2px solid transparent;
 			border-radius: 5px;
 			outline: none;
 			padding: 10px 20px;
 			width: 100%;
 			color: white;
-			border: none;
 			background-color: ${colors.background};
+
+			:focus {
+				border: 2px solid ${colors.fontBlue};
+			}
 		}
 	}
 

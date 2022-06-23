@@ -1,25 +1,22 @@
-import React, { useEffect, useState } from "react";
-
 import produce from "immer";
+import { useContext, useEffect } from "react";
 import { FilterOptions } from "./filter";
 import { useQuery } from "@apollo/client";
 import { ALL_FAVORITES } from "../../../utils/dataBase/querys/favorites";
-
-type Filters = {
-	genre: string[];
-	tags: string[];
-	note: string[];
-};
+import { displayContext } from "../../../context/displayContext";
+import { FavoriteType } from "../../../utils/types/favorite";
 
 interface OptionsProps {
 	filterOption: FilterOptions;
 }
 
-export const Options = ({ filterOption }: OptionsProps) => {
-	const [filters, setFilters] = useState<Filters>({ genre: [], tags: [], note: [] });
-	const { data } = useQuery(ALL_FAVORITES);
+type dataQuery = { data: { favorites: FavoriteType[] } };
 
-	const generateOptions = (option: string) => {
+export const Options = ({ filterOption }: OptionsProps) => {
+	const { filters, setFilters } = useContext(displayContext);
+	const { data } = useQuery(ALL_FAVORITES) as dataQuery;
+
+	const generateOptions = (option: string): string[] => {
 		const options = data.favorites
 			.map((favorite) => favorite[option])
 			.filter((option) => option != "")

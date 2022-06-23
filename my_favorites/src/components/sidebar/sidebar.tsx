@@ -6,30 +6,23 @@ import { SidebarStyle } from "../../styles/sidebar/sidebarStyle";
 import { NewFavorite } from "../newFavorite/newFavorite";
 import { TagContainer } from "./tagContainer";
 import { FormFildsContextProvider } from "../../context/formFildsContext";
+import { displayContext } from "../../context/displayContext";
 
 const Sidebar = () => {
 	const [showCreateNew, setShowCreateNew] = useState(false);
-	const { setActiveTag: setActive, loading, data, error } = useContext(TagContext);
+	const { setActiveTag } = useContext(displayContext);
+	const { allTagsData } = useContext(TagContext);
 
-	const tagsName = data?.tags.map((tag: Tag) => tag.name);
-	const tags = data?.tags.map((tag: Tag) => tag.tags);
+	const firstListName = allTagsData[0]?.name;
+
+	const tagsName = allTagsData.map((tag: Tag) => tag.name);
+	const tags = allTagsData.map((tag: Tag) => tag.tags);
 
 	const tagsJSXArray = tagsName?.map((name, index) => (
 		<TagContainer key={name} name={name} tags={[...tags[index], "Todos"]} />
 	));
 
-	const changeActiveTag = () => {
-		const firstListName = data?.tags[0]?.name;
-
-		if (!loading && firstListName) {
-			setActive([firstListName, "Todos"]);
-		}
-	};
-
-	useEffect(() => changeActiveTag(), [loading]);
-
-	if (loading) return <TagContainer key={"Loading"} name={"Loading..."} tags={[]} />;
-	if (error) return <p>Erro tentando carregar suas tags </p>;
+	useEffect(() => setActiveTag({ listName: firstListName, tagName: "Todos" }), [allTagsData]);
 
 	return (
 		<SidebarStyle>
