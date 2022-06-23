@@ -6,8 +6,9 @@
 
 ## Feito com
 
-    - GraphQL / Apollo-Server
-    - NextJS
-    - React
-    - Typescript
-    - MongoDB / Mongoose
+    - MongoDB | Mongoose
+    - Graphql | Apollo-client
+    - typescript
+    - NextJs | React
+    - Styled-components
+    - Eslint | Prettier
