@@ -9,10 +9,12 @@ import { NewFavorite } from "../newFavorite/newFavorite";
 export const Favorites = () => {
 	const [showFavoriteDetails, setShowFavoriteDetails] = useState(false);
 	const { fildsValue, setFildsValue } = useContext(formFildsContext);
-	const { allFavoritesData } = useContext(favoriteContext);
+	const { favoritesData } = useContext(favoriteContext);
 	const { activeTag } = useContext(displayContext);
 
-	const favoritesFiltred = allFavoritesData.filter((favorite) => {
+	if (!favoritesData) return;
+
+	const favoritesFiltred = favoritesData.filter((favorite) => {
 		if (favorite.list === activeTag.listName && activeTag.tagName === "Todos") return favorite;
 
 		if (favorite.list === activeTag.listName && favorite.tags.includes(activeTag.tagName)) {

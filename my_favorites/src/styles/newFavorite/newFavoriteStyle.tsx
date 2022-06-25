@@ -8,7 +8,6 @@ export const NewFavoriteStyle = styled.div`
 	transform: translate(-50%);
 
 	max-width: 600px;
-	min-height: 80%;
 	padding: 50px;
 
 	/* From https://css.glass */

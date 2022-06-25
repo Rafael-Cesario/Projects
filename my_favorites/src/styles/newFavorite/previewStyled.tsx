@@ -10,7 +10,7 @@ export const PreviewStyled = styled.div`
 
 	.image {
 		width: 10rem;
-		height: 14rem;
+		height: 13rem;
 		background-color: ${colors.background};
 		display: flex;
 		justify-content: center;

@@ -2,7 +2,7 @@ import { useContext, useState } from "react";
 import { TopMenuStyle } from "../../styles/newFavorite/topMenuStyle";
 
 import { favoriteContext } from "../../context/favoriteContext";
-import { TagContext } from "../../context/tagContext";
+import { ListContext } from "../../context/listContext";
 import { FavoriteType } from "../../utils/types/favorite";
 
 interface TopMenuProps {
@@ -16,29 +16,31 @@ interface TopMenuProps {
 export const TopMenu = (props: TopMenuProps) => {
 	const { title, isDisplayActive, changeDisplay, deleteButton, fildsValue } = props;
 	const [confirmButton, setConfirmButton] = useState(false);
-	const { deleteFavoriteOnDB, createNewFavoriteOnDB: createNewFavorite } =
-		useContext(favoriteContext);
-	const { createNewList } = useContext(TagContext);
+	const { favoritesData, DBcreateFavorite, DBdeleteFavorite } = useContext(favoriteContext);
+	const { createNewList, listsData } = useContext(ListContext);
 
 	const saveNewFavorite = async () => {
-		const inputsAreValid = await verifyInputs();
-
-		if (!inputsAreValid) return;
-
 		const listName = fildsValue.list[0].toUpperCase() + fildsValue.list.substring(1);
+		const listExists = listsData.some((list) => list.name === fildsValue.list);
+		const favoriteExists = favoritesData.some((favorite) => favorite.name === fildsValue.name);
+		const singularListName = fildsValue.list.replace(/s$/, "");
 
-		createNewFavorite({
+		if (favoriteExists) {
+			return sendErrorMessage("Nome", `Um ${singularListName} com este mesmo nome já existe`);
+		}
+
+		DBcreateFavorite({
 			variables: {
-				favoriteData: fildsValue,
+				favoriteOBJ: fildsValue,
 			},
 		});
 
-		createNewList({
-			variables: {
-				name: listName,
-				tags: fildsValue.tags,
-			},
-		});
+		!listExists &&
+			createNewList({
+				variables: {
+					name: listName,
+				},
+			});
 
 		changeDisplay(!isDisplayActive);
 	};
@@ -59,10 +61,10 @@ export const TopMenu = (props: TopMenuProps) => {
 			return false;
 		}
 
-		return true;
+		saveNewFavorite();
 	};
 
-	const sendErrorMessage = (fildName: string) => {
+	const sendErrorMessage = (fildName: string, message?: string) => {
 		const errorMessages = {
 			Nome: {
 				default: "Nome",
@@ -88,7 +90,7 @@ export const TopMenu = (props: TopMenuProps) => {
 			const time = 10000;
 
 			if (fildText === fildName) {
-				spanNode.textContent = errorMessages[fildName]["error"];
+				spanNode.textContent = message || errorMessages[fildName]["error"];
 				fild.classList.toggle("error");
 
 				setTimeout(() => {
@@ -101,7 +103,7 @@ export const TopMenu = (props: TopMenuProps) => {
 
 	const deleteFavorite = (name: string) => {
 		console.log(name);
-		deleteFavoriteOnDB({
+		DBdeleteFavorite({
 			variables: { name },
 		});
 
@@ -112,7 +114,7 @@ export const TopMenu = (props: TopMenuProps) => {
 		<TopMenuStyle>
 			<h2>{title}</h2>
 			<div className="buttons">
-				<button onClick={() => saveNewFavorite()}>Salvar</button>
+				<button onClick={() => verifyInputs()}>Salvar</button>
 
 				{deleteButton && <button onClick={() => setConfirmButton(!confirmButton)}>Deletar</button>}
 

@@ -1,7 +1,7 @@
-import type { Tag } from "../../utils/types/tag";
+import type { ListType } from "../../utils/types/list";
 
 import { useContext, useEffect, useState } from "react";
-import { TagContext } from "../../context/tagContext";
+import { ListContext } from "../../context/listContext";
 import { SidebarStyle } from "../../styles/sidebar/sidebarStyle";
 import { NewFavorite } from "../newFavorite/newFavorite";
 import { TagContainer } from "./tagContainer";
@@ -11,18 +11,21 @@ import { displayContext } from "../../context/displayContext";
 const Sidebar = () => {
 	const [showCreateNew, setShowCreateNew] = useState(false);
 	const { setActiveTag } = useContext(displayContext);
-	const { allTagsData } = useContext(TagContext);
+	const { listsData } = useContext(ListContext);
 
-	const firstListName = allTagsData[0]?.name;
+	useEffect(() => {
+		if (listsData?.length > 0) {
+			const firstListName = listsData[0]?.name;
+			setActiveTag({ listName: firstListName, tagName: "Todos" });
+		}
+	}, [listsData]);
 
-	const tagsName = allTagsData.map((tag: Tag) => tag.name);
-	const tags = allTagsData.map((tag: Tag) => tag.tags);
+	const listNames = listsData?.map((list: ListType) => list.name);
+	const listTags = listsData?.map((list: ListType) => list.tags);
 
-	const tagsJSXArray = tagsName?.map((name, index) => (
-		<TagContainer key={name} name={name} tags={[...tags[index], "Todos"]} />
+	const listsJSXArray = listNames?.map((name, index) => (
+		<TagContainer key={name} name={name} tags={[...listTags[index]]} />
 	));
-
-	useEffect(() => setActiveTag({ listName: firstListName, tagName: "Todos" }), [allTagsData]);
 
 	return (
 		<SidebarStyle>
@@ -31,7 +34,7 @@ const Sidebar = () => {
 				<span className="txt">Novo</span>
 			</button>
 
-			{tagsJSXArray}
+			{listsJSXArray}
 
 			<FormFildsContextProvider>
 				{showCreateNew && (

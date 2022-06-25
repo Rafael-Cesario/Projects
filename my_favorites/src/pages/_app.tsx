@@ -6,7 +6,7 @@ import { GlobalStyle } from "../styles/globalStyle";
 import { ApolloProvider } from "@apollo/client";
 import { client } from "../utils/dataBase/apolloClient";
 import { DisplayContextProvider } from "../context/displayContext";
-import { TagContextProvider } from "../context/tagContext";
+import { ListContextProvider } from "../context/listContext";
 
 const App = () => {
 	return (
@@ -15,10 +15,10 @@ const App = () => {
 				<Header title="MyFavorites" />
 
 				<DisplayContextProvider>
-					<TagContextProvider>
+					<ListContextProvider>
 						<Sidebar />
 						<Main />
-					</TagContextProvider>
+					</ListContextProvider>
 				</DisplayContextProvider>
 
 				<GlobalStyle />

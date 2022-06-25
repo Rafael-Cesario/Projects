@@ -1,21 +1,21 @@
 import { gql } from "@apollo/client";
 
 export const ALL_FAVORITES = gql`
-	query allFavorites {
+	query AllFavorites {
 		favorites {
 			list
 			name
+			tags
 			note
 			genre
 			imgURL
-			tags
 		}
 	}
 `;
 
-export const NEW_FAVORITE = gql`
-	mutation NewFavorite($favoriteData: FavoriteData) {
-		createFavorite(favoriteData: $favoriteData) {
+export const CREATE_FAVORITE = gql`
+	mutation CreateFavorite($favoriteOBJ: FavoriteInput) {
+		createFavorite(favoriteOBJ: $favoriteOBJ) {
 			list
 			name
 			note
@@ -29,8 +29,25 @@ export const NEW_FAVORITE = gql`
 export const DELETE_FAVORITE = gql`
 	mutation DeleteFavorite($name: String) {
 		deleteFavorite(name: $name) {
+			list
 			name
-			deleted
+			note
+			genre
+			imgURL
+			tags
+		}
+	}
+`;
+
+export const MODIFY_FAVORITE = gql`
+	mutation ModifyFavorite($name: String, $newFavorite: FavoriteInput) {
+		modifyFavorite(name: $name, newFavorite: $newFavorite) {
+			list
+			name
+			note
+			genre
+			imgURL
+			tags
 		}
 	}
 `;
