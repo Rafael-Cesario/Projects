@@ -1,6 +1,6 @@
 import { List } from "../../../../types/lists";
 import { ListModel } from "../../../models/lists";
-import { findList } from "../../../utils/findList";
+import { findList } from "../../../utils/find";
 
 export const DBreorderTags = async (listName: string, tags: string[]): Promise<List> => {
 	try {

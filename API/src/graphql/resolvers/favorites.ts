@@ -1,38 +1,33 @@
-import {
-	allFavoritesDB,
-	deleteFavoriteDB,
-	modifyFavoriteDB,
-	newFavoriteDB,
-	favoriteTypeObj,
-} from "../../database/methods/favorites";
+import { DBallFavorites } from "../../database/methods/favorites/allFavorites";
+import { DBcreateFavorite } from "../../database/methods/favorites/createFavorite";
+import { DBdeleteFavorite } from "../../database/methods/favorites/deleteFavorite";
+import { DBmodifyFavorite } from "../../database/methods/favorites/modifyFavorite";
 import { FavoriteType } from "../../types/favorites";
 
 export const resolvers = {
 	Query: {
 		favorites() {
-			const favorites = allFavoritesDB();
-			return favorites;
+			const response = DBallFavorites();
+			return response;
 		},
 	},
-
 	Mutation: {
-		createFavorite(obj: unknown, args: { favoriteData: FavoriteType }) {
-			const { favoriteData } = args;
-			const newFavorite = newFavoriteDB(favoriteData);
-			return newFavorite;
+		createFavorite(obj: unknown, args: { favoriteOBJ: FavoriteType }) {
+			const { favoriteOBJ } = args;
+			const response = DBcreateFavorite(favoriteOBJ);
+			return response;
 		},
 
 		deleteFavorite(obj: unknown, args: { name: string }) {
 			const { name } = args;
-			const deleted = deleteFavoriteDB(name);
-
-			return { deleted, name };
+			const response = DBdeleteFavorite(name);
+			return response;
 		},
 
-		async modifyFavorite(_: {}, args: { id: string; changes: favoriteTypeObj }) {
-			const newFavorite = await modifyFavoriteDB(args);
-
-			return newFavorite;
+		modifyFavorite(obj: unknown, args: { name: string; newFavorite: FavoriteType }) {
+			const { name, newFavorite } = args;
+			const response = DBmodifyFavorite(name, newFavorite);
+			return response;
 		},
 	},
 };

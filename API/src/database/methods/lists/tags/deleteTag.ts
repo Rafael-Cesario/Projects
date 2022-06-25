@@ -1,5 +1,5 @@
 import { List } from "../../../../types/lists";
-import { findList } from "../../../utils/findList";
+import { findList } from "../../../utils/find";
 
 export const DBdeleteTag = async (listName: string, tagName: string): Promise<List> => {
 	try {
