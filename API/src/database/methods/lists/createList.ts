@@ -1,5 +1,5 @@
 import { List } from "../../../types/lists";
-import { Lists } from "../../models/lists";
+import { ListModel } from "../../models/lists";
 import { DBallLists } from "./lists";
 
 export const DBcreateNewList = async (name: string): Promise<List> => {
@@ -10,7 +10,7 @@ export const DBcreateNewList = async (name: string): Promise<List> => {
 		if (listAlreadyExist) throw new Error(`List already exist.`);
 
 		const index = allLists.length;
-		const newList = new Lists({ name, tags: ["Todos"], index });
+		const newList = new ListModel({ name, tags: ["Todos"], index });
 
 		await newList.save();
 		return newList;

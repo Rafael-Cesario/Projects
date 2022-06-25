@@ -1,9 +1,14 @@
 import { List } from "../../../types/lists";
-import { Lists } from "../../models/lists";
+import { ListModel } from "../../models/lists";
 
 export const DBmodifyList = async (name: string, newName: string): Promise<List> => {
 	try {
-		const updateList = await Lists.findOneAndUpdate({ name }, { name: newName }, { new: true });
+		const regExName = new RegExp(name, "i");
+		const updateList = await ListModel.findOneAndUpdate(
+			{ name: regExName },
+			{ name: newName },
+			{ new: true }
+		);
 
 		if (!updateList) throw new Error("List not found.");
 

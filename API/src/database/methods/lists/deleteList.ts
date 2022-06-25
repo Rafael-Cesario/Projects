@@ -1,10 +1,10 @@
-import { Lists } from "../../models/lists";
+import { ListModel } from "../../models/lists";
 
 type DeleteList = { name: string; deletedCount: number };
 
 export const DBdeleteList = async (name: string): Promise<DeleteList> => {
 	try {
-		const { deletedCount } = await Lists.deleteOne({ name });
+		const { deletedCount } = await ListModel.deleteOne({ name });
 
 		if (!deletedCount) throw new Error(`No list with this name.`);
 

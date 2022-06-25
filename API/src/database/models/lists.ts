@@ -7,6 +7,6 @@ const ListsSchema = new Schema<List>({
 	index: Number,
 });
 
-const Lists = model<List>("List", ListsSchema);
+const ListModel = model<List>("List", ListsSchema);
 
-export { Lists };
+export { ListModel };
