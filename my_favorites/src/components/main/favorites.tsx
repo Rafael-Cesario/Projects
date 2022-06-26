@@ -8,21 +8,24 @@ import { NewFavorite } from "../newFavorite/newFavorite";
 
 export const Favorites = () => {
 	const [showFavoriteDetails, setShowFavoriteDetails] = useState(false);
-	const { fildsValue, setFildsValue } = useContext(formFildsContext);
+	const { setFildsValue } = useContext(formFildsContext);
 	const { favoritesData } = useContext(favoriteContext);
 	const { activeTag } = useContext(displayContext);
+	const [title, setTitle] = useState("");
 
 	if (!favoritesData) return;
 
 	const favoritesFiltred = favoritesData.filter((favorite) => {
-		if (favorite.list === activeTag.listName && activeTag.tagName === "Todos") return favorite;
+		if (favorite.list === activeTag.listName && activeTag.tagName === "Todos")
+			return favorite;
 
-		if (favorite.list === activeTag.listName && favorite.tags.includes(activeTag.tagName)) {
+		if (
+			favorite.list === activeTag.listName &&
+			favorite.tags.includes(activeTag.tagName)
+		) {
 			return favorite;
 		}
 	});
-
-	console.log(favoritesFiltred);
 
 	const pickDetails = (e: React.SyntheticEvent) => {
 		const div = e.target as HTMLDivElement;
@@ -38,6 +41,7 @@ export const Favorites = () => {
 
 		setFildsValue(objDetails);
 		setShowFavoriteDetails(!showFavoriteDetails);
+		setTitle(name);
 	};
 
 	return (
@@ -47,6 +51,7 @@ export const Favorites = () => {
 					onClick={(e) => pickDetails(e)}
 					key={data.name + index}
 					className="favorite"
+					data-name={data.name}
 					data-note={data.note}
 					data-genre={data.genre}
 					data-tags={data.tags}
@@ -59,10 +64,10 @@ export const Favorites = () => {
 
 			{showFavoriteDetails && (
 				<NewFavorite
-					title={fildsValue.name}
+					title={title}
 					isDisplayActive={showFavoriteDetails}
 					changeDisplay={setShowFavoriteDetails}
-					deleteButton={true}
+					isChanging={true}
 				/>
 			)}
 		</FavoritesStyles>

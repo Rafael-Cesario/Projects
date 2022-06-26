@@ -1,18 +1,17 @@
-import React, { useContext } from "react";
-
+import { useContext } from "react";
 import produce from "immer";
-
 import { FormFildsStyle } from "../../styles/newFavorite/formFildsStyle";
 import { FavoriteType } from "../../utils/types/favorite";
 import { formFildsContext } from "../../context/formFildsContext";
 
 interface FormFildsProps {
 	fildsValue: FavoriteType;
+	isChanging: boolean;
 }
 
-export const FormFilds = ({ fildsValue }: FormFildsProps) => {
+export const FormFilds = ({ fildsValue, isChanging }: FormFildsProps) => {
 	const { setFildsValue } = useContext(formFildsContext);
-	const { note, genre, tags } = fildsValue;
+	const { note } = fildsValue;
 	const notes = ["Incrivel", "Bom", "Normal", "Ruim", "Sem Nota"];
 
 	const optionsJSXArray = notes.map((note, index) => (
@@ -22,7 +21,8 @@ export const FormFilds = ({ fildsValue }: FormFildsProps) => {
 	));
 
 	const changeFildValue = (fildName: string, value: string) => {
-		const newValue = fildName === "tags" ? value.split(",").map((tag) => tag.trim()) : value;
+		const newValue =
+			fildName === "tags" ? value.split(",").map((tag) => tag.trim()) : value;
 
 		setFildsValue(
 			produce(fildsValue, (draft) => {
@@ -37,7 +37,8 @@ export const FormFilds = ({ fildsValue }: FormFildsProps) => {
 				<span>Lista</span>
 				<input
 					type="text"
-					placeholder={fildsValue.list || "Jogos, Livros..."}
+					placeholder={"Jogos, Livros..."}
+					value={isChanging && fildsValue.list}
 					onChange={(e) => changeFildValue("list", e.target.value)}
 				/>
 			</div>
@@ -46,14 +47,18 @@ export const FormFilds = ({ fildsValue }: FormFildsProps) => {
 				<span>Nome</span>
 				<input
 					type="text"
-					placeholder={fildsValue.name || "As aventuras do..."}
+					placeholder={"As aventuras do..."}
+					value={isChanging && fildsValue.name}
 					onChange={(e) => changeFildValue("name", e.target.value)}
 				/>
 			</div>
 
 			<div className="fild">
 				<span>Nota</span>
-				<select defaultValue={note} onChange={(e) => changeFildValue("note", e.target.value)}>
+				<select
+					defaultValue={isChanging ? note : "Sem Nota"}
+					onChange={(e) => changeFildValue("note", e.target.value)}
+				>
 					{optionsJSXArray}
 				</select>
 			</div>
@@ -62,7 +67,8 @@ export const FormFilds = ({ fildsValue }: FormFildsProps) => {
 				<span>Genero</span>
 				<input
 					type="text"
-					placeholder={genre.toString()}
+					placeholder={"Aventura, Romance, Comédia..."}
+					value={isChanging && fildsValue.genre}
 					onChange={(e) => changeFildValue("genre", e.target.value)}
 				/>
 			</div>
@@ -71,7 +77,10 @@ export const FormFilds = ({ fildsValue }: FormFildsProps) => {
 				<span>Link para uma Imagem</span>
 				<input
 					type="text"
-					placeholder={fildsValue.imgURL || "Cole aqui o endereço de uma imagem"}
+					placeholder={
+						fildsValue.imgURL || "Cole aqui o endereço de uma imagem"
+					}
+					value={isChanging && fildsValue.imgURL}
 					onChange={(e) => changeFildValue("imgURL", e.target.value)}
 				/>
 			</div>
@@ -81,7 +90,8 @@ export const FormFilds = ({ fildsValue }: FormFildsProps) => {
 				<input
 					className="tags-input"
 					type="text"
-					placeholder={tags.toString() || "Favoritos, Zerados, WishList..."}
+					placeholder={"Favoritos, Zerados, WishList..."}
+					value={isChanging && fildsValue.tags}
 					onChange={(e) => changeFildValue("tags", e.target.value)}
 				/>
 			</div>

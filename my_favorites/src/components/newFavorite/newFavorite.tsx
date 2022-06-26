@@ -11,11 +11,11 @@ interface NewFavoriteProps {
 	title: string;
 	isDisplayActive: boolean;
 	changeDisplay: React.Dispatch<React.SetStateAction<boolean>>;
-	deleteButton?: boolean;
+	isChanging?: boolean;
 }
 
 export const NewFavorite = (props: NewFavoriteProps) => {
-	const { title, isDisplayActive, changeDisplay, deleteButton } = props;
+	const { title, isDisplayActive, changeDisplay, isChanging } = props;
 	const { fildsValue } = useContext(formFildsContext);
 
 	return (
@@ -25,11 +25,11 @@ export const NewFavorite = (props: NewFavoriteProps) => {
 					title={title}
 					isDisplayActive={isDisplayActive}
 					changeDisplay={changeDisplay}
-					deleteButton={deleteButton}
+					isChanging={isChanging}
 					fildsValue={fildsValue}
 				/>
 				<div className="user-inputs">
-					<FormFilds fildsValue={fildsValue} />
+					<FormFilds fildsValue={fildsValue} isChanging={isChanging} />
 					<Preview fildsValue={fildsValue} />
 					<Tags fildsValue={fildsValue} />
 				</div>

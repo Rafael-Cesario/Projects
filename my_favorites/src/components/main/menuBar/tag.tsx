@@ -11,11 +11,16 @@ export const Tag = () => {
 	const tag = activeTag.tagName;
 
 	useEffect(() => {
-		const favorites = document.querySelectorAll(".favorite") as NodeListOf<HTMLDivElement>;
+		const favorites = document.querySelectorAll(
+			".favorite"
+		) as NodeListOf<HTMLDivElement>;
 
 		favorites.forEach((favorite) => {
-			const belongsTolistName = favorite.getAttribute("data-list").toUpperCase();
-			const display = belongsTolistName != listName.toUpperCase() ? "none" : "flex";
+			const belongsTolistName = favorite
+				.getAttribute("data-list")
+				.toUpperCase();
+			const display =
+				belongsTolistName != listName.toUpperCase() ? "none" : "flex";
 
 			favorite.style.display = display;
 		});

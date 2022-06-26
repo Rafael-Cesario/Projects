@@ -42,12 +42,24 @@ export const DELETE_FAVORITE = gql`
 export const MODIFY_FAVORITE = gql`
 	mutation ModifyFavorite($name: String, $newFavorite: FavoriteInput) {
 		modifyFavorite(name: $name, newFavorite: $newFavorite) {
+			oldName
+			newFavorite {
+				list
+				name
+				note
+				genre
+				imgURL
+				tags
+			}
+		}
+	}
+`;
+
+export const DELETE_ALL_FAVORITES = gql`
+	mutation DeleteAllFavorites($list: String) {
+		deleteAllFavorites(list: $list) {
 			list
-			name
-			note
-			genre
-			imgURL
-			tags
+			deletedCount
 		}
 	}
 `;

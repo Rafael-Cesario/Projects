@@ -9,14 +9,14 @@ interface TopMenuProps {
 	title: string;
 	isDisplayActive: boolean;
 	changeDisplay: React.Dispatch<React.SetStateAction<boolean>>;
-	deleteButton?: boolean;
+	isChanging?: boolean;
 	fildsValue: FavoriteType;
 }
 
 export const TopMenu = (props: TopMenuProps) => {
-	const { title, isDisplayActive, changeDisplay, deleteButton, fildsValue } = props;
+	const { title, isDisplayActive, changeDisplay, isChanging: deleteButton, fildsValue } = props;
 	const [confirmButton, setConfirmButton] = useState(false);
-	const { favoritesData, DBcreateFavorite, DBdeleteFavorite } = useContext(favoriteContext);
+	const { favoritesData, DBcreateFavorite, DBdeleteFavorite, DBmodifyFavorite } = useContext(favoriteContext);
 	const { createNewList, listsData } = useContext(ListContext);
 
 	const saveNewFavorite = async () => {
@@ -24,6 +24,18 @@ export const TopMenu = (props: TopMenuProps) => {
 		const listExists = listsData.some((list) => list.name === fildsValue.list);
 		const favoriteExists = favoritesData.some((favorite) => favorite.name === fildsValue.name);
 		const singularListName = fildsValue.list.replace(/s$/, "");
+
+		changeDisplay(!isDisplayActive);
+
+		if (deleteButton) {
+			DBmodifyFavorite({
+				variables: {
+					name: title,
+					newFavorite: fildsValue,
+				},
+			});
+			return;
+		}
 
 		if (favoriteExists) {
 			return sendErrorMessage("Nome", `Um ${singularListName} com este mesmo nome já existe`);
@@ -41,8 +53,6 @@ export const TopMenu = (props: TopMenuProps) => {
 					name: listName,
 				},
 			});
-
-		changeDisplay(!isDisplayActive);
 	};
 
 	const verifyInputs = async () => {
