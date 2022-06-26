@@ -8,12 +8,11 @@ interface buttonTagProps {
 	tag: string;
 }
 
-const ButtonTag = ({ tag, title }: buttonTagProps) => {
+const Tags = ({ tag, title }: buttonTagProps) => {
 	const { activeTag, setActiveTag } = useContext(displayContext);
 
 	const className = title === activeTag.listName && tag === activeTag.tagName ? "active" : "";
-	const icon =
-		title === activeTag.listName && tag === activeTag.tagName ? <FaBookmark /> : <FaRegBookmark />;
+	const icon = title === activeTag.listName && tag === activeTag.tagName ? <FaBookmark /> : <FaRegBookmark />;
 
 	const changeActive = (e: React.SyntheticEvent) => {
 		const button = e.target as HTMLButtonElement;
@@ -24,11 +23,11 @@ const ButtonTag = ({ tag, title }: buttonTagProps) => {
 	};
 
 	return (
-		<button className={className} key={tag} onClick={(e) => changeActive(e)}>
+		<button className={className + " tag-btn"} key={tag} onClick={(e) => changeActive(e)}>
 			<span className="icon">{icon}</span>
 			<span className="txt">{tag}</span>
 		</button>
 	);
 };
 
-export { ButtonTag };
+export { Tags };

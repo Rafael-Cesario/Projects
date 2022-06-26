@@ -4,7 +4,7 @@ export const TagStyle = styled.div`
 	justify-self: start;
 	display: flex;
 	align-items: center;
-
+	
 	.tagName {
 		border: none;
 		outline: none;
@@ -15,7 +15,7 @@ export const TagStyle = styled.div`
 		color: white;
 
 		::placeholder {
-			color: white;
+			color: #dadada;
 		}
 	}
 `;

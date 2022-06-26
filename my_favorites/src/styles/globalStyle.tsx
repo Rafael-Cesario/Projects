@@ -44,16 +44,9 @@ export const GlobalStyle = createGlobalStyle`
 
 		font-family: "Roboto", sans-serif, "Courier New", Courier, monospace;
 		font-weight: bold;
-		font-style: italic;
 		cursor: pointer;
 		transition: 0.1s;
 		border-radius: 5px;
-		background-color: ${colors.background};
-		color: ${colors.fontBlue};
-		overflow: hidden;
-		height: 2rem;
-		display: flex;
-		align-items: center;
 		user-select: none;
 
 		:active {
@@ -64,17 +57,5 @@ export const GlobalStyle = createGlobalStyle`
 			background-color: white;
 		}
 
-		.txt {
-			padding: 20px 30px;
-			pointer-events: none;
-		}
-
-		.icon {
-			background-color: ${colors.fontBlue};
-			font-size: 1.2rem;
-			color: white;
-			padding: 10px;
-			pointer-events: none;
-		}
 	}
 `;

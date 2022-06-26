@@ -10,7 +10,7 @@ export const PreviewStyled = styled.div`
 
 	.image {
 		width: 10rem;
-		height: 13rem;
+		height: 14rem;
 		background-color: ${colors.background};
 		display: flex;
 		justify-content: center;
@@ -27,7 +27,7 @@ export const PreviewStyled = styled.div`
 			border-radius: 5px;
 			width: 100%;
 			height: 100%;
-			object-fit: fill;
+			object-fit: cover;
 			transition: 0.3s;
 		}
 	}

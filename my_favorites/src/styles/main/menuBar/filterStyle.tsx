@@ -5,6 +5,17 @@ import { colors } from "../../globalStyle";
 export const FilterStyle = styled.div`
 	justify-self: center;
 
+	.filter-btn {
+		padding: 5px;
+		background-color: ${colors.fontBlue};
+		color: white;
+
+		.icon,
+		.txt {
+			margin: 0 5px;
+		}
+	}
+
 	.filter-container {
 		position: absolute;
 		z-index: 2;

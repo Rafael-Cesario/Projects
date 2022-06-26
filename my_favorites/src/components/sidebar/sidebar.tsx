@@ -4,7 +4,7 @@ import { useContext, useEffect, useState } from "react";
 import { ListContext } from "../../context/listContext";
 import { SidebarStyle } from "../../styles/sidebar/sidebarStyle";
 import { NewFavorite } from "../newFavorite/newFavorite";
-import { TagContainer } from "./tagContainer";
+import { Lists } from "./list";
 import { FormFildsContextProvider } from "../../context/formFildsContext";
 import { displayContext } from "../../context/displayContext";
 
@@ -23,13 +23,11 @@ const Sidebar = () => {
 	const listNames = listsData?.map((list: ListType) => list.name);
 	const listTags = listsData?.map((list: ListType) => list.tags);
 
-	const listsJSXArray = listNames?.map((name, index) => (
-		<TagContainer key={name} name={name} tags={[...listTags[index]]} />
-	));
+	const listsJSXArray = listNames?.map((name, index) => <Lists key={name} name={name} tags={[...listTags[index]]} />);
 
 	return (
 		<SidebarStyle>
-			<button onClick={() => setShowCreateNew(!showCreateNew)}>
+			<button className="new-favorite" onClick={() => setShowCreateNew(!showCreateNew)}>
 				<span className="icon">+</span>
 				<span className="txt">Novo</span>
 			</button>
@@ -37,13 +35,7 @@ const Sidebar = () => {
 			{listsJSXArray}
 
 			<FormFildsContextProvider>
-				{showCreateNew && (
-					<NewFavorite
-						title="Novo Favorito"
-						changeDisplay={setShowCreateNew}
-						isDisplayActive={showCreateNew}
-					/>
-				)}
+				{showCreateNew && <NewFavorite title="Novo Favorito" changeDisplay={setShowCreateNew} isDisplayActive={showCreateNew} />}
 			</FormFildsContextProvider>
 		</SidebarStyle>
 	);

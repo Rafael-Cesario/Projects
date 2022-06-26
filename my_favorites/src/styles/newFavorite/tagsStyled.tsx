@@ -23,7 +23,7 @@ export const TagsStyled = styled.div`
 		display: flex;
 		align-items: center;
 		background-color: ${colors.fontBlue};
-		padding: 0 5px;
+		padding: 10px 15px;
 		justify-content: space-between;
 		color: white;
 		flex-grow: 1;

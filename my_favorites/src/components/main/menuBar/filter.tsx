@@ -19,7 +19,7 @@ export const Filter = () => {
 
 	return (
 		<FilterStyle className="filter">
-			<button onClick={() => setShowFiltersMenu(!showFiltersMenu)}>
+			<button className="filter-btn" onClick={() => setShowFiltersMenu(!showFiltersMenu)}>
 				<span className="icon">
 					<AiFillFilter />
 				</span>

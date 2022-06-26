@@ -16,7 +16,8 @@ interface TopMenuProps {
 export const TopMenu = (props: TopMenuProps) => {
 	const { title, isDisplayActive, changeDisplay, isChanging: deleteButton, fildsValue } = props;
 	const [confirmButton, setConfirmButton] = useState(false);
-	const { favoritesData, DBcreateFavorite, DBdeleteFavorite, DBmodifyFavorite } = useContext(favoriteContext);
+	const { favoritesData, DBcreateFavorite, DBdeleteFavorite, DBmodifyFavorite } =
+		useContext(favoriteContext);
 	const { createNewList, listsData } = useContext(ListContext);
 
 	const saveNewFavorite = async () => {
@@ -83,7 +84,7 @@ export const TopMenu = (props: TopMenuProps) => {
 
 			Link: {
 				default: "Link para uma imagem",
-				error: "Não estou conseguindo encontrar uma imagem seguindo este link 😥",
+				error: "🚨 Por favor insira um link, você pode usar o google para procurar por uma capa.",
 			},
 
 			Lista: {
@@ -123,6 +124,7 @@ export const TopMenu = (props: TopMenuProps) => {
 	return (
 		<TopMenuStyle>
 			<h2>{title}</h2>
+
 			<div className="buttons">
 				<button onClick={() => verifyInputs()}>Salvar</button>
 
