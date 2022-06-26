@@ -8,6 +8,7 @@ export const typeDefs = gql`
 	type Mutation {
 		createFavorite(favoriteOBJ: FavoriteInput): Favorite
 		deleteFavorite(name: String): Favorite
-		modifyFavorite(name: String, newFavorite: FavoriteInput): Favorite
+		modifyFavorite(name: String, newFavorite: FavoriteInput): ModifyFavorite
+		deleteAllFavorites(list: String): DeleteStatus
 	}
 `;

@@ -1,5 +1,6 @@
 import { DBallFavorites } from "../../database/methods/favorites/allFavorites";
 import { DBcreateFavorite } from "../../database/methods/favorites/createFavorite";
+import { DBdeleteAllFavorites } from "../../database/methods/favorites/deleteAllFavorites";
 import { DBdeleteFavorite } from "../../database/methods/favorites/deleteFavorite";
 import { DBmodifyFavorite } from "../../database/methods/favorites/modifyFavorite";
 import { FavoriteType } from "../../types/favorites";
@@ -24,9 +25,18 @@ export const resolvers = {
 			return response;
 		},
 
-		modifyFavorite(obj: unknown, args: { name: string; newFavorite: FavoriteType }) {
+		modifyFavorite(
+			obj: unknown,
+			args: { name: string; newFavorite: FavoriteType }
+		) {
 			const { name, newFavorite } = args;
 			const response = DBmodifyFavorite(name, newFavorite);
+			return response;
+		},
+
+		deleteAllFavorites(obj: unknown, args: { list: string }) {
+			const { list } = args;
+			const response = DBdeleteAllFavorites(list);
 			return response;
 		},
 	},

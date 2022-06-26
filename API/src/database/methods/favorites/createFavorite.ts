@@ -1,13 +1,17 @@
 import { FavoriteType } from "../../../types/favorites";
 import { FavoriteModel } from "../../models/favorite";
 
-export const DBcreateFavorite = async (favoriteOBJ: FavoriteType): Promise<FavoriteType> => {
+export const DBcreateFavorite = async (
+	favoriteOBJ: FavoriteType
+): Promise<FavoriteType> => {
 	try {
 		const { list, name, note, genre, tags, imgURL } = favoriteOBJ;
 		const nameRegEx = new RegExp(name, "i");
 		const alreadyExist = await FavoriteModel.findOne({ name: nameRegEx });
 
-		if (alreadyExist) throw new Error("This favorite already exists");
+		if (alreadyExist && alreadyExist.list === list) {
+			throw new Error("This favorite already exists");
+		}
 
 		const favorite = new FavoriteModel({
 			list: list,

@@ -18,4 +18,14 @@ export const typeDefs = gql`
 		imgURL: String
 		tags: [String]
 	}
+
+	type ModifyFavorite {
+		oldName: String
+		newFavorite: Favorite
+	}
+
+	type DeleteStatus {
+		list: String
+		deletedCount: Int
+	}
 `;
