@@ -12,9 +12,11 @@ type createFavorite = { createFavorite: FavoriteType };
 type deleteAllFavorites = { deleteAllFavorites: { list: string; deletedCount: number } };
 
 export const CACHE_deleteAllFavorites = {
-	updata(cache: cacheType, { data }: { data: deleteAllFavorites }) {
+	update(cache: cacheType, { data }: { data: deleteAllFavorites }) {
 		const listName = data.deleteAllFavorites.list;
-		const favoritesOnCache = cache.readQuery({ query: ALL_FAVORITES }) as { favorites: FavoriteType[] };
+		const favoritesOnCache = cache.readQuery({ query: ALL_FAVORITES }) as {
+			favorites: FavoriteType[];
+		};
 		const favorites = [...favoritesOnCache.favorites];
 		const newFavorites = favorites.filter((favorite) => favorite.list != listName);
 
@@ -28,9 +30,13 @@ export const CACHE_deleteAllFavorites = {
 export const CACHE_modifyFavorite = {
 	update(cache: cacheType, { data }: { data: modifyFavorite }) {
 		const newFavorite = data.modifyFavorite.newFavorite;
-		const favoritesOnCache = cache.readQuery({ query: ALL_FAVORITES }) as { favorites: FavoriteType[] };
+		const favoritesOnCache = cache.readQuery({ query: ALL_FAVORITES }) as {
+			favorites: FavoriteType[];
+		};
 		const favorites = [...favoritesOnCache.favorites];
-		const oldFavoriteIndex = favorites.findIndex((favorite) => favorite.name === data.modifyFavorite.oldName);
+		const oldFavoriteIndex = favorites.findIndex(
+			(favorite) => favorite.name === data.modifyFavorite.oldName
+		);
 
 		favorites[oldFavoriteIndex] = newFavorite;
 
@@ -44,7 +50,9 @@ export const CACHE_modifyFavorite = {
 export const CACHE_deleteFavorite = {
 	update(cache: cacheType, { data }: { data: deleteFavorite }) {
 		const name = data.deleteFavorite.name;
-		const favoritesOnCache = cache.readQuery({ query: ALL_FAVORITES }) as { favorites: FavoriteType[] };
+		const favoritesOnCache = cache.readQuery({ query: ALL_FAVORITES }) as {
+			favorites: FavoriteType[];
+		};
 		const favorites = favoritesOnCache.favorites.filter((favorite) => favorite.name != name);
 
 		cache.writeQuery({
@@ -57,7 +65,9 @@ export const CACHE_deleteFavorite = {
 export const CACHE_createFavorite = {
 	update(cache: cacheType, { data }: { data: createFavorite }) {
 		const newFavorite = [data?.createFavorite];
-		const favoritesOnCache = cache.readQuery({ query: ALL_FAVORITES }) as { favorites: FavoriteType[] };
+		const favoritesOnCache = cache.readQuery({ query: ALL_FAVORITES }) as {
+			favorites: FavoriteType[];
+		};
 		const favorites = [...favoritesOnCache.favorites, ...newFavorite];
 
 		cache.writeQuery({

@@ -1,6 +1,6 @@
 import { ListStyle } from "../../styles/sidebar/listStyle";
 import { Tags } from "./Tags";
-import { BsThreeDotsVertical } from "react-icons/Bs";
+import { BiMenuAltRight } from "react-icons/bi";
 import { useState } from "react";
 import { ListConfigs } from "./listConfigs";
 
@@ -19,7 +19,7 @@ const Lists = ({ name, tags }: TagContainerProps) => {
 				<h1>{name}</h1>
 
 				<button className="menu" onClick={() => setListConfigs(!listConfigs)}>
-					<BsThreeDotsVertical className="icon" />
+					<BiMenuAltRight className="icon" />
 				</button>
 
 				{listConfigs && (
