@@ -52,10 +52,5 @@ export const GlobalStyle = createGlobalStyle`
 		:active {
 			transform: scale(0.95);
 		}
-
-		:hover {
-			background-color: white;
-		}
-
 	}
 `;

@@ -11,4 +11,5 @@ export interface TagContextInterface {
 	listsData: ListType[];
 	createNewList(variables: MutationVariables): void;
 	DBdeleteTag(variables: MutationVariables): void;
+	DBdeleteList(variables: MutationVariables): void;
 }

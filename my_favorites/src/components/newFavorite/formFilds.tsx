@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import produce from "immer";
 import { FormFildsStyle } from "../../styles/newFavorite/formFildsStyle";
 import { FavoriteType } from "../../utils/types/favorite";
@@ -30,6 +30,11 @@ export const FormFilds = ({ fildsValue, isChanging }: FormFildsProps) => {
 		);
 	};
 
+	useEffect(() => {
+		const inputs = document.querySelectorAll(".fild input") as NodeListOf<HTMLInputElement>;
+		if (isChanging) inputs.forEach((input) => (input.value = fildsValue[input.name]));
+	}, []);
+
 	return (
 		<FormFildsStyle>
 			<div className="fild">
@@ -37,7 +42,6 @@ export const FormFilds = ({ fildsValue, isChanging }: FormFildsProps) => {
 				<input
 					type="text"
 					placeholder={"Jogos, Livros..."}
-					value={isChanging && fildsValue.list}
 					onChange={(e) => changeFildValue("list", e.target.value)}
 					name="list"
 				/>
@@ -48,7 +52,6 @@ export const FormFilds = ({ fildsValue, isChanging }: FormFildsProps) => {
 				<input
 					type="text"
 					placeholder={"As aventuras do..."}
-					value={isChanging && fildsValue.name}
 					onChange={(e) => changeFildValue("name", e.target.value)}
 					name="name"
 				/>
@@ -66,8 +69,8 @@ export const FormFilds = ({ fildsValue, isChanging }: FormFildsProps) => {
 				<input
 					type="text"
 					placeholder={"Aventura, Romance, Comédia..."}
-					value={isChanging && fildsValue.genre}
 					onChange={(e) => changeFildValue("genre", e.target.value)}
+					name="genre"
 				/>
 			</div>
 
@@ -76,7 +79,6 @@ export const FormFilds = ({ fildsValue, isChanging }: FormFildsProps) => {
 				<input
 					type="text"
 					placeholder={fildsValue.imgURL || "Cole aqui o endereço de uma imagem"}
-					value={isChanging && fildsValue.imgURL}
 					onChange={(e) => changeFildValue("imgURL", e.target.value)}
 					name="imgURL"
 				/>
@@ -88,8 +90,8 @@ export const FormFilds = ({ fildsValue, isChanging }: FormFildsProps) => {
 					className="tags-input"
 					type="text"
 					placeholder={"Favoritos, Zerados, WishList..."}
-					value={isChanging && fildsValue.tags}
 					onChange={(e) => changeFildValue("tags", e.target.value)}
+					name="tags"
 				/>
 			</div>
 		</FormFildsStyle>

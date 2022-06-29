@@ -7,6 +7,7 @@ import { ApolloProvider } from "@apollo/client";
 import { client } from "../utils/dataBase/apolloClient";
 import { DisplayContextProvider } from "../context/displayContext";
 import { ListContextProvider } from "../context/listContext";
+import { FavoriteContextProvider } from "../context/favoriteContext";
 
 const App = () => {
 	return (
@@ -16,8 +17,12 @@ const App = () => {
 
 				<DisplayContextProvider>
 					<ListContextProvider>
-						<Sidebar />
-						<Main />
+						<FavoriteContextProvider>
+
+							<Sidebar />
+							<Main />
+							
+						</FavoriteContextProvider>
 					</ListContextProvider>
 				</DisplayContextProvider>
 

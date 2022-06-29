@@ -1,5 +1,4 @@
 import { useContext } from "react";
-import { FavoriteContextProvider } from "../../context/favoriteContext";
 import { formFildsContext } from "../../context/formFildsContext";
 import { NewFavoriteStyle } from "../../styles/newFavorite/newFavoriteStyle";
 import { FormFilds } from "./formFilds";
@@ -20,7 +19,7 @@ export const NewFavorite = (props: NewFavoriteProps) => {
 
 	return (
 		<NewFavoriteStyle>
-			<FavoriteContextProvider>
+			<div className="container">
 				<TopMenu
 					title={title}
 					isDisplayActive={isDisplayActive}
@@ -28,12 +27,13 @@ export const NewFavorite = (props: NewFavoriteProps) => {
 					isChanging={isChanging}
 					fildsValue={fildsValue}
 				/>
+
 				<div className="user-inputs">
 					<FormFilds fildsValue={fildsValue} isChanging={isChanging} />
 					<Preview fildsValue={fildsValue} />
 					<Tags fildsValue={fildsValue} />
 				</div>
-			</FavoriteContextProvider>
+			</div>
 		</NewFavoriteStyle>
 	);
 };

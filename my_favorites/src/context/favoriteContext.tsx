@@ -4,7 +4,13 @@ import { createContext } from "react";
 import { useQueryData } from "../utils/hooks/useQueryData";
 import { FavoriteType } from "../utils/types/favorite";
 import { FavoriteContext, favoriteProps } from "./contextTypes/favoriteContext";
-import { ALL_FAVORITES, CREATE_FAVORITE, MODIFY_FAVORITE, DELETE_FAVORITE, DELETE_ALL_FAVORITES } from "../utils/dataBase/querys/favorites";
+import {
+	ALL_FAVORITES,
+	CREATE_FAVORITE,
+	MODIFY_FAVORITE,
+	DELETE_FAVORITE,
+	DELETE_ALL_FAVORITES,
+} from "../utils/dataBase/querys/favorites";
 
 const initialValue = {
 	favoritesData: [],

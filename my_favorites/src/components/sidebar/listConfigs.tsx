@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { BiTrashAlt } from "react-icons/bi";
 import { MdDragIndicator } from "react-icons/md";
 import { ListContext } from "../../context/listContext";
+import { ListConfigsStyle } from "../../styles/sidebar/listConfigsStyle";
 import { Cache_deleteTag } from "../../utils/dataBase/cache/tags";
 import { inputError } from "../../utils/func/inputError";
 
@@ -10,9 +11,19 @@ interface ListConfigsProps {
 	tags: string[];
 	listConfigs: boolean;
 	setListConfigs: React.Dispatch<React.SetStateAction<boolean>>;
+
+	confirmDeleteList: boolean;
+	setConfirmDeleteList(newState: boolean): void;
 }
 
-export const ListConfigs = ({ name, tags, listConfigs, setListConfigs }: ListConfigsProps) => {
+export const ListConfigs = ({
+	name,
+	tags,
+	listConfigs,
+	setListConfigs,
+	confirmDeleteList,
+	setConfirmDeleteList,
+}: ListConfigsProps) => {
 	const { DBdeleteTag } = useContext(ListContext);
 
 	const deleteTag = (e: React.SyntheticEvent, tagName: string) => {
@@ -32,7 +43,7 @@ export const ListConfigs = ({ name, tags, listConfigs, setListConfigs }: ListCon
 	};
 
 	return (
-		<div className="options">
+		<ListConfigsStyle>
 			<div className="top">
 				<h1>{name}</h1>
 				<button onClick={() => setListConfigs(!listConfigs)}>X</button>
@@ -40,7 +51,7 @@ export const ListConfigs = ({ name, tags, listConfigs, setListConfigs }: ListCon
 
 			<div className="list">
 				<input type="text" placeholder={name} />
-				<button>
+				<button onClick={() => setConfirmDeleteList(!confirmDeleteList)}>
 					<BiTrashAlt className="icon delete" title="Deletar lista" />
 				</button>
 			</div>
@@ -59,6 +70,6 @@ export const ListConfigs = ({ name, tags, listConfigs, setListConfigs }: ListCon
 			</div>
 
 			<button className="save">Salvar</button>
-		</div>
+		</ListConfigsStyle>
 	);
 };

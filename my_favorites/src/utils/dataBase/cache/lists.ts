@@ -1,12 +1,8 @@
-import { ApolloCache } from "@apollo/client";
 import { ListType } from "../../types/list";
+import { client } from "../apolloClient";
 import { ALL_LISTS } from "../querys/lists";
-
-type cacheType = ApolloCache<unknown>;
-type Lists = ListType[];
-type CreateList = {
-	createList: { name: string; tags: string; index: number };
-};
+import { CreateList, Lists } from "./cacheTypes.ts/lists";
+import { cacheType, QueryLists } from "./cacheTypes.ts/tags";
 
 export const CACHE_createList = {
 	update(cache: cacheType, { data }: { data: CreateList }) {
@@ -20,4 +16,24 @@ export const CACHE_createList = {
 			data: { lists },
 		});
 	},
+};
+
+export const Cache_deleteList = (name: string) => {
+	const querylists = readQuery();
+	const lists = querylists.lists.filter((list) => list.name != name);
+
+	console.log(lists);
+
+	writeQuery(lists);
+};
+
+const readQuery = () => {
+	return client.readQuery({ query: ALL_LISTS }) as QueryLists;
+};
+
+const writeQuery = (lists: ListType[]) => {
+	client.writeQuery({
+		query: ALL_LISTS,
+		data: { lists },
+	});
 };
