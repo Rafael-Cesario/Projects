@@ -35,15 +35,7 @@ export const FormFildsStyle = styled.div`
 	}
 
 	.error {
-		span {
-			color: crimson;
-			font-weight: bold;
-		}
-		input {
-			background-color: crimson;
-			::placeholder {
-				color: white;
-			}
-		}
+		background-color: crimson !important;
+		color: black !important;
 	}
 `;

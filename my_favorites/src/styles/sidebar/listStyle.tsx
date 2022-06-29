@@ -95,6 +95,7 @@ const ListStyle = styled.div`
 				margin: 5px;
 				font-size: 1.5rem;
 				cursor: pointer;
+				pointer-events: none;
 			}
 
 			.delete {
@@ -161,6 +162,11 @@ const ListStyle = styled.div`
 
 	.tags .active {
 		opacity: 1;
+	}
+
+	.error {
+		background-color: crimson !important;
+		color: #ffffff !important;
 	}
 `;
 

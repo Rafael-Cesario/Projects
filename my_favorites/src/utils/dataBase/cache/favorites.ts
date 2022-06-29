@@ -1,78 +1,45 @@
 import { FavoriteType } from "../../types/favorite";
 import { ALL_FAVORITES } from "../querys/favorites";
-import { ApolloCache } from "@apollo/client";
+import { client } from "../apolloClient";
+import { QueryFavorites } from "./cacheTypes.ts/favorites";
 
-type cacheType = ApolloCache<unknown>;
-
-type modifyFavorite = {
-	modifyFavorite: { oldName: string; newFavorite: FavoriteType };
-};
-type deleteFavorite = { deleteFavorite: FavoriteType };
-type createFavorite = { createFavorite: FavoriteType };
-type deleteAllFavorites = { deleteAllFavorites: { list: string; deletedCount: number } };
-
-export const CACHE_deleteAllFavorites = {
-	update(cache: cacheType, { data }: { data: deleteAllFavorites }) {
-		const listName = data.deleteAllFavorites.list;
-		const favoritesOnCache = cache.readQuery({ query: ALL_FAVORITES }) as {
-			favorites: FavoriteType[];
-		};
-		const favorites = [...favoritesOnCache.favorites];
-		const newFavorites = favorites.filter((favorite) => favorite.list != listName);
-
-		cache.writeQuery({
-			query: ALL_FAVORITES,
-			data: { favorites: newFavorites },
-		});
-	},
+export const Cache_createFavorite = (favoriteOBJ: FavoriteType) => {
+	const queryFavorites = readQuery();
+	const favorites = [...queryFavorites.favorites, ...[favoriteOBJ]];
+	writeQuery(favorites);
 };
 
-export const CACHE_modifyFavorite = {
-	update(cache: cacheType, { data }: { data: modifyFavorite }) {
-		const newFavorite = data.modifyFavorite.newFavorite;
-		const favoritesOnCache = cache.readQuery({ query: ALL_FAVORITES }) as {
-			favorites: FavoriteType[];
-		};
-		const favorites = [...favoritesOnCache.favorites];
-		const oldFavoriteIndex = favorites.findIndex(
-			(favorite) => favorite.name === data.modifyFavorite.oldName
-		);
-
-		favorites[oldFavoriteIndex] = newFavorite;
-
-		cache.writeQuery({
-			query: ALL_FAVORITES,
-			data: { favorites },
-		});
-	},
+export const Cache_deleteFavorite = (deletedName: string) => {
+	const queryFavorites = readQuery();
+	const favorites = queryFavorites.favorites.filter((favorite) => favorite.name != deletedName);
+	writeQuery(favorites);
 };
 
-export const CACHE_deleteFavorite = {
-	update(cache: cacheType, { data }: { data: deleteFavorite }) {
-		const name = data.deleteFavorite.name;
-		const favoritesOnCache = cache.readQuery({ query: ALL_FAVORITES }) as {
-			favorites: FavoriteType[];
-		};
-		const favorites = favoritesOnCache.favorites.filter((favorite) => favorite.name != name);
+export const Cache_modifyFavorite = (name: string, favoriteOBJ: FavoriteType) => {
+	const queryFavorites = readQuery();
+	const favoritesOnCache = [...queryFavorites.favorites];
+	const favoriteIndex = favoritesOnCache.findIndex((favorite) => favorite.name === name);
 
-		cache.writeQuery({
-			query: ALL_FAVORITES,
-			data: { favorites },
-		});
-	},
+	favoritesOnCache[favoriteIndex] = favoriteOBJ;
+
+	writeQuery(favoritesOnCache);
 };
 
-export const CACHE_createFavorite = {
-	update(cache: cacheType, { data }: { data: createFavorite }) {
-		const newFavorite = [data?.createFavorite];
-		const favoritesOnCache = cache.readQuery({ query: ALL_FAVORITES }) as {
-			favorites: FavoriteType[];
-		};
-		const favorites = [...favoritesOnCache.favorites, ...newFavorite];
+export const Cache_deleteAllFavorites = (listName: string) => {
+	const queryFavorites = readQuery();
+	const favoritesOnCache = [...queryFavorites.favorites];
+	const favorites = favoritesOnCache.filter((favorite) => favorite.list != listName);
 
-		cache.writeQuery({
-			query: ALL_FAVORITES,
-			data: { favorites },
-		});
-	},
+	writeQuery(favorites);
+};
+
+const writeQuery = (favorites: FavoriteType[]) => {
+	client.writeQuery({
+		query: ALL_FAVORITES,
+		data: { favorites },
+	});
+};
+
+const readQuery = () => {
+	return client.readQuery({ query: ALL_FAVORITES }) as QueryFavorites;
 };
