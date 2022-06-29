@@ -29,3 +29,13 @@ export const DELETE_TAG = gql`
 		}
 	}
 `;
+
+export const MODIFY_TAG = gql`
+	mutation modifyTag($listName: String, $tagName: String, $newTagName: String) {
+		modifyTag(listName: $listName, tagName: $tagName, newTagName: $newTagName) {
+			name
+			tags
+			index
+		}
+	}
+`;

@@ -18,6 +18,19 @@ export const CACHE_createList = {
 	},
 };
 
+export const Cache_modifyList = (name: string, newName: string) => {
+	const queryLists = readQuery();
+	const lists = [...queryLists.lists];
+
+	const newLists = lists.map((list) => {
+		const draft = { ...list };
+		if (draft.name === name) draft.name = newName;
+		return draft;
+	});
+
+	writeQuery(newLists);
+};
+
 export const Cache_deleteList = (name: string) => {
 	const querylists = readQuery();
 	const lists = querylists.lists.filter((list) => list.name != name);

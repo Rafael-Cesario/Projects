@@ -7,7 +7,6 @@ export const DBmodifyFavorite = async (
 ): Promise<{ oldName: string; newFavorite: FavoriteType }> => {
 	try {
 		const { list, name, imgURL, note, genre, tags } = newFavorite;
-
 		const nameRegEx = new RegExp(favoriteName, "i");
 		const favorite = await FavoriteModel.findOneAndUpdate(
 			{ name: nameRegEx },
@@ -16,8 +15,8 @@ export const DBmodifyFavorite = async (
 				name: name,
 				imgURL: imgURL,
 				note: note || "Sem Nota",
-				genre: genre[0] ? genre : ["Sem Genero"],
-				tags: tags[0] ? tags : ["Sem Tags"],
+				genre: genre?.length > 0 ? genre : ["Sem Genero"],
+				tags: tags?.length > 0 ? tags : ["Sem Tags"],
 			},
 			{ new: true }
 		);

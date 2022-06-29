@@ -1,5 +1,5 @@
-export const inputError = (input: HTMLInputElement, errorMessage: string) => {
-	const oldValue = input.value;
+export const inputError = (input: HTMLInputElement, errorMessage: string, value?: string) => {
+	const oldValue = value || input.value;
 
 	input.classList.add("error");
 	input.value = errorMessage;

@@ -3,6 +3,17 @@ import { client } from "../apolloClient";
 import { LISTS } from "../querys/tags";
 import { QueryLists } from "./cacheTypes.ts/tags";
 
+const readQuery = () => {
+	return client.readQuery({ query: LISTS }) as QueryLists;
+};
+
+const writeQuery = (lists: ListType[]) => {
+	client.writeQuery({
+		query: LISTS,
+		data: { lists },
+	});
+};
+
 export const Cache_deleteTag = (listName: string, tagName: string) => {
 	const queryLists = readQuery();
 	const lists = [...queryLists.lists];
@@ -16,13 +27,19 @@ export const Cache_deleteTag = (listName: string, tagName: string) => {
 	writeQuery(lists);
 };
 
-const writeQuery = (lists: ListType[]) => {
-	client.writeQuery({
-		query: LISTS,
-		data: { lists },
-	});
-};
+export const Cache_modifyTag = (listName: string, tagName: string, newTagName: string) => {
+	const queryLists = readQuery();
+	const newLists = queryLists.lists.map((list) => {
+		const listDraft = { ...list };
+		const tagsDraft = [...listDraft.tags];
+		const tagIndex = listDraft.tags.indexOf(tagName);
 
-const readQuery = () => {
-	return client.readQuery({ query: LISTS }) as QueryLists;
+		if (listDraft.name === listName) tagsDraft[tagIndex] = newTagName;
+
+		listDraft.tags = tagsDraft;
+
+		return listDraft;
+	});
+
+	writeQuery(newLists);
 };
