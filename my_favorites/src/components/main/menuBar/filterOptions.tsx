@@ -13,16 +13,21 @@ interface OptionsProps {
 type dataQuery = { data: { favorites: FavoriteType[] } };
 
 export const Options = ({ filterOption }: OptionsProps) => {
-	const { filters, setFilters } = useContext(displayContext);
+	const { filters, setFilters, activeTag } = useContext(displayContext);
 	const { data } = useQuery(ALL_FAVORITES) as dataQuery;
 
 	const generateOptions = (option: string): string[] => {
 		const options = data.favorites
-			.map((favorite) => favorite[option])
-			.filter((option) => option != "")
+			.map((favorite) => {
+				if (favorite.list === activeTag.listName) return favorite[option];
+			})
 			.flat();
 
-		return options;
+		const filteredOptions = options.filter((option, index) => {
+			return options.indexOf(option) === index;
+		});
+
+		return filteredOptions;
 	};
 
 	const giveClassToOptions = () => {
