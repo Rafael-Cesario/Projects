@@ -3,9 +3,7 @@
 ##### Salve jogos, livros, series, filmes, animes ou qualquer outra coisa que funcionar para você.
 ##### Use tags, generos, avaliações, para separar seus favoritos.
 
-![Captura de tela 2022-06-17 074608](https://user-images.githubusercontent.com/88716893/174284055-4ab1c6f0-61fb-4936-b451-102731ea7ae1.png)
-
-![ezgif com-gif-maker](https://user-images.githubusercontent.com/88716893/176805923-ab1cac54-1493-48f4-b88d-020363540250.gif)
+![Captura de tela 2022-06-30 224506](https://user-images.githubusercontent.com/88716893/176806163-9f84c8e1-a14f-4a1c-8002-0dbfd9a8ed73.png)
 
 
 
