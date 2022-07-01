@@ -4,7 +4,9 @@
 	"description": "",
 	"main": "index.js",
 	"scripts": {
-		"dev": "ts-node-dev --respawn --transpile-only src/index.ts"
+		"start": "set NODE_ENV=production && node ./dist/index.js",
+		"dev": "set NODE_ENV=development && ts-node-dev --respawn --transpile-only src/index.ts",
+		"build": "tsc --build"
 	},
 	"keywords": [],
 	"author": "",
