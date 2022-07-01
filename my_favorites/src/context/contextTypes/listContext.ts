@@ -9,13 +9,16 @@ export type MutationVariables =
 	| { variables: { name: string } }
 	| { variables: { listName: string; tagName: string } }
 	| { variables: { name: string; newName: string } }
-	| { variables: { listName: string; tagName: string; newTagName: string } };
+	| { variables: { listName: string; tagName: string; newTagName: string } }
+	| { variables: { listName: string; tagName: string } };
 
 export interface ListInterface {
 	listsData: ListType[];
 	createNewList(variables: MutationVariables): void;
-	DBdeleteTag(variables: MutationVariables): void;
 	DBdeleteList(variables: MutationVariables): void;
 	DBmodifyList(variables: MutationVariables): void;
+
+	DBcreateTag(variables: MutationVariables): void;
 	DBmodifyTag(variables: MutationVariables): void;
+	DBdeleteTag(variables: MutationVariables): void;
 }

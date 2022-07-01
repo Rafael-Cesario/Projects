@@ -1,21 +1,21 @@
+import produce from "immer";
 import { ListType } from "../../types/list";
 import { client } from "../apolloClient";
 import { ALL_LISTS } from "../querys/lists";
-import { CreateList, Lists } from "./cacheTypes.ts/lists";
-import { cacheType, QueryLists } from "./cacheTypes.ts/tags";
+import { QueryLists } from "./cacheTypes.ts/tags";
 
-export const CACHE_createList = {
-	update(cache: cacheType, { data }: { data: CreateList }) {
-		const newList = [data.createList];
-		const listsOnCache = cache.readQuery({ query: ALL_LISTS }) as { lists: Lists };
+export const Cache_createList = (listName: string, tags, index) => {
+	const queryLists = readQuery();
 
-		const lists = [...listsOnCache.lists, ...newList];
-
-		cache.writeQuery({
-			query: ALL_LISTS,
-			data: { lists },
+	const newLists = produce(queryLists.lists, (draft) => {
+		draft.push({
+			name: listName,
+			tags: tags,
+			index: index,
 		});
-	},
+	});
+
+	writeQuery(newLists);
 };
 
 export const Cache_modifyList = (name: string, newName: string) => {

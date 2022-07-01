@@ -1,3 +1,4 @@
+import produce from "immer";
 import { ListType } from "../../types/list";
 import { client } from "../apolloClient";
 import { LISTS } from "../querys/tags";
@@ -12,6 +13,18 @@ const writeQuery = (lists: ListType[]) => {
 		query: LISTS,
 		data: { lists },
 	});
+};
+
+export const Cache_createTag = (listName: string, tagName: string) => {
+	const queryLists = readQuery();
+	const lists = [...queryLists.lists];
+	const listIndex = lists.findIndex((list) => list.name === listName);
+
+	const newLists = produce(lists, (draft) => {
+		draft[listIndex].tags = [...draft[listIndex].tags, tagName];
+	});
+
+	writeQuery(newLists);
 };
 
 export const Cache_deleteTag = (listName: string, tagName: string) => {

@@ -3,7 +3,7 @@ import { useMutation } from "@apollo/client";
 import { createContext } from "react";
 import { CACHE_createList } from "../utils/dataBase/cache/lists";
 import { ALL_LISTS, CREATE_LIST, DELETE_LIST, MODIFY_LIST } from "../utils/dataBase/querys/lists";
-import { DELETE_TAG, MODIFY_TAG } from "../utils/dataBase/querys/tags";
+import { CREATE_TAG, DELETE_TAG, MODIFY_TAG } from "../utils/dataBase/querys/tags";
 import { useQueryData } from "../utils/hooks/useQueryData";
 import type { ListType } from "../utils/types/list";
 import { ListContextProps, ListInterface } from "./contextTypes/listContext";
@@ -14,6 +14,7 @@ const initialValue = {
 	DBdeleteList: () => {},
 	DBmodifyList: () => {},
 
+	DBcreateTag: () => {},
 	DBdeleteTag: () => {},
 	DBmodifyTag: () => {},
 };
@@ -27,6 +28,7 @@ const ListContextProvider = ({ children }: ListContextProps) => {
 	const [DBmodifyList] = useMutation(MODIFY_LIST);
 	const [DBdeleteList] = useMutation(DELETE_LIST);
 
+	const [DBcreateTag] = useMutation(CREATE_TAG);
 	const [DBmodifyTag] = useMutation(MODIFY_TAG);
 	const [DBdeleteTag] = useMutation(DELETE_TAG);
 
@@ -38,6 +40,7 @@ const ListContextProvider = ({ children }: ListContextProps) => {
 				DBmodifyList,
 				DBdeleteList,
 
+				DBcreateTag,
 				DBdeleteTag,
 				DBmodifyTag,
 			}}
