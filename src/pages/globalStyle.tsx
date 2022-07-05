@@ -20,8 +20,18 @@ export const GlobalStyle = createGlobalStyle`
     color: ${colors.body.font};
     display: flex;
     justify-content: center;
-    margin: 5rem;
+    margin: 1rem;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+
+  ::-webkit-scrollbar {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: ${colors.background_blue};
+    border-radius: 5px;
+    height: 1rem;
   }
 
 

@@ -29,6 +29,7 @@ const DaysStyle = styled.div`
     border-radius: 5px;
     visibility: hidden;
     pointer-events: none;
+    user-select: none;
 
     ::after {
       content: '';

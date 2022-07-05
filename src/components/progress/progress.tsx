@@ -11,10 +11,10 @@ const Progress = ({ year, setYear }: ProgressProps) => {
   const [activeDays, setActiveDays] = useState([]);
   const monthsDays: number[][] = [];
   const totalPreviousDays = new Date(year, 0, 1).getDay();
-  const days = [];
 
+  const days = [];
   let day = 1;
-  while (day < totalPreviousDays) {
+  while (day <= totalPreviousDays) {
     days.push(day);
     day++;
   }
@@ -23,7 +23,6 @@ const Progress = ({ year, setYear }: ProgressProps) => {
   let month = 0;
   while (month < 12) {
     const monthDays = new Date(year, month + 1, 0).getDate();
-    console.log(monthDays);
     const days = [];
 
     let day = 1;

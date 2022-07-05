@@ -34,7 +34,13 @@ const Days = ({ className, day, year, month, activeDays, setActiveDays }: DaysPr
   }, [activeDays]);
 
   return (
-    <DaysStyle ref={dayDiv} className={className} onClick={(e) => saveDays(e)} id={`${year}/${month}/${day}`}>
+    <DaysStyle
+      ref={dayDiv}
+      className={className}
+      onClick={(e) => saveDays(e)}
+      id={`${year}/${month}/${day}`}
+      onMouseEnter={(e) => e.shiftKey && saveDays(e)}
+    >
       <span>{`${day}/${month}/${year}`}</span>
     </DaysStyle>
   );
