@@ -2,7 +2,7 @@ import Document, { DocumentContext, Head, Html, Main, NextScript } from 'next/do
 import { ServerStyleSheet } from 'styled-components';
 
 export default class MyDocument extends Document {
-  static getInitalProps({ renderPage }: DocumentContext) {
+  static getInicialProps({ renderPage }: DocumentContext) {
     const sheet = new ServerStyleSheet();
     const page = renderPage((App) => (props) => sheet.collectStyles(<App {...props} />));
     const styleTags = sheet.getStyleElement();

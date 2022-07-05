@@ -1,24 +1,23 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Days } from './days/days';
 import { ProgressStyle } from './style';
 
 interface ProgressProps {
   year: number;
-  setYear(newyear: number): void;
 }
 
-const Progress = ({ year, setYear }: ProgressProps) => {
+const Progress = ({ year }: ProgressProps) => {
   const [activeDays, setActiveDays] = useState([]);
   const monthsDays: number[][] = [];
   const totalPreviousDays = new Date(year, 0, 1).getDay();
 
-  const days = [];
+  const previousDays = [];
   let day = 1;
   while (day <= totalPreviousDays) {
-    days.push(day);
+    previousDays.push(day);
     day++;
   }
-  monthsDays.push(days);
+  monthsDays.push(previousDays);
 
   let month = 0;
   while (month < 12) {
@@ -43,10 +42,10 @@ const Progress = ({ year, setYear }: ProgressProps) => {
           return (
             <Days
               key={`${month},${day}`}
-              day={day}
               className={className}
-              year={year}
+              day={day}
               month={month}
+              year={year}
               activeDays={activeDays}
               setActiveDays={setActiveDays}
             />

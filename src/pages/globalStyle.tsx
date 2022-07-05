@@ -5,7 +5,7 @@ export const colors = {
     background: '#101010',
     font: '#e9e9e9',
   },
-  background_blue: '#205e91b0',
+  background_blue: '#2775b4ae',
 };
 
 export const GlobalStyle = createGlobalStyle`
@@ -22,6 +22,7 @@ export const GlobalStyle = createGlobalStyle`
     justify-content: center;
     margin: 1rem;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    overflow: auto;
   }
 
   ::-webkit-scrollbar {
