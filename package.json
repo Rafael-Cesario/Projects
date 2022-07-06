@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "dev": "next dev",
-    "lint": "next lint"
+    "build": "next build",
+    "start": "next start"
   },
   "repository": {
     "type": "git",
@@ -21,6 +22,7 @@
   "dependencies": {
     "@types/react-icons": "^3.0.0",
     "immer": "^9.0.15",
+    "mongoose": "^6.4.3",
     "next": "^12.2.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

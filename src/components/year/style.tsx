@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { colors } from '../../pages/globalStyle';
+import { colors } from '../../styles/globalStyle';
 
 const YearStyle = styled.div`
   display: flex;

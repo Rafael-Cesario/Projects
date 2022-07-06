@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { colors } from '../../../pages/globalStyle';
+import { colors } from '../../../styles/globalStyle';
 
 const DaysStyle = styled.div`
   background-color: #b9b9b924;

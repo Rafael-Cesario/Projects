@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { DaysStyle } from './style';
 import produce from 'immer';
+import { attDaysOnDB } from '../../../utils/hooks/useDBDays';
 
 interface DaysProps {
   year: number;
@@ -23,6 +24,7 @@ const Days = ({ className, day, year, month, activeDays, setActiveDays }: DaysPr
     setActiveDays(
       produce(activeDays, (draft) => {
         hasDay > -1 ? draft.splice(hasDay, 1) : draft.push(day);
+        attDaysOnDB(year.toString(), draft);
       })
     );
   };

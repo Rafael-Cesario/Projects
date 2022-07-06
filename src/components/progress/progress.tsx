@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useDBDays } from '../../utils/hooks/useDBDays';
 import { Days } from './days/days';
 import { ProgressStyle } from './style';
 
@@ -7,7 +7,7 @@ interface ProgressProps {
 }
 
 const Progress = ({ year }: ProgressProps) => {
-  const [activeDays, setActiveDays] = useState([]);
+  const [activeDays, setActiveDays] = useDBDays(year);
   const monthsDays: number[][] = [];
   const totalPreviousDays = new Date(year, 0, 1).getDay();
 
