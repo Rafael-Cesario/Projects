@@ -2,12 +2,26 @@ import Document, { DocumentContext, Head, Html, Main, NextScript } from 'next/do
 import { ServerStyleSheet } from 'styled-components';
 
 export default class MyDocument extends Document {
-  static getInicialProps({ renderPage }: DocumentContext) {
+  static async getInitialProps(ctx: DocumentContext) {
     const sheet = new ServerStyleSheet();
-    const page = renderPage((App) => (props) => sheet.collectStyles(<App {...props} />));
-    const styleTags = sheet.getStyleElement();
+    const originalRenderPage = ctx.renderPage;
 
-    return { ...page, styleTags };
+    try {
+      ctx.renderPage = () => {
+        return originalRenderPage({
+          enhanceApp: (App) => (props) => sheet.collectStyles(<App {...props} />),
+        });
+      };
+
+      const initialProps = await Document.getInitialProps(ctx);
+
+      return {
+        ...initialProps,
+        styles: [initialProps.styles, sheet.getStyleElement()],
+      };
+    } finally {
+      sheet.seal();
+    }
   }
 
   render() {
