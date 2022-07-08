@@ -4,7 +4,7 @@ import { Field, ID, ObjectType } from 'type-graphql';
 @ObjectType()
 export class UserModel {
   @Field(() => ID)
-  id: string;
+  _id: string;
 
   @Field()
   name: string;
