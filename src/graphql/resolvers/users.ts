@@ -1,5 +1,5 @@
 /* eslint-disable indent */
-import { Arg, Field, InputType, Mutation, Query, Resolver } from 'type-graphql';
+import { Arg, Authorized, Field, InputType, Mutation, Query, Resolver } from 'type-graphql';
 import { UserModel } from '../models/users';
 import { DBcreateUser, DBusers } from '../../database/controlers/users';
 
@@ -15,6 +15,7 @@ export class CreateUserInput {
 @Resolver()
 export class UserResolver {
   @Query(() => [UserModel])
+  @Authorized()
   async users() {
     return await DBusers();
   }
@@ -24,4 +25,3 @@ export class UserResolver {
     return await DBcreateUser(user);
   }
 }
-  

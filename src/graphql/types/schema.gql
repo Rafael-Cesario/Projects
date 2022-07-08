@@ -3,6 +3,11 @@
 # !!!   DO NOT MODIFY THIS FILE BY YOURSELF   !!!
 # -----------------------------------------------
 
+type AuthModel {
+  token: String!
+  user: UserModel!
+}
+
 input CreateUserInput {
   name: String!
   password: String!
@@ -10,6 +15,7 @@ input CreateUserInput {
 
 type Mutation {
   createUser(user: CreateUserInput!): UserModel!
+  login(name: String!, password: String!): AuthModel!
 }
 
 type Query {
