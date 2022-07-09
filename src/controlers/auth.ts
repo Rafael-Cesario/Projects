@@ -1,8 +1,8 @@
-import { User } from '../models/users';
+import { User } from '../entities/users';
 import { compare } from 'bcrypt';
 import jwt from 'jsonwebtoken';
-import { authConfig } from '../../config/authentication';
-import { AuthModel } from '../../graphql/models/auth';
+import { authConfig } from '../config/authentication';
+import { AuthModel } from '../models/auth';
 
 export const DBauth = async (name: string, password: string): Promise<AuthModel> => {
   const user = await User.findOne({ name: name.toLowerCase().trim() });

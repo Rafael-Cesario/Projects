@@ -1,5 +1,5 @@
 import { model, Schema } from 'mongoose';
-import { UserModel } from '../../graphql/models/users';
+import { UserModel } from '../models/users';
 import bcrypt from 'bcrypt';
 
 const UserSchema = new Schema<UserModel>({

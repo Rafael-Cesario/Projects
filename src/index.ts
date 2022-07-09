@@ -1,28 +1,17 @@
+import 'dotenv/config';
 import 'reflect-metadata';
-import './database';
+import './server';
 
-import path from 'path';
-import { buildSchema } from 'type-graphql';
-import { ApolloServer } from 'apollo-server';
-import { UserResolver } from './graphql/resolvers/users';
-import { AuthResolver } from './graphql/resolvers/auth';
-import { authentication } from './graphql/middlewares/authentication';
+import { MongoDBServer, server } from './server';
 
 const Main = async () => {
-  const schema = await buildSchema({
-    emitSchemaFile: path.resolve(__dirname, 'graphql', 'types', 'schema.gql'),
-    resolvers: [UserResolver, AuthResolver],
-    authChecker: authentication,
-  });
+  const client = await server();
 
-  const server = new ApolloServer({
-    schema,
-    formatError: (error) => new Error(error.message),
-    context: ({ req }) => ({ req, token: req?.headers?.authorization }),
-  });
+  const { url } = await client.listen();
+  MongoDBServer();
 
-  const { url } = await server.listen();
-  console.log(`${url}\n`);
+  if (process.env.NODE_ENV != 'test') console.log({ url });
 };
 
 Main();
+

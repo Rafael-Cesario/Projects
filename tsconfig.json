@@ -8,7 +8,7 @@
     "experimentalDecorators": true /* Enable experimental support for TC39 stage 2 draft decorators. */,
     "emitDecoratorMetadata": true /* Emit design-type metadata for decorated declarations in source files. */,
     "module": "commonjs" /* Specify what module code is generated. */,
-    "rootDir": "./src" /* Specify the root folder within your source files. */,
+    "rootDir": "." /* Specify the root folder within your source files. */,
     "sourceMap": true /* Create source map files for emitted JavaScript files. */,
     "outDir": "./public" /* Specify an output folder for all emitted files. */,
     "esModuleInterop": true /* Emit additional JavaScript to ease support for importing CommonJS modules. This enables `allowSyntheticDefaultImports` for type compatibility. */,

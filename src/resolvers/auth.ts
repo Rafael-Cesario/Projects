@@ -1,5 +1,5 @@
 import { Arg, Mutation, Resolver } from 'type-graphql';
-import { DBauth } from '../../database/controlers/auth';
+import { DBauth } from '../controlers/auth';
 import { AuthModel } from '../models/auth';
 
 @Resolver(AuthModel)

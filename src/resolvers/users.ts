@@ -1,7 +1,7 @@
 /* eslint-disable indent */
 import { Arg, Authorized, Field, InputType, Mutation, Query, Resolver } from 'type-graphql';
 import { UserModel } from '../models/users';
-import { DBcreateUser, DBusers } from '../../database/controlers/users';
+import { DBcreateUser, DBusers } from '../controlers/users';
 
 @InputType()
 export class CreateUserInput {
