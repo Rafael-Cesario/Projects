@@ -1,4 +1,4 @@
-# <img src="https://cdn-icons-png.flaticon.com/128/1705/1705317.png" width="50px"> Projetos
+# Projetos
 
 ##### Oi, Meu nome é Rafael e este é o meu repositório de 'testes'. 
 
@@ -11,26 +11,49 @@
 ###### **Os Projetos não estão listados na mesma ordem das pastas acima.**
 
 
-&nbsp;
 
+## [authentication-graphql](./authentication-graphql/)
 
-## <img src="https://img.icons8.com/dusk/40/000000/api.png"/> [API REST com Next](./08_api_rest_nextjs/)
+###### Uma API de autenticação com graphql. [ 10/07/2022 ]
 
-##### Uma API feita no Next.
+    - mongoose
+    - jest
+    - eslint
+    - graphql
+    - type-graphql
+    - typescript
+    - jsonwebtoken
+    
+    
+    
+## [crud-nextjs](./crud-nextjs/)
 
-    - mongoDB | mongoose
-    - next.js   
+###### Uma api utilizando o nextApi. [ 28/05/2022 ]
+
+    - eslint
+    - next
+    - react
+    - typescript
+    - mongoose
+    
+    
+    
+    
+## [theme-toggle](./theme-toggle/)
+
+###### Um simple 'theme toggle' para iniciar com next.js. [24/05/2022]
+
+    - next
+    - styled-components
     - typescript
     - eslint
-    - API Rest
+    - react
+    
+    
+    
+## [planner-drag-and-drop](./planner-drag-and-drop/)
 
-
-&nbsp;
-
-
-## <img src="https://img.icons8.com/dusk/40/000000/list--v1.png" alt="list image"/> [**Planner**](./06_planner/)
-
-##### **Um planner para você organizar o que fazer em cada hora do seu dia.**
+###### Um planner para você organizar o que fazer em cada hora do seu dia. [ 19/05/2022 ]
 
     - next.js
     - styled-components
@@ -39,90 +62,68 @@
     - typescript
     - HTML drag and drop
     
+    
+    
+    
+## [calculator-jest](./calculator-jest/)
 
-&nbsp;
+###### Uma simples calculadora para entender como funciona o jest e o testing-library. [ 18/05/2022 ]
 
-
-## <img src="https://img.icons8.com/dusk/40/000000/apple-calculator.png" alt="Calculator image"/> [**Calculator**](./05_calculator/)
-
-##### Uma simples calculadora para usar jest e testing-library.
-
-    - babel
-    - testing-library
     - jest
+    - testing-library
     - react
     - typescript
     - webpack
+    
+    
+    
+    
+## [snotes-rich-text](./snotes-rich-text/)
 
-
-&nbsp;
-
-
-## ![icons8-notebook-justicon-lineal-color-32](https://user-images.githubusercontent.com/88716893/166608554-33f3d8fb-1b1a-4414-8fa5-3b2b52dca1f9.png) [**SNotes**](./04_s_notes/)
-
-##### Aplicativo para anotações, um Rich Text Editor.
+###### Aplicativo para anotações, um Rich Text Editor. [25/04/2022]
 
     - babel
     - react / react hooks
     - webpack
+    - mongoDB
     - typescript
     - styled-components
     - json-server
+    
+    
+    
+    
+## [recipes-pwa](./recipes-pwa/)
 
-
-&nbsp;
-
-
-## <img src="https://user-images.githubusercontent.com/88716893/170414207-a2be26ac-df99-4456-ad27-d01f1428426a.png" width="40px" alt="sun and moon vector"> [Theme Toggle](https://github.com/Rafael-Cesario/Lab/tree/main/07_theme_toggle_nextjs)
-
-##### **Um simple 'theme toggle' para iniciar com next.js**
-
-    - nextJS
-    - styled-components
-    - typescript
-    - eslint
-    - react
-
-
-&nbsp;
-
-
-## ![favicon-32x32](https://user-images.githubusercontent.com/88716893/166608701-67e46550-6551-407d-a68f-997ddc4f5204.png) [Recipes, PWA](./03_Recipes_Notebook/)
-
-##### Inicio de uma PWA.
+###### Inicio de uma PWA. [ 20/04/2022 ]
 
     - react
     - styled-components
     - babel
     - typescript
     - webpack
+    
+    
+    
+    
+## [birthday-reminder](./birthday-reminder/)
 
+###### Um simples app para anotar datas e algumas anotações. [ 06/04/2022 ]
 
-&nbsp;
-
-
-## ![favicon-32x32](https://user-images.githubusercontent.com/88716893/166608816-45ad7903-c116-420c-b85e-24a976e177a4.png) [BirthDay Reminder](https://github.com/Rafael-Cesario/Lab/tree/main/02_birthday_reminder)
-
-##### Salva amigos, suas datas de aniversário e algumas anotações sobre cada amigo.
-
-    - webComponents
+    - express
+    - mongoose
+    - typescript
+    - webpack
     - lit
-    - typeScript
-    - webPack
-    - mongoDB
-    - API REST.
+    
+    
+    
+    
+## [authentication](./authentication/)
 
-
-&nbsp;
-
-
-## <img src="https://img.icons8.com/bubbles/40/000000/lock-2.png" alt="image"/> [JWT Login api](./01_Authentication_JWT/)
-
-##### Uma API feita utilizando JWT
+###### Uma API de autenticação com o mongoDB e redis para cache de refresh tokens e access tokens. [ 16/03/2022 ]
 
     - mongodB
     - redis
     - jsonwebtoken
     - express
-    - bcrypt
-
