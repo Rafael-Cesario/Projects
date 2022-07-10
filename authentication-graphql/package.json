@@ -4,7 +4,6 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "commit": "cz",
     "dev": "set NODE_ENV=development && tsnd --respawn --transpile-only --ignore-watch node_modules src/index.ts",
     "test": "jest --runInBand"
   },

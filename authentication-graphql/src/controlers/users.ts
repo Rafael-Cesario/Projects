@@ -19,7 +19,6 @@ export const DBcreateUser = async (user: CreateUserInput): Promise<UserModel> =>
     await newUser.save();
     return newUser;
   } catch (error: any) {
-    if (error.code === 11000) throw new Error(`${user.name} already exist`);
     throw new Error(error.message);
   }
 };

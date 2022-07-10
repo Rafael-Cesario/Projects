@@ -1,35 +1,12 @@
 import 'reflect-metadata';
 
-import { ApolloServer, gql } from 'apollo-server';
+import { ApolloServer } from 'apollo-server';
 import { connection } from 'mongoose';
 import { MongoDBServer, server } from '../server';
-import { UserModel } from '../models/users';
-import { CreateUserInput } from './users';
-
-interface QueryCreateUser {
-  data: { createUser: UserModel };
-  errors?: { message: string }[];
-}
-
-const CREATEUSER = gql`
-  mutation ($user: CreateUserInput!) {
-    createUser(user: $user) {
-      _id
-      name
-      password
-    }
-  }
-`;
+import { createUser, queryUsers } from '../utils/querys';
 
 describe('User methods', () => {
   let client: ApolloServer;
-
-  const createUser = async (user: CreateUserInput): Promise<QueryCreateUser> => {
-    return (await client.executeOperation({
-      query: CREATEUSER,
-      variables: { user },
-    })) as QueryCreateUser;
-  };
 
   beforeAll(async () => {
     client = await server();
@@ -44,16 +21,16 @@ describe('User methods', () => {
   });
 
   it('create a new user and returns it', async () => {
-    const user = { name: 'teste', password: 'Teste123' };
-    const newUser = await createUser(user);
+    const userPlaceholder = { name: 'teste', password: 'Teste123' };
+    const newUser = await createUser(userPlaceholder, client);
 
-    expect(newUser?.data?.createUser.name).toEqual(user.name);
-    expect(newUser?.data?.createUser.password).not.toEqual(user.password);
+    expect(newUser?.data?.createUser.name).toEqual(userPlaceholder.name);
+    expect(newUser?.data?.createUser.password).not.toEqual(userPlaceholder.password);
   });
 
   it('send a error message if name/password is undefined', async () => {
     const user = { name: '', password: '' };
-    const newUser = await createUser(user);
+    const newUser = await createUser(user, client);
 
     let message;
 
@@ -66,6 +43,11 @@ describe('User methods', () => {
     );
   });
 
-  it.todo('returns all users');
-  it.todo('denies access to an unauthenticated user');
+  it('denies access to an unauthenticated user', async () => {
+    const { errors } = await queryUsers(client);
+    expect(errors).toBeDefined();
+    expect(errors[0].message).toEqual(
+      'Access denied! You need to be authorized to perform this action!'
+    );
+  });
 });

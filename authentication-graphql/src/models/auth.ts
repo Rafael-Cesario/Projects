@@ -2,7 +2,7 @@
 import { Field, ObjectType } from 'type-graphql';
 import { UserModel } from './users';
 
-interface IAuth {
+export interface IAuth {
   token: string;
   user: UserModel;
 }

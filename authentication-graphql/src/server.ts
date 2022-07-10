@@ -14,7 +14,7 @@ const URI = `${process.env.DBURL}-${process.env.NODE_ENV?.trim()}`;
 export const MongoDBServer = () => {
   connect(URI, () => {
     if (process.env.NODE_ENV != 'test') {
-      console.log(`DB Connected on ${process.env.NODE_ENV?.trim()} enviroment\n`);
+      console.log(`DB Connected on ${process.env.NODE_ENV?.trim()} enviroment`);
     }
   });
 };

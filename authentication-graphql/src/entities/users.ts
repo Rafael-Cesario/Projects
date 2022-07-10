@@ -1,8 +1,8 @@
 import { model, Schema } from 'mongoose';
-import { UserModel } from '../models/users';
 import bcrypt from 'bcrypt';
+import { IUser } from '../models/users';
 
-const UserSchema = new Schema<UserModel>({
+const UserSchema = new Schema<IUser>({
   _id: {
     type: String,
     required: [true, 'Missing ID Value'],
@@ -23,7 +23,7 @@ const UserSchema = new Schema<UserModel>({
 });
 
 UserSchema.pre('save', async function (next) {
-  const salt = await bcrypt.genSalt();
+  const salt = await bcrypt.genSalt(10);
   this.password = await bcrypt.hash(this.password, salt);
   next();
 });
