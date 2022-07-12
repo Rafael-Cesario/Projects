@@ -26,10 +26,7 @@ export default class MyDocument extends Document {
     return (
       <Html lang="pt-br">
         <Head>
-          <link
-            href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400;600&display=swap"
-            rel="stylesheet"
-          />
+          <link rel="shortcut icon" href="favicon-32x32.png" type="image/x-icon" />
           <link
             href="https://fonts.googleapis.com/css2?family=Ibarra+Real+Nova:wght@400;600&display=swap"
             rel="stylesheet"

@@ -4,7 +4,7 @@ import { styles } from './global';
 const HeaderStyle = styled.div`
   grid-area: 1 / 2;
   justify-self: end;
-  margin: 1rem;
+  margin: 1rem 5rem;
   z-index: 2;
 
   .header-button {

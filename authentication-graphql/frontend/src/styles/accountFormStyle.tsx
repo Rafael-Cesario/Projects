@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { styles } from './global';
 
-export const LoginFormStyle = styled.div`
+export const AccountFormStyle = styled.div`
   position: absolute;
   width: 100%;
   height: 100%;
@@ -35,13 +35,17 @@ export const LoginFormStyle = styled.div`
   .container {
     background-color: ${styles.sideBackground};
     box-shadow: 5px 5px 5px #00000067;
-    padding: 1rem;
+    padding: 2rem;
     border-radius: 5px;
 
     .header {
       display: flex;
       justify-content: space-between;
       margin: 1rem;
+
+      h1 {
+        margin-right: 5rem;
+      }
     }
 
     form {
