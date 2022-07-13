@@ -64,6 +64,13 @@ export const AccountFormStyle = styled.div`
             margin: 5px;
           }
 
+          .icon {
+            position: relative;
+            cursor: pointer;
+            position: absolute;
+            transform: translate(50px, 3px);
+          }
+
           input {
             background-color: ${styles.MainBlue + '40'};
             color: ${styles.MainFont};
@@ -79,7 +86,7 @@ export const AccountFormStyle = styled.div`
           }
 
           .error {
-            background-color: crimson;
+            background-color: crimson !important;
           }
         }
       }
@@ -88,6 +95,7 @@ export const AccountFormStyle = styled.div`
         width: 100%;
         border: 1px solid white;
         margin: 1rem 0;
+        user-select: none;
       }
     }
   }

@@ -2,19 +2,27 @@ import Head from 'next/head';
 import { Header } from '../components/header';
 import { Main } from '../components/main';
 import GlobalStyle, { AppStyle } from '../styles/global';
+import { client } from '../utils/apolloClient';
+import { ApolloProvider } from '@apollo/client';
+import { UserContextProvider } from '../context/userContext';
 
 const App = () => {
   return (
-    <AppStyle>
-      <Head>
-        <title>Authentication</title>
-      </Head>
+    <ApolloProvider client={client}>
+      <AppStyle>
+        
+        <Head>
+          <title>Authentication</title>
+        </Head>
 
-      <Header />
-      <Main />
+        <UserContextProvider>
+          <Header />
+          <Main />
+        </UserContextProvider>
 
-      <GlobalStyle />
-    </AppStyle>
+        <GlobalStyle />
+      </AppStyle>
+    </ApolloProvider>
   );
 };
 

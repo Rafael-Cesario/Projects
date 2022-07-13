@@ -1,6 +1,6 @@
 import { RefObject } from 'react';
 
-export const sendErrorMessage = (inputName: string, inputRef: RefObject<HTMLInputElement>) => {
+export const sendErrorMessage = (inputName: string, inputRef: RefObject<HTMLInputElement>, errorMessage?: string) => {
   const key = inputName as 'name' | 'password';
   const fieldName = key === 'name' ? 'Nome' : 'Senha';
   const input = inputRef.current;
@@ -8,7 +8,7 @@ export const sendErrorMessage = (inputName: string, inputRef: RefObject<HTMLInpu
   const labelValue = inputLabel.textContent;
 
   input.classList.add('error');
-  inputLabel.textContent = `${fieldName} não foi preenchido`;
+  inputLabel.textContent = errorMessage || `${fieldName} não foi preenchido`;
 
   setTimeout(() => {
     input.classList.remove('error');

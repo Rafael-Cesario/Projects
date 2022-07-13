@@ -1,19 +1,25 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
-import React, { useRef, useState } from 'react';
+import React, { useContext, useRef, useState } from 'react';
 import { AccountFormStyle } from '../styles/accountFormStyle';
 import produce from 'immer';
 import { IFormAccount } from './header';
+import { verifyFields } from '../utils/verifyFields';
+import { UserContext } from '../context/userContext';
+import { sendErrorMessage } from '../utils/sendErrorMessage';
+import { AiFillEyeInvisible, AiFillEye } from 'react-icons/Ai';
 
 interface IAccountFormProps {
   propValues: {
     formAccount: IFormAccount;
     setFormAccount(newState: IFormAccount): void;
+    setUserAuthStatus(newState: boolean): void;
   };
 }
 
 export const AccountForm = ({ propValues }: IAccountFormProps) => {
-  const { formAccount, setFormAccount } = propValues;
+  const { formAccount, setFormAccount, setUserAuthStatus } = propValues;
   const [fieldsValues, setFieldsValues] = useState({ name: '', password: '' });
+  const { createUser, doLogin } = useContext(UserContext);
 
   const inputsRefs = {
     name: useRef<HTMLInputElement>(null),
@@ -37,10 +43,51 @@ export const AccountForm = ({ propValues }: IAccountFormProps) => {
     setFieldsValues(newValues);
   };
 
-  const resolveForm = (e: React.SyntheticEvent) => {
+  const newAccount = async () => {
+    try {
+      await createUser({ variables: { user: fieldsValues } });
+    } catch (error) {
+      const nameCapitalize = fieldsValues.name.substring(0, 1).toUpperCase() + fieldsValues.name.substring(1);
+      const errorMessage = `${nameCapitalize}: este usuario já existe`;
+      sendErrorMessage('name', inputsRefs.name, errorMessage);
+      throw new Error(errorMessage);
+    }
+  };
+
+  const login = async () => {
+    try {
+      await doLogin({ variables: { name: fieldsValues.name, password: fieldsValues.password } });
+    } catch (error) {
+      sendErrorMessage('name', inputsRefs.name, 'Nome Incorreto');
+      sendErrorMessage('password', inputsRefs.password, 'Senha Incorreta');
+      throw new Error('Name or password is wrong');
+    }
+  };
+
+  const resolveForm = async (e: React.SyntheticEvent) => {
     e.preventDefault();
-    const isDone = formAccount.resolver(fieldsValues, inputsRefs);
-    if (isDone) closeForm();
+
+    try {
+      verifyFields(fieldsValues, inputsRefs);
+
+      if (formAccount.title === 'Nova Conta') {
+        await newAccount();
+      }
+
+      await login();
+      setUserAuthStatus(true);
+      closeForm();
+    } catch (error) {
+      return;
+    }
+  };
+
+  const [inputType, setInputType] = useState('password');
+
+  const changePassWordIcon = () => {
+    const input = inputsRefs.password.current;
+    const newType = input.type === 'password' ? 'text' : 'password';
+    setInputType(newType);
   };
 
   return (
@@ -69,10 +116,13 @@ export const AccountForm = ({ propValues }: IAccountFormProps) => {
               <span>Senha</span>
               <input
                 ref={inputsRefs.password}
-                type="text"
+                type={inputType}
                 name={'password'}
                 onChange={(e) => changeFormValues(e.target.name, e.target.value)}
               />
+              <span className="icon" onClick={() => changePassWordIcon()}>
+                {inputType === 'text' ? <AiFillEye /> : <AiFillEyeInvisible />}
+              </span>
             </div>
           </div>
 

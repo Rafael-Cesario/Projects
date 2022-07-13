@@ -49,7 +49,7 @@ export const LOGIN = gql`
 `;
 
 export const USERS = gql`
-  query Users{
+  query Users {
     users {
       _id
       name

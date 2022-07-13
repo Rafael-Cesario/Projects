@@ -14,5 +14,5 @@ export const verifyFields = (fieldsValues: FieldsValues, inputsRef: InputsRef) =
   });
 
   const missingValue = validateFields.includes(false);
-  return !missingValue;
+  if (missingValue) throw new Error('A value is missing');
 };

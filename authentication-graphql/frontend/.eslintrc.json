@@ -17,7 +17,8 @@
   "rules": {
     "linebreak-style": ["error", "windows"],
     "quotes": ["error", "single"],
-    "semi": ["error", "always"]
+    "semi": ["error", "always"],
+    "indent": ["error", 2]
   },
   "globals": {
     "React": "readonly"
