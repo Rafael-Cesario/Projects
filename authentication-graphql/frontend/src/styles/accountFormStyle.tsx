@@ -50,12 +50,14 @@ export const AccountFormStyle = styled.div`
 
     form {
       margin: 1rem;
+      max-width: 300px;
 
       .fields {
         margin: 2rem 0;
 
         .field {
           display: flex;
+          flex-wrap: wrap;
           flex-direction: column;
           margin: 1rem 0;
 
@@ -65,10 +67,7 @@ export const AccountFormStyle = styled.div`
           }
 
           .icon {
-            position: relative;
             cursor: pointer;
-            position: absolute;
-            transform: translate(50px, 3px);
           }
 
           input {

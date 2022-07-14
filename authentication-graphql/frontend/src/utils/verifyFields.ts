@@ -1,7 +1,10 @@
 import { RefObject } from 'react';
 import { sendErrorMessage } from './sendErrorMessage';
 
-export type InputsRef = { name: RefObject<HTMLInputElement>; password: RefObject<HTMLInputElement> };
+export type InputsRef = {
+  name: RefObject<HTMLInputElement>;
+  password: RefObject<HTMLInputElement>;
+};
 export type FieldsValues = { name: string; password: string };
 
 export const verifyFields = (fieldsValues: FieldsValues, inputsRef: InputsRef) => {

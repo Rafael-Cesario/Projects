@@ -7,6 +7,7 @@ import { verifyFields } from '../utils/verifyFields';
 import { UserContext } from '../context/userContext';
 import { sendErrorMessage } from '../utils/sendErrorMessage';
 import { AiFillEyeInvisible, AiFillEye } from 'react-icons/Ai';
+import { strongPassword } from '../utils/strongPassword';
 
 interface IAccountFormProps {
   propValues: {
@@ -45,9 +46,11 @@ export const AccountForm = ({ propValues }: IAccountFormProps) => {
 
   const newAccount = async () => {
     try {
+      strongPassword(fieldsValues.password, inputsRefs.password);
       await createUser({ variables: { user: fieldsValues } });
     } catch (error) {
-      const nameCapitalize = fieldsValues.name.substring(0, 1).toUpperCase() + fieldsValues.name.substring(1);
+      const nameCapitalize =
+        fieldsValues.name.substring(0, 1).toUpperCase() + fieldsValues.name.substring(1);
       const errorMessage = `${nameCapitalize}: este usuario já existe`;
       sendErrorMessage('name', inputsRefs.name, errorMessage);
       throw new Error(errorMessage);
@@ -70,11 +73,10 @@ export const AccountForm = ({ propValues }: IAccountFormProps) => {
     try {
       verifyFields(fieldsValues, inputsRefs);
 
-      if (formAccount.title === 'Nova Conta') {
-        await newAccount();
-      }
+      if (formAccount.title === 'Nova Conta') await newAccount();
 
       await login();
+
       setUserAuthStatus(true);
       closeForm();
     } catch (error) {
@@ -126,7 +128,9 @@ export const AccountForm = ({ propValues }: IAccountFormProps) => {
             </div>
           </div>
 
-          <button className="login-button">{formAccount.title === 'Nova Conta' ? 'Criar Conta' : 'Entrar'}</button>
+          <button className="login-button">
+            {formAccount.title === 'Nova Conta' ? 'Criar Conta' : 'Entrar'}
+          </button>
         </form>
       </div>
     </AccountFormStyle>

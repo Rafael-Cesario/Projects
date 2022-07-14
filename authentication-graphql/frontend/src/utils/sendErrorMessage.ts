@@ -1,17 +1,20 @@
 import { RefObject } from 'react';
 
-export const sendErrorMessage = (inputName: string, inputRef: RefObject<HTMLInputElement>, errorMessage?: string) => {
+export const sendErrorMessage = (
+  inputName: string,
+  inputRef: RefObject<HTMLInputElement>,
+  errorMessage?: string
+) => {
   const key = inputName as 'name' | 'password';
   const fieldName = key === 'name' ? 'Nome' : 'Senha';
   const input = inputRef.current;
   const inputLabel = input.previousSibling as HTMLSpanElement;
-  const labelValue = inputLabel.textContent;
 
   input.classList.add('error');
-  inputLabel.textContent = errorMessage || `${fieldName} não foi preenchido`;
+  inputLabel.innerText = errorMessage || `O campo ${fieldName} não foi preenchido`;
 
   setTimeout(() => {
     input.classList.remove('error');
-    inputLabel.textContent = labelValue;
-  }, 5000);
+    inputLabel.textContent = fieldName;
+  }, 1000 * 20); // 20 secs
 };
