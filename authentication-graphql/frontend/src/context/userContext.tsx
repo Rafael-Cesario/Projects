@@ -1,9 +1,11 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
-import { useMutation } from '@apollo/client';
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { createContext, ReactNode, useEffect, useState } from 'react';
-import { CREATE_USER, LOGIN } from '../utils/querys/user';
-import cookie from 'js-cookie';
+
+import { useQuery } from '@apollo/client';
+import { createContext, ReactNode, useEffect } from 'react';
+import { useCreateuser } from '../utils/hooks/useCreateuser';
+import { useLogin } from '../utils/hooks/useLogin';
+import { useUserAuthStatus } from '../utils/hooks/userAuthStatus';
+import { USERS } from '../utils/querys/user';
 
 type TCreateUser = { variables: { user: { name: string; password: string } } };
 export type TDoLogin = { variables: { name: string; password: string } };
@@ -25,14 +27,16 @@ const defaultValues: IDefaultValues = {
 export const UserContext = createContext(defaultValues);
 
 export const UserContextProvider = ({ children }: { children: ReactNode }) => {
-  const [userAuthStatus, setUserAuthStatus] = useState(false);
-  const [createUser] = useMutation(CREATE_USER);
-  const [doLogin] = useMutation(LOGIN, {
-    onCompleted(data) {
-      const expires = 1; // 1 day
-      cookie.set('token', `${data.login.token}`, { expires });
-    },
-  });
+  const { loading, data, error } = useQuery(USERS);
+  const [userAuthStatus, setUserAuthStatus] = useUserAuthStatus(false);
+
+  const createUser = useCreateuser(setUserAuthStatus);
+  const doLogin = useLogin(setUserAuthStatus);
+
+  useEffect(() => {
+    if (error) console.log({ userAuthStatus, error });
+    if (data) console.log({ userAuthStatus, data });
+  }, [data, error, loading, userAuthStatus]);
 
   return (
     <UserContext.Provider

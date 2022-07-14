@@ -1,8 +1,7 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { HeaderStyle } from '../styles/header';
 import { AccountForm } from './accountForm';
 
-import cookies from 'js-cookie';
 import { UserContext } from '../context/userContext';
 
 export interface IFormAccount {
@@ -29,14 +28,13 @@ const Header = () => {
   };
 
   const logout = () => {
-    cookies.remove('token');
+    fetch('/api/logout', {
+      method: 'post',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({}),
+    });
     setUserAuthStatus(false);
   };
-
-  useEffect(() => {
-    const token = cookies.get('token') ? true : false;
-    setUserAuthStatus(token);
-  }, []);
 
   return (
     <HeaderStyle>
@@ -58,7 +56,9 @@ const Header = () => {
         </button>
       )}
 
-      {formAccount.isVisible && <AccountForm propValues={{ formAccount, setFormAccount, setUserAuthStatus }} />}
+      {formAccount.isVisible && (
+        <AccountForm propValues={{ formAccount, setFormAccount, setUserAuthStatus }} />
+      )}
     </HeaderStyle>
   );
 };

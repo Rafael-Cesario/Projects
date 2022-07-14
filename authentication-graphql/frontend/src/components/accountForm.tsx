@@ -18,7 +18,7 @@ interface IAccountFormProps {
 }
 
 export const AccountForm = ({ propValues }: IAccountFormProps) => {
-  const { formAccount, setFormAccount, setUserAuthStatus } = propValues;
+  const { formAccount, setFormAccount } = propValues;
   const [fieldsValues, setFieldsValues] = useState({ name: '', password: '' });
   const { createUser, doLogin } = useContext(UserContext);
 
@@ -77,7 +77,6 @@ export const AccountForm = ({ propValues }: IAccountFormProps) => {
 
       await login();
 
-      setUserAuthStatus(true);
       closeForm();
     } catch (error) {
       return;

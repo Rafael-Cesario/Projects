@@ -10,7 +10,6 @@ const App = () => {
   return (
     <ApolloProvider client={client}>
       <AppStyle>
-        
         <Head>
           <title>Authentication</title>
         </Head>

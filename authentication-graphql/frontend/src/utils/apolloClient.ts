@@ -1,10 +1,22 @@
-import { ApolloClient, InMemoryCache } from '@apollo/client';
-import Cookies from 'js-cookie';
+import { ApolloClient, createHttpLink, InMemoryCache } from '@apollo/client';
+import { setContext } from '@apollo/client/link/context';
 
-const token = `Bearer ${Cookies.get('token')}`;
+const httpLink = createHttpLink({
+  uri: process.env.NEXT_PUBLIC_URI,
+});
+
+const authLink = setContext(async (_, { headers }) => {
+  const fetchToken = await fetch('/api/token');
+  const { token } = (await fetchToken.json()) as { token: string };
+  return {
+    headers: {
+      ...headers,
+      authorization: token ? `Bearer ${token}` : '',
+    },
+  };
+});
 
 export const client = new ApolloClient({
-  uri: process.env.NEXT_PUBLIC_URI,
   cache: new InMemoryCache(),
-  headers: { Authorization: token },
+  link: authLink.concat(httpLink),
 });
