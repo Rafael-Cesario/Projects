@@ -7,12 +7,12 @@ export type InputsRef = {
 };
 export type FieldsValues = { name: string; password: string };
 
-export const verifyFields = (fieldsValues: FieldsValues, inputsRef: InputsRef) => {
+export const verifyFields = (fieldsValues: FieldsValues, inputsRef?: InputsRef) => {
   const validateFields = Object.entries(fieldsValues).map((field) => {
     const [fieldName, fieldValue] = field;
     if (fieldValue) return;
 
-    sendErrorMessage(fieldName, inputsRef[fieldName]);
+    if (inputsRef) sendErrorMessage(fieldName, inputsRef[fieldName]);
     return false;
   });
 

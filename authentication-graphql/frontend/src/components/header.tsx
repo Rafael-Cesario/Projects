@@ -21,10 +21,7 @@ const Header = () => {
     const title = button.textContent === 'Entrar' ? 'Login' : 'Nova Conta';
     const isVisible = !formAccount.isVisible;
 
-    setFormAccount({
-      isVisible,
-      title,
-    });
+    setFormAccount({ isVisible, title });
   };
 
   const logout = () => {
