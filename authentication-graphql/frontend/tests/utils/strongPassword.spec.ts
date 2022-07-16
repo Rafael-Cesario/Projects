@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { strongPassword } from './strongPassword';
+import { strongPassword } from '../../src/utils/strongPassword';
 
 describe('verify if the password is strong enough', () => {
   it('password is strong enough', () => {

@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 import { describe, it } from 'vitest';
 import { render } from '@testing-library/react';
-import { Main } from './main';
-import { UserContext } from '../context/userContext';
+import { Main } from '../../src/components/main';
+import { UserContext } from '../../src/context/userContext';
 
 const renderComponent = (contextValues: { userAuthStatus: boolean }) => {
   const fakeContextValues = {

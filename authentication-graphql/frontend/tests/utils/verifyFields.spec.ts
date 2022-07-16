@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { verifyFields } from './verifyFields';
+import { verifyFields } from '../../src/utils/verifyFields';
 
 describe('verify the receives values', () => {
   it('should pass because have all values', () => {
