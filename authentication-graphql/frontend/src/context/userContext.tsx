@@ -20,7 +20,7 @@ interface IDefaultValues {
 const defaultValues: IDefaultValues = {
   createUser: async () => {},
   doLogin: async () => {},
-  userAuthStatus: false,
+  userAuthStatus: false, // default is false = user is not authenticated.
   setUserAuthStatus: () => {},
 };
 
@@ -28,7 +28,7 @@ export const UserContext = createContext(defaultValues);
 
 export const UserContextProvider = ({ children }: { children: ReactNode }) => {
   const { loading, data, error } = useQuery(USERS);
-  const [userAuthStatus, setUserAuthStatus] = useUserAuthStatus(false);
+  const [userAuthStatus, setUserAuthStatus] = useUserAuthStatus(defaultValues.userAuthStatus);
 
   const createUser = useCreateuser(setUserAuthStatus);
   const doLogin = useLogin(setUserAuthStatus);

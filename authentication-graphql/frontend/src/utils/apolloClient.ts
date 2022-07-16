@@ -8,6 +8,7 @@ const httpLink = createHttpLink({
 const authLink = setContext(async (_, { headers }) => {
   const fetchToken = await fetch('/api/token');
   const { token } = (await fetchToken.json()) as { token: string };
+  
   return {
     headers: {
       ...headers,
