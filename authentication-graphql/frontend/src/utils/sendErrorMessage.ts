@@ -16,6 +16,6 @@ export const sendErrorMessage = (
 
   setTimeout(() => {
     input.classList.remove('error');
-    inputLabel.textContent = fieldName;
+    inputLabel.innerText = fieldName;
   }, 1000 * 20); // 20 secs
 };
