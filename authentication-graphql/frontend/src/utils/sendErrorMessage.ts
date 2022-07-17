@@ -5,6 +5,7 @@ export const sendErrorMessage = (
   inputRef: RefObject<HTMLInputElement>,
   errorMessage?: string
 ) => {
+  if (!inputRef) return;
   const key = inputName as 'name' | 'password';
   const fieldName = key === 'name' ? 'Nome' : 'Senha';
   const input = inputRef.current;

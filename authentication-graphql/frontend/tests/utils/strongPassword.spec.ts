@@ -3,13 +3,13 @@ import { strongPassword } from '../../src/utils/strongPassword';
 
 describe('verify if the password is strong enough', () => {
   it('password is strong enough', () => {
-    expect(() => strongPassword('Strongpassword1')).not.toThrowError();
+    expect(() => strongPassword('Strongpassword1', null)).not.toThrowError();
   });
 
   it('password is weak, throw error', () => {
-    expect(() => strongPassword('strong')).toThrowError();
-    expect(() => strongPassword('Strong')).toThrowError();
-    expect(() => strongPassword('Strong1')).toThrowError();
-    expect(() => strongPassword('Strongpassword')).toThrowError();
+    expect(() => strongPassword('strong', null)).toThrowError();
+    expect(() => strongPassword('Strong', null)).toThrowError();
+    expect(() => strongPassword('Strong1', null)).toThrowError();
+    expect(() => strongPassword('Strongpassword', null)).toThrowError();
   });
 });

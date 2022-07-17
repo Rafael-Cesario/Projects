@@ -12,21 +12,22 @@
 
 
 
-## [authentication-graphql](./authentication-graphql/)
+## [09 - authentication-graphql](./authentication-graphql/)
 
 ###### Uma API de autenticação com graphql. [ 10/07/2022 ]
 
     - mongoose
-    - jest
     - eslint
     - graphql
     - type-graphql
     - typescript
     - jsonwebtoken
+    - jest
+    - vitest
     
     
     
-## [crud-nextjs](./crud-nextjs/)
+## [08 - crud-nextjs](./crud-nextjs/)
 
 ###### Uma api utilizando o nextApi. [ 28/05/2022 ]
 
@@ -39,7 +40,7 @@
     
     
     
-## [theme-toggle](./theme-toggle/)
+## [07 - theme-toggle](./theme-toggle/)
 
 ###### Um simple 'theme toggle' para iniciar com next.js. [24/05/2022]
 
@@ -51,7 +52,7 @@
     
     
     
-## [planner-drag-and-drop](./planner-drag-and-drop/)
+## [06 - planner-drag-and-drop](./planner-drag-and-drop/)
 
 ###### Um planner para você organizar o que fazer em cada hora do seu dia. [ 19/05/2022 ]
 
@@ -65,7 +66,7 @@
     
     
     
-## [calculator-jest](./calculator-jest/)
+## [05 - calculator-jest](./calculator-jest/)
 
 ###### Uma simples calculadora para entender como funciona o jest e o testing-library. [ 18/05/2022 ]
 
@@ -78,7 +79,7 @@
     
     
     
-## [snotes-rich-text](./snotes-rich-text/)
+## [04 - snotes-rich-text](./snotes-rich-text/)
 
 ###### Aplicativo para anotações, um Rich Text Editor. [25/04/2022]
 
@@ -93,7 +94,7 @@
     
     
     
-## [recipes-pwa](./recipes-pwa/)
+## [03 - recipes-pwa](./recipes-pwa/)
 
 ###### Inicio de uma PWA. [ 20/04/2022 ]
 
@@ -106,7 +107,7 @@
     
     
     
-## [birthday-reminder](./birthday-reminder/)
+## [02 - Birthday-reminder](./birthday-reminder/)
 
 ###### Um simples app para anotar datas e algumas anotações. [ 06/04/2022 ]
 
@@ -119,7 +120,7 @@
     
     
     
-## [authentication](./authentication/)
+## [01 - Authentication](./authentication/)
 
 ###### Uma API de autenticação com o mongoDB e redis para cache de refresh tokens e access tokens. [ 16/03/2022 ]
 
