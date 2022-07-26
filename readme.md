@@ -9,22 +9,7 @@
 ###### Você pode utilizar a ferramenta de busca em página para procurar por uma tecnologia. [ CTRL + F ].
 
 ###### **Os Projetos não estão listados na mesma ordem das pastas acima.**
-
-
-
-## [09 - authentication-graphql](./authentication-graphql/)
-
-###### Uma API de autenticação com graphql. [ 10/07/2022 ]
-
-    - mongoose
-    - eslint
-    - graphql
-    - type-graphql
-    - typescript
-    - jsonwebtoken
-    - jest
-    - vitest
-    
+ 
     
     
 ## [08 - crud-nextjs](./crud-nextjs/)
@@ -75,24 +60,8 @@
     - react
     - typescript
     - webpack
-    
-    
-    
-    
-## [04 - snotes-rich-text](./snotes-rich-text/)
-
-###### Aplicativo para anotações, um Rich Text Editor. [25/04/2022]
-
-    - babel
-    - react / react hooks
-    - webpack
-    - mongoDB
-    - typescript
-    - styled-components
-    - json-server
-    
-    
-    
+ 
+        
     
 ## [03 - recipes-pwa](./recipes-pwa/)
 
