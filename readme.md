@@ -21,4 +21,6 @@
     - Salva as anotações automaticamente.
     - Notificações como resposta para ações do usuario
 
-![ezgif com-gif-maker](https://user-images.githubusercontent.com/88716893/168029017-b0128dcf-aa27-48b6-8654-9792cc2ae019.gif)
+![Captura de tela 2022-07-26 013357](https://user-images.githubusercontent.com/88716893/180923842-5fdc5b7c-4137-41f3-8319-ac9c568f27e6.png)
+![Captura de tela 2022-07-26 013435](https://user-images.githubusercontent.com/88716893/180923839-4a494198-e49a-470f-b471-8f1fee168c9b.png)
+
