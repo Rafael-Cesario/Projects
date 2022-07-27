@@ -11,9 +11,9 @@
 		"esModuleInterop": true,
 		"module": "esnext",
 		"resolveJsonModule": true,
+		"moduleResolution": "node",
 		"isolatedModules": true,
-		"jsx": "preserve",
-		"moduleResolution": "Node"
+		"jsx": "preserve"
 	},
 	"include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
 	"exclude": ["node_modules"]

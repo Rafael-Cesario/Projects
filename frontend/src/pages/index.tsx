@@ -1,4 +1,7 @@
 import App from './_app';
 
-const Index = () => <App />;
+const Index = () => {
+  return <App />;
+};
+
 export default Index;
