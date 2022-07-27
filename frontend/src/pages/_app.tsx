@@ -1,9 +1,13 @@
-import { GlobalStyle } from "../styles/globalStyle";
+import { GlobalStyle } from '../styles/globalStyle';
+import { Title } from '../components/title';
+import { LeveBar } from '../components/levelBar';
 
 const App = () => {
   return (
     <>
-      <h1>Hello World</h1>
+      <Title />
+      <LeveBar />
+
       <GlobalStyle />
     </>
   );
