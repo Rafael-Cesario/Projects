@@ -1,15 +1,18 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 
-type TPlayer = { name: string; skill: string; id: string };
+type TPlayer = { name: string; skill: string, id: string };
 
 export const usePlayerDB = (initialValue: TPlayer) => {
   const [player, setPlayer] = useState(initialValue);
 
   const updateDatabase = async () => {
     await axios.post('http://localhost:4000', {
-      name: player.name,
-      skill: player.skill,
+      id: player.id,
+      changes: {
+        name: player.name,
+        skill: player.skill,
+      },
     });
   };
 

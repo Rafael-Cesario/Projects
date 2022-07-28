@@ -2,6 +2,7 @@ import { createContext, ReactNode, useEffect, useState } from 'react';
 import axios from 'axios';
 import produce from 'immer';
 import { usePlayerDB } from '../hooks/usePlayerDB';
+import { v4 as uuid } from 'uuid';
 
 interface IUser {
   data: {
@@ -29,7 +30,7 @@ interface IInitialValue {
 }
 
 const initialValue = {
-  player: { name: 'Nome', skill: 'Habilidade', id: '0' },
+  player: { name: 'Nome', skill: 'Habilidade', id: uuid() },
   setPlayer: () => {},
   experiencPoints: { level: 1, have: 0, need: 300 },
   setExperiencPoints: () => {},
@@ -64,8 +65,6 @@ export const LevelContextProvider = ({ children }: Props) => {
     );
 
     setActiveDays(playerData.data.activeDays || initialValue.activeDays);
-
-    console.log(player.id);
   };
 
   useEffect(() => {
