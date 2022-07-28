@@ -26,13 +26,16 @@ export const LeveBar = () => {
     }, 3000);
   };
 
-  useEffect(() => {
+  const changeBarWidth = () => {
     const newWidth = (experiencPoints.have * 100) / experiencPoints.need;
     setLoadingWidth(newWidth);
+  };
+
+  useEffect(() => {
+    changeBarWidth();
 
     if (experiencPoints.have >= experiencPoints.need) {
       changeLevel();
-      return;
     }
   }, [experiencPoints]);
 

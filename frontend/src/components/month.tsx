@@ -29,8 +29,6 @@ export const Month = () => {
 
     const hasDay = activeDays.indexOf(day);
 
-    console.log({ hasDay });
-
     setActiveDays(
       produce(activeDays, (draft) => {
         hasDay > -1 ? draft.splice(hasDay, 1) : draft.push(day);
