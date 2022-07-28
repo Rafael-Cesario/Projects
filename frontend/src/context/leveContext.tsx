@@ -5,6 +5,8 @@ interface Props {
 }
 
 interface IInitialValue {
+  player: { name: string; skill: string };
+  setPlayer(newState: { name: string; skill: string }): void;
   experiencPoints: { level: number; have: number; need: number };
   setExperiencPoints(newState: { level: number; have: number; need: number }): void;
   activeDays: string[];
@@ -12,6 +14,8 @@ interface IInitialValue {
 }
 
 const initialValue = {
+  player: { name: 'Nome', skill: 'Habilidade' },
+  setPlayer: () => {},
   experiencPoints: { level: 1, have: 0, need: 300 },
   setExperiencPoints: () => {},
   activeDays: [],
@@ -21,11 +25,14 @@ const initialValue = {
 export const LevelContext = createContext<IInitialValue>(initialValue);
 
 export const LevelContextProvider = ({ children }: Props) => {
-  const [experiencPoints, setExperiencPoints] = useState({ level: 1, have: 0, need: 300 });
-  const [activeDays, setActiveDays] = useState([]);
+  const [player, setPlayer] = useState(initialValue.player);
+  const [experiencPoints, setExperiencPoints] = useState(initialValue.experiencPoints);
+  const [activeDays, setActiveDays] = useState(initialValue.activeDays);
 
   return (
-    <LevelContext.Provider value={{ experiencPoints, setExperiencPoints, activeDays, setActiveDays }}>
+    <LevelContext.Provider
+      value={{ experiencPoints, setExperiencPoints, activeDays, setActiveDays, player, setPlayer }}
+    >
       {children}
     </LevelContext.Provider>
   );
