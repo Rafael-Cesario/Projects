@@ -56,7 +56,7 @@ export const Month = () => {
   };
 
   useEffect(() => {
-    const allButtons = document?.querySelectorAll(`.day`) as NodeListOf<HTMLButtonElement>;
+    const allButtons = document?.querySelectorAll('.day') as NodeListOf<HTMLButtonElement>;
 
     allButtons.forEach((button) => {
       const attribute = button.getAttribute('data-name');

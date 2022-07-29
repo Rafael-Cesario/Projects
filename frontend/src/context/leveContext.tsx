@@ -2,7 +2,7 @@
 import { createContext, ReactNode, useEffect, useState } from 'react';
 import axios from 'axios';
 import produce from 'immer';
-import { usePlayerDB } from '../hooks/usePlayerDB';
+import { usePlayerDB } from '../utils/hooks/usePlayerDB';
 
 interface IUser {
   data: {

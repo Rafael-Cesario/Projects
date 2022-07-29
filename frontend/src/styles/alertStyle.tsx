@@ -7,7 +7,7 @@ export const AlertStyle = styled.div`
   right: 2rem;
   background-color: ${palette.mainBlue};
   padding: 5px 25px;
-  font-size: 0.7rem;
+  font-size: 0.5rem;
   border-radius: ${palette.borderRadius};
   box-shadow: 5px 5px 20px #20202050;
 `;

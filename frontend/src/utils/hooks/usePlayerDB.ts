@@ -18,8 +18,6 @@ export const usePlayerDB = (initialValue: TPlayer) => {
     if (data.user._id) {
       localStorage.setItem('playerID', data.user._id);
     }
-
-    console.log('Database updated');
   };
 
   useEffect(() => {
