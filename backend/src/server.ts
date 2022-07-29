@@ -9,14 +9,14 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-app.get('/', async (req, res) => {
-	const data = await getData();
-	res.status(200).json({ data: data || [] });
+app.post('/', async (req, res) => {
+	const data = await getData(req.body);
+	res.status(200).json({ data: data });
 });
 
-app.post('/', async (req, res) => {
-	const data = await changeData(req.body);
-	res.status(200).json({ data });
+app.post('/user', async (req, res) => {
+	const user = await changeData(req.body);
+	res.status(200).json({ user });
 });
 
 // app.delete

@@ -1,4 +1,3 @@
-import { ObjectID } from 'bson';
 import { User } from '../models/user';
 
 interface bodyData {
@@ -13,9 +12,9 @@ interface bodyData {
 	};
 }
 
-export const getData = async () => {
-	const data = await User.findOne({});
-	return data;
+export const getData = async ({ id }: { id: string | null }) => {
+	const user = await User.findById(id);
+	return user;
 };
 
 export const changeData = async (newData: bodyData) => {
@@ -26,14 +25,13 @@ export const changeData = async (newData: bodyData) => {
 		console.log('\nUser Not found, creating a new user');
 
 		const newUser = new User({
-			_id: newData.id,
 			name: newData.changes.name,
 			skill: newData.changes.skill,
 		});
 
 		newUser.save();
 
-		console.log(newUser);
+		console.log({ newUser });
 		return newUser;
 	}
 
@@ -41,7 +39,8 @@ export const changeData = async (newData: bodyData) => {
 
 	changes.forEach(async (change) => {
 		const [key, value] = change;
-		await User.findOneAndUpdate({ _id: newData.id }, { [key]: value }, { new: true });
+		const user = await User.findOneAndUpdate({ _id: newData.id }, { [key]: value }, { new: true });
+		console.log({ user });
 	});
 
 	return { message: 'User Updated' };

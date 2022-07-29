@@ -20,8 +20,20 @@ export const Title = () => {
 
   return (
     <TitleStyle className="title">
-      <input onChange={(e) => changePlayerInfo(e)} type={'text'} className="name" value={player.name} />
-      <input onChange={(e) => changePlayerInfo(e)} type={'text'} className="skill" value={player.skill} />
+      <input
+        onChange={(e) => changePlayerInfo(e)}
+        type={'text'}
+        placeholder={'Nome'}
+        className="name"
+        value={player.name}
+      />
+      <input
+        onChange={(e) => changePlayerInfo(e)}
+        type={'text'}
+        placeholder={'Habilidade'}
+        className="skill"
+        value={player.skill}
+      />
     </TitleStyle>
   );
 };

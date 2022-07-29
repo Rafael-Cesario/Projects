@@ -1,24 +1,29 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 
-type TPlayer = { name: string; skill: string, id: string };
+type TPlayer = { name: string; skill: string; _id: string };
 
 export const usePlayerDB = (initialValue: TPlayer) => {
   const [player, setPlayer] = useState(initialValue);
 
   const updateDatabase = async () => {
-    await axios.post('http://localhost:4000', {
-      id: player.id,
+    const { data } = await axios.post<{ user: TPlayer }>('http://localhost:4000/user', {
+      id: player._id,
       changes: {
         name: player.name,
         skill: player.skill,
       },
     });
+
+    if (data.user._id) {
+      localStorage.setItem('playerID', data.user._id);
+    }
+
+    console.log('Database updated');
   };
 
   useEffect(() => {
-    if (player.name === 'Nome') return;
-    if (player.skill === 'Habilidade ') return;
+    if (!player.name && !player.skill) return;
 
     const updateAfterDelay = setTimeout(() => {
       updateDatabase();
