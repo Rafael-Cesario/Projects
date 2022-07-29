@@ -3,15 +3,16 @@ import { LevelBarStyle } from '../styles/levelBarStyle';
 import produce from 'immer';
 import { Alert } from './alert';
 import { LevelContext } from '../context/leveContext';
+import { useAlertTimer } from '../utils/hooks/sendAlertTimer';
 
 export const LeveBar = () => {
   const { experiencPoints, setExperiencPoints } = useContext(LevelContext);
   const [loadingWidth, setLoadingWidth] = useState(0);
-  const [haveChangedlevel, setHaveChangedLevel] = useState(false);
+  const { alert, startAlertTimer } = useAlertTimer(0);
 
   const changeLevel = () => {
     setLoadingWidth(0);
-    setHaveChangedLevel(true);
+    startAlertTimer();
 
     setExperiencPoints(
       produce(experiencPoints, (draft) => {
@@ -20,10 +21,6 @@ export const LeveBar = () => {
         draft.need += Math.floor((draft.need / 100) * 10);
       })
     );
-
-    setTimeout(() => {
-      setHaveChangedLevel(false);
-    }, 3000);
   };
 
   const changeBarWidth = () => {
@@ -50,7 +47,7 @@ export const LeveBar = () => {
       </p>
       <div className="levelbar"></div>
 
-      {haveChangedlevel && <Alert>&#x1F680; Você subiu um nivel !</Alert>}
+      {alert && <Alert>&#x1F680; Você subiu um nivel !</Alert>}
     </LevelBarStyle>
   );
 };

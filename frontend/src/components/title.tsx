@@ -7,7 +7,7 @@ import { Alert } from './alert';
 
 export const Title = () => {
   const { player, setPlayer } = useContext(LevelContext);
-  const { alert, startAlertTimer } = useAlertTimer();
+  const { alert, startAlertTimer } = useAlertTimer(2000);
 
   const changePlayerInfo = (e: SyntheticEvent) => {
     const input = e.target as HTMLInputElement;

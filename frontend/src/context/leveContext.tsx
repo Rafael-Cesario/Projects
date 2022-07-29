@@ -1,9 +1,10 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
-import { createContext, ReactNode, useEffect, useState } from 'react';
+import { createContext, ReactNode, useEffect } from 'react';
 import axios from 'axios';
 import produce from 'immer';
 import { usePlayerDB } from '../utils/hooks/usePlayerDB';
 import { useExperiencPointsDB } from '../utils/hooks/useExperiencPointsDB';
+import { useActiveDaysDB } from '../utils/hooks/useActiveDaysDB';
 
 interface IUser {
   data: {
@@ -49,7 +50,7 @@ export const LevelContext = createContext<IInitialValue>(initialValue);
 export const LevelContextProvider = ({ children }: Props) => {
   const { player, setPlayer } = usePlayerDB(initialValue.player);
   const { experiencPoints, setExperiencPoints } = useExperiencPointsDB(initialValue.experiencPoints, player._id);
-  const [activeDays, setActiveDays] = useState(initialValue.activeDays);
+  const { activeDays, setActiveDays } = useActiveDaysDB(initialValue.activeDays, player._id);
 
   const loadData = async (playerID: string) => {
     const { data: playerData } = await axios.post<IUser>('http://localhost:4000', { id: playerID });

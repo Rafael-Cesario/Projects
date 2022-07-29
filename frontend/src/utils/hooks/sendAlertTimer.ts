@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react';
 
-export const useAlertTimer = () => {
+export const useAlertTimer = (delay: number) => {
   const [alert, setAlert] = useState(false);
   const timerRef = useRef<NodeJS.Timer>(null);
 
@@ -12,7 +12,7 @@ export const useAlertTimer = () => {
       setTimeout(() => {
         setAlert(false);
       }, 5000);
-    }, 2000);
+    }, delay);
   };
 
   return { alert, startAlertTimer };

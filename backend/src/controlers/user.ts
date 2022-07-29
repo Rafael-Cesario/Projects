@@ -34,8 +34,6 @@ export const changeData = async (newData: bodyData) => {
 		return newUser;
 	}
 
-	console.log('\nUser found, applying changes');
-
 	changes.forEach(async (change) => {
 		const [key, value] = change;
 		await User.findOneAndUpdate({ _id: newData.id }, { [key]: value }, { new: true });

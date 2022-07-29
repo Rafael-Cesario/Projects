@@ -26,7 +26,6 @@ export const Month = () => {
   const levelUp = (e: SyntheticEvent) => {
     const button = e.target as HTMLButtonElement;
     const day = button.getAttribute('data-name');
-
     const hasDay = activeDays.indexOf(day);
 
     setActiveDays(
