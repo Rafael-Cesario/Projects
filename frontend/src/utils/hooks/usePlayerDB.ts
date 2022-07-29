@@ -1,7 +1,6 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-
-type TPlayer = { name: string; skill: string; _id: string };
+import { TPlayer } from '../../context/leveContext';
 
 export const usePlayerDB = (initialValue: TPlayer) => {
   const [player, setPlayer] = useState(initialValue);
@@ -30,5 +29,5 @@ export const usePlayerDB = (initialValue: TPlayer) => {
     return () => clearTimeout(updateAfterDelay);
   }, [player]);
 
-  return [player, setPlayer] as [TPlayer, (newState: TPlayer) => void];
+  return { player, setPlayer };
 };

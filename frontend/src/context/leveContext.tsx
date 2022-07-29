@@ -3,6 +3,7 @@ import { createContext, ReactNode, useEffect, useState } from 'react';
 import axios from 'axios';
 import produce from 'immer';
 import { usePlayerDB } from '../utils/hooks/usePlayerDB';
+import { useExperiencPointsDB } from '../utils/hooks/useExperiencPointsDB';
 
 interface IUser {
   data: {
@@ -10,8 +11,8 @@ interface IUser {
     name: string;
     skill: string;
     level: number;
-    xpHave: number;
-    xpNeed: number;
+    have: number;
+    need: number;
     activeDays: string[];
   };
 }
@@ -20,11 +21,16 @@ interface Props {
   children: ReactNode;
 }
 
+export type TPlayer = { name: string; skill: string; _id: string };
+export type TExperiencPoints = { level: number; have: number; need: number };
+
 interface IInitialValue {
-  player: { name: string; skill: string; _id: string };
-  setPlayer(newState: { name: string; skill: string }): void;
-  experiencPoints: { level: number; have: number; need: number };
-  setExperiencPoints(newState: { level: number; have: number; need: number }): void;
+  player: TPlayer;
+  setPlayer(newState: TPlayer): void;
+
+  experiencPoints: TExperiencPoints;
+  setExperiencPoints(newState: TExperiencPoints): void;
+
   activeDays: string[];
   setActiveDays(newState: string[]): void;
 }
@@ -41,8 +47,8 @@ const initialValue = {
 export const LevelContext = createContext<IInitialValue>(initialValue);
 
 export const LevelContextProvider = ({ children }: Props) => {
-  const [player, setPlayer] = usePlayerDB(initialValue.player);
-  const [experiencPoints, setExperiencPoints] = useState(initialValue.experiencPoints);
+  const { player, setPlayer } = usePlayerDB(initialValue.player);
+  const { experiencPoints, setExperiencPoints } = useExperiencPointsDB(initialValue.experiencPoints, player._id);
   const [activeDays, setActiveDays] = useState(initialValue.activeDays);
 
   const loadData = async (playerID: string) => {
@@ -59,8 +65,8 @@ export const LevelContextProvider = ({ children }: Props) => {
 
     setExperiencPoints(
       produce(experiencPoints, (draft) => {
-        draft.have = playerData.data.xpHave || initialValue.experiencPoints.have;
-        draft.need = playerData.data.xpNeed || initialValue.experiencPoints.need;
+        draft.have = playerData.data.have || initialValue.experiencPoints.have;
+        draft.need = playerData.data.need || initialValue.experiencPoints.need;
         draft.level = playerData.data.level || initialValue.experiencPoints.level;
       })
     );

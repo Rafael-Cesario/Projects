@@ -4,8 +4,8 @@ interface IUser {
 	name: string;
 	skill: string;
 	level: number;
-	xpHave: number;
-	xpNeed: number;
+	have: number;
+	need: number;
 	activeDays: string[];
 }
 
@@ -13,8 +13,8 @@ const UserSchema = new Schema<IUser>({
 	name: String,
 	skill: String,
 	level: Number,
-	xpHave: Number,
-	xpNeed: Number,
+	have: Number,
+	need: Number,
 	activeDays: [String],
 });
 
