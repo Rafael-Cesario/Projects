@@ -5,16 +5,16 @@ import { Month } from '../components/month';
 import { LevelContextProvider } from '../context/leveContext';
 
 const App = () => {
-  return (
-    <>
-      <LevelContextProvider>
-        <title>Leveling</title>
-        <Title />
-        <LeveBar />
-        <Month />
-        <GlobalStyle />
-      </LevelContextProvider>
-    </>
-  );
+	return (
+		<>
+			<LevelContextProvider>
+				<title>Leveling</title>
+				<Title />
+				<LeveBar />
+				<Month />
+				<GlobalStyle />
+			</LevelContextProvider>
+		</>
+	);
 };
 export default App;

@@ -1,11 +1,11 @@
 import { createGlobalStyle } from 'styled-components';
 
 export const palette = {
-  fontFamily: 'Cairo',
-  mainWhite: '#eeeeee',
-  mainBlue: '#2e5a92',
-  borderRadius: '5px',
-  mainBlack: '#202020',
+	fontFamily: 'Cairo',
+	mainWhite: '#eeeeee',
+	mainBlue: '#2e5a92',
+	borderRadius: '5px',
+	mainBlack: '#202020',
 };
 
 export const GlobalStyle = createGlobalStyle`

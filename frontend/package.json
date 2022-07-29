@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "next dev"
+    "dev": "next dev",
+    "build": "next build"
   },
   "keywords": [],
   "author": "",
@@ -12,6 +13,7 @@
   "dependencies": {
     "@types/gsap": "^3.0.0",
     "axios": "^0.27.2",
+    "eslint-config-next": "^12.2.3",
     "eslint-config-prettier": "^8.5.0",
     "gsap": "^3.10.4",
     "immer": "^9.0.15",

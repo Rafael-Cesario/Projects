@@ -4,12 +4,7 @@
     "es2021": true,
     "node": true
   },
-  "extends": [
-    "eslint:recommended",
-    "plugin:react/recommended",
-    "plugin:@typescript-eslint/recommended",
-    "prettier"
-  ],
+  "extends": ["eslint:recommended", "plugin:react/recommended", "plugin:@typescript-eslint/recommended", "prettier", "next"],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "ecmaFeatures": {
@@ -20,7 +15,7 @@
   },
   "plugins": ["react", "@typescript-eslint"],
   "rules": {
-    "indent": ["error", 2],
+    "indent": ["error", "tab"],
     "quotes": ["error", "single"],
     "semi": ["error", "always"]
   },

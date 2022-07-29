@@ -6,8 +6,8 @@ interface bodyData {
 		name?: string;
 		skill?: string;
 		level?: number;
-		xpHave?: number;
-		xpNeed?: number;
+		have?: number;
+		need?: number;
 		activeDays?: string[];
 	};
 }
@@ -36,7 +36,7 @@ export const changeData = async (newData: bodyData) => {
 
 	changes.forEach(async (change) => {
 		const [key, value] = change;
-		await User.findOneAndUpdate({ _id: newData.id }, { [key]: value }, { new: true });
+		await User.findOneAndUpdate({ _id: newData.id }, { [key]: value });
 	});
 
 	return { message: 'User Updated' };

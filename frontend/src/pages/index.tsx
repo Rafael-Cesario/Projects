@@ -1,7 +1,7 @@
 import App from './_app';
 
 const Index = () => {
-  return <App />;
+	return <App />;
 };
 
 export default Index;
