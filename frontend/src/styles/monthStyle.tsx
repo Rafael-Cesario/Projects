@@ -57,4 +57,11 @@ export const MonthStyle = styled.div`
   .active {
     background-color: ${palette.mainBlue};
   }
+
+  .no-name {
+    color: ${palette.mainWhite + 'aa'};
+    font-weight: normal;
+    letter-spacing: 1px;
+    font-size: 1rem;
+  }
 `;

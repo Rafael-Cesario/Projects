@@ -4,7 +4,7 @@ import { MonthStyle } from '../styles/monthStyle';
 import produce from 'immer';
 
 export const Month = () => {
-	const { experiencPoints, setExperiencPoints, activeDays, setActiveDays } = useContext(LevelContext);
+	const { experiencPoints, setExperiencPoints, activeDays, setActiveDays, player } = useContext(LevelContext);
 	const [year, setYear] = useState(new Date().getFullYear());
 
 	const totalDaysInYear = [];
@@ -77,11 +77,15 @@ export const Month = () => {
 				</button>
 			</div>
 
-			<div className="days">
-				{totalDaysInYear.map((day) => {
-					return <button onClick={(e) => levelUp(e)} key={day + year} className="day" data-name={day}></button>;
-				})}
-			</div>
+			{!player.name && <h2 className='no-name'>Preencha seu nome e habilidade para poder usar o calendario</h2>}
+
+			{player.name && (
+				<div className="days">
+					{totalDaysInYear.map((day) => {
+						return <button onClick={(e) => levelUp(e)} key={day + year} className="day" data-name={day}></button>;
+					})}
+				</div>
+			)}
 		</MonthStyle>
 	);
 };

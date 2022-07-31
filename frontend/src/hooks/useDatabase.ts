@@ -30,7 +30,7 @@ export const useDatabase = (initialValue: IInitialValue) => {
 	const storageID = useRef<string>('');
 
 	const loadData = async () => {
-		const { data: playerData } = await axios.post<IPlayerData>('http://localhost:4000', { id: storageID });
+		const { data: playerData } = await axios.post<IPlayerData>('http://localhost:4000', { id: storageID.current });
 
 		if (!playerData.data) return;
 
