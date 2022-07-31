@@ -9,6 +9,17 @@
 ###### Você pode utilizar a ferramenta de busca em página para procurar por uma tecnologia. [ CTRL + F ].
 
 ###### **Os Projetos não estão listados na mesma ordem das pastas acima.**
+<<<<<<< HEAD
+=======
+
+
+&nbsp;
+
+
+### [09 - user CRUD with classes](./user_crud_with_classes/)
+###### **CRUD feito com classes. [ 31/07/2022 ]**
+	Typescript, Express, MongoDB, Mongoose
+>>>>>>> c348661 (rename folder)
  
     
     
