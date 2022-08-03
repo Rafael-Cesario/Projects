@@ -1,18 +1,1 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-.env**
 node_modules
-public
-.bat
-data
-private
-.next
-**.txt
-**.todo
-=======
-node_modules
->>>>>>> 9bcb6ff (fix: controllers)
-=======
-node_modules
-.next
->>>>>>> f01eb1d (feat: Setting a new Project)
