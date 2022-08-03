@@ -19,7 +19,7 @@ export const LeveBar = () => {
 			produce(experiencPoints, (draft) => {
 				draft.level++;
 				draft.have = 0;
-				draft.need += Math.floor((draft.need / 100) * 10);
+				draft.need = (draft.level * 300 * 10 / 100 ) + 300;
 			})
 		);
 	};

@@ -39,9 +39,9 @@ export const Month = () => {
 				if (hasDay > -1) {
 					draft.have = draft.have - 100;
 
-					if (draft.have < 0) {
+					if (draft.have <= 0) {
 						draft.level--;
-						draft.need = Math.ceil(draft.need - (draft.need * 10) / 100);
+						draft.need = (draft.level * 300 * 10 / 100) + 300;
 						draft.have = draft.need - 100;
 					}
 
@@ -77,7 +77,7 @@ export const Month = () => {
 				</button>
 			</div>
 
-			{!player.name && <h2 className='no-name'>Preencha seu nome e habilidade para poder usar o calendario</h2>}
+			{!player.name && <h2 className="no-name">Preencha seu nome e habilidade para poder usar o calendario</h2>}
 
 			{player.name && (
 				<div className="days">

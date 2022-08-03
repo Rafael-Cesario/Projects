@@ -3,40 +3,40 @@ import { createContext, ReactNode } from 'react';
 import { useDatabase } from '../hooks/useDatabase';
 
 interface Props {
-  children: ReactNode;
+	children: ReactNode;
 }
 
 export interface IPlayerData {
-  data: {
-    _id: string;
-    name: string;
-    skill: string;
-    level: number;
-    have: number;
-    need: number;
-    activeDays: string[];
-  };
+	data: {
+		_id: string;
+		name: string;
+		skill: string;
+		level: number;
+		have: number;
+		need: number;
+		activeDays: string[];
+	};
 }
 
 type TPlayer = { name: string; skill: string; _id: string };
 type TExperiencPoints = { level: number; have: number; need: number };
 
 export interface IInitialValue {
-  player: TPlayer;
-  setPlayer(newState: TPlayer): void;
+	player: TPlayer;
+	setPlayer(newState: TPlayer): void;
 
-  experiencPoints: TExperiencPoints;
-  setExperiencPoints(newState: TExperiencPoints): void;
+	experiencPoints: TExperiencPoints;
+	setExperiencPoints(newState: TExperiencPoints): void;
 
-  activeDays: string[];
-  setActiveDays(newState: string[]): void;
+	activeDays: string[];
+	setActiveDays(newState: string[]): void;
 }
 
 const initialValue: IInitialValue = {
 	player: { name: '', skill: '', _id: undefined },
 	setPlayer: () => {},
 
-	experiencPoints: { level: 1, have: 0, need: 300 },
+	experiencPoints: { level: 1, have: 0, need: 330 },
 	setExperiencPoints: () => {},
 
 	activeDays: [],
