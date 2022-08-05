@@ -1,13 +1,14 @@
 import { afterAll, beforeAll, describe, expect, it } from 'vitest';
 import axios from 'axios';
-import { mongoDBConnect } from '../src/database';
 import { connection } from 'mongoose';
 import { app } from '../src/server';
 
+const PORT = 5000;
+const URL = `http://localhost:${PORT}`;
+
 describe('create user', () => {
 	beforeAll(() => {
-		mongoDBConnect();
-		app.listen(5000);
+		app.listen(PORT);
 	});
 
 	afterAll(() => {
@@ -15,28 +16,37 @@ describe('create user', () => {
 		connection.dropDatabase();
 	});
 
-	it('Returns a user with id, name, email, password', async () => {
-		const { status, data } = await axios.post('http://localhost:4000', { email: 'Rafael@rafael.com', name: 'Rafael', password: '123' });
+	it('Returns a user', async () => {
+		const { status, data } = await axios.post(URL, { email: 'Rafael@rafael.com', name: 'Rafael', password: '123' });
 
 		expect(status).toBe(201);
 		expect(data).toHaveProperty('user');
-
 		expect(data.user).toHaveProperty('_id');
 		expect(data.user).toHaveProperty('name');
 		expect(data.user).toHaveProperty('email');
 		expect(data.user).toHaveProperty('password');
 	});
 
-	it('throws a error because email is empty', async () => {
+	it('throws a error because values are empty', async () => {
 		try {
-			const { data } = await axios.post('http://localhost:4000', { email: '', name: 'Rafael', password: '123' });
+			const { data } = await axios.post(URL, { email: '', name: '', password: '123' });
 			expect(data.user).toBeUndefined();
 		} catch (error: any) {
 			const { status, data } = error.response;
 			expect(status).toBe(400);
-			expect(data).toMatch(/Email is required/);
+			expect(data).toBe('Email is required, Name is required');
 		}
 	});
 
-	it.todo('throws a error because email is not valid', async () => {});
+	it('throws a error because user with the same email already exist', async () => {
+		try {
+			await axios.post(URL, { email: 'rafael@rafael.com', name: 'Rafael', password: '123' });
+			await axios.post(URL, { email: 'rafael@rafael.com', name: 'Rafael', password: '123' });
+		} catch (error: any) {
+			const { status, data } = error.response;
+
+			expect(status).toBe(400);
+			expect(data).toBe('A user with this email already exist.');
+		}
+	});
 });
