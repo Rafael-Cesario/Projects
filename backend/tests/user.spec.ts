@@ -21,10 +21,6 @@ describe('create user', () => {
 
 		expect(status).toBe(201);
 		expect(data).toHaveProperty('user');
-		expect(data.user).toHaveProperty('_id');
-		expect(data.user).toHaveProperty('name');
-		expect(data.user).toHaveProperty('email');
-		expect(data.user).toHaveProperty('password');
 	});
 
 	it('throws a error because values are empty', async () => {
@@ -48,5 +44,13 @@ describe('create user', () => {
 			expect(status).toBe(400);
 			expect(data).toBe('A user with this email already exist.');
 		}
+	});
+
+	it('returns a encrypted password', async () => {
+		const user = { email: 'strong@strong.com', name: 'strong', password: 'strongPassword' };
+		const { data, status } = await axios.post(URL, user);
+
+		expect(status).toBe(201);
+		expect(data.user.password).not.toBe(user.password);
 	});
 });
