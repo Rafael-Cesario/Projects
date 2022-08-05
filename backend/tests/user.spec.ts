@@ -27,10 +27,16 @@ describe('create user', () => {
 		expect(data.user).toHaveProperty('password');
 	});
 
-	it.todo('throws a error because email is empty', async () => {
-		const { status, data } = await axios.post('http://localhost:4000', { email: '', name: 'Rafael', password: '123' });
-
-		expect(status).toBe(400);
-		expect(data).toHaveProperty('error');
+	it('throws a error because email is empty', async () => {
+		try {
+			const { data } = await axios.post('http://localhost:4000', { email: '', name: 'Rafael', password: '123' });
+			expect(data.user).toBeUndefined();
+		} catch (error: any) {
+			const { status, data } = error.response;
+			expect(status).toBe(400);
+			expect(data).toMatch(/Email is required/);
+		}
 	});
+
+	it.todo('throws a error because email is not valid', async () => {});
 });

@@ -14,4 +14,3 @@ app.listen(PORT, () => {
 	console.log({ port: `http://localhost:${PORT}` });
 	mongoDBConnect();
 });
-

@@ -8,9 +8,9 @@ export interface IUser {
 }
 
 const UserSchema = new Schema<IUser>({
-	email: String,
-	name: String,
-	password: String,
+	email: { type: String, required: [true, 'Email is required'] },
+	name: { type: String, required: [true, 'Name is required'] },
+	password: { type: String, required: [true, 'Password is required'] },
 });
 
 const UserModel = model<IUser>('User', UserSchema);
