@@ -1,8 +1,8 @@
 import { afterAll, beforeAll, describe, expect, it } from 'vitest';
 import axios from 'axios';
-import { mongoDBConnect } from '../database';
+import { mongoDBConnect } from '../src/database';
 import { connection } from 'mongoose';
-import { app } from '../server';
+import { app } from '../src/server';
 
 describe('create user', () => {
 	beforeAll(() => {
