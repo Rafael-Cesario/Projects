@@ -1,4 +1,3 @@
-import { Request, Response } from 'express';
 import { UserRepository } from '../repositories/user';
 
 type Body = { email: string; name: string; password: string };
@@ -8,7 +7,11 @@ class UserController {
 
 	private verifyFields = (body: Body) => {
 		const errorMessage: string[] = [];
-		const fields = Object.entries(body);
+		const fields = [
+			['email', body.email],
+			['name', body.name],
+			['password', body.password],
+		];
 
 		fields.forEach(([key, value]) => {
 			if (!value) errorMessage.push(`${key.slice(0, 1).toUpperCase()}${key.slice(1)} is required`);
