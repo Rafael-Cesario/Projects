@@ -9,5 +9,5 @@
 		"strict": true /* Enable all strict type-checking options. */,
 		"skipLibCheck": true /* Skip type checking all .d.ts files. */
 	},
-	"include": ["src/**/**.ts", "vite.config.ts", "tests/user.spec.ts"]
+	"include": ["src/**/**.ts", "vite.config.ts", "tests/user.spec.ts", "src/__tests/test.spec.ts"]
 }

@@ -1,14 +1,13 @@
-import { IUser, UserModel } from '../models/user';
+import UserModel, { IUser } from '../models/user';
 
 interface IUserRepository {
 	create(user: IUser): Promise<IUser>;
 	findByEmail(email: string): Promise<IUser>;
 }
 
-export class UserRepository implements IUserRepository {
+class UserRepository implements IUserRepository {
 	async create(user: IUser) {
-		const newUser = new UserModel(user);
-		await newUser.save();
+		const newUser = await UserModel.create(user);
 		return newUser;
 	}
 
@@ -17,3 +16,5 @@ export class UserRepository implements IUserRepository {
 		return user!;
 	}
 }
+
+export const userRepository = new UserRepository();

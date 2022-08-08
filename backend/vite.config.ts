@@ -4,5 +4,6 @@ export default defineConfig({
 	test: {
 		watch: false,
 		reporters: 'verbose',
+		threads: false,
 	},
 });
