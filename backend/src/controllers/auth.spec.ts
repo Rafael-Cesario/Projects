@@ -3,6 +3,7 @@ import { afterAll, afterEach, beforeAll, describe, expect, it } from 'vitest';
 import { mongoDBConnect } from '../database';
 import { IUser, UserSchema } from '../models/user';
 import { Auth } from './auth';
+import { User } from './user';
 
 describe('Auth Controller', () => {
 	const UserModel = models.User || model<IUser>('User', UserSchema);
@@ -29,6 +30,22 @@ describe('Auth Controller', () => {
 		expect(user).toBeDefined();
 	});
 
-	it.todo('Throw a error because email is invalid');
-	it.todo('Throw a error because password is invalid');
+	it('Throw a error because email is invalid', async () => {
+		try {
+			await User.create(newUser);
+			await Auth.login('', newUser.password);
+			expect(true).toBe(false);
+		} catch (error: any) {
+			expect(error.message).toBe('Email Or Password Is Wrong!');
+		}
+	});
+	it('Throw a error because password is invalid', async () => {
+		try {
+			await User.create(newUser);
+			await Auth.login(newUser.email, '');
+			expect(true).toBe(false);
+		} catch (error: any) {
+			expect(error.message).toBe('Email Or Password Is Wrong!');
+		}
+	});
 });
