@@ -9,7 +9,7 @@ class AuthController {
 		if (!user) throw new Error('Email Or Password Is Wrong!');
 
 		const isPasswordRight = await compare(password, user.password);
-		if (!isPasswordRight) throw new Error('Email Or Password Is Wrong');
+		if (!isPasswordRight) throw new Error('Email Or Password Is Wrong!');
 
 		const { secret, expiresIn } = jwtConfig;
 		const token = jwt.sign({}, secret, { expiresIn });

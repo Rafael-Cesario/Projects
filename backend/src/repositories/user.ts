@@ -1,4 +1,5 @@
-import UserModel, { IUser } from '../models/user';
+import { model, models } from 'mongoose';
+import { IUser, UserSchema } from '../models/user';
 
 interface IUserRepository {
 	create(user: IUser): Promise<IUser>;
@@ -6,13 +7,15 @@ interface IUserRepository {
 }
 
 class UserRepository implements IUserRepository {
+	private UserModel = models.User || model<IUser>('User', UserSchema);
+
 	async create(user: IUser) {
-		const newUser = await UserModel.create(user);
+		const newUser = await this.UserModel.create(user);
 		return newUser;
 	}
 
 	async findByEmail(email: string): Promise<IUser> {
-		const user = await UserModel.findOne({ email });
+		const user = await this.UserModel.findOne({ email });
 		return user!;
 	}
 }
