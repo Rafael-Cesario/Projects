@@ -17,6 +17,6 @@ export const GlobalStyle = createGlobalStyle`
 		color: ${palette.mainWhite};
 		font-family:${palette.bodyFont};
 		font-weight: lighter;
-
+		overflow: hidden;
 	}
 `;

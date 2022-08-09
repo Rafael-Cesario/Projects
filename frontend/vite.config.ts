@@ -8,5 +8,6 @@ export default defineConfig({
 		reporters: 'verbose',
 		globals: true,
 		watch: false,
+		include: ['**/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
 	},
 });

@@ -2,16 +2,17 @@ import styled from 'styled-components';
 import { palette } from '../global.style';
 
 export const AccountFormStyle = styled.div`
-	position: absolute;
-	top: 2%;
-	right: 0;
+	top: 0;
 	width: 50vw;
 	height: 100vh;
-	background-color: ${palette.mainBlue};
+	position: absolute;
+	right: -51%;
+
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+	background-color: ${palette.mainBlue};
 
 	.form-title {
 		text-align: center;

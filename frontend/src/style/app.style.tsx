@@ -6,8 +6,7 @@ export const AppStyle = styled.div`
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	height: 100vh;
-	transform: translateY(-2%);
+	min-height: 100vh;
 
 	.title {
 		text-transform: uppercase;
