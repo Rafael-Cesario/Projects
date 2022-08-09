@@ -1,3 +1,5 @@
+import { GlobalStyle } from '../style/global.style';
+
 const App = () => {
 	return (
 		<>
@@ -12,6 +14,8 @@ const App = () => {
 					<button>Criar uma conta</button>
 				</div>
 			</div>
+
+			<GlobalStyle />
 		</>
 	);
 };
