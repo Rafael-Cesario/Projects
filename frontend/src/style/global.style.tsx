@@ -3,6 +3,7 @@ import { createGlobalStyle } from 'styled-components';
 export const palette = {
 	bodyColor: '#101010',
 	mainWhite: '#EEEEEE',
+	mainBlue: '#293341',
 	titleFont: 'Oswald',
 	bodyFont: 'Inconsolata',
 	boxShadow: '5px 5px 10px #6b6b6b22',
