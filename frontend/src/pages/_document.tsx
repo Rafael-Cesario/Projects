@@ -26,7 +26,11 @@ export default class MyDocument extends Document {
 			<Html>
 				<Head>
 					<link rel="shortcut icon" href="favicon-32x32.png" type="image/x-icon" />
-					<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&display=swap" rel="stylesheet" />
+
+					<link
+						href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@300;500&family=Oswald:wght@400;700&display=swap"
+						rel="stylesheet"
+					/>
 				</Head>
 				<body>
 					<Main></Main>
