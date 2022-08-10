@@ -10,6 +10,7 @@ const App = () => {
 
 	const showCreateAccountForm = useCallback(() => {
 		formAnimation(isFormVisible);
+
 		setIsFormVisible(!isFormVisible);
 	}, [isFormVisible]);
 
