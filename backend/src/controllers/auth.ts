@@ -1,20 +1,27 @@
 import { userRepository } from '../repositories/user';
 import { compare } from 'bcrypt';
-import { jwtConfig } from '../utils/configs/jwtConfig';
+import { jwtConfig } from '../configs/jwtConfig';
 import jwt from 'jsonwebtoken';
+import { Request, Response } from 'express';
 
 class AuthController {
-	async login(email: string, password: string) {
-		const user = await userRepository.findByEmail(email);
-		if (!user) throw new Error('Email Or Password Is Wrong!');
+	async login(request: Request, response: Response) {
+		try {
+			const { email, password } = request.body;
 
-		const isPasswordRight = await compare(password, user.password);
-		if (!isPasswordRight) throw new Error('Email Or Password Is Wrong!');
+			const user = await userRepository.findByEmail(email);
+			if (!user) throw new Error('Email Or Password Is Wrong!');
 
-		const { secret, expiresIn } = jwtConfig;
-		const token = jwt.sign({}, secret, { expiresIn });
+			const isPasswordRight = await compare(password, user.password);
+			if (!isPasswordRight) throw new Error('Email Or Password Is Wrong!');
 
-		return { token, user };
+			const { secret, expiresIn } = jwtConfig;
+			const token = jwt.sign({}, secret, { expiresIn });
+
+			return response.status(200).json({ token, user });
+		} catch (error: any) {
+			return response.status(400).send(error.message);
+		}
 	}
 }
 
