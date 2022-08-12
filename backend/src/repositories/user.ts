@@ -1,4 +1,5 @@
-import { Model, model, models } from 'mongoose';
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
+import { model, models } from 'mongoose';
 import { IUser, UserSchema } from '../models/user';
 
 interface IUserRepository {
@@ -7,9 +8,7 @@ interface IUserRepository {
 }
 
 export class UserRepository implements IUserRepository {
-	constructor(private UserModel: Model<IUser>) {
-		this.UserModel = UserModel || models.User || model<IUser>('User', UserSchema);
-	}
+	constructor(private UserModel = models.User || model<IUser>('User', UserSchema)) {}
 
 	async create(user: IUser) {
 		const newUser = await this.UserModel.create(user);

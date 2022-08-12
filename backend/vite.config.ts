@@ -4,7 +4,7 @@ export default defineConfig({
 	test: {
 		environment: 'node',
 		reporters: 'verbose',
-		watch: true,
+		watch: false,
 		threads: false,
 	},
 });

@@ -1,6 +1,5 @@
 import { IUser } from '../../models/user';
 import crypto from 'crypto';
-import { Model } from 'mongoose';
 
 export class UserModelMock {
 	private users: IUser[] = [];

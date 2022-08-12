@@ -5,7 +5,7 @@ import request from 'supertest';
 import { app } from '../../configs/app';
 import { mongoDBConnect } from '../../configs/database';
 
-describe('UserController', () => {
+describe('User Route', () => {
 	const userModel = models.User || model<IUser>('User', UserSchema);
 
 	beforeAll(() => {

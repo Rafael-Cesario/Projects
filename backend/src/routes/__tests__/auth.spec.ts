@@ -5,7 +5,7 @@ import { app } from '../../configs/app';
 import { mongoDBConnect } from '../../configs/database';
 import request from 'supertest';
 
-describe('Auth Controller', () => {
+describe('Auth Route', () => {
 	const UserModel = models.User || model<IUser>('User', UserSchema);
 	const newUser = { email: 'teste@teste.com', name: 'Teste', password: 'teste123' };
 

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { UserRepository } from '../repositories/user';
 import { compare } from 'bcrypt';
 import { jwtConfig } from '../configs/jwtConfig';

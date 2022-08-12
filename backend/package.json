@@ -17,6 +17,7 @@
 		"@types/supertest": "^2.0.12",
 		"bcrypt": "^5.0.1",
 		"dotenv": "^16.0.1",
+		"eslint-config-prettier": "^8.5.0",
 		"express": "^4.18.1",
 		"jsonwebtoken": "^8.5.1",
 		"mongodb": "^4.8.1",
@@ -28,7 +29,10 @@
 	},
 	"devDependencies": {
 		"@types/bcrypt": "^5.0.0",
-		"cz-conventional-changelog": "^3.3.0"
+		"@typescript-eslint/eslint-plugin": "^5.33.0",
+		"@typescript-eslint/parser": "^5.33.0",
+		"cz-conventional-changelog": "^3.3.0",
+		"eslint": "^8.21.0"
 	},
 	"config": {
 		"commitizen": {
