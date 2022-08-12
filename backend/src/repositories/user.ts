@@ -2,7 +2,7 @@
 import { model, models } from 'mongoose';
 import { IUser, UserSchema } from '../models/user';
 
-interface IUserRepository {
+export interface IUserRepository {
 	create(user: IUser): Promise<IUser>;
 	findByEmail(email: string): Promise<IUser>;
 }

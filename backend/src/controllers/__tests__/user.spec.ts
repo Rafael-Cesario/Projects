@@ -5,7 +5,7 @@ import request from 'supertest';
 import { app } from '../../configs/app';
 import { mongoDBConnect } from '../../configs/database';
 
-describe('User Route', () => {
+describe('User Controller', () => {
 	const userModel = models.User || model<IUser>('User', UserSchema);
 
 	beforeAll(() => {
@@ -20,7 +20,7 @@ describe('User Route', () => {
 		await userModel.deleteMany({});
 	});
 
-	it('returns a user with encrypted password', async () => {
+	it('Returns a user with encrypted password', async () => {
 		const newUser = { email: 'teste@teste.com', name: 'teste', password: 'teste123' };
 		const { status, body } = await request(app).post('/').send(newUser);
 
@@ -28,14 +28,14 @@ describe('User Route', () => {
 		expect(body.user.password).not.toBe('teste123');
 	});
 
-	it('throw a error, empty email, name, password', async () => {
+	it('Throw a error, empty email, name, password', async () => {
 		const { status, text } = await request(app).post('/').send({});
 
 		expect(status).toBe(400);
 		expect(text).toBe('Email is required, Name is required, Password is required');
 	});
 
-	it('throw a error, email is duplicated', async () => {
+	it('Throw a error, email is duplicated', async () => {
 		const newUser = { email: 'teste@teste.com', name: 'teste', password: 'teste123' };
 
 		await request(app).post('/').send(newUser);
