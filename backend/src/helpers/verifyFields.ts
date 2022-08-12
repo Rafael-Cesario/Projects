@@ -9,7 +9,7 @@ export const verifyFields = (body: Body) => {
 	];
 
 	fields.forEach(([key, value]) => {
-		const capitalizeKey = `${key.slice(0, 1).toUpperCase()}${key.slice(1)}`
+		const capitalizeKey = `${key.slice(0, 1).toUpperCase()}${key.slice(1)}`;
 		if (!value) errorMessage.push(`${capitalizeKey} is required`);
 	});
 
