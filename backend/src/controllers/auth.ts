@@ -1,15 +1,17 @@
-import { userRepository } from '../repositories/user';
+import { UserRepository } from '../repositories/user';
 import { compare } from 'bcrypt';
 import { jwtConfig } from '../configs/jwtConfig';
 import jwt from 'jsonwebtoken';
 import { Request, Response } from 'express';
 
 class AuthController {
+	private UserRepository = new UserRepository();
+
 	async login(request: Request, response: Response) {
 		try {
 			const { email, password } = request.body;
 
-			const user = await userRepository.findByEmail(email);
+			const user = await this.UserRepository.findByEmail(email);
 			if (!user) throw new Error('Email Or Password Is Wrong!');
 
 			const isPasswordRight = await compare(password, user.password);

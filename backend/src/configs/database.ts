@@ -1,7 +1,7 @@
 import { connect } from 'mongoose';
 import 'dotenv/config';
 
-export const URI = `${process.env.URI}-${process.env.NODE_ENV}`;
+const URI = `${process.env.URI}-${process.env.NODE_ENV}`;
 
 export const mongoDBConnect = () => {
 	connect(URI, () => {

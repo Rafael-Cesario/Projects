@@ -1,4 +1,4 @@
-import { model, models } from 'mongoose';
+import { Model, model, models } from 'mongoose';
 import { IUser, UserSchema } from '../models/user';
 
 interface IUserRepository {
@@ -6,8 +6,10 @@ interface IUserRepository {
 	findByEmail(email: string): Promise<IUser>;
 }
 
-class UserRepository implements IUserRepository {
-	private UserModel = models.User || model<IUser>('User', UserSchema);
+export class UserRepository implements IUserRepository {
+	constructor(private UserModel: Model<IUser>) {
+		this.UserModel = UserModel || models.User || model<IUser>('User', UserSchema);
+	}
 
 	async create(user: IUser) {
 		const newUser = await this.UserModel.create(user);
@@ -19,5 +21,3 @@ class UserRepository implements IUserRepository {
 		return user!;
 	}
 }
-
-export const userRepository = new UserRepository();

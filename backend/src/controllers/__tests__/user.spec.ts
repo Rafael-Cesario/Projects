@@ -2,8 +2,8 @@ import { connection, model, models } from 'mongoose';
 import { afterAll, afterEach, beforeAll, describe, expect, it } from 'vitest';
 import { IUser, UserSchema } from '../../models/user';
 import request from 'supertest';
-import { app } from '../../app';
-import { mongoDBConnect } from '../../database';
+import { app } from '../../configs/app';
+import { mongoDBConnect } from '../../configs/database';
 
 describe('UserController', () => {
 	const userModel = models.User || model<IUser>('User', UserSchema);

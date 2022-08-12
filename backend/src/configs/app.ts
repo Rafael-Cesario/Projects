@@ -1,6 +1,6 @@
 import express, { json } from 'express';
-import { router as userRoutes } from './routes/user';
-import { router as authRoutes } from './routes/auth';
+import { router as userRoutes } from '../routes/user';
+import { router as authRoutes } from '../routes/auth';
 
 const app = express();
 

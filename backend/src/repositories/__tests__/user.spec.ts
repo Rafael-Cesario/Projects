@@ -1,33 +1,26 @@
-import { connection, model, models } from 'mongoose';
-import { afterAll, beforeAll, expect, describe, it, afterEach } from 'vitest';
-import { mongoDBConnect } from '../../database';
-import { IUser, UserSchema } from '../../models/user';
-import { userRepository } from '../user';
+import { Model } from 'mongoose';
+import { expect, describe, it, afterEach } from 'vitest';
+import { IUser } from '../../models/user';
+import { UserRepository } from '../user';
+import { UserModelMock } from './userModelMock';
 
-describe('UserRepository', () => {
-	const UserModel = models.User || model<IUser>('User', UserSchema);
-	const newUser = { email: 'teste@teste.com', name: 'Teste', password: 'teste123' };
-	beforeAll(() => {
-		mongoDBConnect();
-	});
+describe('User Repository can...', () => {
+	const UserModel = new UserModelMock();
+	const userRepository = new UserRepository(UserModel as unknown as Model<IUser>);
+	const userOBJ = { email: 'teste@teste.com', name: 'Teste', password: 'teste123' };
 
-	afterAll(() => {
-		connection.dropDatabase();
-	});
-
-	afterEach(async () => {
-		await UserModel.deleteMany({});
+	afterEach(() => {
+		UserModel.deleteMany();
 	});
 
 	it('Create a new user', async () => {
-		const user = await userRepository.create(newUser);
+		const user = await userRepository.create(userOBJ);
 		expect(user._id).toBeDefined();
-		expect(user.password).not.toBe(newUser.password);
 	});
 
 	it('Find a user by email', async () => {
-		await userRepository.create(newUser);
-		const user = await userRepository.findByEmail(newUser.email);
-		expect(user.email).toBe(newUser.email);
+		userRepository.create(userOBJ);
+		const user = await userRepository.findByEmail(userOBJ.email);
+		expect(user.email).toBe(userOBJ.email);
 	});
 });
