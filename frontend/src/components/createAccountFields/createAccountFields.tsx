@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { CreateAccountFormStyle } from './createAccountFields.style';
+import { CreateAccountFieldsStyle } from './createAccountFields.style';
 
-export const CreateAccountForm = () => {
+export const CreateAccountFields = () => {
 	const [inputType, setInputType] = useState('password');
 
 	const changeInputType = () => {
@@ -10,7 +10,7 @@ export const CreateAccountForm = () => {
 	};
 
 	return (
-		<CreateAccountFormStyle>
+		<CreateAccountFieldsStyle>
 			<div className="field">
 				<input required id="name" type="text" />
 				<label htmlFor="name">Nome</label>
@@ -34,6 +34,6 @@ export const CreateAccountForm = () => {
 					Confirme sua senha <span onClick={() => changeInputType()}>Mostrar Senha</span>
 				</label>
 			</div>
-		</CreateAccountFormStyle>
+		</CreateAccountFieldsStyle>
 	);
 };

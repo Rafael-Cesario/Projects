@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { palette } from '../../style/global.style';
 
-export const CreateAccountFormStyle = styled.div`
+export const CreateAccountFieldsStyle = styled.div`
 	margin: 2rem 0;
 
 	.field {
