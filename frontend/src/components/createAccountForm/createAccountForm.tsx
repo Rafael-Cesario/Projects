@@ -1,4 +1,4 @@
-import { CreateAccountFormStyle } from '../style/components/createAccountForm.style';
+import { CreateAccountFormStyle } from './createAccountForm.style';
 
 export const CreateAccountForm = () => {
 	return (

@@ -1,4 +1,4 @@
-import { AccountFormStyle } from '../style/components/accountForm.style';
+import { AccountFormStyle } from './accountForm.style';
 
 export const AccountForm = ({ title, children }) => {
 	return (

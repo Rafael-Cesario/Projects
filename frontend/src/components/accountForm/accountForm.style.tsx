@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { palette } from '../global.style';
+import { palette } from '../../style/global.style';
 
 export const AccountFormStyle = styled.div`
 	top: 0;

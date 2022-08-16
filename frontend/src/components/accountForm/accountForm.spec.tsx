@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { render } from '@testing-library/react';
-import { AccountForm } from '../components/accountForm';
+import { AccountForm } from './accountForm';
 import '@testing-library/jest-dom';
 
 describe('Account Form', () => {
