@@ -2,56 +2,45 @@ import styled from 'styled-components';
 import { palette } from '../../style/global.style';
 
 export const AccountFormStyle = styled.div`
-	top: 0;
-	width: 50vw;
-	height: 100vh;
-	position: absolute;
-	right: -51%;
+	background-color: ${palette.colors.mainBG};
+	margin: 2rem;
+	padding: 2rem;
+	border-radius: 4px;
 
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	background-color: ${palette.mainBlue};
-
-	.form-title {
-		text-align: center;
-		font-family: ${palette.titleFont};
-		margin-bottom: 5rem;
-	}
-
-	.button,
-	.button-close {
-		transition: 0.1s;
-		font-family: ${palette.bodyFont};
+	button {
 		border: none;
 		outline: none;
-		padding: 0.3rem 1rem;
 		cursor: pointer;
 	}
 
-	.button {
-		margin-top: 5rem;
-		width: 60%;
-		border-radius: 4px;
-		box-shadow: ${palette.boxShadow};
+	.button-close {
+		background-color: transparent;
 
-		:hover {
-			transform: scale(1.02);
-		}
-
-		:active {
-			transform: scale(1);
-		}
+		color: ${palette.colors.mainWhite};
+		opacity: 0.6;
+		font-family: ${palette.bodyFont}, 'Courier New', Courier, monospace;
+		align-self: flex-start;
 	}
 
-	.button-close {
-		position: absolute;
-		top: 0;
-		left: 0;
+	.form-title {
+		font-family: ${palette.bodyFont};
+		font-size: 1.5rem;
+		font-weight: normal;
 		margin: 2rem;
-		background-color: transparent;
-		color: white;
-		font-weight: bold;
+		text-align: center;
+	}
+
+	.button {
+		border-radius: 4px;
+		box-shadow: ${palette.boxShadow};
+		background-color: ${palette.colors.blueBG};
+		color: ${palette.colors.mainWhite};
+		margin: 2rem;
+		padding: 0.5rem 5rem;
+		transition: 0.3s;
+
+		:active {
+			transform: scale(0.95);
+		}
 	}
 `;

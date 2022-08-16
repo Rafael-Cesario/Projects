@@ -33,6 +33,7 @@ export const AppStyle = styled.div`
 			cursor: pointer;
 			transition: 0.1s;
 			box-shadow: ${palette.boxShadow};
+			color: ${palette.colors.mainWhite};
 
 			:hover {
 				transform: scale(1.02);
@@ -44,15 +45,14 @@ export const AppStyle = styled.div`
 		}
 
 		button:nth-child(1) {
-			background-color: ${palette.mainWhite};
+			background-color: ${palette.colors.blueBG};
 			margin-right: 1rem;
 			border: none;
 		}
 
 		button:nth-child(2) {
 			background-color: transparent;
-			border: 1px solid ${palette.mainWhite};
-			color: ${palette.mainWhite};
+			border: 1px solid ${palette.colors.mainWhite};
 			margin-right: 1rem;
 			opacity: 0.7;
 		}

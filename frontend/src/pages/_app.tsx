@@ -1,11 +1,9 @@
 import { GlobalStyle } from '../style/global.style';
 import { AppStyle } from '../style/app.style';
-
-import { AccountForm, CreateAccountForm } from '../components/index';
-import { useFormAnimation } from '../hooks/useFormAnimation';
+import { useRouter } from 'next/router';
 
 const App = () => {
-	const { showCreateAccountForm } = useFormAnimation();
+	const router = useRouter();
 
 	return (
 		<>
@@ -18,15 +16,10 @@ const App = () => {
 
 				<div className="buttons">
 					<button className="login">Entrar</button>
-					<button className="create-account" onClick={() => showCreateAccountForm()}>
+					<button className="create-account" onClick={() => router.push('/createAccount')}>
 						Criar uma conta
 					</button>
 				</div>
-
-				<AccountForm title={'Criar Conta'}>
-					<CreateAccountForm />
-				</AccountForm>
-				
 			</AppStyle>
 
 			<GlobalStyle />
