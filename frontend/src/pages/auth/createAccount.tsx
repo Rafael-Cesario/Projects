@@ -1,10 +1,16 @@
 import { AccountForm, CreateAccountFields } from '../../components';
+import { CreateAccountStyle } from '../../style/auth/createAccount.style';
+import { GlobalStyle } from '../../style/global.style';
 
 const CreateAccount = () => {
 	return (
-		<AccountForm title={'Criar conta'}>
-			<CreateAccountFields />
-		</AccountForm>
+		<CreateAccountStyle>
+			<AccountForm title={'Criar conta'}>
+				<CreateAccountFields />
+			</AccountForm>
+
+			<GlobalStyle />
+		</CreateAccountStyle>
 	);
 };
 
