@@ -1,8 +1,10 @@
-import router from 'next/router';
+import { useRouter } from 'next/router';
 import { AppStyle } from '../style/app.style';
 import { GlobalStyle } from '../style/global.style';
 
 const Index = () => {
+	const router = useRouter();
+
 	return (
 		<>
 			<title>Recipes App</title>
