@@ -10,7 +10,7 @@ export const sendErrorMessage = (invalidFields: Record<string, string>) => {
 		setTimeout(() => {
 			input.classList.toggle('error');
 			span.textContent = spanValue;
-		}, 2000);
+		}, 5000);
 	});
 
 	return;

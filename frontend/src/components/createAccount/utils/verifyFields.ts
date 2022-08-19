@@ -1,6 +1,7 @@
 export class Verify {
-	empty(entries: [string, string | null][]) {
+	empty(fields: Record<string, string>) {
 		const errorMessage = {};
+		const entries = Object.entries(fields);
 
 		entries.forEach(([key, value]) => {
 			if (value) return;
@@ -19,17 +20,23 @@ export class Verify {
 		const isValid = [hasSign, endsWith, startsWithText, hasTextAfterSign].filter((value) => typeof value === 'string');
 		return isValid;
 	}
+
+	password(password: string) {
+		return;
+	}
 }
 
 export const verifyFields = (fields: Record<string, string>) => {
 	const verify = new Verify();
-	const entries = Object.entries(fields);
 
-	const emptyFields = verify.empty(entries);
+	const emptyFields = verify.empty(fields);
 	if (Object.keys(emptyFields).length) return emptyFields;
 
 	const isEmailValid = verify.email(fields.email);
 	if (isEmailValid.length) return { email: isEmailValid[0] };
+
+	const isPasswordValid = verify.password(fields.password);
+	if (!isEmailValid) return { password: 'Sua senha não é forte o suficiente' };
 
 	return false;
 };
