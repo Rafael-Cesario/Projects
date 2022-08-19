@@ -61,16 +61,14 @@ export const Create = ({ title }) => {
 
 				<div className="field">
 					<input required id="password" type={inputType} onChange={(e) => changeFieldValues(e)} />
-					<label htmlFor="password">
-						Senha <span onClick={() => changeInputType()}>Mostrar Senha</span>
-					</label>
+					<label htmlFor="password">Senha</label>
+					<span onClick={() => changeInputType()}>Mostrar Senha</span>
 				</div>
 
 				<div className="field">
 					<input required id="confirmPassword" type={inputType} onChange={(e) => changeFieldValues(e)} />
-					<label htmlFor="confirmPassword">
-						Confirme sua senha <span onClick={() => changeInputType()}>Mostrar Senha</span>
-					</label>
+					<label htmlFor="confirmPassword">Confirme sua senha</label>
+					<span onClick={() => changeInputType()}>Mostrar Senha</span>
 				</div>
 			</div>
 

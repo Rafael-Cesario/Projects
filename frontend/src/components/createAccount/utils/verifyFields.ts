@@ -22,21 +22,38 @@ export class Verify {
 	}
 
 	password(password: string) {
-		return;
+		const length = password.length >= 10 ? true : 'Sua senha é curta, mínimo 10 caracteres';
+		const hasUpperLetter = password.search(/[A-Z]/) > -1 ? true : 'Sua senha deve conter ao menos 1 letra maiúscula';
+		const hasLowerLetter = password.search(/[a-z]/) > -1 ? true : 'Sua senha deve conter ao menos 1 letra minúscula';
+		const hasNumberOrSign = password.search(/[0-9]/) > -1 ? true : 'Sua senha deve conter ao menos um número';
+		const hasSign = password.search(/[!@#$%&*_+=-]/) > -1 ? true : 'Sua senha deve conter ao menos um símbolo';
+
+		const errors = [length, hasLowerLetter, hasUpperLetter, hasNumberOrSign, hasSign].filter(
+			(value) => typeof value === 'string'
+		);
+
+		return errors;
+	}
+
+	confirmPassword(password: string, confirmPassword: string) {
+		return password === confirmPassword;
 	}
 }
 
 export const verifyFields = (fields: Record<string, string>) => {
 	const verify = new Verify();
 
-	const emptyFields = verify.empty(fields);
-	if (Object.keys(emptyFields).length) return emptyFields;
+	const hasEmptyFields = verify.empty(fields);
+	if (Object.keys(hasEmptyFields).length) return hasEmptyFields;
 
 	const isEmailValid = verify.email(fields.email);
 	if (isEmailValid.length) return { email: isEmailValid[0] };
 
 	const isPasswordValid = verify.password(fields.password);
-	if (!isEmailValid) return { password: 'Sua senha não é forte o suficiente' };
+	if (isPasswordValid.length) return { password: isPasswordValid[0] };
+
+	const isConfirmPasswordRight = verify.confirmPassword(fields.password, fields.confirmPassword);
+	if (!isConfirmPasswordRight) return { confirmPassword: 'Suas Senhas não estão iguais' };
 
 	return false;
 };
