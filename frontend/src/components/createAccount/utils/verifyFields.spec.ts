@@ -2,13 +2,13 @@ import { describe, it, expect } from 'vitest';
 import { verifyFields } from './verifyFields';
 
 describe('Verify Fields', () => {
-	it('Returns a array with length 0', () => {
+	it('Returns false, there is no empty fields', () => {
 		const invalidFields = verifyFields({ name: 'Teste' });
-		expect(invalidFields.length).toBe(0);
+		expect(invalidFields).toBe(false);
 	});
 
-	it('Returns a array with length 1', () => {
+	it('Returns a array with the empty field', () => {
 		const invalidFields = verifyFields({ name: '' });
-		expect(invalidFields.length).toBe(1);
+		expect(invalidFields).toEqual(['name']);
 	});
 });
