@@ -22,7 +22,7 @@ describe('Verify Fields', () => {
 	describe('Email is valid', () => {
 		it('Returns a array with the invalids steps', () => {
 			const isEmailValid = verify.email('');
-			expect(isEmailValid.length).toBe(4);
+			expect(isEmailValid.length).toBeGreaterThan(0);
 		});
 
 		it('Returns a empty array', () => {
@@ -31,5 +31,27 @@ describe('Verify Fields', () => {
 		});
 	});
 
-	describe.todo('Password is valid');
+	describe('Password is valid', () => {
+		it('Returns a array with messages, password isnt valid', () => {
+			const isPasswordValid = verify.password('123');
+			expect(isPasswordValid.length).toBeGreaterThan(0);
+		});
+
+		it('Returns a empty array, password is valid', () => {
+			const isPasswordValid = verify.password('Teste@182584');
+			expect(isPasswordValid.length).toBe(0);
+		});
+
+		describe('Confirm Password', () => {
+			it('Returns false', () => {
+				const isConfirmPasswordRight = verify.confirmPassword('teste123', 'teste');
+				expect(isConfirmPasswordRight).toBe(false);
+			});
+
+			it('Returns true', () => {
+				const isConfirmPasswordRight = verify.confirmPassword('teste123', 'teste123');
+				expect(isConfirmPasswordRight).toBe(true);
+			});
+		});
+	});
 });
