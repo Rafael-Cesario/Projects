@@ -89,6 +89,6 @@ export const CreateStyle = styled.div`
 	}
 
 	.error {
-		border-bottom: 1px solid crimson;
+		border-bottom: 1px solid crimson !important;
 	}
 `;

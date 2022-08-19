@@ -1,10 +1,10 @@
-export const sendErrorMessage = (invalidFields: string[]) => {
-	invalidFields.forEach((field) => {
+export const sendErrorMessage = (invalidFields: Record<string, string>) => {
+	Object.entries(invalidFields).forEach(([field, errorMessage]) => {
 		const input = document.getElementById(field) as HTMLInputElement;
 		const [span] = input.labels;
 		const spanValue = span.textContent;
 
-		span.textContent = 'Este campo é obrigatorio.';
+		span.textContent = errorMessage;
 		input.classList.toggle('error');
 
 		setTimeout(() => {

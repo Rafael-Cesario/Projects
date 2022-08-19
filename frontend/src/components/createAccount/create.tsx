@@ -35,8 +35,8 @@ export const Create = ({ title }) => {
 	};
 
 	const createNewAccount = () => {
-		const invalidFields = verifyFields(fieldValues);
-		if (invalidFields.length > 0) sendErrorMessage(invalidFields);
+		const hasInvalidFields = verifyFields(fieldValues);
+		if (hasInvalidFields) return sendErrorMessage(hasInvalidFields);
 
 		return;
 	};
