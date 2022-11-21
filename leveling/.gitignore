@@ -1,0 +1,6 @@
+node_modules
+.next
+todo.txt
+.env**
+dist
+**.bat
