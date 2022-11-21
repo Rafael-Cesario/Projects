@@ -1,0 +1,3 @@
+## Calculadora
+
+    react, typescript
