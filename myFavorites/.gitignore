@@ -1,8 +1,0 @@
-node_modules
-.next
-public
-**.env
-**.txt
-**.bat
-next-env.d.ts
-\dist
