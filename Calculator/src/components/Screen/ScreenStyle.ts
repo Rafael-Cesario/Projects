@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 
 export const ScreenStyle = styled.div`
-	width: 100px;
-	height: 100px;
-	background-color: white;
+	height: 7rem;
+	width: 12rem;
+	background-color: #dddddd;
+	border-radius: 1rem 1rem 0 0;
 `;
