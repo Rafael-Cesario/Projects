@@ -1,19 +1,19 @@
-import { CalculatorClass, TOperator } from '../../utils/calculatorClass';
+import { CalculatorClass } from '../../utils/calculatorClass';
+import { Operator } from '../../utils/types';
 import { IKeyboard } from './KeyboardInterface';
 import { KeyboardStyle } from './KeyboardStyle';
 
 export const Keyboard = ({ props }: IKeyboard) => {
 	const { screen, setScreen, preview, setPreview } = props;
+	const Calculator = new CalculatorClass(screen, setScreen, preview, setPreview);
 
 	const keys = [
-		['c', 'ca', '%', '/'],
+		['%', '/'],
 		[7, 8, 9, 'x'],
 		[4, 5, 6, '-'],
 		[1, 2, 3, '+'],
-		['+/-', 0, ',', '='],
+		['+/-', 0],
 	];
-
-	const Calculator = new CalculatorClass();
 
 	const addKey = (e: React.SyntheticEvent) => {
 		const button = e.target as HTMLButtonElement;
@@ -25,27 +25,19 @@ export const Keyboard = ({ props }: IKeyboard) => {
 			return;
 		}
 
-		handleOperator(text);
-	};
-
-	const handleOperator = (operator: string) => {
-		const removeLastDigit = () => {
-			setScreen(screen.substring(0, screen.length - 1));
-		};
-
-		const clearScreen = () => {
-			setScreen('');
-			setPreview('');
-		};
-
-		if (operator === 'c') return removeLastDigit();
-		if (operator === 'ca') return clearScreen();
-
-		Calculator.setOperator(operator as TOperator);
+		Calculator.setOperator(text as Operator);
 	};
 
 	return (
 		<KeyboardStyle>
+			<button onClick={() => Calculator.removeLastDigit()} className='keyboard-keys'>
+				c
+			</button>
+
+			<button onClick={() => Calculator.clearScreen()} className='keyboard-keys'>
+				ca
+			</button>
+
 			{keys.map((row) =>
 				row.map((key, index) => {
 					let newClass = 'keyboard-keys';
@@ -58,6 +50,9 @@ export const Keyboard = ({ props }: IKeyboard) => {
 					);
 				})
 			)}
+
+			<button className='keyboard-keys operators'>,</button>
+			<button className='keyboard-keys operators'>=</button>
 		</KeyboardStyle>
 	);
 };
