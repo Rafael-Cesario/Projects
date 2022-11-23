@@ -1,6 +1,11 @@
 import { KeyboardStyle } from './KeyboardStyle';
 
-export const Keyboard = () => {
+interface IKeyboard {
+	screen: string;
+	setScreen: (value: string) => void;
+}
+
+export const Keyboard = ({ screen, setScreen }: IKeyboard) => {
 	const keys = [
 		['c', '()', '%', '/'],
 		[7, 8, 9, 'x'],
@@ -8,6 +13,13 @@ export const Keyboard = () => {
 		[1, 2, 3, '+'],
 		['+/-', 0, ',', '='],
 	];
+
+	const addKey = (e: React.SyntheticEvent) => {
+		const button = e.target as HTMLButtonElement;
+		const text = button.textContent as string;
+
+		setScreen(screen + text);
+	};
 
 	return (
 		<KeyboardStyle>
@@ -17,7 +29,7 @@ export const Keyboard = () => {
 					if (typeof key === 'string') newClass += ' operators';
 
 					return (
-						<button className={newClass} key={index}>
+						<button onClick={(e) => addKey(e)} className={newClass} key={index}>
 							{key}
 						</button>
 					);
