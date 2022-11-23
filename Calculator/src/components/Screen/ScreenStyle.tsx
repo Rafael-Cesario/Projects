@@ -11,10 +11,21 @@ export const ScreenStyle = styled.div`
 	flex-direction: column-reverse;
 	text-align: right;
 
-	.current {
-		color: #dddddd;
+	.current,
+	.preview {
 		font-weight: bold;
 		text-overflow: ellipsis;
 		overflow: hidden;
+		margin: 0.5rem 0;
+	}
+
+	.current {
+		color: #dddddd;
+		font-size: 1.1rem;
+	}
+
+	.preview {
+		color: #7e7e7e;
+		font-size: 0.9rem;
 	}
 `;

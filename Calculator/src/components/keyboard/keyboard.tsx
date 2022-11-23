@@ -1,12 +1,10 @@
-import { changeDisplay, cleanScreen, removeLastNumber } from '../../utils/operations';
-import { SumClass } from '../../utils/sumClass';
+import { CalculatorClass, TOperator } from '../../utils/calculatorClass';
 import { IKeyboard } from './KeyboardInterface';
 import { KeyboardStyle } from './KeyboardStyle';
 
 export const Keyboard = ({ props }: IKeyboard) => {
 	const { screen, setScreen, preview, setPreview } = props;
 
-	const Sum = new SumClass();
 	const keys = [
 		['c', 'ca', '%', '/'],
 		[7, 8, 9, 'x'],
@@ -15,27 +13,35 @@ export const Keyboard = ({ props }: IKeyboard) => {
 		['+/-', 0, ',', '='],
 	];
 
+	const Calculator = new CalculatorClass();
+
 	const addKey = (e: React.SyntheticEvent) => {
 		const button = e.target as HTMLButtonElement;
 		const text = button.textContent as string;
+		const isOperator = !!button.className.match(/operators/);
 
-		switch (text) {
-			case 'c':
-				removeLastNumber({ screen, setScreen });
-				break;
-
-			case 'ca':
-				cleanScreen(setScreen);
-				break;
-
-			case '+':
-				const math = Sum.plus(Number(screen), 0);
-				if (typeof math === 'string') changeDisplay(setScreen, setPreview, math);
-				break;
-
-			default:
-				setScreen(screen + text);
+		if (!isOperator) {
+			setScreen(screen + text);
+			return;
 		}
+
+		handleOperator(text);
+	};
+
+	const handleOperator = (operator: string) => {
+		const removeLastDigit = () => {
+			setScreen(screen.substring(0, screen.length - 1));
+		};
+
+		const clearScreen = () => {
+			setScreen('');
+			setPreview('');
+		};
+
+		if (operator === 'c') return removeLastDigit();
+		if (operator === 'ca') return clearScreen();
+
+		Calculator.setOperator(operator as TOperator);
 	};
 
 	return (

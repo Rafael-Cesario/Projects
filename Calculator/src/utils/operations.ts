@@ -1,18 +1,25 @@
-import { IKeyboard } from '../components/keyboard/KeyboardInterface';
+export class Operations {
+	plus(a: number, b: number) {
+		return a + b;
+	}
 
-type TScreen = string;
-type TSetScreen = (value: string) => void;
-type TSetPreview = (value: string) => void;
+	minus(a: number, b: number) {
+		return a - b;
+	}
 
-export const removeLastNumber = ({ screen, setScreen }: { screen: TScreen; setScreen: TSetScreen }) => {
-	setScreen(screen.substring(0, screen.length - 1));
-};
+	divided(a: number, b: number) {
+		return a / b;
+	}
 
-export const cleanScreen = (setScreen: (value: string) => void) => {
-	setScreen('');
-};
+	times(a: number, b: number) {
+		return a * b;
+	}
 
-export const changeDisplay = (setScreen: TSetScreen, setPreview: TSetPreview, math: string) => {
-	setScreen('');
-	setPreview(math);
-};
+	invert(a: number) {
+		return a * -1;
+	}
+
+	percent(a: number, b: number) {
+		return (a * b) / 100;
+	}
+}
