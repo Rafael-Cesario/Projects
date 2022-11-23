@@ -1,13 +1,10 @@
+import { cleanScreen, removeLastNumber } from '../../utils/operations';
+import { IKeyboard } from './interface';
 import { KeyboardStyle } from './KeyboardStyle';
-
-interface IKeyboard {
-	screen: string;
-	setScreen: (value: string) => void;
-}
 
 export const Keyboard = ({ screen, setScreen }: IKeyboard) => {
 	const keys = [
-		['c', '()', '%', '/'],
+		['c', 'ca', '%', '/'],
 		[7, 8, 9, 'x'],
 		[4, 5, 6, '-'],
 		[1, 2, 3, '+'],
@@ -17,6 +14,21 @@ export const Keyboard = ({ screen, setScreen }: IKeyboard) => {
 	const addKey = (e: React.SyntheticEvent) => {
 		const button = e.target as HTMLButtonElement;
 		const text = button.textContent as string;
+		const isOperator = !!button.className.match(/operators/);
+
+		if (isOperator) {
+			switch (text) {
+				case 'c':
+					removeLastNumber({ screen, setScreen });
+					break;
+
+				case 'ca':
+					cleanScreen({ setScreen });
+					break;
+			}
+
+			return;
+		}
 
 		setScreen(screen + text);
 	};

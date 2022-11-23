@@ -26,9 +26,10 @@ export const KeyboardStyle = styled.div`
 
 		cursor: pointer;
 
-		:nth-child(1) {
+		:nth-child(1),
+		:nth-child(2) {
 			color: crimson;
-			font-size: 1.3rem;
+			font-size: 1.1rem;
 		}
 
 		:nth-child(20) {
