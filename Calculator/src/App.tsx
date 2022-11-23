@@ -5,11 +5,25 @@ import { useState } from 'react';
 
 const App = () => {
 	const [screen, setScreen] = useState('');
+	const [preview, setPreview] = useState('');
 
 	return (
 		<AppStyle>
-			<Screen screen={screen} />
-			<Keyboard screen={screen} setScreen={setScreen} />
+			<Screen
+				props={{
+					screen,
+					preview,
+				}}
+			/>
+
+			<Keyboard
+				props={{
+					screen,
+					setScreen,
+					preview,
+					setPreview,
+				}}
+			/>
 		</AppStyle>
 	);
 };

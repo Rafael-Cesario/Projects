@@ -1,14 +1,13 @@
-import { useState } from 'react';
 import { ScreenStyle } from './ScreenStyle';
+import { IScreen } from './ScreenInterface';
 
-interface IScreen {
-	screen: string;
-}
+export const Screen = ({ props }: IScreen) => {
+	const { screen, preview } = props;
 
-export const Screen = ({ screen }: IScreen) => {
 	return (
 		<ScreenStyle>
 			<p className='current'>{screen}</p>
+			<p className='preview'>{preview}</p>
 		</ScreenStyle>
 	);
 };

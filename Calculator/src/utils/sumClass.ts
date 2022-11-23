@@ -1,8 +1,16 @@
-export class Sum {
+export class SumClass {
 	private value: number = 0;
 
 	plus(a: number, b: number) {
-		return a + b;
+		if (!this.value) {
+			this.value = a;
+			return `${a} +`;
+		}
+
+		const sum = a + b;
+
+		this.value = sum;
+		return sum;
 	}
 
 	minus(a: number, b: number) {
