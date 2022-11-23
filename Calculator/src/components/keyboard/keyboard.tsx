@@ -11,15 +11,18 @@ export const Keyboard = () => {
 
 	return (
 		<KeyboardStyle>
-			{keys.map((row, index) => (
-				<div key={index}>
-					{row.map((key, index) => (
-						<button key={index} className='keyboard-keys'>
+			{keys.map((row) =>
+				row.map((key, index) => {
+					let newClass = 'keyboard-keys';
+					if (typeof key === 'string') newClass += ' operators';
+
+					return (
+						<button className={newClass} key={index}>
 							{key}
 						</button>
-					))}
-				</div>
-			))}
+					);
+				})
+			)}
 		</KeyboardStyle>
 	);
 };
