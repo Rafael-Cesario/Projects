@@ -1,4 +1,4 @@
-import { Operator, Preview, Screen, SetPreview, SetScreen } from './types';
+import { SetOperator, SetValue, Preview, Screen, SetPreview, SetScreen, Operator } from './types';
 import { Operations } from './operations';
 
 export class CalculatorClass {
@@ -6,32 +6,22 @@ export class CalculatorClass {
 		private screen: Screen,
 		private setScreen: SetScreen,
 		private preview: Preview,
-		private setPreview: SetPreview
+		private setPreview: SetPreview,
+		private operator: Operator,
+		private setOperator: SetOperator,
+		private value: number,
+		private setValue: SetValue
 	) {}
 
-	private value = 0;
-	private operator: Operator = '+';
 	private operations = new Operations();
-
 	private operationsOBJ = {
 		'+': this.operations.plus,
+		'-': this.operations.minus,
+		'/': this.operations.divided,
+		'x': this.operations.times,
+		'%': this.operations.percent,
+		'+/-': this.operations.invert,
 	};
-
-	setValue(value: number) {
-		if (value) {
-			value = this.result(this.value, value);
-		}
-
-		this.value = value;
-	}
-
-	setOperator(operator: Operator) {
-		this.operator = operator;
-	}
-
-	result(a: number, b: number) {
-		return this.operationsOBJ[this.operator](a, b);
-	}
 
 	removeLastDigit() {
 		this.setScreen(this.screen.substring(0, this.screen.length - 1));
@@ -40,5 +30,38 @@ export class CalculatorClass {
 	clearScreen() {
 		this.setScreen('');
 		this.setPreview('');
+	}
+
+	next(operator: Operator, screenValue: number) {
+		let result = screenValue;
+
+		if (!screenValue) return;
+		if (this.value) result = this.calculateSum(this.value, screenValue);
+
+		this.setScreen('');
+		this.setValue(result);
+		this.setOperator(operator);
+		this.setPreview(`${result} ${operator}`);
+	}
+
+	result(screenValue: number) {
+		const result = this.calculateSum(this.value, screenValue);
+
+		this.setScreen(String(result));
+		this.setPreview('');
+		this.setValue(0);
+	}
+
+	invert(screenValue: number) {
+		const result = this.operationsOBJ['+/-'](screenValue);
+		this.setScreen(String(result));
+	}
+
+	dot(screenValue: number) {
+		this.setScreen(String(screenValue + '.'));
+	}
+
+	calculateSum(a: number, b: number) {
+		return this.operationsOBJ[this.operator](a, b);
 	}
 }
