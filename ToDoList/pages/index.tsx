@@ -8,7 +8,7 @@ import { global } from '../styles/appStyle';
 
 export default function Home() {
 	const [lists, setLists] = useState<string[]>([]);
-	const [newList, setNewList] = useState<boolean>(false);
+	const [showNewList, setShowNewList] = useState<boolean>(false);
 
 	const [message, setMessage] = useState<MessageType>({
 		show: false,
@@ -31,7 +31,7 @@ export default function Home() {
 					</div>
 
 					<div className='menus'>
-						<button className='menu' onClick={() => setNewList(!newList)}>
+						<button className='menu' onClick={() => setShowNewList(!showNewList)}>
 							Criar Nova Lista
 						</button>
 						<button className='menu'>Minhas Listas</button>
@@ -41,7 +41,7 @@ export default function Home() {
 
 				<main>
 					<div className='lists'>
-						{newList && <NewList props={{ newList, setNewList, lists, setLists, message, setMessage }} />}
+						{showNewList && <NewList props={{ newList: showNewList, setNewList: setShowNewList, lists, setLists, message, setMessage }} />}
 
 						{lists.map((list, index) => (
 							<button key={list + index} className='list'>
@@ -50,16 +50,9 @@ export default function Home() {
 						))}
 					</div>
 				</main>
-
-				{message.show && (
-					<Message
-						props={{
-							message: message.content,
-							color: message.color,
-						}}
-					/>
-				)}
 			</AppStyle>
+
+			{message.show && <Message props={{ message: message.content, color: message.color }} />}
 		</>
 	);
 }
