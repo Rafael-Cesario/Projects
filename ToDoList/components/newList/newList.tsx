@@ -10,12 +10,13 @@ export const NewList = ({ props }: INewList) => {
 	const [listName, setListName] = useState('');
 
 	const createNewList = () => {
-		if (lists.has(listName)) return sendMessage(message, setMessage, 'Uma lista com este mesmo nome já existe.', global.red);
+		if (lists.includes(listName)) return sendMessage(message, setMessage, 'Uma lista com este mesmo nome já existe.', global.red);
 
 		const newLists = produce(lists, (draft) => {
-			draft.add(listName);
+			draft.push(listName);
 		});
 
+		setNewList(false);
 		setLists(newLists);
 		sendMessage(message, setMessage, 'Uma nova lista foi criada.', 'forestgreen');
 	};

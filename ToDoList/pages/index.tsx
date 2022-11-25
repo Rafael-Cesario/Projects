@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Message } from '../components/message/message';
 import { NewList } from '../components/newList/newList';
 import { AppStyle } from '../styles/appStyle';
@@ -7,7 +7,7 @@ import { MessageType } from '../utils/messageType';
 import { global } from '../styles/appStyle';
 
 export default function Home() {
-	const [lists, setLists] = useState<Set<string>>(new Set());
+	const [lists, setLists] = useState<string[]>([]);
 	const [newList, setNewList] = useState<boolean>(false);
 
 	const [message, setMessage] = useState<MessageType>({
@@ -43,9 +43,11 @@ export default function Home() {
 					<div className='lists'>
 						{newList && <NewList props={{ newList, setNewList, lists, setLists, message, setMessage }} />}
 
-						<button className='list'>Programação</button>
-						<button className='list'>Programação</button>
-						<button className='list'>Programação</button>
+						{lists.map((list, index) => (
+							<button key={list + index} className='list'>
+								{list}
+							</button>
+						))}
 					</div>
 				</main>
 

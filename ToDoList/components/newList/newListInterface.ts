@@ -5,8 +5,8 @@ export interface INewList {
 		newList: boolean;
 		setNewList: (showNewList: boolean) => void;
 
-		lists: Set<string>;
-		setLists: (lists: Set<string>) => void;
+		lists: string[];
+		setLists: (lists: string[]) => void;
 
 		message: MessageType;
 		setMessage: (OBJ: MessageType) => void;
