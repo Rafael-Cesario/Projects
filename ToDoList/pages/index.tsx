@@ -22,9 +22,11 @@ export default function Home() {
 					</div>
 
 					<div className='menus'>
-						<button onClick={() => setNewList(!newList)}>Criar Nova Lista</button>
-						<button>Minhas Listas</button>
-						<button>Página no Github</button>
+						<button className='menu' onClick={() => setNewList(!newList)}>
+							Criar Nova Lista
+						</button>
+						<button className='menu'>Minhas Listas</button>
+						<button className='menu'>Página no Github</button>
 					</div>
 				</header>
 
@@ -32,9 +34,9 @@ export default function Home() {
 					<div className='lists'>
 						<NewList props={{ newList, setNewList, lists, setLists }} />
 
-						<button>Programação</button>
-						<button>Programação</button>
-						<button>Programação</button>
+						<button className='list'>Programação</button>
+						<button className='list'>Programação</button>
+						<button className='list'>Programação</button>
 					</div>
 				</main>
 			</AppStyle>

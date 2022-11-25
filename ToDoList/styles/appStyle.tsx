@@ -1,5 +1,10 @@
 import styled from 'styled-components';
 
+export const global = {
+	blue: '#245195',
+	fontFamily: 'Work Sans',
+};
+
 export const AppStyle = styled.div`
 	margin: 4rem 8rem;
 
@@ -34,7 +39,7 @@ export const AppStyle = styled.div`
 			padding: 1rem;
 			border-radius: 10px;
 
-			button {
+			.menu {
 				margin: 0 1rem;
 
 				:nth-child(1) {
@@ -59,11 +64,11 @@ export const AppStyle = styled.div`
 			display: flex;
 			flex-direction: column;
 
-			button {
+			.list {
 				margin: 1rem 0;
 				width: 25rem;
 				text-align: left;
-				background-color: #245195;
+				background-color: ${global.blue};
 				padding: 1rem 2rem;
 				border-radius: 5px;
 			}

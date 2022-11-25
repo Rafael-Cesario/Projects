@@ -5,17 +5,15 @@ export const NewList = ({ props }: INewList) => {
 	const { newList, setNewList, lists, setLists } = props;
 
 	return (
-		<NewListStyle>
-			{newList && (
-				<>
-					<input type={'text'} />
+		newList && (
+			<NewListStyle>
+				<input placeholder='Nome da Lista' className='list-name' type={'text'} />
 
-					<div className='menus'>
-						<button>Criar Lista</button>
-						<button>Cancelar</button>
-					</div>
-				</>
-			)}
-		</NewListStyle>
+				<div className='menus'>
+					<button className='menu'>Criar Lista</button>
+					<button className='menu'>Cancelar</button>
+				</div>
+			</NewListStyle>
+		)
 	);
 };
