@@ -1,7 +1,12 @@
 import Head from 'next/head';
+import { useState } from 'react';
+import { NewList } from '../components/newList/newList';
 import { AppStyle } from '../styles/appStyle';
 
 export default function Home() {
+	const [lists, setLists] = useState<string[]>([]);
+	const [newList, setNewList] = useState<boolean>(false);
+
 	return (
 		<>
 			<Head>
@@ -17,7 +22,7 @@ export default function Home() {
 					</div>
 
 					<div className='menus'>
-						<button>Criar Nova Lista</button>
+						<button onClick={() => setNewList(!newList)}>Criar Nova Lista</button>
 						<button>Minhas Listas</button>
 						<button>Página no Github</button>
 					</div>
@@ -25,6 +30,8 @@ export default function Home() {
 
 				<main>
 					<div className='lists'>
+						<NewList props={{ newList, setNewList, lists, setLists }} />
+
 						<button>Programação</button>
 						<button>Programação</button>
 						<button>Programação</button>
