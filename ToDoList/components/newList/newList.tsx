@@ -1,36 +1,23 @@
 import produce from 'immer';
 import { useEffect, useState } from 'react';
+import { global } from '../../styles/appStyle';
+import { sendMessage } from '../../utils/sendMessage';
 import { INewList } from './newListInterface';
 import { NewListStyle } from './newListStyle';
-import { global } from '../../styles/appStyle';
 
 export const NewList = ({ props }: INewList) => {
 	const { setNewList, lists, setLists, message, setMessage } = props;
 	const [listName, setListName] = useState('');
 
-	const sendErrorMessage = () => {
-		const showMessage = produce(message, (draft) => {
-			draft['show'] = true;
-			draft['content'] = 'Uma lista com este nome já existe';
-			draft['color'] = global.red;
-		});
-
-		const hideMessage = produce(message, (draft) => {
-			draft['show'] = false;
-		});
-
-		setMessage(showMessage);
-		setTimeout(() => setMessage(hideMessage), 5000);
-	};
-
 	const createNewList = () => {
-		if (lists.has(listName)) return sendErrorMessage();
+		if (lists.has(listName)) return sendMessage(message, setMessage, 'Uma lista com este mesmo nome já existe.', global.red);
 
 		const newLists = produce(lists, (draft) => {
 			draft.add(listName);
 		});
 
 		setLists(newLists);
+		sendMessage(message, setMessage, 'Uma nova lista foi criada.', 'forestgreen');
 	};
 
 	useEffect(() => console.log(lists), [lists]);
