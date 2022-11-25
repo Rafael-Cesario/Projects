@@ -1,5 +1,5 @@
 export type MessageType = {
-	showMessage: boolean;
+	show: boolean;
 	content: string;
 	color: string;
 };

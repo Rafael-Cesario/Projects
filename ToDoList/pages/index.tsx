@@ -9,10 +9,11 @@ import { global } from '../styles/appStyle';
 export default function Home() {
 	const [lists, setLists] = useState<Set<string>>(new Set());
 	const [newList, setNewList] = useState<boolean>(false);
+
 	const [message, setMessage] = useState<MessageType>({
-		showMessage: true,
-		content: 'Uma lista com este nome já existe',
+		show: false,
 		color: global.red,
+		content: 'Uma lista com este nome já existe',
 	});
 
 	return (
@@ -40,7 +41,7 @@ export default function Home() {
 
 				<main>
 					<div className='lists'>
-						{newList && <NewList props={{ newList, setNewList, lists, setLists }} />}
+						{newList && <NewList props={{ newList, setNewList, lists, setLists, message, setMessage }} />}
 
 						<button className='list'>Programação</button>
 						<button className='list'>Programação</button>
@@ -48,7 +49,7 @@ export default function Home() {
 					</div>
 				</main>
 
-				{message.showMessage && (
+				{message.show && (
 					<Message
 						props={{
 							message: message.content,

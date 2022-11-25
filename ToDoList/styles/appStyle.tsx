@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { createImportEqualsDeclaration } from 'typescript';
 
 export const global = {
 	red: '#a32525',
