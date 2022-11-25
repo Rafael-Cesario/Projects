@@ -1,11 +1,19 @@
 import Head from 'next/head';
 import { useState } from 'react';
+import { Message } from '../components/message/message';
 import { NewList } from '../components/newList/newList';
 import { AppStyle } from '../styles/appStyle';
+import { MessageType } from '../utils/messageType';
+import { global } from '../styles/appStyle';
 
 export default function Home() {
-	const [lists, setLists] = useState<string[]>([]);
+	const [lists, setLists] = useState<Set<string>>(new Set());
 	const [newList, setNewList] = useState<boolean>(false);
+	const [message, setMessage] = useState<MessageType>({
+		showMessage: true,
+		content: 'Uma lista com este nome já existe',
+		color: global.red,
+	});
 
 	return (
 		<>
@@ -32,13 +40,22 @@ export default function Home() {
 
 				<main>
 					<div className='lists'>
-						<NewList props={{ newList, setNewList, lists, setLists }} />
+						{newList && <NewList props={{ newList, setNewList, lists, setLists }} />}
 
 						<button className='list'>Programação</button>
 						<button className='list'>Programação</button>
 						<button className='list'>Programação</button>
 					</div>
 				</main>
+
+				{message.showMessage && (
+					<Message
+						props={{
+							message: message.content,
+							color: message.color,
+						}}
+					/>
+				)}
 			</AppStyle>
 		</>
 	);

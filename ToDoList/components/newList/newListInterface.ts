@@ -3,7 +3,7 @@ export interface INewList {
 		newList: boolean;
 		setNewList: (showNewList: boolean) => void;
 
-		lists: string[];
-		setLists: (lists: string[]) => void;
+		lists: Set<string>;
+		setLists: (lists: Set<string>) => void;
 	};
 }

@@ -1,6 +1,8 @@
 import styled from 'styled-components';
+import { createImportEqualsDeclaration } from 'typescript';
 
 export const global = {
+	red: '#a32525',
 	blue: '#245195',
 	fontFamily: 'Work Sans',
 };

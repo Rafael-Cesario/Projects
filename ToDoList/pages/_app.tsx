@@ -1,5 +1,8 @@
 import { createGlobalStyle } from 'styled-components';
 import { AppProps } from 'next/app';
+import { enableMapSet } from 'immer';
+
+enableMapSet();
 
 const GlobalStyle = createGlobalStyle`
   body {
