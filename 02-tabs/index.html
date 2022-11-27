@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+		<link rel="stylesheet" href="style.css" />
+		<script src="script.js" defer></script>
+		<title>Tabs</title>
+	</head>
+	<body>
+		<div class="tabs">
+			<butoon class="tab" id="default-open">Projeto</butoon>
+			<butoon class="tab">Autor</butoon>
+			<butoon class="tab">Contato</butoon>
+		</div>
+
+		<div id="Projeto" class="content">
+			<span class="close" onclick="this.parentElement.style.display='none'">x</span>
+			<h1>Projeto</h1>
+			<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse animi ad deserunt, deleniti voluptas alias vero at nemo nam architecto?</p>
+		</div>
+
+		<div id="Autor" class="content">
+			<span class="close" onclick="this.parentElement.style.display='none'">x</span>
+			<h1>Autor</h1>
+			<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse animi ad deserunt, deleniti voluptas alias vero at nemo nam architecto?</p>
+		</div>
+
+		<div id="Contato" class="content">
+			<span class="close" onclick="this.parentElement.style.display='none'">x</span>
+			<h1>Contato</h1>
+			<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse animi ad deserunt, deleniti voluptas alias vero at nemo nam architecto?</p>
+		</div>
+	</body>
+</html>
