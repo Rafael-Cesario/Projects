@@ -77,4 +77,9 @@ export const ListStyle = styled.div`
 			}
 		}
 	}
+
+	.todo {
+		color: white;
+		background-color: blue;
+	}
 `;

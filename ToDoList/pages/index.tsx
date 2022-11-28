@@ -4,11 +4,11 @@ import { Message } from '../components/message/message';
 import { AppStyle } from '../styles/appStyle';
 import { MessageType } from '../utils/messageType';
 import { global } from '../styles/appStyle';
-import { useLocalDatabase } from '../utils/useLocalDatabase';
+import { useLocalLists } from '../utils/useLocalDatabase';
 import { Lists } from '../components/lists/lists';
 
 export default function Home() {
-	const [lists, setLists] = useLocalDatabase([]);
+	const [lists, setLists] = useLocalLists([], 'lists');
 	const [showNewList, setShowNewList] = useState<boolean>(false);
 
 	const [message, setMessage] = useState<MessageType>({
