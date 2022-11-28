@@ -14,6 +14,8 @@ export const ListsStyle = styled.div`
 		border-radius: 5px;
 		transition: 0.3s;
 		text-transform: capitalize;
+		color: #ddd;
+		text-decoration: none;
 
 		:hover {
 			background-color: #ddd;

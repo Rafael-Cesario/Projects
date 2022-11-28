@@ -15,7 +15,7 @@ export const AppStyle = styled.div`
 		background-color: transparent;
 		color: #dddddd;
 		font-weight: bold;
-		font-family: 'Work Sans';
+		font-family: ${global.fontFamily};
 		cursor: pointer;
 	}
 
