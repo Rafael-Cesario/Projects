@@ -23,11 +23,23 @@ export const NewList = ({ props }: INewList) => {
 		setListName('');
 	};
 
-	useEffect(() => console.log(lists), [lists]);
+	useEffect(() => {
+		const input = document.querySelector('.list-name') as HTMLInputElement;
+		input.focus();
+	}, []);
 
 	return (
 		<NewListStyle>
-			<input value={listName} onChange={(e) => setListName(e.target.value)} placeholder='Nome da Lista' className='list-name' type={'text'} />
+			<input
+				value={listName}
+				onChange={(e) => setListName(e.target.value)}
+				placeholder='Nome da Lista'
+				className='list-name'
+				type={'text'}
+				onKeyUp={(e) => {
+					e.key === 'Enter' && createNewList();
+				}}
+			/>
 
 			<div className='menus'>
 				<button onClick={() => createNewList()} className='menu'>

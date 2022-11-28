@@ -7,6 +7,18 @@ export const NewListStyle = styled.div`
 	margin: 1rem 0;
 	border-radius: 5px;
 	padding: 1rem 1.5rem;
+	animation: showlist 0.5s;
+
+	@keyframes showlist {
+		0% {
+			opacity: 0;
+			transform: translateX(5rem);
+		}
+		100% {
+			opacity: 1;
+			transform: translateX(0rem);
+		}
+	}
 
 	.list-name {
 		border: none;
