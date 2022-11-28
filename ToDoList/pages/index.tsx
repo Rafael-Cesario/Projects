@@ -25,24 +25,19 @@ export default function Home() {
 			</Head>
 
 			<AppStyle>
-				<header>
-					<div className='title'>
-						<h1>To Do List</h1>
-						<p>Seu Aplicativo de tarefas</p>
-					</div>
+				<div className='title'>
+					<h1>To Do List</h1>
+					<p>Seu Aplicativo de tarefas</p>
+				</div>
 
-					<div className='menus'>
-						<button className='menu' onClick={() => setShowNewList(!showNewList)}>
-							Criar Nova Lista
-						</button>
-						<button className='menu'>Minhas Listas</button>
-						<button className='menu'>Página no Github</button>
-					</div>
-				</header>
+				<div className='app-menus'>
+					<button className='menu' onClick={() => setShowNewList(!showNewList)}>
+						Criar Nova Lista
+					</button>
+					<button className='menu'>Página no Github</button>
+				</div>
 
-				<main>
-					<Lists props={{ lists, setLists, showNewList, setShowNewList, message, setMessage }} />
-				</main>
+				<Lists props={{ lists, setLists, showNewList, setShowNewList, message, setMessage }} />
 			</AppStyle>
 
 			{message.show && <Message props={{ message: message.content, color: message.color }} />}

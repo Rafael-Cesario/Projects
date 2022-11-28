@@ -2,7 +2,6 @@ import { global } from '../../styles/appStyle';
 import styled from 'styled-components';
 
 export const NewListStyle = styled.div`
-	width: 22rem;
 	background-color: ${global.blue};
 	margin: 1rem 0;
 	border-radius: 5px;

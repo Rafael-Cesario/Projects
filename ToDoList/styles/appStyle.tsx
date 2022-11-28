@@ -8,6 +8,9 @@ export const global = {
 
 export const AppStyle = styled.div`
 	margin: 4rem 8rem;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 
 	button {
 		outline: none;
@@ -19,46 +22,36 @@ export const AppStyle = styled.div`
 		cursor: pointer;
 	}
 
-	header {
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
+	.title {
+		margin: 2rem 0;
+		text-align: center;
 
-		.title {
-			h1 {
-				margin: 0;
-			}
-
-			p {
-				margin: 0;
-				opacity: 60%;
-			}
+		h1 {
+			margin: 0;
 		}
 
-		.menus {
-			background-color: #202020;
-			padding: 1rem;
-			border-radius: 10px;
-
-			.menu {
-				margin: 0 1rem;
-
-				:nth-child(1) {
-					color: #a93434;
-				}
-
-				:hover {
-					color: #303030;
-				}
-			}
+		p {
+			margin: 0;
+			opacity: 60%;
 		}
 	}
 
-	main {
+	.app-menus {
+		padding: 1rem;
+		border-radius: 10px;
 		margin: 2rem 0;
-		min-height: 70vh;
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
+
+		.menu {
+			margin: 0 1rem;
+			color: #999;
+
+			:nth-child(1) {
+				color: ${global.blue};
+			}
+
+			:hover {
+				color: #dddddd;
+			}
+		}
 	}
 `;

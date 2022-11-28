@@ -4,6 +4,7 @@ import styled from 'styled-components';
 export const ListsStyle = styled.div`
 	display: flex;
 	flex-direction: column;
+	margin: 2rem 0;
 
 	.list {
 		margin: 1rem 0;
