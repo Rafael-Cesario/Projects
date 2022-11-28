@@ -6,7 +6,7 @@ import { INewList } from './newListInterface';
 import { NewListStyle } from './newListStyle';
 
 export const NewList = ({ props }: INewList) => {
-	const { setNewList, lists, setLists, message, setMessage } = props;
+	const { setShowNewList: setNewList, lists, setLists, message, setMessage } = props;
 	const [listName, setListName] = useState('');
 
 	const createNewList = () => {

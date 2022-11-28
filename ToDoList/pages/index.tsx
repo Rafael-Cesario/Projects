@@ -1,11 +1,11 @@
 import Head from 'next/head';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Message } from '../components/message/message';
-import { NewList } from '../components/newList/newList';
 import { AppStyle } from '../styles/appStyle';
 import { MessageType } from '../utils/messageType';
 import { global } from '../styles/appStyle';
 import { useLocalDatabase } from '../utils/useLocalDatabase';
+import { Lists } from '../components/lists/lists';
 
 export default function Home() {
 	const [lists, setLists] = useLocalDatabase([]);
@@ -41,15 +41,7 @@ export default function Home() {
 				</header>
 
 				<main>
-					<div className='lists'>
-						{showNewList && <NewList props={{ newList: showNewList, setNewList: setShowNewList, lists, setLists, message, setMessage }} />}
-
-						{lists.map((list, index) => (
-							<button key={list + index} className='list'>
-								{list}
-							</button>
-						))}
-					</div>
+					<Lists props={{ lists, setLists, showNewList, setShowNewList, message, setMessage }} />
 				</main>
 			</AppStyle>
 
