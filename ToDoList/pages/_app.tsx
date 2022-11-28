@@ -5,15 +5,17 @@ import { enableMapSet } from 'immer';
 enableMapSet();
 
 const GlobalStyle = createGlobalStyle`
-  body {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-	background-color: #141518;
-	color: #dddddd;
-	font-family:"Work Sans" ;
-	font-weight: bold;
+  * {
+	  margin: 0;
+	  padding: 0;
+	  box-sizing: border-box;
+	  font-family:"Work Sans" ;
+	  font-weight: bold;
+  }
 
+  body {
+	background-color: #111;
+	color: #ddd;
   }
 `;
 

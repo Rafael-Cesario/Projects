@@ -5,9 +5,10 @@ import { NewList } from '../components/newList/newList';
 import { AppStyle } from '../styles/appStyle';
 import { MessageType } from '../utils/messageType';
 import { global } from '../styles/appStyle';
+import { useLocalDatabase } from '../utils/useLocalDatabase';
 
 export default function Home() {
-	const [lists, setLists] = useState<string[]>([]);
+	const [lists, setLists] = useLocalDatabase([]);
 	const [showNewList, setShowNewList] = useState<boolean>(false);
 
 	const [message, setMessage] = useState<MessageType>({

@@ -8,6 +8,19 @@ export const MessageStyle = styled.div`
 
 	background-color: ${(props) => props.color};
 	border-radius: 5px;
-	padding: 0.5rem 2rem;
-	box-shadow: 5px 5px 0 #101010;
+	padding: 1rem 2rem;
+	box-shadow: 10px 10px 10px #11111120;
+	animation: showMessage 0.5s;
+
+	@keyframes showMessage {
+		from {
+			transform: translateX(50px);
+			opacity: 0.5;
+		}
+
+		to {
+			transform: translateX(0);
+			opacity: 1;
+		}
+	}
 `;

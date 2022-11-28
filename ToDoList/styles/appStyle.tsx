@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const global = {
-	red: '#a32525',
+	red: '#8f2828',
 	blue: '#245195',
 	fontFamily: 'Work Sans',
 };
