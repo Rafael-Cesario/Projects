@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { ListStyle } from '../styles/listStyle';
 
@@ -28,7 +29,17 @@ export default () => {
 			</Head>
 
 			<ListStyle>
-				<h1>{listName}</h1>
+				<h1 className='title'>{listName}</h1>
+
+				<div className='menu'>
+					<Link className='link' href={'/'}>Voltar</Link>
+					<button className='delete-list'>Excluir Lista</button>
+				</div>
+
+				<div className='add-new-todo'>
+					<input type='text' placeholder='Digite aqui para adicionar uma nova tarefa...' />
+					<button>+</button>
+				</div>
 			</ListStyle>
 		</>
 	);
