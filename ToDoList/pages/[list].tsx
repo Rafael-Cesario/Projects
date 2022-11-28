@@ -2,9 +2,8 @@ import produce from 'immer';
 import Head from 'next/head';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { ListStyle } from '../styles/listStyle';
-import { TTodos } from '../utils/todosType';
 import { useLocalTodos } from '../utils/useLocalTodos';
 
 const capitalize = (string: string) => {
@@ -26,6 +25,7 @@ export default () => {
 	const [todoValue, setTodoValue] = useState('');
 	const [listName, setListName] = useState('');
 	const [todos, setTodos] = useLocalTodos(listName);
+	const [showOptions, setShowOptions] = useState(false);
 
 	useEffect(() => {
 		const query = String(router.query.list);
@@ -71,11 +71,35 @@ export default () => {
 				</div>
 
 				{todos.next.map((todo, index) => {
-					console.log({ todo });
 					return (
-						<button className='todo next' key={index}>
-							{todo}
-						</button>
+						<div key={index} className='todos'>
+							<button
+								onClick={(e: React.SyntheticEvent) => {
+									const button = e.target as HTMLButtonElement;
+									const nextElement = button.nextElementSibling as HTMLDivElement;
+									nextElement.classList.toggle('active');
+								}}
+								className='todo next'
+							>
+								{todo}
+							</button>
+
+							<div className='options'>
+								<div className='status'>
+									<span>Status:</span>
+									<select name='' id='' defaultValue='Próxima'>
+										<option value='Concluida'>Concluida</option>
+										<option value='Fazendo'>Fazendo</option>
+										<option value='Próxima'>Próxima</option>
+									</select>
+								</div>
+
+								<div className='menus'>
+									<button>Editar</button>
+									<button>Excluir</button>
+								</div>
+							</div>
+						</div>
 					);
 				})}
 			</ListStyle>

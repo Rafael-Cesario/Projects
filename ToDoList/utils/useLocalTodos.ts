@@ -10,7 +10,6 @@ export const useLocalTodos = (key: string) => {
 
 	useEffect(() => {
 		const localList = localStorage.getItem(key);
-		console.log({ key });
 		if (!localList) return;
 		setTodos(JSON.parse(localList) as TTodos);
 	}, [key]);
