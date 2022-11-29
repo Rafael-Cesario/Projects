@@ -1,5 +1,4 @@
 import produce from 'immer';
-import { useEffect } from 'react';
 import { TypeStatus } from '../../utils/todosType';
 import { ITodos } from './todosInterface';
 import { TodosStyle } from './todosStyle';
@@ -13,19 +12,26 @@ export const Todos = ({ props }: ITodos) => {
 		nextElement.classList.toggle('active');
 	};
 
-	const changeTodoStatus = (todo: string, newStatus: TypeStatus, e: React.SyntheticEvent) => {
+	const changeTodoStatus = (index: number, newStatus: TypeStatus, e: React.SyntheticEvent) => {
 		const element = e.target as HTMLSelectElement;
 		const button = element.parentElement?.parentElement?.previousSibling as HTMLButtonElement;
 		button.click();
 
 		setTodos(
 			produce(todos, (draft) => {
-				const index = draft[status].indexOf(todo);
-				draft[status].splice(index, 1);
+				const [todo] = draft[status].splice(index, 1);
 				draft[newStatus].push(todo);
 				return draft;
 			})
 		);
+	};
+
+	const deleteTodo = (index: number) => {
+		const state = produce(todos, (draft) => {
+			draft[status].splice(index, 1);
+		});
+
+		setTodos(state);
 	};
 
 	return (
@@ -40,7 +46,7 @@ export const Todos = ({ props }: ITodos) => {
 						<div className='options'>
 							<div className='status'>
 								<span>Status:</span>
-								<select name='' id='' defaultValue={status} onBlur={(e) => changeTodoStatus(todo, e.target.value as TypeStatus, e)}>
+								<select name='' id='' defaultValue={status} onBlur={(e) => changeTodoStatus(index, e.target.value as TypeStatus, e)}>
 									<option value='done'>Concluida</option>
 									<option value='current'>Em progresso</option>
 									<option value='next'>Próxima</option>
@@ -48,8 +54,8 @@ export const Todos = ({ props }: ITodos) => {
 							</div>
 
 							<div className='menus'>
-								<button>Editar</button>
-								<button>Excluir</button>
+								<button onClick={() => console.log('create a funciton to edit todo')}>Editar</button>
+								<button onClick={() => deleteTodo(index)}>Excluir</button>
 							</div>
 						</div>
 					</TodosStyle>

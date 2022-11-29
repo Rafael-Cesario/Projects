@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import { TTodos } from './todosType';
 
+let isLoading = true;
+
 export const useLocalTodos = (key: string) => {
 	const [todos, setTodos] = useState<TTodos>({
 		next: [],
@@ -12,12 +14,11 @@ export const useLocalTodos = (key: string) => {
 		const localList = localStorage.getItem(key);
 		if (!localList) return;
 		setTodos(JSON.parse(localList) as TTodos);
+		isLoading = false;
 	}, [key]);
 
 	useEffect(() => {
-		const hasValue = Object.values(todos.current).length > 0 || Object.values(todos.done).length > 0 || Object.values(todos.next).length > 0;
-
-		if (hasValue) {
+		if (!isLoading) {
 			const todosJson = JSON.stringify(todos);
 			localStorage.setItem(key, todosJson);
 		}

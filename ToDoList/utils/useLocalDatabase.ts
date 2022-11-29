@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
 
+let isLoading = true;
+
 export const useLocalLists = (initialState: string[], key: string) => {
 	const [lists, setLists] = useState(initialState);
 
@@ -7,10 +9,11 @@ export const useLocalLists = (initialState: string[], key: string) => {
 		const localList = localStorage.getItem(key);
 		if (!localList) return;
 		setLists(JSON.parse(localList) as string[]);
+		isLoading = false;
 	}, []);
 
 	useEffect(() => {
-		if (lists.length > 0) {
+		if (!isLoading) {
 			const listsJson = JSON.stringify(lists);
 			localStorage.setItem(key, listsJson);
 		}

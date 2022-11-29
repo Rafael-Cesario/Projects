@@ -14,8 +14,8 @@ export const TodosStyle = styled.div`
 		pointer-events: none;
 		opacity: 0;
 		transition: 0.3s;
-		/* position: relative; */
-		/* z-index: -1; */
+		position: relative;
+		z-index: -1;
 
 		.status {
 			font-size: 1rem;
