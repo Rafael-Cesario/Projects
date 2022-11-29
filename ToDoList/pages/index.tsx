@@ -21,6 +21,7 @@ export default function Home() {
 		<>
 			<Head>
 				<link href='https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;700&display=swap' rel='stylesheet' />
+				<link rel='shortcut icon' href='/favicon.ico' type='image/x-icon' />
 				<title>To Do List</title>
 			</Head>
 
