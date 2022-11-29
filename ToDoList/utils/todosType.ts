@@ -3,3 +3,5 @@ export type TTodos = {
 	current: string[];
 	done: string[];
 };
+
+export type TypeStatus = 'done' | 'current' | 'next';

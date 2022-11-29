@@ -33,6 +33,7 @@ export default () => {
 		setListName(listName);
 	}, [router]);
 
+
 	const addNewTodo = () => {
 		const newTodos = produce(todos, (draft) => {
 			draft.next.push(todoValue);
@@ -70,9 +71,9 @@ export default () => {
 					<button onClick={() => addNewTodo()}>+</button>
 				</div>
 
-				<Todos props={{ todos, status: 'done' }} />
-				<Todos props={{ todos, status: 'current' }} />
-				<Todos props={{ todos, status: 'next' }} />
+				<Todos props={{ todos, setTodos, status: 'done' }} />
+				<Todos props={{ todos, setTodos, status: 'current' }} />
+				<Todos props={{ todos, setTodos, status: 'next' }} />
 			</ListStyle>
 		</>
 	);
