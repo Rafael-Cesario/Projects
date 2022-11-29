@@ -1,10 +1,12 @@
 import produce from 'immer';
+import { useState } from 'react';
 import { TypeStatus } from '../../utils/todosType';
 import { ITodos } from './todosInterface';
 import { TodosStyle } from './todosStyle';
 
 export const Todos = ({ props }: ITodos) => {
 	const { todos, setTodos, status } = props;
+	const [inputValue, setInputValue] = useState('');
 
 	const showOptions = (e: React.SyntheticEvent) => {
 		const button = e.target as HTMLButtonElement;
@@ -34,14 +36,29 @@ export const Todos = ({ props }: ITodos) => {
 		setTodos(state);
 	};
 
+	const editTodo = (index: number, todo: string) => {
+		const state = produce(todos, (draft) => {
+			const newTodo = inputValue || todo;
+			draft[status].splice(index, 1, newTodo);
+		});
+
+		setTodos(state);
+	};
+
 	return (
 		<>
 			{todos[status].map((todo, index) => {
 				return (
 					<TodosStyle key={index}>
-						<button onClick={(e) => showOptions(e)} className={`todo ${status}`}>
-							{todo}
-						</button>
+						<input
+							type='text'
+							onClick={(e) => showOptions(e)}
+							className={`todo ${status}`}
+							placeholder={todo}
+							onFocus={(e) => (e.target.value = inputValue || todo)}
+							onChange={(e) => setInputValue(e.target.value)}
+							onBlur={(e) => editTodo(index, todo)}
+						/>
 
 						<div className='options'>
 							<div className='status'>
@@ -54,7 +71,6 @@ export const Todos = ({ props }: ITodos) => {
 							</div>
 
 							<div className='menus'>
-								<button onClick={() => console.log('create a funciton to edit todo')}>Editar</button>
 								<button onClick={() => deleteTodo(index)}>Excluir</button>
 							</div>
 						</div>

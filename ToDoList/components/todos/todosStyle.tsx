@@ -84,14 +84,17 @@ export const TodosStyle = styled.div`
 		}
 	}
 
+	.next::placeholder,
 	.next {
 		color: gray;
 	}
 
+	.current::placeholder,
 	.current {
 		color: #1f86c2;
 	}
 
+	.done::placeholder,
 	.done {
 		color: #21aa21;
 	}
