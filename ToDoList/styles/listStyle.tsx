@@ -11,8 +11,24 @@ export const ListStyle = styled.div`
 	align-items: center;
 	margin: 5rem;
 
+	input {
+		padding: 10px 1rem;
+		outline: none;
+		border: none;
+		color: white;
+	}
+
 	.title {
 		margin: 2rem 0;
+		width: 40vw;
+		border-radius: 5px;
+		background-color: transparent;
+		font-size: 2rem;
+		text-align: center;
+
+		::placeholder {
+			color: #ddd;
+		}
 	}
 
 	.menu {
@@ -55,11 +71,7 @@ export const ListStyle = styled.div`
 
 		input {
 			width: 90%;
-			padding: 10px 1rem;
 			background-color: #222;
-			outline: none;
-			border: none;
-			color: white;
 		}
 
 		button {
@@ -78,5 +90,4 @@ export const ListStyle = styled.div`
 			}
 		}
 	}
-
 `;

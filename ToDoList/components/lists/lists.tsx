@@ -11,7 +11,7 @@ export const Lists = ({ props }: ILists) => {
 			{showNewList && <NewList props={{ showNewList, setShowNewList, lists, setLists, message, setMessage }} />}
 
 			{lists.map((list, index) => {
-				const listName = list.replace(' ', '-').toLowerCase();
+				const listName = list.replace(/ /g, '-').toLowerCase();
 
 				return (
 					<Link className='list' key={list + index} href={`/${listName}`}>

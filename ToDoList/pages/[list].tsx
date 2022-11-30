@@ -5,6 +5,7 @@ import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import { Todos } from '../components/todos/todos';
 import { ListStyle } from '../styles/listStyle';
+import { sendMessage } from '../utils/sendMessage';
 import { useLocalTodos } from '../utils/useLocalTodos';
 
 const capitalize = (string: string) => {
@@ -25,11 +26,12 @@ export default () => {
 
 	const [todoValue, setTodoValue] = useState('');
 	const [listName, setListName] = useState('');
-	const [todos, setTodos] = useLocalTodos(listName);
+	const [listNameInput, setListNameInput] = useState('');
+	const [todos, setTodos] = useLocalTodos(listName.toLowerCase());
 
 	useEffect(() => {
 		const query = String(router.query.list);
-		const listName = capitalize(query.replace('-', ' '));
+		const listName = capitalize(query.replace(/-/g, ' '));
 		setListName(listName);
 	}, [router]);
 
@@ -55,6 +57,28 @@ export default () => {
 		router.push('/');
 	};
 
+	const changeListName = () => {
+		if (!listNameInput) return;
+		if (listNameInput.includes('-')) return;
+
+		const storage = localStorage.getItem('lists') as string;
+		const lists = JSON.parse(storage) as string[];
+
+		let listIndex = 0;
+		for (let list of lists) {
+			if (listName.toLowerCase() === list.toLowerCase()) break;
+			listIndex++;
+		}
+
+		lists[listIndex] = listNameInput;
+
+		localStorage.setItem('lists', JSON.stringify(lists));
+		localStorage.setItem(listNameInput.toLowerCase(), JSON.stringify(todos));
+		localStorage.removeItem(listName.toLowerCase());
+
+		router.push(`/${listNameInput}`);
+	};
+
 	return (
 		<>
 			<Head>
@@ -63,7 +87,14 @@ export default () => {
 			</Head>
 
 			<ListStyle>
-				<h1 className='title'>{listName}</h1>
+				<input
+					className='title'
+					type='text'
+					placeholder={listName}
+					onChange={(e) => setListNameInput(e.target.value)}
+					onBlur={() => changeListName()}
+					onFocus={(e) => (e.target.value = listName)}
+				/>
 
 				<div className='menu'>
 					<Link className='link' href={'/'}>
