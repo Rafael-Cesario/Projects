@@ -14,7 +14,7 @@ export const NewList = ({ props }: INewList) => {
 		if (lists.includes(listName)) return sendMessage(message, setMessage, 'Uma lista com este mesmo nome já existe.', global.red);
 
 		const newLists = produce(lists, (draft) => {
-			draft.push(listName);
+			draft.push(listName.toLowerCase());
 		});
 
 		setNewList(false);

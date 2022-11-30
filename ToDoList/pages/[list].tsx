@@ -33,7 +33,6 @@ export default () => {
 		setListName(listName);
 	}, [router]);
 
-
 	const addNewTodo = () => {
 		const newTodos = produce(todos, (draft) => {
 			draft.next.push(todoValue);
@@ -41,6 +40,19 @@ export default () => {
 
 		setTodos(newTodos);
 		setTodoValue('');
+	};
+
+	const deleteList = () => {
+		const storage = localStorage.getItem('lists') as string;
+		const lists = JSON.parse(storage) as string[];
+		const index = lists?.indexOf(listName.toLowerCase());
+
+		lists.splice(index, 1);
+
+		localStorage.setItem('lists', JSON.stringify(lists));
+		localStorage.removeItem(listName);
+
+		router.push('/');
 	};
 
 	return (
@@ -57,7 +69,9 @@ export default () => {
 					<Link className='link' href={'/'}>
 						Voltar
 					</Link>
-					<button className='delete-list'>Excluir Lista</button>
+					<button className='delete-list' onClick={() => deleteList()}>
+						Excluir Lista
+					</button>
 				</div>
 
 				<div className='add-new-todo'>

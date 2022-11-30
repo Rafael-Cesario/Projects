@@ -1,8 +1,6 @@
 import { useEffect, useState } from 'react';
 import { TTodos } from './todosType';
 
-let isLoading = true;
-
 export const useLocalTodos = (key: string) => {
 	const [todos, setTodos] = useState<TTodos>({
 		next: [],
@@ -10,11 +8,13 @@ export const useLocalTodos = (key: string) => {
 		done: [],
 	});
 
+	const [isLoading, setIsloading] = useState(true);
+
 	useEffect(() => {
 		const localList = localStorage.getItem(key);
+		setIsloading(false);
 		if (!localList) return;
 		setTodos(JSON.parse(localList) as TTodos);
-		isLoading = false;
 	}, [key]);
 
 	useEffect(() => {

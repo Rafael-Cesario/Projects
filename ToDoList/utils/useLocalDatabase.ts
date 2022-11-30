@@ -1,15 +1,14 @@
 import { useEffect, useState } from 'react';
 
-let isLoading = true;
-
 export const useLocalLists = (initialState: string[], key: string) => {
 	const [lists, setLists] = useState(initialState);
+	const [isLoading, setIsLoading] = useState(true);
 
 	useEffect(() => {
 		const localList = localStorage.getItem(key);
+		setIsLoading(false);
 		if (!localList) return;
 		setLists(JSON.parse(localList) as string[]);
-		isLoading = false;
 	}, []);
 
 	useEffect(() => {
