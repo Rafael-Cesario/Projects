@@ -8,7 +8,7 @@ import { MessageType } from '../utils/messageType';
 import { Message } from '../components/message/message';
 import { NewList } from '../components/pages/index/components/newList';
 
-export default function Home() {
+const Home = () => {
 	const [lists, setLists] = useLocalLists([], 'lists');
 	const [showNewList, setShowNewList] = useState<boolean>(false);
 
@@ -47,4 +47,6 @@ export default function Home() {
 			</AppStyle>
 		</>
 	);
-}
+};
+
+export default Home;
