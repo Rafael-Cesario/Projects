@@ -2,8 +2,8 @@ import Head from 'next/head';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
-import { NewTodo } from '../components/newTodo/newTodo';
-import { Todos } from '../components/todos/todos';
+import { NewTodo } from '../components/pages/todo/components/newTodo';
+import { Todos } from '../components/pages/todo/components/todos';
 import { ListStyle } from '../styles/listStyle';
 import { useLocalTodos } from '../utils/useLocalTodos';
 

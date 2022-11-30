@@ -1,12 +1,12 @@
 import produce from 'immer';
 import { useEffect, useState } from 'react';
-import { global } from '../../styles/appStyle';
-import { sendMessage } from '../../utils/sendMessage';
-import { INewList } from './newListInterface';
-import { NewListStyle } from './newListStyle';
+import { global } from '../../../../styles/appStyle';
+import { sendMessage } from '../../../../utils/sendMessage';
+import { INewList } from '../interface/newListInterface';
+import { NewListStyle } from '../style/newListStyle';
 
 export const NewList = ({ props }: INewList) => {
-	const { setShowNewList: setNewList, lists, setLists, message, setMessage } = props;
+	const { setShowNewList, lists, setLists, message, setMessage } = props;
 	const [listName, setListName] = useState('');
 
 	const createNewList = () => {
@@ -17,7 +17,7 @@ export const NewList = ({ props }: INewList) => {
 			draft.push(listName.toLowerCase());
 		});
 
-		setNewList(false);
+		setShowNewList(false);
 		setLists(newLists);
 		sendMessage(message, setMessage, 'Uma nova lista foi criada.', 'forestgreen');
 		setListName('');
@@ -45,7 +45,7 @@ export const NewList = ({ props }: INewList) => {
 				<button onClick={() => createNewList()} className='menu'>
 					Criar Lista
 				</button>
-				<button onClick={() => setNewList(false)} className='menu'>
+				<button onClick={() => setShowNewList(false)} className='menu'>
 					Cancelar
 				</button>
 			</div>

@@ -1,4 +1,4 @@
-import { global } from '../../styles/appStyle';
+import { global } from '../../../../styles/appStyle';
 import styled from 'styled-components';
 
 export const SNewTodo = styled.div`

@@ -1,4 +1,4 @@
-import { global } from '../../styles/appStyle';
+import { global } from '../../../../styles/appStyle';
 import styled from 'styled-components';
 
 export const NewListStyle = styled.div`
@@ -7,7 +7,8 @@ export const NewListStyle = styled.div`
 	border-radius: 5px;
 	padding: 1rem 1.5rem;
 	animation: showlist 0.5s;
-	width: 100%;
+	width: 40vw;
+	max-width: 400px;
 
 	@keyframes showlist {
 		0% {

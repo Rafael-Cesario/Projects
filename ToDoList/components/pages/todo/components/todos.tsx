@@ -1,8 +1,8 @@
 import produce from 'immer';
 import { useState } from 'react';
-import { TypeStatus } from '../../utils/todosType';
-import { ITodos } from './todosInterface';
-import { TodosStyle } from './todosStyle';
+import { TypeStatus } from '../../../../utils/todosType';
+import { ITodos } from '../interface/todosInterface';
+import { TodosStyle } from '../style/todosStyle';
 
 export const Todos = ({ props }: ITodos) => {
 	const { todos, setTodos, status } = props;

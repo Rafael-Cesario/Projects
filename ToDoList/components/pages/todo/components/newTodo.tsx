@@ -1,7 +1,7 @@
 import produce from 'immer';
 import { useState } from 'react';
-import { INewTodo } from './interfaceNewTodo';
-import { SNewTodo } from './styleNewTodo';
+import { INewTodo } from '../interface/interfaceNewTodo';
+import { SNewTodo } from '../style/styleNewTodo';
 
 export const NewTodo = ({ props }: INewTodo) => {
 	const { todos, setTodos } = props;
