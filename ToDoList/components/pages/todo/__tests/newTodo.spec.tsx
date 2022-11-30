@@ -30,7 +30,7 @@ describe('Component new todo', () => {
 
 	it('Add a new todo', () => {
 		fireEvent.change(todoInput, { target: { value: 'here is my new todo test.' } });
-		btnAddNewTodo.click();
+		fireEvent.click(btnAddNewTodo);
 
 		expect(todos.next.length).toBe(1);
 	});
