@@ -7,6 +7,7 @@ export const NewListStyle = styled.div`
 	border-radius: 5px;
 	padding: 1rem 1.5rem;
 	animation: showlist 0.5s;
+	width: 100%;
 
 	@keyframes showlist {
 		0% {

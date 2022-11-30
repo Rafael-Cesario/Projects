@@ -64,23 +64,4 @@ export const AppStyle = styled.div`
 			opacity: 60%;
 		}
 	}
-
-	.app-menus {
-		padding: 1rem;
-		border-radius: 10px;
-		margin: 2rem 0;
-
-		.menu {
-			margin: 0 1rem;
-			color: #999;
-
-			:nth-child(1) {
-				color: ${global.blue};
-			}
-
-			:hover {
-				color: #dddddd;
-			}
-		}
-	}
 `;

@@ -8,15 +8,6 @@ import { useLocalLists } from '../utils/useLocalDatabase';
 import { Lists } from '../components/lists/lists';
 
 export default function Home() {
-	const [lists, setLists] = useLocalLists([], 'lists');
-	const [showNewList, setShowNewList] = useState<boolean>(false);
-
-	const [message, setMessage] = useState<MessageType>({
-		show: false,
-		color: global.red,
-		content: 'Uma lista com este nome já existe',
-	});
-
 	return (
 		<>
 			<Head>
@@ -31,17 +22,8 @@ export default function Home() {
 					<p>Seu Aplicativo de tarefas</p>
 				</div>
 
-				<div className='app-menus'>
-					<button className='menu' onClick={() => setShowNewList(!showNewList)}>
-						Criar Nova Lista
-					</button>
-					<button className='menu'>Página no Github</button>
-				</div>
-
-				<Lists props={{ lists, setLists, showNewList, setShowNewList, message, setMessage }} />
+				<Lists />
 			</AppStyle>
-
-			{message.show && <Message props={{ message: message.content, color: message.color }} />}
 		</>
 	);
 }
