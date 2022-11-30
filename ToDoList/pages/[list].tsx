@@ -1,14 +1,13 @@
-import produce from 'immer';
 import Head from 'next/head';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
+import { NewTodo } from '../components/newTodo/newTodo';
 import { Todos } from '../components/todos/todos';
 import { ListStyle } from '../styles/listStyle';
-import { sendMessage } from '../utils/sendMessage';
 import { useLocalTodos } from '../utils/useLocalTodos';
 
-const capitalize = (string: string) => {
+const capitalizeFirstLetters = (string: string) => {
 	const split = string.split(' ');
 
 	for (let word in split) {
@@ -24,25 +23,15 @@ const capitalize = (string: string) => {
 export default () => {
 	const router = useRouter();
 
-	const [todoValue, setTodoValue] = useState('');
 	const [listName, setListName] = useState('');
 	const [listNameInput, setListNameInput] = useState('');
 	const [todos, setTodos] = useLocalTodos(listName.toLowerCase());
 
 	useEffect(() => {
 		const query = String(router.query.list);
-		const listName = capitalize(query.replace(/-/g, ' '));
+		const listName = capitalizeFirstLetters(query.replace(/-/g, ' '));
 		setListName(listName);
 	}, [router]);
-
-	const addNewTodo = () => {
-		const newTodos = produce(todos, (draft) => {
-			draft.next.push(todoValue);
-		});
-
-		setTodos(newTodos);
-		setTodoValue('');
-	};
 
 	const deleteList = () => {
 		const storage = localStorage.getItem('lists') as string;
@@ -105,16 +94,7 @@ export default () => {
 					</button>
 				</div>
 
-				<div className='add-new-todo'>
-					<input
-						type='text'
-						placeholder='Digite aqui para adicionar uma nova tarefa...'
-						value={todoValue}
-						onChange={(e) => setTodoValue(e.target.value)}
-						onKeyDown={(e) => e.key === 'Enter' && addNewTodo()}
-					/>
-					<button onClick={() => addNewTodo()}>+</button>
-				</div>
+				<NewTodo props={{ todos, setTodos }} />
 
 				<Todos props={{ todos, setTodos, status: 'done' }} />
 				<Todos props={{ todos, setTodos, status: 'current' }} />
