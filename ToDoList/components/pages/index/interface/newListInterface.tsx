@@ -1,4 +1,4 @@
-import { MessageType } from '../../../../utils/messageType';
+import { MessageType } from '../../../message/messageType';
 
 export interface INewList {
 	props: {

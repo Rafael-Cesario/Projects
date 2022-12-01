@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { TTodos } from './todosType';
+import { TTodos } from '../components/pages/todo/interface/todosType';
 
 export const useLocalTodos = (key: string) => {
 	const [todos, setTodos] = useState<TTodos>({

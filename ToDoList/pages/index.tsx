@@ -4,7 +4,7 @@ import { AppStyle } from '../styles/appStyle';
 import { Lists } from '../components/pages/index/components/lists';
 import { useLocalLists } from '../utils/useLocalDatabase';
 import { useState } from 'react';
-import { MessageType } from '../utils/messageType';
+import { MessageType } from '../components/message/messageType';
 import { Message } from '../components/message/message';
 import { NewList } from '../components/pages/index/components/newList';
 

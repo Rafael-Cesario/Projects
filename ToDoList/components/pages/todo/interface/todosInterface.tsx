@@ -1,4 +1,4 @@
-import { TTodos } from '../../../../utils/todosType';
+import { TTodos } from './todosType';
 
 export interface ITodos {
 	props: {

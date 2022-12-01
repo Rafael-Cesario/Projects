@@ -1,5 +1,5 @@
 import produce from 'immer';
-import { MessageType } from './messageType';
+import { MessageType } from '../components/message/messageType';
 
 export const sendMessage = (message: MessageType, setMessage: (OBJ: MessageType) => void, content: string, color: string) => {
 	const showMessage = produce(message, (draft) => {

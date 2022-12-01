@@ -1,6 +1,6 @@
 import produce from 'immer';
 import { useState } from 'react';
-import { TypeStatus } from '../../../../utils/todosType';
+import { TypeStatus } from '../interface/todosType';
 import { ITodos } from '../interface/todosInterface';
 import { TodosStyle } from '../style/todosStyle';
 

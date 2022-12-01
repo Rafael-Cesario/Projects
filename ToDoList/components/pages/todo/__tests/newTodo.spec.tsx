@@ -1,6 +1,6 @@
 import { fireEvent, render } from '@testing-library/react';
 import { beforeEach, describe, expect, it } from 'vitest';
-import { TTodos } from '../../../../utils/todosType';
+import { TTodos } from '../interface/todosType';
 import { NewTodo } from '../components/newTodo';
 
 let todos: TTodos = {

@@ -10,8 +10,8 @@ export const NewList = ({ props }: INewList) => {
 	const [listName, setListName] = useState('');
 
 	const createNewList = () => {
-		if (!listName) return sendMessage(message, setMessage, 'A lista precisa de uma nome.', global.red);
-		if (lists.includes(listName)) return sendMessage(message, setMessage, 'Uma lista com este mesmo nome já existe.', global.red);
+		if (!listName) return sendMessage(message, setMessage, 'A lista precisa de um nome.', global.red);
+		if (lists.includes(listName.toLowerCase())) return sendMessage(message, setMessage, 'Uma lista com este mesmo nome já existe.', global.red);
 
 		const newLists = produce(lists, (draft) => {
 			draft.push(listName.toLowerCase());
