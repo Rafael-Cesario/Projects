@@ -12,4 +12,4 @@ A simple Calculator App.
 ### [To Do List](./ToDoList)
 Create Lists and add yours tasks.
     
-    NextJS, Typescript, Styled-Components, Eslint
+    NextJS, Typescript, Styled-Components, Eslint, vitest, react-testing-library
