@@ -7,9 +7,9 @@
 ### [Calculator](./Calculator)
 A simple Calculator App. 
     
-    React, Typescript, Styled-Components
+    FrontEnd: React, Typescript, Styled-Components
     
 ### [To Do List](./ToDoList)
 Create Lists and add yours tasks.
     
-    NextJS, Typescript, Styled-Components, Eslint, vitest, react-testing-library
+    FrontEnd: NextJS, Typescript, Styled-Components, Eslint, vitest, react-testing-library
