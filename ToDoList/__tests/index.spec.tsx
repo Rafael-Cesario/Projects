@@ -1,44 +1,49 @@
 import '@testing-library/jest-dom';
 import { describe, it, expect } from 'vitest';
-import { fireEvent, screen, render, getByRole, queryByRole } from '@testing-library/react';
+import { fireEvent, screen, render } from '@testing-library/react';
 import Home from '../pages';
-import { act } from 'react-dom/test-utils';
 
 describe('Home Page', () => {
+	const createNewList = (listName: string | undefined) => {
+		const showInput = screen.getByText('Criar Nova Lista');
+		fireEvent.click(showInput);
+
+		const input = screen.queryByPlaceholderText('Nome da Lista') as HTMLInputElement;
+		const addNewTodo = screen.getByText('Criar Lista') as HTMLButtonElement;
+
+		fireEvent.change(input, { target: { value: listName } });
+		fireEvent.click(addNewTodo);
+	};
+
 	it('Show the input add list', async () => {
-		const { queryByPlaceholderText, getByText } = render(<Home />);
+		render(<Home />);
 
-		const showInput = getByText('Criar Nova Lista');
-		let input = queryByPlaceholderText('Nome da Lista') as HTMLInputElement;
-
+		let input = screen.queryByPlaceholderText('Nome da Lista') as HTMLInputElement;
 		expect(input).toBeNull();
 
-		act(() => {
-			fireEvent.click(showInput);
-		});
+		const showInput = screen.getByText('Criar Nova Lista');
+		fireEvent.click(showInput);
 
-		input = queryByPlaceholderText('Nome da Lista') as HTMLInputElement;
+		input = screen.queryByPlaceholderText('Nome da Lista') as HTMLInputElement;
 		expect(input).not.toBeNull();
 	});
 
 	it('Creates a new lists and show in the page', () => {
 		render(<Home />);
+		createNewList('New Todo');
+		expect(screen.getByText('New Todo'.toLowerCase())).toHaveTextContent('New Todo'.toLowerCase());
+	});
 
-		const showInput = screen.getByText('Criar Nova Lista') as HTMLButtonElement;
+	it(`Can't create empty lists`, () => {
+		render(<Home />);
+		createNewList(undefined);
+		expect(screen.getByText('A lista precisa de um nome.')).toBeInTheDocument();
+	});
 
-		act(() => {
-			fireEvent.click(showInput);
-		});
-
-		const text = 'New todo';
-		const input = screen.getByPlaceholderText('Nome da Lista') as HTMLInputElement;
-		const addNewTodo = screen.getByText('Criar Lista') as HTMLButtonElement;
-
-		act(() => {
-			fireEvent.change(input, { target: { value: text } });
-			fireEvent.click(addNewTodo);
-		});
-
-		expect(screen.getByText(text.toLowerCase())).toHaveTextContent(text.toLowerCase());
+	it(`Can't create duplicated lists`, () => {
+		render(<Home />);
+		createNewList('List01');
+		createNewList('List01');
+		expect(screen.getByText('Uma lista com este mesmo nome já existe.')).toBeInTheDocument();
 	});
 });
