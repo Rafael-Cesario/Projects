@@ -6,19 +6,7 @@ import { NewTodo } from '../components/pages/todo/components/newTodo';
 import { Todos } from '../components/pages/todo/components/todos';
 import { ListStyle } from '../styles/listStyle';
 import { useLocalTodos } from '../utils/useLocalTodos';
-
-const capitalizeFirstLetters = (string: string) => {
-	const split = string.split(' ');
-
-	for (let word in split) {
-		const firstLetter = split[word].slice(0, 1).toUpperCase();
-		const restLetters = split[word].slice(1);
-
-		split[word] = firstLetter + restLetters;
-	}
-
-	return split.join(' ');
-};
+import { capitalizeFirstLetters } from '../utils/capitalizeFirstLetters';
 
 export default () => {
 	const router = useRouter();
