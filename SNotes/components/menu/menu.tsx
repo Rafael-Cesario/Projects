@@ -1,6 +1,7 @@
 import { StyledMenu } from './styledMenu';
 import { InterfaceMenu } from './interfaceMenu';
 import { theme } from '../../styles/styledTheme';
+import { TypeKey, keys } from '../../utils/shortcutes';
 
 // Icons
 import { TiArrowUpThick, TiArrowDownThick } from 'react-icons/Ti';
@@ -9,18 +10,17 @@ import { useCallback, useEffect } from 'react';
 
 export const Menu = ({ props }: InterfaceMenu) => {
 	const { themeName } = props;
+
 	const formatText = (format: string) => document.execCommand(format);
 
 	const execShortcut = useCallback((e: KeyboardEvent) => {
 		const isAltPressed = e.altKey;
-		const key = e.key;
+		const key = e.key as TypeKey;
 
 		if (!isAltPressed) return;
-		e.preventDefault();
 
-		if (key == 'q') formatText('bold');
-		if (key == 'w') formatText('italic');
-		if (key == 'e') formatText('underline');
+		e.preventDefault();
+		formatText(keys[key]);
 	}, []);
 
 	useEffect(() => {
