@@ -3,6 +3,7 @@ import { InterfaceTheme } from '../../styles/styledTheme';
 
 export const StyledMenu = styled.div<InterfaceTheme>`
 	display: flex;
+	justify-content: center;
 	flex-direction: row;
 	flex-wrap: wrap;
 
@@ -10,7 +11,7 @@ export const StyledMenu = styled.div<InterfaceTheme>`
 	.font-size,
 	.align,
 	.colors {
-		margin: 5rem 0.5rem 2rem;
+		margin: 3.5rem 0.5rem;
 		padding: 0.3rem 0;
 		border-radius: 5px;
 		background-color: ${(props) => props.theme.secondary};
