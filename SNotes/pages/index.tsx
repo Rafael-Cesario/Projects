@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Menu } from '../components/menu/menu';
 import { StyledGlobal } from '../styles/styledGlobal';
 import { theme, TypeThemeName } from '../styles/styledTheme';
 
@@ -8,7 +9,9 @@ const Home = () => {
 	return (
 		<>
 			<StyledGlobal theme={theme[themeName]} />
-			<h1>Hello World</h1>
+			<h1 className='title'>SNotes</h1>
+
+			<Menu props={{ themeName }} />
 		</>
 	);
 };
