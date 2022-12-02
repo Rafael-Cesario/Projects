@@ -6,12 +6,12 @@ import { TypeKey, keys } from '../../utils/shortcutes';
 // Icons
 import { TiArrowUpThick, TiArrowDownThick } from 'react-icons/Ti';
 import { TbAlignLeft, TbAlignCenter, TbAlignRight } from 'react-icons/tb';
-import { useCallback, useEffect } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 export const Menu = ({ props }: InterfaceMenu) => {
 	const { themeName } = props;
 
-	const formatText = (format: string) => document.execCommand(format);
+	const formatText = (format: string, parameter?: string) => document.execCommand(format, false, parameter);
 
 	const execShortcut = useCallback((e: KeyboardEvent) => {
 		const isAltPressed = e.altKey;
@@ -22,6 +22,18 @@ export const Menu = ({ props }: InterfaceMenu) => {
 		e.preventDefault();
 		formatText(keys[key]);
 	}, []);
+
+	const [size, setSize] = useState(3);
+
+	const changeFontSize = (operation: string) => {
+		let newSize = size;
+
+		if (operation === 'increase' && size < 7) newSize = size + 1;
+		if (operation === 'decrease' && size > 1) newSize = size - 1;
+
+		setSize(newSize);
+		formatText('fontSize', newSize.toString());
+	};
 
 	useEffect(() => {
 		window.addEventListener('keydown', execShortcut);
@@ -41,32 +53,32 @@ export const Menu = ({ props }: InterfaceMenu) => {
 				</div>
 
 				<div className='font-size'>
-					<button>
+					<button onClick={() => changeFontSize('increase')}>
 						<TiArrowUpThick />
 					</button>
-					<button>1</button>
-					<button>
+					<button>{size}</button>
+					<button onClick={() => changeFontSize('decrease')}>
 						<TiArrowDownThick />
 					</button>
 				</div>
 
 				<div className='align'>
-					<button>
+					<button onClick={() => formatText('justifyLeft')}>
 						<TbAlignLeft />
 					</button>
-					<button>
+					<button onClick={() => formatText('justifyCenter')}>
 						<TbAlignCenter />
 					</button>
-					<button>
+					<button onClick={() => formatText('justifyRight')}>
 						<TbAlignRight />
 					</button>
 				</div>
 
 				<div className='colors'>
-					<input type={'color'} defaultValue='#dddddd' />
-					<input type={'color'} defaultValue='#555555' />
-					<input type={'color'} defaultValue='#187cce' />
-					<input type={'color'} defaultValue='#c22f2f' />
+					<input type={'color'} defaultValue='#dddddd' onBlur={(e) => formatText('foreColor', e.target.value)} />
+					<input type={'color'} defaultValue='#555555' onBlur={(e) => formatText('foreColor', e.target.value)} />
+					<input type={'color'} defaultValue='#187cce' onBlur={(e) => formatText('foreColor', e.target.value)} />
+					<input type={'color'} defaultValue='#c22f2f' onBlur={(e) => formatText('foreColor', e.target.value)} />
 				</div>
 			</StyledMenu>
 		</>
