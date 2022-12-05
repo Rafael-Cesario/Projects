@@ -14,4 +14,13 @@ export class UserRepository implements IUserRepository {
 			return error.message;
 		}
 	}
+
+	async findByEmail(email: string) {
+		try {
+			const user = await this.userModel.findOne({ email });
+			return user;
+		} catch (error: any) {
+			return error.message;
+		}
+	}
 }

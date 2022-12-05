@@ -1,8 +1,11 @@
+import { IUserRepository } from '../interface/userRepositoryInterface';
 import { IUser } from '../interface/userSchemaInterface';
 import { IUserValidation } from '../interface/userValidationInterface';
-import { UserModel } from '../schema/userSchema';
+import { UserRepository } from '../repository/userRepository';
 
 export class UserValidation implements IUserValidation {
+	constructor(private userRepository: IUserRepository = new UserRepository()) {}
+
 	data(userData: IUser) {
 		let error = [];
 		let message = '';
@@ -18,8 +21,7 @@ export class UserValidation implements IUserValidation {
 	}
 
 	async duplicate(email: string) {
-		const user = await UserModel.findOne({ email });
-		if (user) return true;
-		return false;
+		const user = await this.userRepository.findByEmail(email);
+		return user ? true : false;
 	}
 }
