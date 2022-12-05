@@ -84,4 +84,23 @@ describe('User route', () => {
 			expect(body.error).toBe('A update OBJ is required');
 		});
 	});
+
+	describe('Delete route', () => {
+		it('Delete a user', async () => {
+			const email = user.email;
+			const { body, status } = await request(app).delete('/user').send({ email });
+
+			expect(status).toBe(200);
+			expect(body).toHaveProperty('message');
+			expect(body.message).toBe(`User ${email} was deleted`);
+		});
+
+		it('Returns a error, email is required', async () => {
+			const { body, status } = await request(app).delete('/user').send();
+
+			expect(status).toBe(400);
+			expect(body).toHaveProperty('error');
+			expect(body.error).toBe('Email is required');
+		});
+	});
 });
