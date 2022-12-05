@@ -42,4 +42,12 @@ describe('User route', () => {
 		expect(body).toEqual({ error: 'password, name is required' });
 		expect(status).toBe(400);
 	});
+
+	it('Return all users', async () => {
+		const { body, status } = await request(app).get('/user');
+
+		expect(status).toBe(200);
+		expect(body).toHaveProperty('users');
+		expect(body.users.length).toBe(1);
+	});
 });
