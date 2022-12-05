@@ -2,10 +2,15 @@ import { Request, Response } from 'express';
 import { IUserRepository } from '../interface/userRepositoryInterface';
 import { IUser } from '../interface/userSchemaInterface';
 import { IUserValidation } from '../interface/userValidationInterface';
+import { UserRepository } from '../repository/userRepository';
 import { UserModel } from '../schema/userSchema';
+import { UserValidation } from '../validation/userValidation';
 
 export class UserController {
-	constructor(private userValidation: IUserValidation, private userRepository: IUserRepository) {}
+	constructor(
+		private userValidation: IUserValidation = new UserValidation(),
+		private userRepository: IUserRepository = new UserRepository()
+	) {}
 
 	async create(req: Request, res: Response) {
 		const { email, password, name, age } = req.body as IUser;

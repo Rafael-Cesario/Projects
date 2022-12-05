@@ -1,9 +1,10 @@
 import { Model } from 'mongoose';
 import { IUserRepository } from '../interface/userRepositoryInterface';
 import { IUser } from '../interface/userSchemaInterface';
+import { UserModel } from '../schema/userSchema';
 
 export class UserRepository implements IUserRepository {
-	constructor(private userModel: Model<IUser>) {}
+	constructor(private userModel: Model<IUser> = UserModel) {}
 
 	async createUser(user: IUser) {
 		try {
