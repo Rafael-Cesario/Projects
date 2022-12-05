@@ -36,4 +36,13 @@ export class UserController {
 		await UserModel.findOneAndUpdate({ email }, { ...update });
 		res.status(200).json({ message: `User ${email} was updated` });
 	}
+
+	async delete(req: Request, res: Response) {
+		const { email } = req.body as { email: string };
+
+		if (!email) return res.status(400).json({ error: 'Email is required' });
+
+		await UserModel.findOneAndDelete({ email });
+		res.status(200).json({ message: `User ${email} was deleted` });
+	}
 }
