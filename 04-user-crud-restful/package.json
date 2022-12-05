@@ -1,0 +1,24 @@
+{
+	"name": "04-user-crud-restful",
+	"private": true,
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"dev": "tsnd --respawn --transpile-only src/app.ts"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"dependencies": {
+		"@types/express": "^4.17.14",
+		"@types/node": "^18.11.10",
+		"dotenv": "^16.0.3",
+		"express": "^4.18.2",
+		"mongoose": "^6.7.5",
+		"ts-node-dev": "^2.0.0"
+	},
+	"devDependencies": {
+		"@types/mongoose": "^5.11.97"
+	}
+}

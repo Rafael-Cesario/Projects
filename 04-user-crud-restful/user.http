@@ -1,0 +1,14 @@
+### Create a new User
+POST http://localhost:4000/user
+Content-Type: application/json
+
+{
+    "email": "elfara@test.com",
+    "password": "1234",
+    "name": "Rafael",
+    "age": "22"
+}
+
+### Read all users
+GET http://localhost:4000/user
+
