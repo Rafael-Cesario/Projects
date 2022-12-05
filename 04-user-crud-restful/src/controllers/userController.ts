@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 import { IUserRepository } from '../interface/userRepositoryInterface';
 import { IUser } from '../interface/userSchemaInterface';
 import { IUserValidation } from '../interface/userValidationInterface';
+import { UserModel } from '../schema/userSchema';
 
 export class UserController {
 	constructor(private userValidation: IUserValidation, private userRepository: IUserRepository) {}
@@ -19,5 +20,10 @@ export class UserController {
 		if (hasError) return res.status(400).json({ error: hasError });
 
 		res.status(200).json({ message: 'A new user was created' });
+	}
+
+	async get(req: Request, res: Response) {
+		const users = await UserModel.find({});
+		res.status(200).json({ users });
 	}
 }

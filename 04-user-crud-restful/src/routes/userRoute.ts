@@ -1,6 +1,5 @@
 import express, { Request, Response } from 'express';
 import { UserController } from '../controllers/userController';
-import { IUser } from '../interface/userSchemaInterface';
 import { UserRepository } from '../repository/userRepository';
 import { UserModel } from '../schema/userSchema';
 import { UserValidation } from '../validation/userValidation';
@@ -11,11 +10,7 @@ const userRepository = new UserRepository(UserModel);
 const userController = new UserController(userValidation, userRepository);
 
 router.post('/', async (req: Request, res: Response) => userController.create(req, res));
-
-router.get('/', async (req: Request, res: Response) => {
-	const users = await UserModel.find({});
-	res.status(200).json({ users });
-});
+router.get('/', async (req: Request, res: Response) => userController.get(req, res));
 
 router.patch('/', async (req: Request, res: Response) => {
 	const { email, update } = req.body as { email: string; update: {} };
