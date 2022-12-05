@@ -22,32 +22,66 @@ describe('User route', () => {
 		age: '20',
 	};
 
-	it('Create A new User', async () => {
-		const { body, status } = await request(app).post('/user').send(user);
-		expect(status).toBe(200);
-		expect(body).toEqual({ message: 'A new user was created' });
+	describe('Post route', () => {
+		it('Create A new User', async () => {
+			const { body, status } = await request(app).post('/user').send(user);
+			expect(status).toBe(200);
+			expect(body).toEqual({ message: 'A new user was created' });
+		});
+
+		it(`Can't create user if already exist`, async () => {
+			const { body, status } = await request(app).post('/user').send(user);
+
+			expect(status).toBe(400);
+			expect(body).toEqual({ error: 'Email already exist' });
+		});
+
+		it(`Can't create user if value is missing`, async () => {
+			const { email, age } = user;
+			const { body, status } = await request(app).post('/user').send({ email, age });
+
+			expect(body).toEqual({ error: 'password, name is required' });
+			expect(status).toBe(400);
+		});
 	});
 
-	it(`Can't create user if already exist`, async () => {
-		const { body, status } = await request(app).post('/user').send(user);
+	describe('Get route', () => {
+		it('Return all users', async () => {
+			const { body, status } = await request(app).get('/user');
 
-		expect(status).toBe(400);
-		expect(body).toEqual({ error: 'Email already exist' });
+			expect(status).toBe(200);
+			expect(body).toHaveProperty('users');
+			expect(body.users.length).toBe(1);
+		});
 	});
 
-	it(`Can't create user if value is missing`, async () => {
-		const { email, age } = user;
-		const { body, status } = await request(app).post('/user').send({ email, age });
+	describe('Patch route', () => {
+		it('update a user', async () => {
+			const email = user.email;
+			const update = { name: 'NewName', age: 'NewAge' };
+			const { body, status } = await request(app).patch('/user').send({ email, update });
 
-		expect(body).toEqual({ error: 'password, name is required' });
-		expect(status).toBe(400);
-	});
+			expect(status).toBe(200);
+			expect(body).toHaveProperty('message');
+			expect(body.message).toBe(`User ${email} was updated`);
+		});
 
-	it('Return all users', async () => {
-		const { body, status } = await request(app).get('/user');
+		it(`Returns a error if email is empty`, async () => {
+			const update = { name: 'NewName', age: 'NewAge' };
+			const { body, status } = await request(app).patch('/user').send({ update });
 
-		expect(status).toBe(200);
-		expect(body).toHaveProperty('users');
-		expect(body.users.length).toBe(1);
+			expect(status).toBe(400);
+			expect(body).toHaveProperty('error');
+			expect(body.error).toBe('Email is required');
+		});
+
+		it(`Returns a error if update is empty`, async () => {
+			const email = user.email;
+			const { body, status } = await request(app).patch('/user').send({ email });
+
+			expect(status).toBe(400);
+			expect(body).toHaveProperty('error');
+			expect(body.error).toBe('A update OBJ is required');
+		});
 	});
 });
