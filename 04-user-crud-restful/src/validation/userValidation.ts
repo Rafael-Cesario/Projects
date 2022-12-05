@@ -1,7 +1,8 @@
-import { IUser } from '../interface/userInterface';
+import { IUser } from '../interface/userSchemaInterface';
+import { IUserValidation } from '../interface/userValidationInterface';
 import { UserModel } from '../schema/userSchema';
 
-export class UserValidation {
+export class UserValidation implements IUserValidation {
 	data(userData: IUser) {
 		let error = [];
 		let message = '';
@@ -11,7 +12,9 @@ export class UserValidation {
 		}
 
 		if (error.length > 0) message = error.join(', ') + ' is required';
-		return [message ? false : true, message];
+
+		const hasError = message ? false : true;
+		return [hasError, message];
 	}
 
 	async duplicate(email: string) {
