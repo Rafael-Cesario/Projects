@@ -5,6 +5,7 @@ import { IUserValidation } from '../interface/userValidationInterface';
 
 export class UserController {
 	constructor(private userValidation: IUserValidation, private userRepository: IUserRepository) {}
+
 	async create(req: Request, res: Response) {
 		const { email, password, name, age } = req.body as IUser;
 

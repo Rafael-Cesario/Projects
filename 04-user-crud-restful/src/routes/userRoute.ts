@@ -7,7 +7,7 @@ import { UserValidation } from '../validation/userValidation';
 
 const router = express.Router();
 const userValidation = new UserValidation();
-const userRepository = new UserRepository();
+const userRepository = new UserRepository(UserModel);
 const userController = new UserController(userValidation, userRepository);
 
 router.post('/', async (req: Request, res: Response) => userController.create(req, res));
