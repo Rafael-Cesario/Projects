@@ -15,18 +15,31 @@ describe('User route', () => {
 		await mongoose.connection.close();
 	});
 
-	it(`Can't create user if already exist`, async () => {
-		const user = {
-			email: 'test@test.com',
-			password: '1234',
-			name: 'test',
-			age: '20',
-		};
+	const user = {
+		email: 'test@test.com',
+		password: '1234',
+		name: 'test',
+		age: '20',
+	};
 
-		await request(app).post('/user').send(user);
+	it('Create A new User', async () => {
+		const { body, status } = await request(app).post('/user').send(user);
+		expect(status).toBe(200);
+		expect(body).toEqual({ message: 'A new user was created' });
+	});
+
+	it(`Can't create user if already exist`, async () => {
 		const { body, status } = await request(app).post('/user').send(user);
 
 		expect(status).toBe(400);
 		expect(body).toEqual({ error: 'Email already exist' });
+	});
+
+	it(`Can't create user if value is missing`, async () => {
+		const { email, age } = user;
+		const { body, status } = await request(app).post('/user').send({ email, age });
+
+		expect(body).toEqual({ error: 'password, name is required' });
+		expect(status).toBe(400);
 	});
 });
