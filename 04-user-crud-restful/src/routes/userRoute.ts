@@ -1,21 +1,14 @@
 import express, { Request, Response } from 'express';
+import { UserController } from '../controllers/userController';
 import { IUser } from '../interface/userInterface';
 import { UserModel } from '../schema/userSchema';
+import { UserValidation } from '../validation/userValidation';
 
 export const router = express.Router();
 
-router.post('/', async (req: Request, res: Response) => {
-	const { email, password, name, age } = req.body as IUser;
+const userController = new UserController();
 
-	if (!email) return res.status(400).json({ error: 'Email is required' });
-
-	const users = await UserModel.find({ email });
-	const hasUser = users.length > 0;
-	if (hasUser) return res.status(400).json({ error: 'Email already exist' });
-
-	await UserModel.create({ email, password, name, age });
-	res.status(200).json({ message: 'A new User was created' });
-});
+router.post('/', async (req: Request, res: Response) => userController.create(req, res));
 
 router.get('/', async (req: Request, res: Response) => {
 	const users = await UserModel.find({});
