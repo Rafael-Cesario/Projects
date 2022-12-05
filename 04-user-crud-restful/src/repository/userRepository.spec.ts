@@ -1,19 +1,22 @@
-import { Model } from 'mongoose';
-import { describe, it, expect } from 'vitest';
+import { connect, connection } from 'mongoose';
+import { describe, it, expect, beforeAll, afterAll } from 'vitest';
+import { uri } from '../database';
 import { IUser } from '../interface/userSchemaInterface';
+import { UserModel } from '../schema/userSchema';
 import { UserRepository } from './userRepository';
 
-class DummyModel {
-	async create(user: IUser) {
-		if (!user.email) throw new Error('User validation failed: email: Path `email` is required.');
-		return false;
-	}
-}
-
-const dummyModel = new DummyModel();
-const userRepository = new UserRepository(dummyModel as unknown as Model<IUser>);
+const userRepository = new UserRepository(UserModel);
 
 describe('User Repository', () => {
+	beforeAll(async () => {
+		await connect(uri);
+	});
+
+	afterAll(async () => {
+		await connection.dropDatabase();
+		await connection.close();
+	});
+
 	const user = {
 		email: 'test@test.com',
 		password: '1234',
