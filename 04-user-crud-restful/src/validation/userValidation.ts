@@ -1,7 +1,8 @@
 import { IUser } from '../interface/userInterface';
+import { UserModel } from '../schema/userSchema';
 
 export class UserValidation {
-	create(userData: IUser) {
+	data(userData: IUser) {
 		let error = [];
 		let message = '';
 
@@ -11,5 +12,11 @@ export class UserValidation {
 
 		if (error.length > 0) message = error.join(', ') + ' is required';
 		return [message ? false : true, message];
+	}
+
+	async duplicate(email: string) {
+		const user = await UserModel.findOne({ email });
+		if (user) return true;
+		return false;
 	}
 }

@@ -9,11 +9,10 @@ export class UserController {
 	async create(req: Request, res: Response) {
 		const { email, password, name, age } = req.body as IUser;
 
-		const [isDataValid, message] = userValidation.create({ email, password, name, age });
+		const [isDataValid, message] = userValidation.data({ email, password, name, age });
 		if (!isDataValid) return res.status(400).json({ error: message });
 
-		const users = await UserModel.find({ email });
-		const hasUser = users.length > 0;
+		const hasUser = await userValidation.duplicate(email);
 		if (hasUser) return res.status(400).json({ error: 'Email already exist' });
 
 		await UserModel.create({ email, password, name, age });
