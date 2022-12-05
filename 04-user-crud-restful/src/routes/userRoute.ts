@@ -11,16 +11,7 @@ const userController = new UserController(userValidation, userRepository);
 
 router.post('/', async (req: Request, res: Response) => userController.create(req, res));
 router.get('/', async (req: Request, res: Response) => userController.get(req, res));
-
-router.patch('/', async (req: Request, res: Response) => {
-	const { email, update } = req.body as { email: string; update: {} };
-
-	if (!email) return res.status(400).json({ error: 'Email is required' });
-	if (!update) return res.status(400).json({ error: 'A update OBJ is required' });
-
-	await UserModel.findOneAndUpdate({ email }, { ...update });
-	res.status(200).json({ message: `User ${email} was updated` });
-});
+router.patch('/', async (req: Request, res: Response) => userController.update(req, res));
 
 router.delete('/', async (req: Request, res: Response) => {
 	const { email } = req.body as { email: string };
