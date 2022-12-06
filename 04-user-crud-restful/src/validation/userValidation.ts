@@ -7,16 +7,14 @@ export class UserValidation implements IUserValidation {
 	constructor(private userRepository: IUserRepository = new UserRepository()) {}
 
 	data(userData: IUser) {
-		let error = [];
-		let message = '';
+		const error = [];
+		const data = Object.entries(userData);
 
-		for (const [key, value] of Object.entries(userData)) {
-			value || error.push(key);
-		}
+		for (const [key, value] of data) value || error.push(key);
 
-		if (error.length > 0) message = error.join(', ') + ' is required';
+		const hasError = error.length > 0;
+		const message = hasError ? error.join(', ') + ' are required' : '';
 
-		const hasError = message ? false : true;
 		return [hasError, message];
 	}
 
