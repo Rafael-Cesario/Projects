@@ -24,16 +24,32 @@ describe('User Repository', () => {
 		age: '20',
 	};
 
-	it(`Can't create user without email`, async () => {
-		const { password, name, age } = user;
-		const newUser = await userRepository.createUser({ password, name, age } as IUser);
+	describe('Create user', () => {
+		it(`Can't create user without email`, async () => {
+			const { password, name, age } = user;
+			const newUser = await userRepository.createUser({ password, name, age } as IUser);
 
-		expect(newUser).toEqual('User validation failed: email: Path `email` is required.');
+			expect(newUser).toEqual('User validation failed: email: Path `email` is required.');
+		});
+
+		it('create a new user', async () => {
+			const hasError = await userRepository.createUser(user);
+
+			expect(hasError).toBe(false);
+		});
 	});
 
-	it('create a new user', async () => {
-		const hasError = await userRepository.createUser(user);
+	describe('Find by email', () => {
+		it('Returns a user', async () => {
+			const response = await userRepository.findByEmail(user.email);
 
-		expect(hasError).toBe(false);
+			expect(response).toHaveProperty('email', user.email);
+		});
+
+		it('Returns null', async () => {
+			const response = await userRepository.findByEmail('There is a email here');
+
+			expect(response).toBeNull();
+		});
 	});
 });
