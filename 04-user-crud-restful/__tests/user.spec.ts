@@ -40,7 +40,7 @@ describe('User route', () => {
 			const { email, age } = user;
 			const { body, status } = await request(app).post('/user').send({ email, age });
 
-			expect(body).toEqual({ error: 'password, name is required' });
+			expect(body).toEqual({ error: 'password, name are required' });
 			expect(status).toBe(400);
 		});
 	});

@@ -15,8 +15,8 @@ export class UserController {
 	async create(req: Request, res: Response) {
 		const { email, password, name, age } = req.body as IUser;
 
-		const [isDataValid, message] = this.userValidation.data({ email, password, name, age });
-		if (!isDataValid) return res.status(400).json({ error: message });
+		const [dataIsNotValid, errorMessage] = this.userValidation.data({ email, password, name, age });
+		if (dataIsNotValid) return res.status(400).json({ error: errorMessage });
 
 		const hasUser = await this.userValidation.duplicate(email);
 		if (hasUser) return res.status(400).json({ error: 'Email already exist' });
