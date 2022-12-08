@@ -1,5 +1,5 @@
 import { Arg, Query, Resolver } from 'type-graphql';
-import { TaskType } from '../types/tasksType';
+import { TasksType } from '../types/tasksType';
 
 @Resolver()
 export class TasksResolver {
@@ -12,8 +12,11 @@ export class TasksResolver {
 		],
 	};
 
-	@Query((returns) => [TaskType])
-	getTasks(@Arg('input') belongsTo: string): TaskType[] {
-		return this.tasks[belongsTo];
+	@Query((returns) => TasksType!)
+	getTasks(@Arg('owner') owner: string): TasksType {
+		return {
+			owner,
+			tasks: this.tasks[owner],
+		};
 	}
 }

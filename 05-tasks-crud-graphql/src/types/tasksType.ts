@@ -1,17 +1,7 @@
 import { Field, ObjectType } from 'type-graphql';
 
-type TTask = {
-	status: string;
-	content: string;
-};
-
-type TTasks = {
-	belongsTo: string;
-	tasks: TTask[];
-};
-
 @ObjectType()
-export class TaskType implements TTask {
+export class TaskType {
 	@Field()
 	status: string;
 
@@ -20,10 +10,10 @@ export class TaskType implements TTask {
 }
 
 @ObjectType()
-export class TasksType implements TTasks {
+export class TasksType {
 	@Field()
-	belongsTo: string;
+	owner: string;
 
-	@Field((type) => TaskType)
-	tasks: TTask[];
+	@Field((type) => [TaskType])
+	tasks: TaskType[];
 }
