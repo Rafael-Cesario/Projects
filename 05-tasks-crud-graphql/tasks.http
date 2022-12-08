@@ -1,0 +1,37 @@
+POST http://localhost:4000/graphql
+Content-Type: application/json
+X-REQUEST-TYPE: GraphQL
+
+query GetTasks ($owner: String!) {
+    getTasks(owner:$owner){
+        owner, tasks {
+            status, content
+        }
+    }
+}
+
+{
+    "owner": "rafael"
+}
+
+
+### ADD NEW TASK ###
+POST http://localhost:4000/graphql
+Content-Type: application/json
+X-REQUEST-TYPE: GraphQL
+
+mutation AddNewTask ($owner: String!, $task:TaskInputType!) {
+    addNewTask (owner:$owner, task:$task){
+        owner, tasks {
+            status, content
+        }
+    }
+}
+
+{
+    "owner": "rafael",
+    "task":{
+        "status": "Next",
+        "content": "Here is a thing that I have to do"
+    }
+}
