@@ -2,7 +2,6 @@ import express from 'express';
 import { graphqlHTTP } from 'express-graphql';
 import { buildSchema } from 'type-graphql';
 import { TasksResolver } from './resolvers/tasksResolver';
-import path from 'node:path';
 
 const app = express();
 const PORT = process.env.PORT || 4000;
