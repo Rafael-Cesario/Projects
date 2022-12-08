@@ -5,8 +5,13 @@ type TTask = {
 	content: string;
 };
 
+type TTasks = {
+	belongsTo: string;
+	tasks: TTask[];
+};
+
 @ObjectType()
-class TaskType implements TTask {
+export class TaskType implements TTask {
 	@Field()
 	status: string;
 
@@ -14,16 +19,11 @@ class TaskType implements TTask {
 	content: string;
 }
 
-type TTasks = {
-	belongsTo: string;
-	tasks: TTask[];
-};
-
 @ObjectType()
 export class TasksType implements TTasks {
 	@Field()
 	belongsTo: string;
 
-	@Field((type) => [TaskType])
+	@Field((type) => TaskType)
 	tasks: TTask[];
 }
