@@ -5,6 +5,12 @@
 <br/>
 <br/>
 
+### [API tasks CRUD type-graphql](./05-tasks-crud-graphql)
+A tasks crud with type-graphql
+
+    Backend: typescript, express, mongoose, vitest, supertest, type-graphql
+
+
 ### [API User CRUD](./04-user-crud-restful)
 A simple restful api for user crud.
 
