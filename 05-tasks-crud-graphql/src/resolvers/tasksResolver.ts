@@ -1,6 +1,7 @@
 import { Arg, Mutation, Query, Resolver } from 'type-graphql';
 import { TasksType } from '../types/tasksType';
 import { TaskInputType } from '../inputs/taskInput';
+import { TasksModel } from '../schemas/tasks';
 
 @Resolver()
 export class TasksResolver {
@@ -13,7 +14,7 @@ export class TasksResolver {
 		],
 	};
 
-	@Query((returns) => TasksType!)
+	@Query(returns => TasksType!)
 	getTasks(@Arg('owner') owner: string): TasksType {
 		return {
 			owner,
@@ -21,13 +22,19 @@ export class TasksResolver {
 		};
 	}
 
-	@Mutation((returns) => TasksType!)
-	addNewTask(@Arg('owner') owner: string, @Arg('task') task: TaskInputType): TasksType {
-		this.tasks[owner].push(task);
+	@Mutation(returns => TasksType!)
+	async addNewTask(@Arg('owner') owner: string, @Arg('task') task: TaskInputType): Promise<TasksType> {
+		const hasTasks = await TasksModel.findOne({ owner });
+		const newTasks: TasksType = hasTasks ?? { owner, tasks: [] };
+
+		newTasks.tasks.push(task);
+
+		hasTasks && (await TasksModel.findOneAndUpdate({ owner }, { ...newTasks }));
+		hasTasks || (await TasksModel.create(newTasks));
 
 		return {
-			owner,
-			tasks: this.tasks[owner],
+			owner: newTasks.owner,
+			tasks: newTasks.tasks,
 		};
 	}
 }
