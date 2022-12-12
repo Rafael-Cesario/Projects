@@ -1,13 +1,8 @@
 import { ApolloServer } from '@apollo/server';
 import { startStandaloneServer } from '@apollo/server/standalone';
+import { schema } from './schemas/schema';
 
-import { tasksType as typeDefs } from './types/tasksType';
-import { tasksResolver as resolvers } from './resolvers/tasksResolver';
-
-const server = new ApolloServer({
-	typeDefs,
-	resolvers,
-});
+const server = new ApolloServer({ schema });
 
 export const startServer = async () => {
 	const { url } = await startStandaloneServer(server, { listen: { port: 4000 } });
