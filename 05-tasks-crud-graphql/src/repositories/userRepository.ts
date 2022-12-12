@@ -9,6 +9,7 @@ class UserRepository {
 			await this.userModel.create(userData);
 			return false;
 		} catch (error: any) {
+			if (error.code === 11000) return 'This email is already in use';
 			return error.message;
 		}
 	}
