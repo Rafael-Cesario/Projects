@@ -1,3 +1,4 @@
+import { userRepository } from '../../repositories/userRepository';
 import { TypeUser } from '../types/userType';
 
 const tempUsers = [
@@ -25,11 +26,14 @@ export const userResolver = {
 	},
 
 	Mutation: {
-		createUser: (_: any, args: { user: TypeUser }) => {
+		createUser: async (_: any, args: { user: TypeUser }) => {
 			const { name, email, password } = args.user;
 
 			const hasError = verifyValues(args.user).join(', ');
 			if (hasError) return { message: hasError };
+
+			const error = await userRepository.createUser({ name, email, password });
+			if (error) return { message: error };
 
 			return { message: 'A new User was created' };
 		},
