@@ -10,7 +10,11 @@
 		"sourceMap": true /* Create source map files for emitted JavaScript files. */,
 		"forceConsistentCasingInFileNames": true /* Ensure that casing is correct in imports. */,
 		"strict": true /* Enable all strict type-checking options. */,
-		"skipLibCheck": true /* Skip type checking all .d.ts files. */
+		"skipLibCheck": true /* Skip type checking all .d.ts files. */,
+		"experimentalDecorators": true,
+		"emitDecoratorMetadata": true,
+		"strictPropertyInitialization": false
+
 	},
 	"include": ["src/**/*.ts", "vitest.config.ts"]
 }
