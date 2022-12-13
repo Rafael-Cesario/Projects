@@ -2,13 +2,13 @@ import { getModelForClass, index, prop } from '@typegoose/typegoose';
 
 @index({ email: 1 })
 class User {
-	@prop({ required: true, maxlength: [30, 'Max of 30 letters'] })
+	@prop({ type: String, required: true, maxlength: [30, 'Max of 30 letters'] })
 	public name!: string;
 
-	@prop({ required: true, lowercase: true, trim: true, unique: true })
+	@prop({ type: String, required: true, lowercase: true, trim: true, unique: true })
 	public email!: string;
 
-	@prop({ required: true })
+	@prop({ type: String, required: true })
 	public password!: string;
 }
 

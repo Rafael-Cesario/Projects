@@ -7,5 +7,5 @@ if (testEnvironment) uri += 'test';
 
 export const startDatabase = async () => {
 	await mongoose.connect(uri);
-	console.log('Database is conneted');
+	testEnvironment || console.log('Database is conneted');
 };
