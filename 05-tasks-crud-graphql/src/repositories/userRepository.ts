@@ -15,13 +15,21 @@ class UserRepository implements InterfaceUserRepository {
 	constructor(private userModel = UserModel) {}
 
 	async createUser(userData: TypeUser) {
-		const user = await this.userModel.create(userData).catch(error => handleError(error));
-		return false;
+		try {
+			const user = await this.userModel.create(userData);
+			return false;
+		} catch (error) {
+			return handleError(error);
+		}
 	}
 
 	async getUser(email: string) {
-		const user = await this.userModel.findOne({ email }).catch(error => handleError(error));
-		return user;
+		try {
+			const user = await this.userModel.findOne({ email });
+			return user;
+		} catch (error) {
+			return handleError(error);
+		}
 	}
 }
 
