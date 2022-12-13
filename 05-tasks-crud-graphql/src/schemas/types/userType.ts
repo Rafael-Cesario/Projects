@@ -7,6 +7,11 @@ export type TypeUser = {
 };
 
 export const userType = gql`
+	type response {
+		user: user
+		message: String!
+	}
+
 	type user {
 		email: String!
 		password: String!
@@ -14,17 +19,13 @@ export const userType = gql`
 	}
 
 	type Query {
-		getUsers: [user]!
+		getUser(email: String!): response!
 	}
 
 	input userInput {
 		email: String!
 		password: String!
 		name: String!
-	}
-
-	type response {
-		message: String!
 	}
 
 	type Mutation {
