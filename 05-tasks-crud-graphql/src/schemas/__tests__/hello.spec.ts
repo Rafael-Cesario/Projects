@@ -1,20 +1,32 @@
-import gql from 'graphql-tag';
-import { describe, it, expect } from 'vitest';
-import { server } from '../../server';
+import request from 'supertest';
+import { describe, it, beforeAll, afterAll, expect } from 'vitest';
+import { startServer } from '../../server';
+import { startDatabase } from '../../database';
+import { ApolloServer } from '@apollo/server';
 
 describe('Hello Resolvers', () => {
-	it('Returns a string Hello World', async () => {
-		type Response = { body: { singleResult: { data: { hello: string } } } };
+	let url: string, server: ApolloServer;
 
-		const query = gql`
-			query Hello {
-				hello
-			}
-		`;
+	beforeAll(async () => {
+		await startDatabase();
+		({ url, server } = await startServer());
+	});
 
-		const variables = {};
-		const response = (await server.executeOperation({ query, variables })) as Response;
-		const hello = response.body.singleResult.data.hello;
+	afterAll(async () => {
+		await server?.stop();
+	});
+
+	it('Returns a string Hello World!', async () => {
+		const queryData = {
+			query: `#graphql
+				query Hello {
+					hello
+				}
+			`,
+		};
+
+		const response = await request(url).post('/').send(queryData);
+		const hello = response.body.data?.hello;
 
 		expect(hello).toBe('Hello world!');
 	});

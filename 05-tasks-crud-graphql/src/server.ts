@@ -10,5 +10,6 @@ export const server = new ApolloServer({
 
 export const startServer = async () => {
 	const { url } = await startStandaloneServer(server, { listen: { port: 4000 } });
-	console.log({ url });
+	process.env.NODE_ENV !== 'test' && console.log({ url });
+	return { url, server };
 };

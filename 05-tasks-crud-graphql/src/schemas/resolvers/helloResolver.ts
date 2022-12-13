@@ -1,6 +1,6 @@
 
 export const helloResolvers = {
 	Query: {
-		hello: () => 'Hello world',
+		hello: () => 'Hello world!',
 	},
 };
