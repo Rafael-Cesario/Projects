@@ -58,4 +58,41 @@ describe('User Resolvers', () => {
 			expect(queryResponse.errors[0].message).toBe('Error: This email is already in use');
 		});
 	});
+
+	describe('Get User', () => {
+		const getUserQuery = async (email: string) => {
+			const queryData = {
+				variables: { email },
+
+				query: `#graphql
+					query GetUser ($email:String!) {
+						getUser (email: $email) {
+							message,
+							user {
+								name, email, password
+							}
+						}
+					}`,
+			};
+
+			const response = await request(url).post('/').send(queryData);
+			return response.body;
+		};
+
+		it('Returns a user', async () => {
+			const queryResponse = await getUserQuery(user.email);
+			expect(queryResponse.data.getUser.message).toBe('');
+			expect(queryResponse.data.getUser.user).toEqual({ ...user, email: user.email.toLowerCase() });
+		});
+
+		it('User not found', async () => {
+			const queryResponse = await getUserQuery(`this email doesn't exist`);
+			expect(queryResponse.data.getUser.message).toBe('User not found');
+		});
+
+		it('Throw a error', async () => {
+			const queryResponse = await getUserQuery('');
+			expect(queryResponse.errors[0].message).toBe('Error: email is missing');
+		});
+	});
 });
