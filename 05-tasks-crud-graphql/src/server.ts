@@ -8,8 +8,8 @@ export const server = new ApolloServer({
 	formatError: formattedError => ({ message: 'Error: ' + formattedError.message }),
 });
 
-export const startServer = async () => {
-	const { url } = await startStandaloneServer(server, { listen: { port: 4000 } });
+export const startServer = async (port: number = 4000) => {
+	const { url } = await startStandaloneServer(server, { listen: { port } });
 	process.env.NODE_ENV !== 'test' && console.log({ url });
 	return { url, server };
 };

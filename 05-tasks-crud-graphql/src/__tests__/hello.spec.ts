@@ -1,7 +1,7 @@
 import request from 'supertest';
 import { describe, it, beforeAll, afterAll, expect } from 'vitest';
-import { startServer } from '../../server';
-import { startDatabase } from '../../database';
+import { startServer } from '../server';
+import { startDatabase } from '../database';
 import { ApolloServer } from '@apollo/server';
 
 describe('Hello Resolvers', () => {
