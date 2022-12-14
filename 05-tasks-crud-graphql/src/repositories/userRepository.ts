@@ -5,6 +5,7 @@ interface InterfaceUserRepository {
 	createUser: (userData: TypeUser) => Promise<Boolean | string>;
 	getUser: (email: string) => Promise<TypeUser | string>;
 	updateUser: (email: string, newUser: TypeUser) => Promise<{ user: TypeUser } | { error: string }>;
+	deleteUser: (email: string) => Promise<undefined | string>;
 }
 
 const handleError = (error: any) => {
@@ -39,6 +40,15 @@ class UserRepository implements InterfaceUserRepository {
 			return { user };
 		} catch (error) {
 			return { error: handleError(error) };
+		}
+	}
+
+	async deleteUser(email: string) {
+		try {
+			const user = await this.userModel.findOneAndDelete({ email });
+			if (!user) throw new Error('User not found');
+		} catch (error) {
+			return handleError(error);
 		}
 	}
 }

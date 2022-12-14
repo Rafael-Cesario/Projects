@@ -44,7 +44,7 @@ export const userResolver = {
 		updateUser: async (_: any, args: { email: string; newUser: TypeUser }) => {
 			const { email, newUser } = args;
 
-			if (!email) throw new GraphQLError('A email is required to find a user');
+			if (!email) throw new GraphQLError('A email is required to find an user');
 			if (Object.values(newUser).length === 0) throw new GraphQLError("The newUser OBJ can't be empty");
 			if (newUser.name?.length > 20) throw new GraphQLError('Name can have in most 20 characters');
 
@@ -52,6 +52,17 @@ export const userResolver = {
 			if (error) throw new GraphQLError(error);
 
 			return { message: 'User updated', user };
+		},
+
+		deleteUser: async (_: any, args: { email: string }) => {
+			const { email } = args;
+
+			if (!email) throw new GraphQLError('A email is required to delete an user');
+
+			const error = await userRepository.deleteUser(email);
+			if (error) throw new GraphQLError(error);
+
+			return { message: `${email} was deleted` };
 		},
 	},
 };
