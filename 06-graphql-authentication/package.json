@@ -1,0 +1,20 @@
+{
+	"name": "06-graphql-authentication",
+	"version": "1.0.0",
+	"main": "index.js",
+	"scripts": {
+		"start": "tsnd --respawn --transpile-only src/app.ts"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"description": "",
+	"dependencies": {
+		"@apollo/server": "^4.3.0",
+		"@graphql-tools/schema": "^9.0.12",
+		"@types/node": "^18.11.15",
+		"graphql": "^16.6.0",
+		"ts-node-dev": "^2.0.0",
+		"typescript": "^3.9.4"
+	}
+}
