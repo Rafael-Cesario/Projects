@@ -45,7 +45,8 @@ export const userResolver = {
 			const { email, newUser } = args;
 
 			if (!email) throw new GraphQLError('A email is required to find a user');
-			if (!newUser) throw new GraphQLError("The newUser OBJ can't be empty");
+			if (Object.values(newUser).length === 0) throw new GraphQLError("The newUser OBJ can't be empty");
+			if (newUser.name?.length > 20) throw new GraphQLError('Name can have in most 20 characters');
 
 			const { user, error } = await userRepository.updateUser(email, newUser);
 			if (error) throw new GraphQLError(error);

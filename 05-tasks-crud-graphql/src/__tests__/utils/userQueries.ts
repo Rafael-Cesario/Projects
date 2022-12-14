@@ -41,4 +41,21 @@ export class UserQueries {
 
 		return await this.sendQuery(queryData);
 	}
+
+	async updateUser(email: string, newUser: TypeUser) {
+		const queryData = {
+			variables: { email, newUser },
+
+			query: `#graphql
+				mutation updateUser ($email:String!, $newUser: newUserInput!) {
+					updateUser (email:$email, newUser:$newUser) {
+						message, user {
+							name, email, password
+						}
+					}
+				}`,
+		};
+
+		return await this.sendQuery(queryData);
+	}
 }
