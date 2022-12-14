@@ -40,5 +40,17 @@ export const userResolver = {
 
 			return { message: 'A new User was created' };
 		},
+
+		updateUser: async (_: any, args: { email: string; newUser: TypeUser }) => {
+			const { email, newUser } = args;
+
+			if (!email) throw new GraphQLError('A email is required to find a user');
+			if (!newUser) throw new GraphQLError("The newUser OBJ can't be empty");
+
+			const { user, error } = await userRepository.updateUser(email, newUser);
+			if (error) throw new GraphQLError(error);
+
+			return { message: 'User updated', user };
+		},
 	},
 };

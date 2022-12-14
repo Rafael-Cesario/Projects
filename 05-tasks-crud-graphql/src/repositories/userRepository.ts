@@ -3,7 +3,8 @@ import { TypeUser } from '../schemas/types/userType';
 
 interface InterfaceUserRepository {
 	createUser: (userData: TypeUser) => Promise<Boolean | string>;
-	getUser: (email: string) => Promise<TypeUser>;
+	getUser: (email: string) => Promise<TypeUser | string>;
+	updateUser: (email: string, newUser: TypeUser) => Promise<{ user: TypeUser } | { error: string }>;
 }
 
 const handleError = (error: any) => {
@@ -29,6 +30,15 @@ class UserRepository implements InterfaceUserRepository {
 			return user;
 		} catch (error) {
 			return handleError(error);
+		}
+	}
+
+	async updateUser(email: string, newUser: TypeUser) {
+		try {
+			const user = (await this.userModel.findOneAndUpdate({ email }, { ...newUser }, { new: true })) as TypeUser;
+			return { user };
+		} catch (error) {
+			return { error: handleError(error) };
 		}
 	}
 }

@@ -28,7 +28,14 @@ export const userType = gql`
 		name: String!
 	}
 
+	input newUserInput {
+		email: String
+		password: String
+		name: String
+	}
+
 	type Mutation {
 		createUser(user: userInput!): response!
+		updateUser(email:String!, newUser: newUserInput!): response!
 	}
 `;
