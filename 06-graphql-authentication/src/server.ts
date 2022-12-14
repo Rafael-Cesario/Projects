@@ -6,7 +6,7 @@ const server = new ApolloServer({ schema });
 
 const startServer = async () => {
 	const { url } = await startStandaloneServer(server, { listen: { port: 4000 } });
-	console.log({ url });
+	console.log('Server connected', url);
 };
 
 export { startServer };
