@@ -5,10 +5,10 @@
 <br/>
 <br/>
 
-### [API tasks CRUD type-graphql](./05-tasks-crud-graphql)
-A tasks crud with type-graphql
+### [API user CRUD graphql](./05-user-crud-graphql)
+A user CRUD with type-graphql
 
-    Backend: typescript, express, mongoose, vitest, supertest, type-graphql
+    Backend: Apollo/server, graphql, typegoose, mongodb, typescript, supertest, vitest
 
 
 ### [API User CRUD](./04-user-crud-restful)
