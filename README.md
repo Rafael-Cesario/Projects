@@ -6,7 +6,7 @@
 <br/>
 
 ### [API user CRUD graphql](./05-user-crud-graphql)
-A user CRUD with type-graphql
+A user CRUD with graphql
 
     Backend: Apollo/server, graphql, typegoose, mongodb, typescript, supertest, vitest
 
