@@ -81,7 +81,7 @@ describe('User Resolvers', () => {
 		test('Email is empty', async () => {
 			const queryResponse = await userQuery.updateUser('', {} as TypeUser);
 			const error = queryResponse.errors[0].message;
-			expect(error).toBe('Error: A email is required to find a user');
+			expect(error).toBe('Error: A email is required to find an user');
 		});
 
 		test('OBJ newUser has no values', async () => {
@@ -104,6 +104,28 @@ describe('User Resolvers', () => {
 			const queryResponse = await userQuery.updateUser(user.email, { name } as TypeUser);
 			const error = queryResponse.errors[0].message;
 			expect(error).toBe('Error: Name can have in most 20 characters');
+		});
+	});
+
+	describe('Delete User', () => {
+		test('Delete a user', async () => {
+			await userQuery.createUser(user);
+			const email = user.email;
+			const queryResponse = await userQuery.deleteUser(email);
+			const message = queryResponse.data.deleteUser.message;
+			expect(message).toBe(`${email} was deleted`);
+		});
+
+		test('Email is empty', async () => {
+			const queryResponse = await userQuery.deleteUser('');
+			const error = queryResponse.errors[0].message;
+			expect(error).toBe('Error: A email is required to delete an user');
+		});
+
+		test('User not found', async () => {
+			const queryResponse = await userQuery.deleteUser('test@test.com');
+			const error = queryResponse.errors[0].message;
+			expect(error).toBe('Error: User not found');
 		});
 	});
 });

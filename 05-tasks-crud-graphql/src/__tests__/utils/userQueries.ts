@@ -58,4 +58,21 @@ export class UserQueries {
 
 		return await this.sendQuery(queryData);
 	}
+
+	async deleteUser(email: string) {
+		const queryData = {
+			variables: { email },
+
+			query: `#graphql
+				mutation DeleteUser ($email: String!){
+					deleteUser (email:$email){
+						message, user{
+							name, email, password
+						}
+					}
+				}`,
+		};
+
+		return await this.sendQuery(queryData);
+	}
 }
