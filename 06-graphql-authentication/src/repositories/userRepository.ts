@@ -1,6 +1,7 @@
+import { UserModel } from '../models/userModel';
 import { UserType } from '../schemas/types/userType';
 
-type Response = Promise<{ message: string; error: string }>;
+type Response = Promise<{ message: string; error: any }>;
 
 interface UserRepositoryInterface {
 	createUser: (user: UserType) => Response;
@@ -8,7 +9,12 @@ interface UserRepositoryInterface {
 
 class UserRepository implements UserRepositoryInterface {
 	async createUser(user: UserType) {
-		return { message: 'New User created', error: '' };
+		try {
+			await UserModel.create({ ...user });
+			return { message: 'New User created', error: '' };
+		} catch (error) {
+			return { message: '', error: error };
+		}
 	}
 }
 
