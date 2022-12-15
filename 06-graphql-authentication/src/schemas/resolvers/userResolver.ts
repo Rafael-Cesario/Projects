@@ -1,7 +1,9 @@
-import { UserType } from '../types/userType';
+import { LoginType, UserType } from '../types/userType';
 import { userRepository } from '../../repositories/userRepository';
 import { verifyValues } from '../../utils/verifyValues';
 import { GraphQLError } from 'graphql';
+import { decryptPassword } from '../../utils/encrypt';
+import { generateToken } from '../../utils/generateToken';
 
 export const userResolver = {
 	Mutation: {
@@ -15,6 +17,24 @@ export const userResolver = {
 			if (error) return error;
 
 			return message;
+		},
+
+		login: async (_: any, args: { userLogin: LoginType }) => {
+			const { email, password } = args.userLogin;
+
+			const emptyValues = verifyValues(args.userLogin);
+			if (emptyValues) throw new GraphQLError(emptyValues);
+
+			const user = await userRepository.findByEmail(email);
+			if (!user) throw new GraphQLError("Email/Password is wrong or doesn't exist.");
+
+			const isSamePassword = decryptPassword(user.password, password);
+			if (!isSamePassword) throw new GraphQLError("Email/Password is wrong or doesn't exist.");
+
+			const message = 'Successful login';
+			const token = generateToken();
+
+			return { message, token };
 		},
 	},
 };

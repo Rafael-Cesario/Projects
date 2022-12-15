@@ -4,6 +4,11 @@ export type UserType = {
 	password: string;
 };
 
+export type LoginType = {
+	email: string;
+	password: string;
+};
+
 export const userType = `#graphql
     type user {
         name: String!
@@ -11,8 +16,18 @@ export const userType = `#graphql
         password: String!
     }
 
+    type loginResponse {
+        token: String
+        message: String!
+    }
+
     input createUserInput {
         name: String!
+        email: String!
+        password: String!
+    }
+
+    input loginInput {
         email: String!
         password: String!
     }
@@ -23,5 +38,6 @@ export const userType = `#graphql
 
     type Mutation {
         createUser (user: createUserInput!): String!
+        login(userLogin: loginInput!): loginResponse!
     }
 `;

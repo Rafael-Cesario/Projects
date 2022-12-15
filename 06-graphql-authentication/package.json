@@ -14,10 +14,12 @@
 		"@graphql-tools/schema": "^9.0.12",
 		"@typegoose/typegoose": "^10.0.0",
 		"@types/bcrypt": "^5.0.0",
+		"@types/jsonwebtoken": "^8.5.9",
 		"@types/node": "^18.11.15",
 		"bcrypt": "^5.1.0",
 		"dotenv": "^16.0.3",
 		"graphql": "^16.6.0",
+		"jsonwebtoken": "^8.5.1",
 		"mongoose": "^6.8.0",
 		"ts-node-dev": "^2.0.0",
 		"typescript": "^3.9.4"
