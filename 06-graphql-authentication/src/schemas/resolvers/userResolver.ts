@@ -6,6 +6,13 @@ import { decryptPassword } from '../../utils/encrypt';
 import { generateToken } from '../../utils/generateToken';
 
 export const userResolver = {
+	Query: {
+		secretHere: (parent: any, args: null, ctx: { user: string }) => {
+			if (!ctx.user) throw new GraphQLError('You are not authorized to see the secret');
+			return 'Actually there is no secret here';
+		},
+	},
+
 	Mutation: {
 		createUser: async (_: any, args: { user: UserType }) => {
 			const { user } = args;
@@ -32,7 +39,7 @@ export const userResolver = {
 			if (!isSamePassword) throw new GraphQLError("Email/Password is wrong or doesn't exist.");
 
 			const message = 'Successful login';
-			const token = generateToken();
+			const token = generateToken(user.email);
 
 			return { message, token };
 		},

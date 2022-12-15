@@ -1,6 +1,6 @@
 import { prop, getModelForClass, index } from '@typegoose/typegoose';
 import { pre } from '@typegoose/typegoose/lib/hooks';
-import { decryptPassword, encryptPassword } from '../utils/encrypt';
+import { encryptPassword } from '../utils/encrypt';
 
 @pre<UserSchema>('save', function () {
 	const encryptedPassword = encryptPassword(this.password);

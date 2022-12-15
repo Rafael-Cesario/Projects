@@ -33,7 +33,7 @@ export const userType = `#graphql
     }
 
     type Query {
-        hello: String!
+        secretHere: String!
     }
 
     type Mutation {
