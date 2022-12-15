@@ -5,6 +5,13 @@
 <br/>
 <br/>
 
+
+### [Graphql authentication](./06-graphql-authentication/)
+User authentication with graphql and JWT
+
+    Backend: apollo/server, graphql, typegoose, bcrypt, jsonwebtoken, typescript
+
+
 ### [API user CRUD graphql](./05-user-crud-graphql)
 A user CRUD with graphql
 
