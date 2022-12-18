@@ -1,12 +1,11 @@
 import Head from 'next/head';
 import { useState } from 'react';
-import { Field } from '../components/field';
+import { Form } from '../components/form';
 import { Menu } from '../components/menu';
 
 const Home = () => {
 	const loginFields = ['Email', 'Senha'];
 	const createAccountFields = ['Email', 'Nome', 'Senha', 'Confirmar senha'];
-
 	const [active, setActive] = useState('Entrar');
 
 	return (
@@ -22,15 +21,8 @@ const Home = () => {
 						<Menu props={{ title: 'Criar conta', active, setActive }} />
 					</div>
 
-					<div className='mt-12'>
-						{active === 'Entrar' &&
-							loginFields.map(fieldName => <Field key={fieldName} props={{ fieldName }} />)}
-
-						{active === 'Criar conta' &&
-							createAccountFields.map(fieldName => <Field key={fieldName} props={{ fieldName }} />)}
-					</div>
-
-					<button className='w-full text-center bg-neutral-900 rounded p-2 mt-8'>{active}</button>
+					{active === 'Entrar' && <Form props={{ fields: loginFields, active }} />}
+					{active === 'Criar conta' && <Form props={{ fields: createAccountFields, active }} />}
 				</div>
 			</main>
 		</>

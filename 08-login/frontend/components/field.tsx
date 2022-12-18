@@ -1,11 +1,30 @@
+import produce from 'immer';
+
+type TypeDraft = { [OperationName: string]: { [fieldName: string]: string } };
+type TypeValues = { Entrar: {}; 'Criar conta': {} };
+
 interface FieldProps {
 	props: {
+		active: string;
 		fieldName: string;
+		values: TypeValues;
+		// eslint-disable-next-line no-unused-vars
+		setValues: (newValues: TypeValues) => void;
 	};
 }
 
 export const Field = ({ props }: FieldProps) => {
-	const { fieldName } = props;
+	const { fieldName, values, setValues, active } = props;
+
+	const changeValue = (input: HTMLInputElement) => {
+		const value = input.value;
+
+		const newValues = produce(values, (draft: TypeDraft) => {
+			draft[active][fieldName] = value;
+		});
+
+		setValues(newValues);
+	};
 
 	return (
 		<div className='flex flex-col my-8'>
@@ -13,6 +32,7 @@ export const Field = ({ props }: FieldProps) => {
 				className='
 				text-sm
 				text-neutral-500
+				m-2
 				'
 				htmlFor={fieldName}>
 				{fieldName}
@@ -26,10 +46,15 @@ export const Field = ({ props }: FieldProps) => {
 					outline-none
 					focus:drop-shadow-md
 					w-96
+					border-2
+					border-transparent
+					valid:border-green-700
 					'
+				required
 				id={fieldName}
 				type='text'
 				placeholder={fieldName + '...'}
+				onChange={e => changeValue(e.target)}
 			/>
 		</div>
 	);
