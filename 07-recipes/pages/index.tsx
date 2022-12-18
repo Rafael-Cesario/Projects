@@ -1,7 +1,6 @@
 import Head from 'next/head';
 import { Cards } from '../components/cards';
 import { Header } from '../components/header';
-import { StarSVG } from '../public/svgs/start';
 
 const Home = () => {
 	return (
@@ -18,6 +17,6 @@ const Home = () => {
 			</main>
 		</>
 	);
-};
 
+};
 export default Home;
