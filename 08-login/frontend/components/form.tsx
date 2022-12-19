@@ -33,8 +33,10 @@ export const Form = ({ props }: FormProps) => {
 		const emptyFields = verifyFields(values, active);
 		if (emptyFields.length) return changeInputStyle(emptyFields);
 
-		const notValidFields = validateFields(values, active);
-		// if (notValidFields.length) return changeInputStyle(notValidFields);
+		if (active === 'Criar conta') {
+			const notValidFields = validateFields(values, active);
+			// if (notValidFields.length) return changeInputStyle(notValidFields);
+		}
 	};
 
 	return (

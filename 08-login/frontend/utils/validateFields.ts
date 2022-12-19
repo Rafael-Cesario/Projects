@@ -25,7 +25,11 @@ export const validateFields = (values: { [operationName: string]: { [field: stri
 			if (tooShort) return ['password', 'Sua senha é muito curta, mínimo de 10 dígitos'];
 		},
 
-		confirmPassword: () => {},
+		confirmPassword: () => {
+			const { password, confirmPassword } = values[active];
+			const areEqual = password === confirmPassword;
+			if (!areEqual) return ['confirmPassword', 'Sua senha de confirmação precisa ser igual sua senha'];
+		},
 	};
 
 	const invalidFields: string[][] = [];
