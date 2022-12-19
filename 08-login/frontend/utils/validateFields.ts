@@ -1,6 +1,7 @@
+type TypeValues = { [operationName: string]: { [field: string]: string } };
 type TypeValidade = 'email' | 'name' | 'password' | 'confirmPassword';
 
-export const validateFields = (values: { [operationName: string]: { [field: string]: string } }, active: string) => {
+export const validateFields = (values: TypeValues, active: string) => {
 	const validate = {
 		email: () => {
 			const { email } = values[active];
@@ -48,6 +49,5 @@ export const validateFields = (values: { [operationName: string]: { [field: stri
 		if (hasInvalidField) invalidFields.push(hasInvalidField);
 	});
 
-	console.log({ invalidFields });
 	return invalidFields;
 };

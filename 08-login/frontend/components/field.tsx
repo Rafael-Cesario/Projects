@@ -42,8 +42,8 @@ export const Field = ({ props }: FieldProps) => {
 			<label
 				className='
 				text-sm
-				m-2
 				text-neutral-500
+				w-96
 				'
 				htmlFor={fieldName}>
 				{fieldName}
@@ -59,7 +59,6 @@ export const Field = ({ props }: FieldProps) => {
 					w-96
 					border-2
 					border-transparent
-					valid:border-green-700
 					'
 				required
 				id={fieldName}

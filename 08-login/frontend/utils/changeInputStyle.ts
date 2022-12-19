@@ -1,17 +1,15 @@
-export const changeInputStyle = (emptyFields: string[]) => {
-	emptyFields.forEach(inputId => {
-		const input = document.getElementById(inputId) as HTMLInputElement;
-		const label = input.previousSibling as HTMLLabelElement;
-		const labelText = label.textContent;
+export const changeInputStyle = (inputId: string, message?: string) => {
+	const input = document.getElementById(inputId) as HTMLInputElement;
+	const label = input.previousSibling as HTMLLabelElement;
+	const labelText = label.textContent;
 
-		input.classList.toggle('border-red-500');
-		label.textContent = 'Este campo não pode ficar vazio';
-		label.classList.add('text-red-500');
+	input.classList.add('border-red-500');
+	label.classList.add('text-red-500');
+	label.textContent = message ?? 'Este campo não pode ficar vazio';
 
-		setTimeout(() => {
-			input.classList.toggle('border-red-500');
-			label.classList.remove('text-red-500');
-			label.textContent = labelText;
-		}, 5000);
-	});
+	setTimeout(() => {
+		input.classList.remove('border-red-500');
+		label.classList.remove('text-red-500');
+		label.textContent = labelText;
+	}, 1000 * 5);
 };

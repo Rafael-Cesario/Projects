@@ -1,42 +1,24 @@
-import { verifyFields } from '../utils/verifyFields';
 import { useState } from 'react';
 import { Field } from './field';
-import { changeInputStyle } from '../utils/changeInputStyle';
-import { validateFields } from '../utils/validateFields';
+import { validateData } from '../utils/validateData';
 
 interface FormProps {
-	props: {
-		active: 'Entrar' | 'Criar conta';
-	};
+	props: { active: 'Entrar' | 'Criar conta' };
 }
+
+const valuesOBJ = {
+	Entrar: { email: '', password: '' },
+	'Criar conta': { email: '', name: '', password: '', confirmPassword: '' },
+};
 
 export const Form = ({ props }: FormProps) => {
 	const { active } = props;
-
-	const [values, setValues] = useState({
-		Entrar: {
-			email: '',
-			password: '',
-		},
-
-		'Criar conta': {
-			email: '',
-			name: '',
-			password: '',
-			confirmPassword: '',
-		},
-	});
-
+	const [values, setValues] = useState(valuesOBJ);
 	const fields = Object.keys(values[active]);
 
 	const sendData = () => {
-		const emptyFields = verifyFields(values, active);
-		if (emptyFields.length) return changeInputStyle(emptyFields);
-
-		if (active === 'Criar conta') {
-			const notValidFields = validateFields(values, active);
-			// if (notValidFields.length) return changeInputStyle(notValidFields);
-		}
+		const hasError = validateData(values, active);
+		if (hasError) return;
 	};
 
 	return (
