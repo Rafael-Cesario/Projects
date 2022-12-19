@@ -1,7 +1,18 @@
 import produce from 'immer';
 
 type TypeDraft = { [OperationName: string]: { [fieldName: string]: string } };
-type TypeValues = { Entrar: {}; 'Criar conta': {} };
+type TypeValues = {
+	Entrar: {
+		email: string;
+		password: string;
+	};
+	'Criar conta': {
+		email: string;
+		name: string;
+		password: string;
+		confirmPassword: string;
+	};
+};
 
 interface FieldProps {
 	props: {

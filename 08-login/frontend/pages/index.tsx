@@ -4,8 +4,6 @@ import { Form } from '../components/form';
 import { Menu } from '../components/menu';
 
 const Home = () => {
-	const loginFields = ['Email', 'Senha'];
-	const createAccountFields = ['Email', 'Nome', 'Senha', 'Confirmar senha'];
 	const [active, setActive] = useState('Entrar');
 
 	return (
@@ -21,8 +19,8 @@ const Home = () => {
 						<Menu props={{ title: 'Criar conta', active, setActive }} />
 					</div>
 
-					{active === 'Entrar' && <Form props={{ fields: loginFields, active }} />}
-					{active === 'Criar conta' && <Form props={{ fields: createAccountFields, active }} />}
+					{active === 'Entrar' && <Form props={{ active }} />}
+					{active === 'Criar conta' && <Form props={{ active }} />}
 				</div>
 			</main>
 		</>

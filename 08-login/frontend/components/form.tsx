@@ -3,17 +3,28 @@ import { Field } from './field';
 
 interface FormProps {
 	props: {
-		fields: string[];
-		active: string;
+		active: 'Entrar' | 'Criar conta';
 	};
 }
 
 export const Form = ({ props }: FormProps) => {
-	const { fields, active } = props;
+	const { active } = props;
+
 	const [values, setValues] = useState({
-		Entrar: {},
-		'Criar conta': {},
+		Entrar: {
+			email: '',
+			password: '',
+		},
+
+		'Criar conta': {
+			email: '',
+			name: '',
+			password: '',
+			confirmPassword: '',
+		},
 	});
+
+	const fields = Object.keys(values[active]);
 
 	const sendData = () => {
 		console.log({ values });
