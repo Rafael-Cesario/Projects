@@ -2,7 +2,15 @@ type TypeValidade = 'email' | 'name' | 'password' | 'confirmPassword';
 
 export const validateFields = (values: { [operationName: string]: { [field: string]: string } }, active: string) => {
 	const validate = {
-		email: () => {},
+		email: () => {
+			const { email } = values[active];
+
+			if (!email.includes('@')) return ['email', 'Seu email não é valido. @ não encontrado'];
+
+			const [user, domain] = email.split('@');
+			if (!user) return ['email', 'A primeira parte do seu email esta vazia'];
+			if (!domain) return ['email', 'A segunda parte do seu email esta vaiza'];
+		},
 
 		name: () => {
 			const { name } = values[active];
