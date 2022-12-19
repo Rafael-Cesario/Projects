@@ -42,8 +42,8 @@ export const Field = ({ props }: FieldProps) => {
 			<label
 				className='
 				text-sm
-				text-neutral-500
 				m-2
+				text-neutral-500
 				'
 				htmlFor={fieldName}>
 				{fieldName}

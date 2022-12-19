@@ -2,6 +2,7 @@ import { verifyFields } from '../utils/verifyFields';
 import { useState } from 'react';
 import { Field } from './field';
 import { changeInputStyle } from '../utils/changeInputStyle';
+import { validateFields } from '../utils/validateFields';
 
 interface FormProps {
 	props: {
@@ -30,7 +31,10 @@ export const Form = ({ props }: FormProps) => {
 
 	const sendData = () => {
 		const emptyFields = verifyFields(values, active);
-		if (emptyFields) return changeInputStyle(emptyFields);
+		if (emptyFields.length) return changeInputStyle(emptyFields);
+
+		const notValidFields = validateFields(values, active);
+		// if (notValidFields.length) return changeInputStyle(notValidFields);
 	};
 
 	return (
