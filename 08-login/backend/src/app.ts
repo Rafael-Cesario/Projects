@@ -1,22 +1,12 @@
 import { ApolloServer } from '@apollo/server';
 import { startStandaloneServer } from '@apollo/server/standalone';
 import { makeExecutableSchema } from '@graphql-tools/schema';
-
-const typeDefs = `#graphql
-	type Query {
-		hello: String!
-	}
-`;
-
-const resolvers = {
-	Query: {
-		hello: () => 'Hello World',
-	},
-};
+import { userResolver } from './resolvers/userResolver';
+import { userTypeDef } from './types/userType';
 
 const schema = makeExecutableSchema({
-	typeDefs,
-	resolvers,
+	typeDefs: [userTypeDef],
+	resolvers: [userResolver],
 });
 
 const server = new ApolloServer({ schema });
