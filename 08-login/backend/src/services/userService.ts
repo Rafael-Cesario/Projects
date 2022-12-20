@@ -1,9 +1,9 @@
-import { UserModel } from '../models/userModel';
+import { userRepository } from '../repositories/userRepository';
 import { CreateUserArgs } from '../types/userType';
 
 class UserService {
 	async createUser({ user }: CreateUserArgs) {
-		await UserModel.create(user);
+		await userRepository.createUser({ user });
 		return { response: 'teste' };
 	}
 }
