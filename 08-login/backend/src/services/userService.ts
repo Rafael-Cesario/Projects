@@ -1,8 +1,9 @@
+import { UserModel } from '../models/userModel';
 import { CreateUserArgs } from '../types/userType';
 
 class UserService {
-	createUser({ user }: CreateUserArgs) {
-		console.log({ user });
+	async createUser({ user }: CreateUserArgs) {
+		await UserModel.create(user);
 		return { response: 'teste' };
 	}
 }
