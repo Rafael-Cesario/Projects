@@ -7,6 +7,7 @@ class UserRepository {
 		try {
 			await UserModel.create(user);
 		} catch (error: any) {
+			if (error.code === 11000) throw new GraphQLError('This email already exist');
 			throw new GraphQLError(error.message);
 		}
 	}

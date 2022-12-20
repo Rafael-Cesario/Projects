@@ -9,7 +9,10 @@ const schema = makeExecutableSchema({
 	resolvers: [userResolver],
 });
 
-const server = new ApolloServer({ schema });
+const server = new ApolloServer({
+	schema,
+	formatError: formatedError => ({ message: formatedError.message }),
+});
 
 export const startServer = async () => {
 	const { url } = await startStandaloneServer(server, { listen: { port: 4000 } });
