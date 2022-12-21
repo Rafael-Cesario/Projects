@@ -11,6 +11,16 @@ class UserRepository {
 			throw new GraphQLError(error.message);
 		}
 	}
+
+	async findByEmail(email: string) {
+		try {
+			const user = await UserModel.findOne({ email });
+			if (!user) throw new Error('email: Usuario não encontrado');
+			return user;
+		} catch (error: any) {
+			throw new GraphQLError(error.message);
+		}
+	}
 }
 
 export const userRepository = new UserRepository();
