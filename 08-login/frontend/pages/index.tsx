@@ -2,12 +2,9 @@ import Head from 'next/head';
 import { useState } from 'react';
 import { Form } from '../components/form';
 import { Menu } from '../components/menu';
-import { helloQuery } from '../services/server';
 
 const Home = () => {
 	const [active, setActive] = useState('Entrar');
-
-	helloQuery();
 
 	return (
 		<>

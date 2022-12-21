@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Field } from './field';
+import { userQueries } from '../services/userQueries';
 import { validateData } from '../utils/validateData';
 
 interface FormProps {
@@ -16,9 +17,17 @@ export const Form = ({ props }: FormProps) => {
 	const [values, setValues] = useState(valuesOBJ);
 	const fields = Object.keys(values[active]);
 
-	const sendData = () => {
+	const sendData = async () => {
 		const hasError = validateData(values, active);
 		if (hasError) return;
+
+		if (active === 'Criar conta') {
+			const { email, name, password } = values[active];
+			const user = { email, name, password };
+
+			const response = await userQueries.createUser(user);
+			console.log('form response', response);
+		}
 	};
 
 	return (
