@@ -1,4 +1,4 @@
 # Login Page Frontend
 
 Stack
-    Typescript, Next, Tailwind, Eslint
+    apollo client, axios, cookie, eslint, graphql, immer, next, react, typescript, tailwindcss
