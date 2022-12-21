@@ -1,5 +1,5 @@
-import gql from 'graphql-tag';
 import { Client } from './server';
+import { CREATE_USER } from './mutations';
 
 type TypeUser = {
 	email: string;
@@ -19,11 +19,3 @@ class UserQueries {
 }
 
 export const userQueries = new UserQueries();
-
-const CREATE_USER = gql`
-	mutation CreateUser($user: CreateUser!) {
-		createUser(user: $user) {
-			response
-		}
-	}
-`;
