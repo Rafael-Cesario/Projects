@@ -25,26 +25,47 @@ export const Form = ({ props }: FormProps) => {
 
 	const fields = Object.keys(values[active]);
 
+	const createAccount = async () => {
+		const { email, name, password } = values[active];
+		const user = { email, name, password };
+
+		const createUserResponse = await userQueries.createUser(user);
+
+		createUserResponse &&
+			setShowMessage({
+				show: true,
+				color: 'forestgreen',
+				message: 'Conta criada com sucesso',
+			});
+
+		setActive('Entrar');
+		return;
+	};
+
+	const login = async () => {
+		const { email, password } = values[active];
+		const user = { email, password };
+
+		const loginResponse = await userQueries.login(user);
+
+		console.log({ loginResponse });
+
+		loginResponse &&
+			setShowMessage({
+				show: true,
+				color: 'forestgreen',
+				message: 'Login efetuado com sucesso',
+			});
+
+		return;
+	};
+
 	const sendData = async () => {
 		const hasError = validateData(values, active);
 		if (hasError) return;
 
-		if (active === 'Criar conta') {
-			const { email, name, password } = values[active];
-			const user = { email, name, password };
-
-			const createUserResponse = await userQueries.createUser(user);
-
-			createUserResponse &&
-				setShowMessage({
-					show: true,
-					color: 'forestgreen',
-					message: 'Conta criada com sucesso',
-				});
-
-			setActive('Entrar');
-			return;
-		}
+		if (active === 'Criar conta') createAccount();
+		if (active === 'Entrar') login();
 	};
 
 	return (
