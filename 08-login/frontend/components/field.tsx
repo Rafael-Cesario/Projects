@@ -65,6 +65,7 @@ export const Field = ({ props }: FieldProps) => {
 				id={fieldName}
 				type={showPassword ? 'text' : fieldType}
 				placeholder={names[fieldName] + '...'}
+				value={values[active][fieldName]}
 				onChange={e => changeValue(e.target)}
 			/>
 

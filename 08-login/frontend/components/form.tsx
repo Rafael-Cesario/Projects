@@ -4,6 +4,7 @@ import { Field } from './field';
 import { userQueries } from '../services/userQueries';
 import { TypeValues, validateData } from '../utils/validateData';
 import { useMessage } from '../utils/useMessage';
+import { setCookies } from '../utils/cookies';
 
 interface FormProps {
 	props: {
@@ -48,16 +49,15 @@ export const Form = ({ props }: FormProps) => {
 
 		const loginResponse = await userQueries.login(user);
 
-		console.log({ loginResponse });
+		if (!loginResponse) return;
 
-		loginResponse &&
-			setShowMessage({
-				show: true,
-				color: 'forestgreen',
-				message: 'Login efetuado com sucesso',
-			});
+		setShowMessage({
+			show: true,
+			color: 'forestgreen',
+			message: 'Login efetuado com sucesso',
+		});
 
-		return;
+		setCookies(loginResponse);
 	};
 
 	const sendData = async () => {
