@@ -7,3 +7,11 @@ export const CREATE_USER = gql`
 		}
 	}
 `;
+
+export const LOGIN = gql`
+	mutation Login($user: Login!) {
+		login(user: $user) {
+			response
+		}
+	}
+`;
