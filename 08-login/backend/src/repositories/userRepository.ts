@@ -15,7 +15,6 @@ class UserRepository {
 	async findByEmail(email: string) {
 		try {
 			const user = await UserModel.findOne({ email });
-			if (!user) throw new Error('email: Usuario não encontrado');
 			return user;
 		} catch (error: any) {
 			throw new GraphQLError(error.message);
