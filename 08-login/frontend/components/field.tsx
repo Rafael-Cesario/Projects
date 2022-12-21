@@ -3,7 +3,6 @@ import { useState } from 'react';
 import { PasswordButton } from './passwordButton';
 
 type TypeDraft = { [OperationName: string]: { [fieldName: string]: string } };
-
 type TypeValues = {
 	Entrar: {
 		email: string;
@@ -20,7 +19,7 @@ type TypeValues = {
 interface FieldProps {
 	props: {
 		active: string;
-		fieldName: 'email' | 'name' | 'password' | 'confirmPassword';
+		fieldName: string;
 		values: TypeValues;
 		// eslint-disable-next-line no-unused-vars
 		setValues: (newValues: TypeValues) => void;
@@ -32,7 +31,7 @@ export const Field = ({ props }: FieldProps) => {
 	const fieldType = fieldName.match(/password/i) ? 'password' : 'text';
 	const [showPassword, setShowPassword] = useState(false);
 
-	const names = {
+	const names: { [key: string]: string } = {
 		email: 'Email',
 		password: 'Senha',
 		name: 'Nome',
@@ -63,16 +62,16 @@ export const Field = ({ props }: FieldProps) => {
 			</label>
 			<input
 				className='
-					bg-neutral-900
-					placeholder-neutral-500
-					text-neutral-100
-					p-2 px-4 pr-12 rounded
-					outline-none
-					focus:drop-shadow-md
-					w-80
-					border-2
-					border-transparent
-					'
+				placeholder-neutral-500
+				bg-neutral-900
+				text-neutral-100
+				p-2 px-4 pr-12 rounded
+				focus:drop-shadow-md
+				outline-none
+				w-80
+				border-2
+				border-neutral-800
+				'
 				required
 				id={fieldName}
 				type={showPassword ? 'text' : fieldType}
