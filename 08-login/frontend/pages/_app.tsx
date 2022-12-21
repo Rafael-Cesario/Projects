@@ -6,7 +6,7 @@ import { ApolloProvider } from '@apollo/client';
 export default function App({ Component, pageProps }: AppProps) {
 	return (
 		<ApolloProvider client={Client}>
-			<Component {...pageProps} />;
+			<Component {...pageProps} />
 		</ApolloProvider>
 	);
 }

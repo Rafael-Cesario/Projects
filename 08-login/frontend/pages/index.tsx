@@ -19,8 +19,7 @@ const Home = () => {
 						<Menu props={{ title: 'Criar conta', active, setActive }} />
 					</div>
 
-					{active === 'Entrar' && <Form props={{ active }} />}
-					{active === 'Criar conta' && <Form props={{ active }} />}
+					<Form props={{ active, setActive }} />
 				</div>
 			</main>
 		</>

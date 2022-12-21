@@ -1,20 +1,9 @@
 import produce from 'immer';
 import { useState } from 'react';
+import { TypeValues } from '../utils/validateData';
 import { PasswordButton } from './passwordButton';
 
 type TypeDraft = { [OperationName: string]: { [fieldName: string]: string } };
-type TypeValues = {
-	Entrar: {
-		email: string;
-		password: string;
-	};
-	'Criar conta': {
-		email: string;
-		name: string;
-		password: string;
-		confirmPassword: string;
-	};
-};
 
 interface FieldProps {
 	props: {

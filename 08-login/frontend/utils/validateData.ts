@@ -2,7 +2,7 @@ import { changeInputStyle } from './changeInputStyle';
 import { validateFields } from './validateFields';
 import { verifyFields } from './verifyFields';
 
-type TypeValues = { [operationName: string]: { [field: string]: string } };
+export type TypeValues = { [operationName: string]: { [field: string]: string } };
 
 export const validateData = (values: TypeValues, active: string) => {
 	const emptyFields = verifyFields(values, active);
