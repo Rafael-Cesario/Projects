@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import { Header } from '../components/Header';
 
 export default function Home() {
 	return (
@@ -10,7 +11,7 @@ export default function Home() {
 			</Head>
 
 			<main>
-				<h1 className='text-blue-500 text-4xl font-bold m-8'>Hello Recipes</h1>
+				<Header />
 			</main>
 		</>
 	);
