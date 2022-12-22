@@ -1,22 +1,17 @@
 import Head from 'next/head';
-import { Cards } from '../components/cards';
-import { Header } from '../components/header';
 
-const Home = () => {
+export default function Home() {
 	return (
 		<>
 			<Head>
-				<title>Recipes App</title>
+				<title>Recipes</title>
+				<meta name='viewport' content='width=device-width, initial-scale=1' />
+				<link rel='icon' href='/favicon.ico' />
 			</Head>
 
-			<Header />
-
-			<main className='my-20 p-20 bg-neutral-800'>
-				<h1 className='text-4xl col-span-3 text-center mb-20'>Recipes</h1>
-				<Cards />
+			<main>
+				<h1 className='text-blue-500 text-4xl font-bold m-8'>Hello Recipes</h1>
 			</main>
 		</>
 	);
-
-};
-export default Home;
+}
