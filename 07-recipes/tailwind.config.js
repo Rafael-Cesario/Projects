@@ -4,8 +4,8 @@ module.exports = {
 	theme: {
 		extend: {},
 		fontFamily: {
-			nunito: "Nunito Sans"
-		}
+			nunito: 'Nunito Sans',
+		},
 	},
-	plugins: [],
+	plugins: [require('tailwind-scrollbar-hide')],
 };

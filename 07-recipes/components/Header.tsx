@@ -2,7 +2,7 @@ import { SearchIcon } from '../public/svgs/search';
 
 export const Header = () => {
 	return (
-		<div className='p-8 px-16'>
+		<div className='p-8 px-28'>
 			<div className='flex justify-between my-4'>
 				<h1 className='text-4xl font-bold italic'>Recipes</h1>
 
