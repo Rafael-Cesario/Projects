@@ -1,6 +1,6 @@
 export const ArrowR = () => {
 	return (
-		<button className='ml-8'>
+		<span className='ml-8 pointer-events-none'>
 			<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor' className='w-6 h-6'>
 				<path
 					fillRule='evenodd'
@@ -8,13 +8,13 @@ export const ArrowR = () => {
 					clipRule='evenodd'
 				/>
 			</svg>
-		</button>
+		</span>
 	);
 };
 
 export const ArrowL = () => {
 	return (
-		<button className='mr-8'>
+		<span className='mr-8 pointer-events-none'>
 			<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor' className='w-6 h-6'>
 				<path
 					fillRule='evenodd'
@@ -22,6 +22,6 @@ export const ArrowL = () => {
 					clipRule='evenodd'
 				/>
 			</svg>
-		</button>
+		</span>
 	);
 };

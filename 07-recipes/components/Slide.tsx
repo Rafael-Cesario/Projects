@@ -23,17 +23,30 @@ export const Slide = () => {
 		},
 	];
 
-	return (
-		<div className='h-52 m-16 mt-20 rounded p-8 flex items-center '>
-			<ArrowL />
+	const slideGoTo = (goTo: string) => {
+		const values = { left: -250, right: 250 } as { [key: string]: number };
+		const slide = document.querySelector('#slide') as HTMLDivElement;
 
-			<div className='overflow-x-auto overflow-y-hidden py-8 flex scrollbar-hide'>
+		slide.scrollBy({ left: values[goTo], behavior: 'smooth' });
+	};
+
+	return (
+		<div className='h-52 m-16 mt-20 rounded p-8 flex items-center justify-center'>
+			<button onClick={() => slideGoTo('left')}>
+				<ArrowL />
+			</button>
+
+			<div
+				id='slide'
+				className='overflow-x-auto overflow-y-hidden py-8 flex scrollbar-hide'>
 				{foods.map((food, index) => {
 					return <Food key={food.foodName + index} props={{ ...food }} />;
 				})}
 			</div>
 
-			<ArrowR />
+			<button onClick={() => slideGoTo('right')}>
+				<ArrowR />
+			</button>
 		</div>
 	);
 };
