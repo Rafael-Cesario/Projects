@@ -11,7 +11,7 @@ export const Slide = () => {
 	};
 
 	return (
-		<div className='h-52 m-16 mt-20 rounded p-8 flex items-center justify-center'>
+		<div className=' flex px-[8rem]	mt-[5rem] bg-neutral-800'>
 			<button onClick={() => slideGoTo('left')}>
 				<ArrowL />
 			</button>
