@@ -1,30 +1,10 @@
 import { ArrowL, ArrowR } from '../public/svgs/arrows';
 import { Food } from './Food';
+import { foods } from '../utils/foods';
 
 export const Slide = () => {
-	const foods = [
-		{
-			src: '/images/hamburguer.jpeg',
-			foodName: 'Hambúrguer',
-			time: '40 min',
-			plates: '12 Porções',
-		},
-		{
-			src: '/images/pizza.jpeg',
-			foodName: 'Pizza',
-			time: '1 hr',
-			plates: '4 pizzas',
-		},
-		{
-			src: '/images/macarrão.jpeg',
-			foodName: 'Macarrão',
-			time: '30 min',
-			plates: '10 Porções',
-		},
-	];
-
 	const slideGoTo = (goTo: string) => {
-		const values = { left: -250, right: 250 } as { [key: string]: number };
+		const values = { left: -500, right: 500 } as { [key: string]: number };
 		const slide = document.querySelector('#slide') as HTMLDivElement;
 
 		slide.scrollBy({ left: values[goTo], behavior: 'smooth' });
@@ -38,7 +18,7 @@ export const Slide = () => {
 
 			<div
 				id='slide'
-				className='overflow-x-auto overflow-y-hidden py-8 flex scrollbar-hide'>
+				className='overflow-x-auto overflow-y-hidden py-8 flex scrollbar-hide bg-neutral-800 rounded mx-4'>
 				{foods.map((food, index) => {
 					return <Food key={food.foodName + index} props={{ ...food }} />;
 				})}
