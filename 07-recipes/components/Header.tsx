@@ -7,8 +7,12 @@ export const Header = () => {
 				<h1 className='text-4xl font-bold italic'>Recipes</h1>
 
 				<div>
-					<button className='mr-4 border-2 border-sky-500 px-8 py-1 rounded font-bold'>Login</button>
-					<button className='text-neutral-100 bg-sky-700 px-8 py-1 rounded font-bold'>Cadastre-se</button>
+					<button className='mr-4 border-2 border-sky-500 px-8 py-1 rounded font-bold hover:bg-neutral-800 hover:border-transparent hover:text-white'>
+						Login
+					</button>
+					<button className='text-neutral-100 bg-sky-700 px-8 py-1 rounded font-bold hover:bg-neutral-800'>
+						Cadastre-se
+					</button>
 				</div>
 			</div>
 
