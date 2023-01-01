@@ -2,17 +2,15 @@ import { SearchIcon } from '../public/svgs/search';
 
 export const Header = () => {
 	return (
-		<div className='p-8 px-28'>
+		<div className='px-28 py-8'>
 			<div className='flex justify-between my-4'>
 				<h1 className='text-4xl font-bold italic'>Recipes</h1>
 
 				<div>
-					<button className='mr-4 border-2 border-sky-500 px-8 py-1 rounded font-bold hover:bg-neutral-800 hover:border-transparent hover:text-white'>
+					<button className='mr-4 border border-sky-500 px-8 py-1 rounded font-bold hover:bg-neutral-800 hover:border-transparent hover:text-white'>
 						Login
 					</button>
-					<button className='text-neutral-100 bg-sky-700 px-8 py-1 rounded font-bold hover:bg-neutral-800'>
-						Cadastre-se
-					</button>
+					<button className='text-neutral-100 bg-sky-700 px-8 py-1 rounded font-bold hover:bg-neutral-800'>Cadastre-se</button>
 				</div>
 			</div>
 
@@ -30,11 +28,7 @@ export const Header = () => {
 
 				<div className='bg-neutral-800 rounded flex items-center py-1 px-4'>
 					<SearchIcon />
-					<input
-						className='outline-none bg-transparent px-5'
-						type='text'
-						placeholder='Busque por uma receita'
-					/>
+					<input className='outline-none bg-transparent px-5' type='text' placeholder='Busque por uma receita' />
 				</div>
 			</div>
 		</div>

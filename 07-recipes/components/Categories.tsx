@@ -3,7 +3,7 @@ import { categoriesArray } from '../utils/categories';
 
 export const Categories = () => {
 	return (
-		<div className='my-[10rem] mx-20'>
+		<div className='px-28 py-8'>
 			<h1 className='text-2xl font-bold my-12 mx-8 text-center'>Categorias</h1>
 
 			<div className='flex flex-wrap justify-center'>

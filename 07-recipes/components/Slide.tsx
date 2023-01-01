@@ -11,22 +11,21 @@ export const Slide = () => {
 	};
 
 	return (
-		<div className=' flex px-[8rem]	mt-[5rem] bg-neutral-800'>
-			<button onClick={() => slideGoTo('left')}>
-				<ArrowL />
-			</button>
-
-			<div
-				id='slide'
-				className='overflow-x-auto overflow-y-hidden py-8 flex scrollbar-hide bg-neutral-800 rounded mx-4'>
+		<div className='px-28 py-8'>
+			<div id='slide' className='flex overflow-x-auto overflow-y-hidden scrollbar-hide'>
 				{foods.map((food, index) => {
 					return <Food key={food.foodName + index} props={{ ...food }} />;
 				})}
 			</div>
 
-			<button onClick={() => slideGoTo('right')}>
-				<ArrowR />
-			</button>
+			<div className='flex justify-center items-center my-8'>
+				<button className='flex justify-center' onClick={() => slideGoTo('left')}>
+					<ArrowL />
+				</button>
+				<button className='flex justify-center' onClick={() => slideGoTo('right')}>
+					<ArrowR />
+				</button>
+			</div>
 		</div>
 	);
 };
