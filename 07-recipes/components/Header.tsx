@@ -6,17 +6,18 @@ export const Header = () => {
 			<div className='flex justify-between my-4'>
 				<h1 className='text-4xl font-bold italic'>Recipes</h1>
 
-				<div>
-					<button className='mr-4 border border-sky-500 px-8 py-1 rounded font-bold hover:bg-neutral-800 hover:border-transparent hover:text-white'>
+				<div className='flex flex-col md:flex-row'>
+					<button className='mx-4 my-2 border border-sky-500 px-8 py-1 rounded font-bold hover:bg-neutral-800 hover:border-transparent hover:text-white self-end'>
 						Login
 					</button>
-					<button className='text-neutral-100 bg-sky-700 px-8 py-1 rounded font-bold hover:bg-neutral-800'>Cadastre-se</button>
+
+					<button className='mx-4 my-2 text-neutral-100 bg-sky-700 px-4 py-1 rounded font-bold hover:bg-neutral-800'>Cadastre-se</button>
 				</div>
 			</div>
 
 			<hr className='my-4 border-sky-500' />
 
-			<div className='flex justify-between'>
+			<div className='flex justify-between flex-col md:flex-row'>
 				<div>
 					<button className='mr-4 text-neutral-400 hover:text-sky-500'>Receitas</button>
 					<button className='mr-4 text-neutral-400 hover:text-sky-500'>Cardápio Semanal</button>
