@@ -13,6 +13,13 @@ Full stack login page
 
     Frontend: apollo client, axios, cookie, eslint, graphql, immer, next, react, typescript, tailwindcss
     Backend: apollo server, graphql, typescript, typegoose, mongoose, jsonwebtoken, ts-node-dev, bcrypt
+    
+    
+    
+### [Recipes](./07-recipes/)
+Recipes app UI
+
+    FrontEnd: next, react, tailwind, typescript
 
 
 
