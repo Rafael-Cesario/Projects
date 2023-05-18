@@ -1,5 +1,6 @@
 import { Icon } from "./components/icon";
 import { SearchBar } from "./components/searchBar";
+import { UserIcons } from "./components/userIcons";
 import { StyledHeader } from "./styles/styledHeader";
 
 export const Header = () => {
@@ -13,6 +14,7 @@ export const Header = () => {
 			<div className="right-menus">
 				<div className="top">
 					<SearchBar />
+					<UserIcons />
 				</div>
 
 				<div className="bottom"></div>

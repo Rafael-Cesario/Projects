@@ -1,10 +1,12 @@
 import { styled } from "styled-components";
+import { Theme } from "../../../styles/styledGlobal";
 
 export const StyledSearchBar = styled.div`
 	display: flex;
 	align-items: center;
-	background-color: #303030;
+	background-color: ${Theme.container};
 	border-radius: 4px;
+	margin-right: 1rem;
 
 	input {
 		outline: none;

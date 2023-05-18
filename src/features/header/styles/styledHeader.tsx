@@ -13,4 +13,8 @@ export const StyledHeader = styled.div`
 		font-size: 1.5rem;
 		margin: 0 1rem;
 	}
+
+	.top {
+		display: flex;
+	}
 `;

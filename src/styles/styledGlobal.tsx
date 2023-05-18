@@ -13,3 +13,7 @@ export const StyledGlobal = createGlobalStyle`
         color: #eee;
     }
 `;
+
+export const Theme = {
+	container: "#262626",
+};
