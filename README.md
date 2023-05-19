@@ -1,60 +1,7 @@
 # Projects
 
-#### Building something is my way to learn or see if I really understand, this way I can test things and solve common problems that may happen. My projects are like my notes that i take for latter.
+This repository is where a save my small projects focused on something specific, these projects are like my notes and my way to learn.
+Building something is my way to learn, this way I can test things and solve common problems that may happen.
 
-###### The best way to learn is by creating projects.
-
-<br/>
-<br/>
-
-### [Login Page](./08-login/)
-
-Full stack login page
-
-    Frontend: apollo client, axios, cookie, eslint, graphql, immer, next, react, typescript, tailwindcss
-    Backend: apollo server, graphql, typescript, typegoose, mongoose, jsonwebtoken, ts-node-dev, bcrypt
-    
-    
-    
-### [Recipes](./07-recipes/)
-Recipes app UI
-
-    FrontEnd: next, react, tailwind, typescript
-
-
-
-### [Graphql authentication](./06-graphql-authentication/)
-
-User authentication with graphql and JWT
-
-    Backend: apollo/server, graphql, typegoose, bcrypt, jsonwebtoken, typescript
-
-### [API user CRUD graphql](./05-user-crud-graphql)
-
-A user CRUD with graphql
-
-    Backend: Apollo/server, graphql, typegoose, mongodb, typescript, supertest, vitest
-
-### [API User CRUD](./04-user-crud-restful)
-
-A simple restful api for user crud.
-
-    Backend: typescript, express, mongoose, vitest, supertest
-
-### [SNotes](./03-s-notes)
-
-A rich text editor.
-
-    Frontend: Next, Typescript, styled-components
-
-### [To Do List](./02-to-do-list)
-
-Create Lists and add yours tasks.
-
-    FrontEnd: NextJS, Typescript, Styled-Components, Eslint, vitest, react-testing-library
-
-### [Calculator](./01-calculator)
-
-A simple Calculator App.
-
-    FrontEnd: React, Typescript, Styled-Components
+I separate my projects in three folders: frontend, backend, and css.
+Each project should have his own readme to explain the project.
