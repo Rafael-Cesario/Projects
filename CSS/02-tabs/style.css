@@ -1,0 +1,68 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: 'Courier New', Courier, monospace;
+}
+
+body {
+	background-color: #101010;
+	color: #ddd;
+	padding: 5rem 10vw;
+}
+
+.tabs {
+	overflow: hidden;
+	background-color: #202020;
+	box-shadow: 5px 5px 5px #000000;
+}
+
+.tab {
+	background-color: inherit;
+	float: left;
+	border: none;
+	outline: none;
+	cursor: pointer;
+	padding: 1rem;
+	transition: 0.3s;
+}
+
+.tab:hover,
+.active {
+	background-color: darkgoldenrod;
+}
+
+.content {
+	padding: 0.5rem 1rem;
+	border-top: none;
+	background-color: #252525;
+	display: none;
+	box-shadow: 5px 5px 5px #000000;
+}
+
+.content {
+	animation: fadeEffect 0.3s;
+}
+
+@keyframes fadeEffect {
+	from {
+		opacity: 0;
+		transform: translateY(-2rem);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+.content h1,
+.content p {
+	margin: 1rem 0;
+}
+
+.close {
+	float: right;
+	margin: 1rem 0;
+	cursor: pointer;
+	color: darkgoldenrod;
+}

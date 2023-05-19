@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;700&display=swap');
+
+body {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+
+	background-color: #101010;
+	padding: 5rem 10vw;
+	color: #dddddd;
+	font-family: 'Work Sans';
+}
+
+.accordion {
+	font-family: 'Work Sans';
+	font-weight: bold;
+	background-color: #202020;
+	color: #dddddd;
+	cursor: pointer;
+	padding: 1rem;
+	width: 100%;
+	text-align: left;
+	border: none;
+	outline: none;
+	transition: 0.4s;
+}
+
+.accordion::after {
+	content: '+';
+	float: right;
+	margin-left: 1rem;
+}
+
+.active:after {
+	content: '-';
+}
+
+.active,
+.accordion:hover {
+	background-color: dodgerblue;
+	color: #dddddd;
+}
+
+.panel {
+	padding: 0 1rem;
+	background-color: #303030;
+	overflow: hidden;
+	max-height: 0;
+	transition: max-height 0.2s ease-out;
+}
