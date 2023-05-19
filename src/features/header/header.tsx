@@ -1,4 +1,5 @@
 import { Icon } from "./components/icon";
+import { Menus } from "./components/menus";
 import { SearchBar } from "./components/searchBar";
 import { UserIcons } from "./components/userIcons";
 import { StyledHeader } from "./styles/styledHeader";
@@ -17,7 +18,7 @@ export const Header = () => {
 					<UserIcons />
 				</div>
 
-				<div className="bottom"></div>
+				<Menus />
 			</div>
 		</StyledHeader>
 	);

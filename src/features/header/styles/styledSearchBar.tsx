@@ -7,8 +7,10 @@ export const StyledSearchBar = styled.div`
 	background-color: ${Theme.container};
 	border-radius: 4px;
 	margin-right: 1rem;
+	width: 100%;
 
 	input {
+		width: inherit;
 		outline: none;
 		border: none;
 		background-color: transparent;
@@ -23,8 +25,6 @@ export const StyledSearchBar = styled.div`
 	}
 
 	.icon {
-		width: 15px;
-		height: 15px;
 		margin: 0 0.5rem;
 	}
 `;

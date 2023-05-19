@@ -5,6 +5,7 @@ export const StyledUserIcons = styled.div`
 	background-color: ${Theme.container};
 	padding: 0.4rem 1rem;
 	border-radius: 4px;
+	display: flex;
 
 	.button {
 		border: none;
@@ -17,10 +18,10 @@ export const StyledUserIcons = styled.div`
 			visibility: hidden;
 			position: absolute;
 			left: 0;
-			background-color: ${Theme.container};
+			background-color: #0050dd;
 			color: #ddd;
 			font-weight: bold;
-			transform: translate(-40%, 2.5rem);
+			transform: translate(-50%, 2.5rem);
 			padding: 5px 20px;
 			border-radius: 4px;
 		}

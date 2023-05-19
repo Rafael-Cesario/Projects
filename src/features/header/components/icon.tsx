@@ -6,5 +6,5 @@ interface IconProps {
 }
 
 export const Icon = ({ src, alt }: IconProps) => {
-	return <StyledIcon className="icon" src={src} alt={alt} width={20} height={20} />;
+	return <StyledIcon className="icon" src={src} alt={alt} width={15} height={15} />;
 };

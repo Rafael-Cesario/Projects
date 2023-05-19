@@ -7,11 +7,18 @@ export const StyledHeader = styled.div`
 
 	.sidebar-title {
 		display: flex;
-	}
+		align-items: center;
+		height: fit-content;
 
-	.title {
-		font-size: 1.5rem;
-		margin: 0 1rem;
+		.title {
+			font-size: 1.2rem;
+			margin: 0 1rem;
+		}
+
+		.icon {
+			width: 20px;
+			height: 20px;
+		}
 	}
 
 	.top {

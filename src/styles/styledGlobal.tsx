@@ -15,5 +15,5 @@ export const StyledGlobal = createGlobalStyle`
 `;
 
 export const Theme = {
-	container: "#262626",
+	container: "#272727",
 };
