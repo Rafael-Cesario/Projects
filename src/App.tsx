@@ -1,4 +1,5 @@
 import { Header } from "./features/header/header";
+import { Publicity } from "./features/publicity/publicity";
 import { StyledGlobal } from "./styles/styledGlobal";
 
 const App = () => {
@@ -7,6 +8,7 @@ const App = () => {
 			<StyledGlobal />
 
 			<Header />
+			<Publicity />
 		</>
 	);
 };

@@ -16,4 +16,5 @@ export const StyledGlobal = createGlobalStyle`
 
 export const Theme = {
 	container: "#272727",
+	primary: "#0f94ec",
 };
