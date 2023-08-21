@@ -6,4 +6,6 @@ export const Theme = {
 	fadedText: "#555",
 	borderRadius: "10px",
 	primary: "#1070cc",
+
+	error: "#a53d3d",
 };

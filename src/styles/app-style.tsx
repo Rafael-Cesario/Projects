@@ -10,14 +10,15 @@ export const StyledApp = styled.div`
 
 	.current-question {
 		font-weight: bold;
-		color: ${Theme.fadedText};
 		margin-top: 2rem;
+		color: ${Theme.fadedText};
 	}
 
 	.question {
 		display: flex;
 		justify-content: center;
 		max-width: 1000px;
+		width: 90vw;
 		margin: 4rem;
 		border-radius: ${Theme.borderRadius};
 		min-height: 250px;
@@ -38,6 +39,7 @@ export const StyledApp = styled.div`
 
 		.text {
 			color: ${Theme.background};
+			font-size: 1.2rem;
 		}
 	}
 
@@ -54,13 +56,13 @@ export const StyledApp = styled.div`
 			border: 2px solid transparent;
 			outline: none;
 			padding: 10px 20px;
-			min-width: 400px;
 			min-height: 100px;
 			margin: 12px;
 			color: ${Theme.text};
 			cursor: pointer;
 			transition: 0.3s;
 			flex-grow: 1;
+			max-width: 450px;
 
 			&:hover {
 				transform: scale(1.02);
@@ -71,12 +73,36 @@ export const StyledApp = styled.div`
 				border: 2px solid ${Theme.primary};
 			}
 		}
+
+		.active {
+			border: 2px solid ${Theme.primary};
+		}
+
+		.wrong {
+			border: 2px solid transparent;
+			background-color: #a53d3d;
+			color: #ddd;
+		}
+
+		.right {
+			color: #ddd;
+			border: 2px solid transparent;
+			background-color: #3b883b;
+		}
 	}
 
 	.navigation {
 		display: flex;
 		flex-direction: column;
+		align-items: center;
 		margin-bottom: 4rem;
+
+		.feedback {
+			margin-bottom: 1rem;
+			padding: 5px 1rem;
+			background-color: ${Theme.error};
+			border-radius: ${Theme.borderRadius};
+		}
 
 		.next {
 			background-color: ${Theme.primary};
