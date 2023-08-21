@@ -44,9 +44,8 @@ export const StyledApp = styled.div`
 	}
 
 	.options {
-		display: flex;
-		flex-wrap: wrap;
-		justify-content: center;
+		display: grid;
+		grid-template-columns: repeat(2, minmax(150px, 500px));
 		margin-bottom: 4rem;
 		max-width: 950px;
 

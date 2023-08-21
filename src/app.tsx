@@ -10,6 +10,7 @@ const App = () => {
 	const [feedback, setFeedback] = useState("");
 	const [correctCounter, setCorrectCounter] = useState(0);
 	const [questionState, setQuestionState] = useState<QuestionStates>("question");
+	const [endQuiz, setEndQuiz] = useState(false);
 
 	const answerButtonsRef = {
 		A: useRef<HTMLButtonElement>(null),
@@ -18,7 +19,28 @@ const App = () => {
 		D: useRef<HTMLButtonElement>(null),
 	};
 
-	const goToNextQuestion = () => {};
+	const updateButtonsClass = (isCorrectAnswer: boolean, correctAlternative: string) => {
+		if (!isCorrectAnswer) {
+			const userAnswerButton = answerButtonsRef[userAnswer as keyof typeof answerButtonsRef].current;
+			userAnswerButton?.classList.toggle("wrong");
+		}
+
+		const correctButton = answerButtonsRef[correctAlternative as keyof typeof answerButtonsRef].current;
+		correctButton?.classList.toggle("right");
+	};
+
+	const goToNextQuestion = () => {
+		const maxRange = agileQuizQuestions.length - 1;
+		if (currentQuestion + 1 > maxRange) return setEndQuiz(true);
+
+		const correctAlternative = agileQuizQuestions[currentQuestion].correctAnswer;
+		const isCorrectAnswer = userAnswer === correctAlternative;
+
+		updateButtonsClass(isCorrectAnswer, correctAlternative);
+		setCurrentQuestion(currentQuestion + 1);
+		setQuestionState("question");
+		setUserAnswer("");
+	};
 
 	const verifyAnswer = () => {
 		if (!userAnswer) return setFeedback("Nenhuma alternativa foi escolhida, por favor escolha uma.");
@@ -29,16 +51,17 @@ const App = () => {
 
 		if (isCorrectAnswer) setCorrectCounter(correctCounter + 1);
 
-		if (!isCorrectAnswer) {
-			const userAnswerButton = answerButtonsRef[userAnswer as keyof typeof answerButtonsRef].current;
-			userAnswerButton?.classList.add("wrong");
-		}
-
-		const correctButton = answerButtonsRef[correctAlternative as keyof typeof answerButtonsRef].current;
-		correctButton?.classList.add("right");
-
+		updateButtonsClass(isCorrectAnswer, correctAlternative);
 		setQuestionState("show answer");
 	};
+
+	if (endQuiz)
+		return (
+			<StyledApp>
+				<h1>Fim</h1>
+				<p>Acertos: {correctCounter}</p>
+			</StyledApp>
+		);
 
 	return (
 		<StyledApp>
@@ -52,16 +75,16 @@ const App = () => {
 			</div>
 
 			<div className="options">
-				<button ref={answerButtonsRef.A} className="answer" onClick={() => setUserAnswer("A")}>
+				<button ref={answerButtonsRef.A} className="answer" disabled={questionState === "show answer" && true} onClick={() => setUserAnswer("A")}>
 					{agileQuizQuestions[currentQuestion].options.A}
 				</button>
-				<button ref={answerButtonsRef.B} className="answer" onClick={() => setUserAnswer("B")}>
+				<button ref={answerButtonsRef.B} className="answer" disabled={questionState === "show answer" && true} onClick={() => setUserAnswer("B")}>
 					{agileQuizQuestions[currentQuestion].options.B}
 				</button>
-				<button ref={answerButtonsRef.C} className="answer" onClick={() => setUserAnswer("C")}>
+				<button ref={answerButtonsRef.C} className="answer" disabled={questionState === "show answer" && true} onClick={() => setUserAnswer("C")}>
 					{agileQuizQuestions[currentQuestion].options.C}
 				</button>
-				<button ref={answerButtonsRef.D} className="answer" onClick={() => setUserAnswer("D")}>
+				<button ref={answerButtonsRef.D} className="answer" disabled={questionState === "show answer" && true} onClick={() => setUserAnswer("D")}>
 					{agileQuizQuestions[currentQuestion].options.D}
 				</button>
 			</div>
