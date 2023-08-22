@@ -12,6 +12,9 @@ const App = () => {
 	const [questionState, setQuestionState] = useState<QuestionStates>("question");
 	const [endQuiz, setEndQuiz] = useState(false);
 
+	const correctAlternative = agileQuizQuestions[currentQuestion].correctAnswer;
+	const isCorrectAnswer = userAnswer === correctAlternative;
+
 	const answerButtonsRef = {
 		A: useRef<HTMLButtonElement>(null),
 		B: useRef<HTMLButtonElement>(null),
@@ -19,7 +22,7 @@ const App = () => {
 		D: useRef<HTMLButtonElement>(null),
 	};
 
-	const updateButtonsClass = (isCorrectAnswer: boolean, correctAlternative: string) => {
+	const updateButtonsClass = () => {
 		if (!isCorrectAnswer) {
 			const userAnswerButton = answerButtonsRef[userAnswer as keyof typeof answerButtonsRef].current;
 			userAnswerButton?.classList.toggle("wrong");
@@ -33,10 +36,7 @@ const App = () => {
 		const maxRange = agileQuizQuestions.length - 1;
 		if (currentQuestion + 1 > maxRange) return setEndQuiz(true);
 
-		const correctAlternative = agileQuizQuestions[currentQuestion].correctAnswer;
-		const isCorrectAnswer = userAnswer === correctAlternative;
-
-		updateButtonsClass(isCorrectAnswer, correctAlternative);
+		updateButtonsClass();
 		setCurrentQuestion(currentQuestion + 1);
 		setQuestionState("question");
 		setUserAnswer("");
@@ -46,20 +46,25 @@ const App = () => {
 		if (!userAnswer) return setFeedback("Nenhuma alternativa foi escolhida, por favor escolha uma.");
 		setFeedback("");
 
-		const correctAlternative = agileQuizQuestions[currentQuestion].correctAnswer;
-		const isCorrectAnswer = userAnswer === correctAlternative;
-
 		if (isCorrectAnswer) setCorrectCounter(correctCounter + 1);
 
-		updateButtonsClass(isCorrectAnswer, correctAlternative);
+		updateButtonsClass();
 		setQuestionState("show answer");
+	};
+
+	const restartQuiz = () => {
+		setCurrentQuestion(0);
+		setEndQuiz(false);
 	};
 
 	if (endQuiz)
 		return (
 			<StyledApp>
-				<h1>Fim</h1>
-				<p>Acertos: {correctCounter}</p>
+				<h1 className="end-title">Fim</h1>
+				<p className="score">Acertos: {correctCounter}</p>
+				<button className="restart" onClick={() => restartQuiz()}>
+					Reiniciar
+				</button>
 			</StyledApp>
 		);
 
@@ -78,12 +83,15 @@ const App = () => {
 				<button ref={answerButtonsRef.A} className="answer" disabled={questionState === "show answer" && true} onClick={() => setUserAnswer("A")}>
 					{agileQuizQuestions[currentQuestion].options.A}
 				</button>
+
 				<button ref={answerButtonsRef.B} className="answer" disabled={questionState === "show answer" && true} onClick={() => setUserAnswer("B")}>
 					{agileQuizQuestions[currentQuestion].options.B}
 				</button>
+
 				<button ref={answerButtonsRef.C} className="answer" disabled={questionState === "show answer" && true} onClick={() => setUserAnswer("C")}>
 					{agileQuizQuestions[currentQuestion].options.C}
 				</button>
+
 				<button ref={answerButtonsRef.D} className="answer" disabled={questionState === "show answer" && true} onClick={() => setUserAnswer("D")}>
 					{agileQuizQuestions[currentQuestion].options.D}
 				</button>
@@ -103,8 +111,6 @@ const App = () => {
 						Próxima
 					</button>
 				)}
-
-				<button className="back">Anterior</button>
 			</div>
 		</StyledApp>
 	);

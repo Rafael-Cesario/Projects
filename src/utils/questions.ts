@@ -2,12 +2,12 @@ export const agileQuizQuestions = [
 	{
 		question: "O que é a metodologia agil?",
 		options: {
-			A: "Uma abordagem rigorosa e inflexível para o desenvolvimento de software.",
-			B: "Um conjunto de diretrizes para o gerenciamento de projetos em cascata.",
-			C: "Uma abordagem flexível e iterativa para o desenvolvimento de software.",
+			A: "Uma abordagem flexível e iterativa para o desenvolvimento de software.",
+			B: "Uma abordagem rigorosa e inflexível para o desenvolvimento de software.",
+			C: "Um conjunto de diretrizes para o gerenciamento de projetos em cascata.",
 			D: "Uma metodologia que se concentra apenas na documentação.",
 		},
-		correctAnswer: "C",
+		correctAnswer: "A",
 	},
 	{
 		question: "Qual dos seguintes é um valor central do Manifesto agil?",
@@ -24,10 +24,10 @@ export const agileQuizQuestions = [
 		options: {
 			A: "Atribuir tarefas aos membros da equipe.",
 			B: "Relatar o progresso à alta administração.",
-			C: "Facilitar a comunicação entre os membros da equipe e discutir o trabalho futuro.",
-			D: "Revisar o produto final e tomar decisões.",
+			C: "Revisar o produto final e tomar decisões.",
+			D: "Facilitar a comunicação entre os membros da equipe e discutir o trabalho futuro.",
 		},
-		correctAnswer: "C",
+		correctAnswer: "D",
 	},
 	{
 		question: "O que é um 'sprint' no agil?",
@@ -43,11 +43,11 @@ export const agileQuizQuestions = [
 		question: "Qual é o papel de um Product Owner no agil?",
 		options: {
 			A: "Escrever código e desenvolver o produto.",
-			B: "Gerenciar o progresso do trabalho da equipe.",
-			C: "Representar os interesses das partes interessadas e priorizar o backlog do produto.",
+			B: "Representar os interesses das partes interessadas e priorizar o backlog do produto.",
+			C: "Gerenciar o progresso do trabalho da equipe.",
 			D: "Garantir que as reuniões diárias de stand-up ocorram sem problemas.",
 		},
-		correctAnswer: "C",
+		correctAnswer: "B",
 	},
 	{
 		question: "Qual prática ajuda as equipes agil a melhorarem continuamente seus processos?",

@@ -138,4 +138,29 @@ export const StyledApp = styled.div`
 			}
 		}
 	}
+
+	.end-title {
+		font-size: 4rem;
+		color: ${Theme.primary};
+	}
+
+	.score {
+		border-radius: ${Theme.borderRadius};
+		font-size: 1.2rem;
+		font-weight: bold;
+	}
+
+	.restart {
+		border: 2px solid transparent;
+		outline: none;
+		background-color: ${Theme.text};
+		color: ${Theme.background};
+		font-size: 1.1rem;
+		font-weight: bold;
+		padding: 10px 20px;
+		border-radius: ${Theme.borderRadius};
+		width: 50vw;
+		margin-top: 4rem;
+		cursor: pointer;
+	}
 `;
