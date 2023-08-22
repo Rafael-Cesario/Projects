@@ -53,6 +53,7 @@ const App = () => {
 	};
 
 	const restartQuiz = () => {
+		setQuestionState("question");
 		setCurrentQuestion(0);
 		setEndQuiz(false);
 	};
