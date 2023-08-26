@@ -30,8 +30,8 @@ export class UserService {
 		const user = await this.prisma.user.findUnique({ where: { id: data.id } });
 		if (!user) throw new NotFoundException("notFound: User not found");
 
-		const samePassword = data.password === user.password;
-		if (!samePassword) throw new UnauthorizedException("unauthorized");
+		const isSamePassword = data.password === user.password;
+		if (!isSamePassword) throw new UnauthorizedException("unauthorized");
 
 		if (data.newUser.email !== user.email) {
 			const isDuplicatedEmail = await this.prisma.user.findUnique({ where: { email: data.newUser.email } });
@@ -46,8 +46,8 @@ export class UserService {
 		const user = await this.prisma.user.findUnique({ where: { id: data.id } });
 		if (!user) throw new NotFoundException("notFound: User not found");
 
-		const samePassword = data.password === user.password;
-		if (!samePassword) throw new UnauthorizedException("unauthorized");
+		const isSamePassword = data.password === user.password;
+		if (!isSamePassword) throw new UnauthorizedException("unauthorized");
 
 		await this.prisma.user.delete({ where: { id: data.id } });
 		return `Success: Your account was deleted`;
