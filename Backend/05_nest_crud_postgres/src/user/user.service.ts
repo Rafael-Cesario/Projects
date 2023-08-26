@@ -1,6 +1,6 @@
-import { ConflictException, Injectable, NotFoundException } from "@nestjs/common";
+import { ConflictException, Injectable, NotFoundException, UnauthorizedException } from "@nestjs/common";
 import { Prisma } from "@prisma/client";
-import { IUpdateUser } from "src/interfaces/user";
+import { IDeleteUser, IUpdateUser } from "src/interfaces/user";
 import { PrismaService } from "src/prisma/prisma.service";
 
 @Injectable()
@@ -30,14 +30,26 @@ export class UserService {
 		const user = await this.prisma.user.findUnique({ where: { id: data.id } });
 		if (!user) throw new NotFoundException("notFound: User not found");
 
-		if (data.email !== user.email) {
-			const isDuplicatedEmail = await this.prisma.user.findUnique({ where: { email: data.email } });
+		const samePassword = data.password === user.password;
+		if (!samePassword) throw new UnauthorizedException("unauthorized");
+
+		if (data.newUser.email !== user.email) {
+			const isDuplicatedEmail = await this.prisma.user.findUnique({ where: { email: data.newUser.email } });
 			if (isDuplicatedEmail) throw new ConflictException("duplicated: This email is already in use.");
 		}
 
-		const newUser = await this.prisma.user.update({ where: { id: data.id }, data });
+		const newUser = await this.prisma.user.update({ where: { id: data.id }, data: { ...data.newUser } });
 		return newUser;
 	}
 
-	// Delete
+	async deleteOne(data: IDeleteUser) {
+		const user = await this.prisma.user.findUnique({ where: { id: data.id } });
+		if (!user) throw new NotFoundException("notFound: User not found");
+
+		const samePassword = data.password === user.password;
+		if (!samePassword) throw new UnauthorizedException("unauthorized");
+
+		await this.prisma.user.delete({ where: { id: data.id } });
+		return `Success: Your account was deleted`;
+	}
 }

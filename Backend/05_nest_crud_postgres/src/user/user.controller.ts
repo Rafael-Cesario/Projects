@@ -1,8 +1,8 @@
-import { BadRequestException, Body, Controller, Get, Param, Post, Put } from "@nestjs/common";
+import { BadRequestException, Body, Controller, Delete, Get, Param, Post, Put } from "@nestjs/common";
 import { UserService } from "./user.service";
 import { Prisma } from "@prisma/client";
 import { verifyEmptyValues } from "src/utils/verify-empty-values";
-import { IUpdateUser } from "src/interfaces/user";
+import { IDeleteUser, IUpdateUser } from "src/interfaces/user";
 
 @Controller("user")
 export class UserController {
@@ -28,11 +28,16 @@ export class UserController {
 
 	@Put()
 	async updateOne(@Body() data: IUpdateUser) {
-		const { id, email, name, password } = data;
+		const { id, newUser } = data;
 
-		const hasEmptyValues = verifyEmptyValues({ id, email, name, password });
+		const hasEmptyValues = verifyEmptyValues({ id, ...newUser });
 		if (hasEmptyValues) throw new BadRequestException(`emptyValues: ${hasEmptyValues}`);
 
-		return this.userService.updateOne({id, email, name, password });
+		return this.userService.updateOne(data);
+	}
+
+	@Delete()
+	async deleteOne(@Body() data: IDeleteUser) {
+		return this.userService.deleteOne(data);
 	}
 }
