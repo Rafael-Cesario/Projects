@@ -1,0 +1,15 @@
+version: "3"
+services:
+  database:
+    image: postgres:alpine
+    container_name: postgres
+    environment:
+      - POSTGRES_PASSWORD=admin
+      - POSTGRES_USER=admin
+    ports:
+      - 5432:5432
+    volumes:
+      - "./database:/var/lib/postgresql/data/"
+
+volumes:
+  database:
