@@ -5,6 +5,6 @@ import { LoginModule } from "./models/authentication/login.module";
 import { ConfigModule } from "@nestjs/config";
 
 @Module({
-	imports: [ConfigModule.forRoot(), PrismaModule, UserModule, LoginModule],
+	imports: [PrismaModule, UserModule, LoginModule, ConfigModule.forRoot()],
 })
 export class AppModule {}

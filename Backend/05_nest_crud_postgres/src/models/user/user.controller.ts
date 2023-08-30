@@ -1,7 +1,7 @@
 import { BadRequestException, Body, Controller, Delete, Get, Param, Post, Put } from "@nestjs/common";
 import { UserService } from "./user.service";
 import { Prisma } from "@prisma/client";
-import { verifyEmptyValues } from "src/utils/verify-empty-values";
+import { verifyEmptyValues } from "../../utils/verify-empty-values";
 import { IDeleteUser, IUpdateUser } from "src/interfaces/user";
 
 @Controller("user")
