@@ -1,5 +1,5 @@
 import { Body, Controller, Post } from "@nestjs/common";
-import { ILogin } from "src/interfaces/login";
+import { ILogin } from "../..//interfaces/login";
 import { LoginService } from "./login.service";
 
 @Controller("authentication")

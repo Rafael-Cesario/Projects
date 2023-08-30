@@ -2,7 +2,7 @@ import { BadRequestException, Body, Controller, Delete, Get, Param, Post, Put } 
 import { UserService } from "./user.service";
 import { Prisma } from "@prisma/client";
 import { verifyEmptyValues } from "../../utils/verify-empty-values";
-import { IDeleteUser, IUpdateUser } from "src/interfaces/user";
+import { IDeleteUser, IUpdateUser } from "../../interfaces/user";
 
 @Controller("user")
 export class UserController {

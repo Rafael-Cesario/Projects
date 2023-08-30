@@ -1,6 +1,6 @@
 import { ConflictException, Injectable, NotFoundException, UnauthorizedException } from "@nestjs/common";
 import { Prisma } from "@prisma/client";
-import { IDeleteUser, IUpdateUser } from "src/interfaces/user";
+import { IDeleteUser, IUpdateUser } from "../../interfaces/user";
 import { PrismaService } from "../../prisma/prisma.service";
 
 @Injectable()
@@ -23,7 +23,7 @@ export class UserService {
 		if (isDuplicatedEmail) throw new ConflictException("duplicated: This email is already in use.");
 
 		const newUser = await this.prisma.user.create({ data });
-		return newUser;
+		return { ...newUser, password: "" };
 	}
 
 	async updateOne(data: IUpdateUser) {
