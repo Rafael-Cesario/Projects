@@ -3,7 +3,7 @@ import { INestApplication } from "@nestjs/common";
 import { Test } from "@nestjs/testing";
 import { AppModule } from "../src/app.module";
 import { PrismaService } from "../src/prisma/prisma.service";
-import { ICreateUser, IUser } from "../src/interfaces/user";
+import { ICreateUser, IUpdateUser, IUser } from "../src/interfaces/user";
 
 describe("Users", () => {
 	let app: INestApplication;
@@ -75,6 +75,55 @@ describe("Users", () => {
 			const { body, statusCode } = await request(app.getHttpServer()).get(`/user/wrong-id`);
 			expect(body.error).toBe("Not Found");
 			expect(statusCode).toBe(404);
+		});
+	});
+
+	describe.only("/PUT user", () => {
+		let user: IUser;
+
+		beforeEach(async () => {
+			const data: ICreateUser = { email: "user01@email.com", name: "user01", password: "123123" };
+			user = await prisma.user.create({ data });
+		});
+
+		afterEach(async () => {
+			await prisma.user.deleteMany();
+		});
+
+		it("Update a user", async () => {
+			const input: IUpdateUser = { id: user.id, password: user.password, newUser: { email: "new@new.com", name: "new", password: "new123" } };
+			const { body } = await request(app.getHttpServer()).put("/user").send(input);
+			expect(body.name).toBe(input.newUser.name);
+			expect(body.password).toBe("");
+		});
+
+		it("Throws a exception due to empty values", async () => {
+			const input: IUpdateUser = { id: user.id, password: user.password, newUser: { email: "", name: "", password: "new123" } };
+			const { body } = await request(app.getHttpServer()).put("/user").send(input);
+			expect(body.message).toBe("emptyValues: email is empty, name is empty");
+			expect(body.error).toBe("Bad Request");
+		});
+
+		it("Didn't find the user", async () => {
+			const input: IUpdateUser = { id: "wrong", password: user.password, newUser: { email: "new@new.com", name: "new", password: "new123" } };
+			const { body } = await request(app.getHttpServer()).put("/user").send(input);
+			expect(body.message).toMatch(/notFound/);
+			expect(body.error).toBe("Not Found");
+		});
+
+		it("Throws a exception due to wrong password", async () => {
+			const input: IUpdateUser = { id: user.id, password: "wrong", newUser: { email: "new@new.com", name: "new", password: "new123" } };
+			const { body } = await request(app.getHttpServer()).put("/user").send(input);
+			expect(body.message).toBe("unauthorized");
+			expect(body.error).toBe("Unauthorized");
+		});
+
+		it("Throws a exception due to duplicated email", async () => {
+			await prisma.user.create({ data: { email: "user02@email.com", name: "user02", password: "123" } });
+			const input: IUpdateUser = { id: user.id, password: user.password, newUser: { email: "user02@email.com", name: "new", password: "new123" } };
+			const { body } = await request(app.getHttpServer()).put("/user").send(input);
+			expect(body.message).toBe("duplicated: This email is already in use.");
+			expect(body.error).toBe("Conflict");
 		});
 	});
 });
