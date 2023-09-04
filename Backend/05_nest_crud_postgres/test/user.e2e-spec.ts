@@ -3,7 +3,7 @@ import { INestApplication } from "@nestjs/common";
 import { Test } from "@nestjs/testing";
 import { AppModule } from "../src/app.module";
 import { PrismaService } from "../src/prisma/prisma.service";
-import { ICreateUser, IUpdateUser, IUser } from "../src/interfaces/user";
+import { ICreateUser, IDeleteUser, IUpdateUser, IUser } from "../src/interfaces/user";
 
 describe("Users", () => {
 	let app: INestApplication;
@@ -78,7 +78,7 @@ describe("Users", () => {
 		});
 	});
 
-	describe.only("/PUT user", () => {
+	describe("/PUT user", () => {
 		let user: IUser;
 
 		beforeEach(async () => {
@@ -124,6 +124,32 @@ describe("Users", () => {
 			const { body } = await request(app.getHttpServer()).put("/user").send(input);
 			expect(body.message).toBe("duplicated: This email is already in use.");
 			expect(body.error).toBe("Conflict");
+		});
+	});
+
+	describe("/DELETE user", () => {
+		afterEach(async () => {
+			await prisma.user.deleteMany();
+		});
+
+		it("Delete a user", async () => {
+			const user = await prisma.user.create({ data: { email: "toBeDeleted@deleteMe.com", name: "Delete me", password: "goodbye" } });
+			const input: IDeleteUser = { id: user.id, password: user.password };
+			const { text } = await request(app.getHttpServer()).delete("/user").send(input);
+			expect(text).toBe("Success: Your account was deleted");
+		});
+
+		it("Throws an exception due to user not found", async () => {
+			const input: IDeleteUser = { id: "123", password: "123" };
+			const { body } = await request(app.getHttpServer()).delete("/user").send(input);
+			expect(body.error).toBe("Not Found");
+		});
+
+		it("Throws an exception due to wrong password", async () => {
+			const user = await prisma.user.create({ data: { email: "toBeDeleted@deleteMe.com", name: "Delete me", password: "goodbye" } });
+			const input: IDeleteUser = { id: user.id, password: "wrong" };
+			const { body } = await request(app.getHttpServer()).delete("/user").send(input);
+			expect(body.error).toBe("Unauthorized");
 		});
 	});
 });
